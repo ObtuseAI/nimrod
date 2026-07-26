@@ -1,6 +1,6 @@
 {
   "manifest_version": "33.0",
-  "generated_at": "2026-07-26T13:50:00.122736-05:00",
+  "generated_at": "2026-07-26T16:48:19.572754-05:00",
   "project": "nimrod",
   "project_path": ".",
   "project_status": "FOUNDATION_CONSTRUCTION_ZONE_PROVISIONING_SIGNED_DENIAL_INDEPENDENT_ATTESTATION_BLOCKED",
@@ -363,8 +363,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 21784,
-      "sha256": "2625BA077CEED96B14B73F98E0545E423BCD868A1C1043C23D4B6ECCF6CCD68B"
+      "bytes": 23846,
+      "sha256": "83AA072973C05AC182B1A54F5293852BE6D3CA0B12E7285ACB88F563AE5AB165"
     },
     {
       "path": "SECURITY.md",
