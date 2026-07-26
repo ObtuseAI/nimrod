@@ -1,0 +1,15 @@
+flowchart LR
+    Data["Immutable typed observations"] --> Bus["Authenticated event mesh"]
+    Bus --> World["World-model service"]
+    Governor["Governor service"] --> Cells["Isolated organism-cell services"]
+    World --> Cells
+    Cells --> Cortex["Hypothesis and challenge services"]
+    Cortex --> Settlement["Independent settlement service"]
+    Settlement --> Witness["Witness"]
+    Cells -. "typed proposal only" .-> Kernel["Constitutional Kernel"]
+    Kernel --> Executor["Capability-specific executor"]
+    Executor --> Target["Owner-controlled target"]
+    Target --> Settlement
+    Settlement --> Genome["Genome service"]
+    Genome --> Foundry["Candidate-only Evolution Foundry"]
+    Bus --> Board["Signed display-only Observatory"]

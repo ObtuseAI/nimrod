@@ -1,0 +1,54 @@
+{
+  "status": "RANGE_EVIDENCE_ACCEPTANCE_SIGNED_FIXTURE_DECISIONS_RETAINED_REAL_INDEPENDENT_ACCEPTANCE_BLOCKED",
+  "origin": "simulated",
+  "verifier_policy_status": "fixture_policy_non_accepting",
+  "verifier_policy_signer_count": 2,
+  "configured_verifier_count": 3,
+  "required_control_count": 9,
+  "verified_decision_count": 18,
+  "distinct_signed_verifier_count": 2,
+  "real_independent_verifier_count": 0,
+  "resolution_counts": {
+    "accepted": 0,
+    "rejected": 2,
+    "abstained": 2,
+    "disagreement": 2,
+    "timeout": 3
+  },
+  "accepted_control_count": 0,
+  "verified_attestation_count": 0,
+  "evidence_complete": false,
+  "blockers": [
+    "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+    "EXECUTION_AUTHORIZATION_MISSING",
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+    "RANGE_CONNECTION_AUTHORIZATION_MISSING",
+    "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING",
+    "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+  ],
+  "adversarial_case_count": 46,
+  "pure_real_acceptance_resolution_validated": true,
+  "simulated_acceptance_denied": true,
+  "activity": {
+    "environment_contact_performed": false,
+    "collection_performed": false,
+    "infrastructure_provisioned": false,
+    "host_or_network_policy_changed": false,
+    "credentials_handled": false,
+    "tools_installed": false,
+    "network_contact_performed": false,
+    "range_connected": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_collect": false,
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_authorize_action": false
+  }
+}

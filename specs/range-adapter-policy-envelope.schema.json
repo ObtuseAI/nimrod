@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-adapter-policy-envelope.schema.json",
+  "title": "nimrod Signed Range Adapter Policy Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["envelope_version", "envelope_id", "origin", "policy_id", "policy_digest", "governance_state_digest", "issued_at", "not_before", "expires_at", "authority", "signatures"],
+  "properties": {
+    "envelope_version": {"const": "0.1.0"},
+    "envelope_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_connect", "can_execute", "can_discover_targets"],
+      "properties": {
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_discover_targets": {"const": false}
+      }
+    },
+    "signatures": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signer_id", "algorithm", "signature_base64"],
+        "properties": {
+          "signer_id": {"$ref": "#/$defs/nonEmptyString"},
+          "algorithm": {"const": "Ed25519"},
+          "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

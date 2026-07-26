@@ -1,0 +1,50 @@
+{
+  "status": "RANGE_EVIDENCE_COMPLETION_SIGNED_DENIAL_RETAINED_REAL_COMPLETION_BLOCKED",
+  "origin": "simulated",
+  "completion_policy_status": "fixture_policy_non_completing",
+  "completion_policy_signer_count": 2,
+  "completion_authorization_status": "completion_denied",
+  "completion_authorization_signer_count": 2,
+  "completion_prerequisites_satisfied": false,
+  "completion_authorized": false,
+  "accepted_control_count": 0,
+  "verified_attestation_count": 0,
+  "real_independent_verifier_count": 0,
+  "evidence_complete": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "blockers": [
+    "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+    "EVIDENCE_COMPLETION_AUTHORIZATION_DENIED",
+    "EXECUTION_AUTHORIZATION_MISSING",
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+    "RANGE_CONNECTION_AUTHORIZATION_MISSING",
+    "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING",
+    "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+  ],
+  "adversarial_case_count": 36,
+  "pure_real_completion_path_validated": true,
+  "incomplete_real_completion_denied": true,
+  "activity": {
+    "environment_contact_performed": false,
+    "collection_performed": false,
+    "infrastructure_provisioned": false,
+    "host_or_network_policy_changed": false,
+    "credentials_handled": false,
+    "tools_installed": false,
+    "network_contact_performed": false,
+    "range_connected": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_collect": false,
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_authorize_action": false
+  }
+}

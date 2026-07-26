@@ -1,0 +1,16 @@
+{
+  "observation_version": "0.1.0",
+  "observation_id": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee",
+  "origin": "simulated",
+  "service_id": "verifier:anchor-primary",
+  "logical_principal": "service:nimrod-independent-verifier-primary",
+  "process_id": 12345,
+  "os_account_identifier": "desktop-validation-account",
+  "observed_at": "2026-07-12T22:30:00Z",
+  "status": "valid",
+  "subject_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "read_only_behavior_verified": true,
+  "os_account_boundary_verified": false,
+  "credential_environment_variable_count": 0,
+  "details": {"error_type": null, "message": null}
+}

@@ -1,0 +1,56 @@
+{
+  "profile_version": "0.1.0",
+  "profile_id": "profile:windows-range-host",
+  "subject": {
+    "type": "device",
+    "stable_id": "device:simulated-windows-01",
+    "owner_id": "customer:example"
+  },
+  "environment_class": "range",
+  "attestation": [],
+  "sensors": [
+    "endpoint.process.observe",
+    "endpoint.network.observe"
+  ],
+  "allowed_action_classes": [
+    "validation.simulate.reversible_local"
+  ],
+  "prohibited_effects": [
+    "No external targets",
+    "No real secret exfiltration",
+    "No destructive data loss"
+  ],
+  "data_policy": {
+    "classification": "internal",
+    "residency": ["customer-controlled"],
+    "raw_export_allowed": false,
+    "retention_seconds": 86400
+  },
+  "dependencies": [],
+  "safety_interlocks": [
+    {
+      "id": "kill-switch:range-01",
+      "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  ],
+  "resource_budgets": {
+    "maximum_cpu_percent": 20,
+    "maximum_duration_seconds": 300
+  },
+  "recovery": {
+    "method": "restore disposable range snapshot",
+    "maximum_recovery_seconds": 600,
+    "snapshot_required": true
+  },
+  "oracles": [
+    {
+      "id": "verifier:range-state",
+      "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+    }
+  ],
+  "offline_behavior": "deny_new_actions",
+  "known_limitations": [
+    "This simulated profile does not establish production platform support"
+  ]
+}
+

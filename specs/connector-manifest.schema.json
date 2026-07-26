@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/connector-manifest.schema.json",
+  "title": "nimrod Connector Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_version",
+    "connector_id",
+    "connector_version",
+    "vendor_product",
+    "supported_product_versions",
+    "role",
+    "lifecycle_operations",
+    "permissions",
+    "data_classes",
+    "network_destinations",
+    "secret_references",
+    "side_effects",
+    "idempotency",
+    "abort_contract",
+    "cleanup_contract",
+    "rate_limits",
+    "license_review",
+    "health_checks",
+    "signature"
+  ],
+  "properties": {
+    "manifest_version": { "const": "0.1.0" },
+    "connector_id": { "$ref": "#/$defs/capability" },
+    "connector_version": { "$ref": "#/$defs/nonEmptyString" },
+    "vendor_product": { "$ref": "#/$defs/nonEmptyString" },
+    "supported_product_versions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "role": { "enum": ["red", "blue", "purple", "identity", "ai", "verification"] },
+    "lifecycle_operations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["discover", "preflight", "compile", "execute", "observe", "abort", "cleanup", "verify"] }
+    },
+    "permissions": { "type": "array", "items": { "$ref": "#/$defs/capability" } },
+    "data_classes": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "network_destinations": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "secret_references": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "side_effects": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "idempotency": { "$ref": "#/$defs/nonEmptyString" },
+    "abort_contract": { "$ref": "#/$defs/nonEmptyString" },
+    "cleanup_contract": { "$ref": "#/$defs/nonEmptyString" },
+    "rate_limits": { "type": "object", "minProperties": 1 },
+    "license_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "license", "redistribution_allowed"],
+      "properties": {
+        "status": { "enum": ["pending", "approved", "blocked"] },
+        "license": { "$ref": "#/$defs/nonEmptyString" },
+        "redistribution_allowed": { "type": "boolean" }
+      }
+    },
+    "health_checks": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "signature": { "oneOf": [{ "$ref": "#/$defs/reference" }, { "type": "null" }] }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "capability": { "type": "string", "pattern": "^[a-z][a-z0-9_.:-]{2,127}$" },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+._-]*:[A-Fa-f0-9]{32,}$" }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,11 @@
+{
+  "consensus_version": "0.1.0",
+  "consensus_id": "bbbbbbbb-cccc-4ddd-8eee-ffffffffffff",
+  "origin": "simulated",
+  "observed_at": "2026-07-12T22:30:01Z",
+  "primary_observation_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "secondary_observation_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "state": "agreed_valid",
+  "verification_accepted": true,
+  "reason": "Two isolated verifier processes returned the same valid subject digest"
+}

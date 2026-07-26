@@ -1,0 +1,17 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "99999999-aaaa-4bbb-8ccc-dddddddddddd",
+  "origin": "simulated",
+  "service_id": "verifier:anchor-primary",
+  "logical_principal": "service:nimrod-independent-verifier-primary",
+  "process_boundary_required": true,
+  "read_only_inputs_required": true,
+  "production_distinct_os_account_required": true,
+  "expected_os_account_identifier": null,
+  "os_account_boundary_status": "required_unproven",
+  "allowed_capabilities": ["health.report", "witness.verify", "anchor.verify"],
+  "prohibited_capabilities": ["plan", "authorize", "execute", "sign", "write_evidence", "read_credentials"],
+  "environment_allowlist": ["PYTHONIOENCODING", "PYTHONPATH", "SYSTEMROOT", "TEMP", "TMP", "USERDOMAIN", "USERNAME", "WINDIR"],
+  "denied_environment_prefixes": ["AWS_", "AZURE_", "GOOGLE_", "OPENAI_", "ANTHROPIC_", "GITHUB_TOKEN", "GH_TOKEN", "KUBECONFIG", "DOCKER_"],
+  "request_timeout_ms": 5000
+}

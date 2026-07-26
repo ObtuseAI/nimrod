@@ -1,0 +1,20 @@
+{
+  "command_version": "0.1.0",
+  "command_id": "15192a77-f787-4f92-b1ab-4c253f3e3049",
+  "origin": "simulated",
+  "topology_id": "d20404d6-49a0-4aa4-9d82-fc43bf4f35df",
+  "topology_digest": "sha256:4c54ed8d18956c3f38c9b236ab429df010958ab6a8a12f668d49f6135b9ade99",
+  "generation": 1,
+  "sequence": 1,
+  "command": "engage",
+  "reason_code": "test_fixture",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "issued_at": "2026-07-12T23:40:00Z",
+  "not_before": "2026-07-12T23:40:00Z",
+  "expires_at": "2026-07-12T23:45:00Z",
+  "authority": {"can_disengage": false, "can_connect": false, "can_execute": false},
+  "signatures": [
+    {"signer_id": "key:range-owner", "algorithm": "Ed25519", "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="},
+    {"signer_id": "key:range-safety", "algorithm": "Ed25519", "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="}
+  ]
+}

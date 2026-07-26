@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-adapter-policy.schema.json",
+  "title": "nimrod Fixture-Only Range Adapter Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_version", "policy_id", "origin", "stage", "source_mappings", "output_template", "authority"],
+  "properties": {
+    "policy_version": {"const": "0.1.0"},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "stage": {"const": "no_execution_fixture_only"},
+    "source_mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_kind", "source_object_id", "source_artifact_digest", "technique_id", "allowed_platforms", "allowed_executors"],
+        "properties": {
+          "source_kind": {"enum": ["atomic_red_team", "caldera_ability"]},
+          "source_object_id": {"$ref": "#/$defs/nonEmptyString"},
+          "source_artifact_digest": {"$ref": "#/$defs/digest"},
+          "technique_id": {"type": "string", "pattern": "^T[0-9]{4}(?:\\.[0-9]{3})?$"},
+          "allowed_platforms": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+          "allowed_executors": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}}
+        }
+      }
+    },
+    "output_template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["connector_id", "capability", "target_id", "cleanup_step_id"],
+      "properties": {
+        "connector_id": {"const": "connector.simulated.atomic"},
+        "capability": {"const": "range.test.simulate"},
+        "target_id": {"$ref": "#/$defs/nonEmptyString"},
+        "cleanup_step_id": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_connect", "can_execute", "can_discover_targets"],
+      "properties": {
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_discover_targets": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

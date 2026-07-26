@@ -1,0 +1,30 @@
+{
+  "receipt_version": "0.1.0",
+  "evidence_id": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "incident_id": null,
+  "origin": "simulated",
+  "observation_time": "2026-07-12T18:00:00Z",
+  "collection_time": "2026-07-12T18:00:01Z",
+  "validity_interval": {
+    "start": "2026-07-12T18:00:00Z",
+    "end": null
+  },
+  "source_identity": {
+    "id": "planning-simulator",
+    "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "device_or_workload_attestation": null,
+  "content_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "classification": "E0",
+  "supporting_material": [],
+  "contradictions": [],
+  "processing_history": [],
+  "access_history": [],
+  "retention_policy": {
+    "purpose": "Planning and schema review",
+    "delete_after": null,
+    "legal_hold": false
+  },
+  "signatures": []
+}
+

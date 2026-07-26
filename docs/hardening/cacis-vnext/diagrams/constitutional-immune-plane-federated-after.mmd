@@ -1,0 +1,17 @@
+flowchart LR
+    Data["Immutable typed observations"] --> World["Versioned derived World Model"]
+    Governor["Non-authorizing Governor"] --> Organism["Ephemeral capability-bound organism"]
+    World --> Organism
+    Organism --> Cortex["Hypothesis, challenge, and metacognition"]
+    Cortex --> Settlement["Independent verification and settlement"]
+    Settlement --> Witness["Witness"]
+    Organism -. "typed proposal only" .-> Kernel["Constitutional Kernel"]
+    Kernel --> Executor["Capability-specific executor"]
+    Executor --> Target["Owner-controlled target"]
+    Target --> Settlement
+    Settlement --> Genome["Governed memory and genome"]
+    Genome --> Foundry["Candidate-only Evolution Foundry"]
+    Foundry -. "evaluated candidate only" .-> Governor
+    World --> Board["Signed display-only Observatory"]
+    Settlement --> Board
+    Foundry --> Board

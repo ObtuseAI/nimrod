@@ -1,0 +1,18 @@
+{
+  "verdict_version": "0.1.0",
+  "origin": "simulated",
+  "topology_id": "d20404d6-49a0-4aa4-9d82-fc43bf4f35df",
+  "topology_digest": "sha256:4c54ed8d18956c3f38c9b236ab429df010958ab6a8a12f668d49f6135b9ade99",
+  "generation": 1,
+  "status": "declared_contract_valid_environment_unproven",
+  "zone_count": 3,
+  "node_count": 3,
+  "route_count": 2,
+  "default_deny_declared": true,
+  "internet_egress_declared": false,
+  "out_of_band_kill_declared": true,
+  "environment_verified": false,
+  "provisioning_performed": false,
+  "network_contact_performed": false,
+  "authority": {"can_provision": false, "can_connect": false, "can_execute": false}
+}

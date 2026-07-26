@@ -1,0 +1,3 @@
+* text=auto eol=lf
+*.png binary
+docs/source/nimrod_source_brief.md -text

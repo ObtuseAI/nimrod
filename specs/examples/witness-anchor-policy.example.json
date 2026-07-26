@@ -1,0 +1,15 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "44444444-5555-4666-8777-888888888888",
+  "origin": "simulated",
+  "anchor_store_id": "anchor:simulated-external",
+  "not_before": "2026-07-12T21:00:00Z",
+  "expires_at": "2026-07-13T21:00:00Z",
+  "minimum_head_sequence": 0,
+  "allowed_witness_ids": ["witness:simulated-local"],
+  "anchor_key": {
+    "key_id": "key:anchor-independent",
+    "algorithm": "Ed25519",
+    "public_key_base64": "uAn3Mc2VqBKhyQ7puWVNqL1qDqy5vrHREkAAwep7I6Y="
+  }
+}

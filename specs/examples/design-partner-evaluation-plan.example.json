@@ -1,0 +1,78 @@
+{
+  "plan_version": "0.1.0",
+  "plan_id": "7c2f5be1-97e8-52ac-a426-beb884e5ddaa",
+  "origin": "simulated",
+  "status": "RECRUITMENT_NOT_STARTED",
+  "created_at": "2026-07-15T20:00:00Z",
+  "product_surface": "edge_preview",
+  "cohort": {
+    "target_count": 5,
+    "maximum_count": 8,
+    "participant_count": 0,
+    "participants": [],
+    "selection_profile": ["security_conscious_individual", "small_technical_team", "windows_operator"]
+  },
+  "tasks": [
+    {
+      "task_id": "distinguish_live_from_replayed",
+      "evidence": "Operator labels the origin before interpreting the verdict",
+      "success_condition": "No replayed artifact is described as current endpoint evidence"
+    },
+    {
+      "task_id": "explain_replayed_event",
+      "evidence": "Operator explains the process, destination, policy match, and confidence",
+      "success_condition": "Explanation preserves uncertainty and does not claim containment"
+    },
+    {
+      "task_id": "inspect_missing_evidence",
+      "evidence": "Operator locates every live-observation blocker",
+      "success_condition": "Missing publisher, parent, destination, and path-classification evidence is identified"
+    },
+    {
+      "task_id": "understand_action_boundary",
+      "evidence": "Operator distinguishes a proposal from authorization and execution",
+      "success_condition": "No participant believes Budget 1 changed endpoint state"
+    },
+    {
+      "task_id": "export_local_evidence",
+      "evidence": "Operator exports a local evidence packet using an alias",
+      "success_condition": "No raw endpoint telemetry, credential, or external upload is required"
+    }
+  ],
+  "measures": {
+    "minimum_task_completion_rate": 0.8,
+    "minimum_evidence_comprehension_rate": 0.8,
+    "maximum_critical_misunderstanding_count": 0,
+    "minimum_privacy_acceptance_rate": 0.8
+  },
+  "data_boundary": {
+    "explicit_consent_required": true,
+    "raw_endpoint_telemetry_collected": false,
+    "external_telemetry_upload": false,
+    "credential_collection": false,
+    "background_surveillance": false,
+    "screen_recording_enabled_by_default": false,
+    "participant_identifier": "operator_chosen_alias"
+  },
+  "activity": {
+    "recruitment_started": false,
+    "participant_contacted": false,
+    "consent_collected": false,
+    "software_installed": false,
+    "endpoint_data_collected": false,
+    "external_message_sent": false
+  },
+  "exit_gate": {
+    "satisfied": false,
+    "production_claims_authorized": false,
+    "required_evidence": ["completed_consented_sessions", "task_metrics", "misunderstanding_log", "privacy_feedback", "residual_risk_review"]
+  },
+  "blockers": ["COUNSEL_PRIVACY_REVIEW_INCOMPLETE", "NAMED_PARTNERS_NOT_SELECTED", "PARTICIPANT_CONSENT_NOT_COLLECTED"],
+  "authority": {
+    "can_contact_participants": false,
+    "can_collect_endpoint_data": false,
+    "can_install_software": false,
+    "can_authorize_execution": false,
+    "can_publish_claims": false
+  }
+}

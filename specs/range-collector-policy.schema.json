@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-collector-policy.schema.json",
+  "title": "nimrod Read-Only Range Collector Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_version", "policy_id", "origin", "status", "governance_state_digest", "scope_digest", "issued_at", "not_before", "expires_at", "environment", "required_controls", "collectors", "blockers", "authority", "signatures"],
+  "properties": {
+    "policy_version": {"const": "0.1.0"},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "origin": {"$ref": "#/$defs/origin"},
+    "status": {"enum": ["blocked_owner_named_environment_missing", "external_read_only_observations_allowed"]},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "environment": {"$ref": "#/$defs/environment"},
+    "required_controls": {"$ref": "#/$defs/controlSet"},
+    "collectors": {"type": "array", "minItems": 9, "maxItems": 9, "items": {"$ref": "#/$defs/collector"}},
+    "blockers": {"type": "array", "maxItems": 1, "uniqueItems": true, "items": {"const": "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING"}},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signatures": {"type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"environment": {"properties": {"owner_named": {"const": false}}}}},
+      "then": {
+        "properties": {
+          "origin": {"const": "simulated"},
+          "status": {"const": "blocked_owner_named_environment_missing"},
+          "blockers": {"const": ["OWNER_NAMED_SACRIFICIAL_RANGE_MISSING"]}
+        }
+      },
+      "else": {
+        "properties": {
+          "status": {"const": "external_read_only_observations_allowed"},
+          "blockers": {"const": []}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+    "control": {"enum": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"]},
+    "controlSet": {"type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": {"$ref": "#/$defs/control"}},
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment_id", "environment_name", "environment_class", "owner_named", "expected_observation_origin"],
+      "properties": {
+        "environment_id": {"$ref": "#/$defs/nonEmptyString"},
+        "environment_name": {"oneOf": [{"$ref": "#/$defs/nonEmptyString"}, {"type": "null"}]},
+        "environment_class": {"enum": ["sacrificial_range_candidate", "isolated_range", "sacrificial_replica"]},
+        "owner_named": {"type": "boolean"},
+        "expected_observation_origin": {"$ref": "#/$defs/origin"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"owner_named": {"const": false}}},
+          "then": {
+            "properties": {
+              "environment_name": {"type": "null"},
+              "environment_class": {"const": "sacrificial_range_candidate"},
+              "expected_observation_origin": {"const": "simulated"}
+            }
+          },
+          "else": {
+            "properties": {
+              "environment_name": {"$ref": "#/$defs/nonEmptyString"},
+              "environment_class": {"enum": ["isolated_range", "sacrificial_replica"]},
+              "expected_observation_origin": {"enum": ["range", "sacrificial_replica"]}
+            }
+          }
+        }
+      ]
+    },
+    "collector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["collector_id", "logical_principal", "process_id", "public_key_base64", "allowed_control_id", "read_only", "operation_allowlist", "network_destinations", "secret_references"],
+      "properties": {
+        "collector_id": {"$ref": "#/$defs/nonEmptyString"},
+        "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+        "process_id": {"type": "integer", "minimum": 1},
+        "public_key_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{43}=$"},
+        "allowed_control_id": {"$ref": "#/$defs/control"},
+        "read_only": {"const": true},
+        "operation_allowlist": {"const": ["digest", "emit_attestation", "observe"]},
+        "network_destinations": {"const": []},
+        "secret_references": {"const": []}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_provision", "can_change_policy", "can_access_credentials", "can_contact_source_tools", "can_open_network_connection", "can_execute"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_provision": {"const": false},
+        "can_change_policy": {"const": false},
+        "can_access_credentials": {"const": false},
+        "can_contact_source_tools": {"const": false},
+        "can_open_network_connection": {"const": false},
+        "can_execute": {"const": false}
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {
+        "signer_id": {"$ref": "#/$defs/nonEmptyString"},
+        "algorithm": {"const": "Ed25519"},
+        "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}
+      }
+    }
+  }
+}

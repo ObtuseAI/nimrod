@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/range-evidence-completion-policy.schema.json",
+  "title": "nimrod range evidence completion policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_version", "policy_id", "origin", "status", "governance_state_digest", "acceptance_report_id", "acceptance_report_digest", "scope_digest", "environment_id", "issued_at", "not_before", "expires_at", "required_controls", "required_accepted_control_count", "required_verified_attestation_count", "required_real_independent_verifier_count", "required_acceptance_status", "allowed_outcomes", "network_destinations", "secret_references", "blockers", "authority", "signatures"],
+  "properties": {
+    "policy_version": {"const": "0.1.0"},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "origin": {"$ref": "#/$defs/origin"},
+    "status": {"enum": ["fixture_policy_non_completing", "external_completion_policy"]},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "acceptance_report_id": {"type": "string", "format": "uuid"},
+    "acceptance_report_digest": {"$ref": "#/$defs/digest"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "environment_id": {"$ref": "#/$defs/nonEmptyString"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "required_controls": {"type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": {"$ref": "#/$defs/control"}},
+    "required_accepted_control_count": {"const": 9},
+    "required_verified_attestation_count": {"const": 9},
+    "required_real_independent_verifier_count": {"const": 2},
+    "required_acceptance_status": {"const": "accepted_controls_pending_separate_evidence_completion_authority"},
+    "allowed_outcomes": {"type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": {"enum": ["authorize_completion", "deny_completion"]}},
+    "network_destinations": {"type": "array", "maxItems": 0},
+    "secret_references": {"type": "array", "maxItems": 0},
+    "blockers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/blocker"}},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signatures": {"type": "array", "minItems": 2, "maxItems": 3, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "allOf": [
+    {"if": {"properties": {"origin": {"const": "simulated"}}, "required": ["origin"]}, "then": {"properties": {"status": {"const": "fixture_policy_non_completing"}}}},
+    {"if": {"properties": {"origin": {"enum": ["range", "sacrificial_replica"]}}, "required": ["origin"]}, "then": {"properties": {"status": {"const": "external_completion_policy"}}}}
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+    "control": {"enum": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"]},
+    "blocker": {"enum": ["EVIDENCE_COMPLETION_AUTHORIZATION_MISSING", "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING", "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING", "REAL_READ_ONLY_OBSERVATIONS_MISSING"]},
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_collect", "can_install", "can_provision", "can_change_policy", "can_access_credentials", "can_connect", "can_execute", "can_mark_evidence_complete", "can_authorize_action"],
+      "properties": {"can_collect": {"const": false}, "can_install": {"const": false}, "can_provision": {"const": false}, "can_change_policy": {"const": false}, "can_access_credentials": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_mark_evidence_complete": {"const": false}, "can_authorize_action": {"const": false}}
+    },
+    "signature": {
+      "type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {"signer_id": {"$ref": "#/$defs/nonEmptyString"}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "contentEncoding": "base64"}}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "accepted_chain_length": 2,
+  "adversarial_case_count": 18,
+  "can_authorize": false,
+  "can_execute": false,
+  "concurrent_accept_count": 1,
+  "concurrent_attempt_count": 16,
+  "concurrent_replay_denial_count": 15,
+  "crash_recovery_phase_count": 4,
+  "durable_replay_guard": true,
+  "freshness_seconds": 1,
+  "governance_key_count": 3,
+  "ingress_receipt_contract": "0.1.0",
+  "live_execution_performed": false,
+  "origin": "simulated",
+  "production_os_boundary_proven": false,
+  "signed_snapshot_contract": "0.1.0",
+  "stale_state_guard": true,
+  "status": "CONTROL_BOARD_SIGNED_INGRESS_VALID",
+  "threshold": 2,
+  "verified_role_count": 2
+}

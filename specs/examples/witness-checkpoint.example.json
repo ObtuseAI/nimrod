@@ -1,0 +1,27 @@
+{
+  "checkpoint_version": "0.1.0",
+  "checkpoint_id": "33333333-4444-4555-8666-777777777777",
+  "origin": "simulated",
+  "witness_id": "witness:simulated-local",
+  "created_at": "2026-07-12T21:10:00Z",
+  "tree_size": 4,
+  "merkle_root_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "journal_prefix_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "latest_entry_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "previous_checkpoint_digest": null,
+  "governance_id": "11111111-2222-4333-8444-555555555555",
+  "governance_epoch": 1,
+  "governance_state_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "signatures": [
+    {
+      "signer_id": "key:customer-a",
+      "algorithm": "Ed25519",
+      "signature_base64": "YmyaTX1hvAeIWDAON24xTnKOWWizo+kk4jsHe3d+6N6H/TcGm1u60k86gacGiRfHS7rtutbFYBXSVrkaeMFHDw=="
+    },
+    {
+      "signer_id": "key:safety-b",
+      "algorithm": "Ed25519",
+      "signature_base64": "BQB/lQ6HMbE0hIdjJet3k6maV8sVV4MvAOhdZ8o3JTo0kiVk2QF21eODq8V5seYXqP9AEL7HPU5coyRVjWZ5Bw=="
+    }
+  ]
+}

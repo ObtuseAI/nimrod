@@ -1,0 +1,62 @@
+{
+  "report_version": "0.1.0",
+  "report_id": "8411873f-ab0c-5518-b9ca-658a4298a3fc",
+  "origin": "simulated",
+  "status": "SOURCE_STAGING_SIGNED_DENIAL_OWNER_SCOPE_AND_QUARANTINE_BLOCKED",
+  "assessed_at": "2026-07-13T19:11:00Z",
+  "authorization_id": "c0ef9fcc-126e-4aab-98aa-2273fd2178aa",
+  "authorization_digest": "sha256:41a7224ccc920de29b8ca776674babc6c6455ba945b16871ac3b76e5910dc521",
+  "verified_signer_ids": [
+    "key:range-owner",
+    "key:range-recovery"
+  ],
+  "verified_roles": [
+    "customer_authority",
+    "recovery_officer"
+  ],
+  "requested_source_count": 5,
+  "authorized_source_count": 0,
+  "staged_source_count": 0,
+  "quarantine_requirement_count": 8,
+  "quarantine_completed_count": 0,
+  "owner_exclusion_registry_complete": false,
+  "owner_attestation_present": false,
+  "staging_authorized": false,
+  "build_authorized": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "blockers": [
+    "CONTENT_DIGEST_NOT_RETAINED",
+    "ISOLATED_CONSTRUCTION_ZONE_MISSING",
+    "OWNER_ATTESTATION_MISSING",
+    "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+    "OWNER_SCOPE_PROOF_MISSING",
+    "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+    "SOURCE_ARCHIVE_NOT_STAGED",
+    "SOURCE_STAGING_AUTHORIZATION_DENIED"
+  ],
+  "activity": {
+    "repository_content_downloaded": false,
+    "source_archive_staged": false,
+    "source_extracted": false,
+    "quarantine_checks_performed": false,
+    "dependency_resolution_performed": false,
+    "replica_built": false,
+    "infrastructure_provisioned": false,
+    "public_host_contacted_for_testing": false,
+    "range_connected": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_download_source": false,
+    "can_stage_source": false,
+    "can_extract_source": false,
+    "can_resolve_dependencies": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  }
+}

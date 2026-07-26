@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/resource-meter-receipt.schema.json",
+  "title": "nimrod Crash-Recoverable OS Resource Meter Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meter_version", "meter_id", "origin", "candidate_digest", "resource_lease_digest", "prepared_at", "completed_at", "recorded_at", "worker", "job", "usage", "durability", "status", "blockers", "network_access_performed", "candidate_executed", "production_promotion_authorized", "authority"],
+  "properties": {
+    "meter_version": {"const": "0.2.0"},
+    "meter_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "live"]},
+    "candidate_digest": {"$ref": "#/$defs/digest"},
+    "resource_lease_digest": {"$ref": "#/$defs/digest"},
+    "prepared_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "worker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["process_id", "executable_digest", "command_digest", "output_root_digest", "exit_code", "stdout_digest", "stderr_digest"],
+      "properties": {
+        "process_id": {"type": "integer", "minimum": 1},
+        "executable_digest": {"$ref": "#/$defs/digest"},
+        "command_digest": {"$ref": "#/$defs/digest"},
+        "output_root_digest": {"$ref": "#/$defs/digest"},
+        "exit_code": {"const": 0},
+        "stdout_digest": {"$ref": "#/$defs/digest"},
+        "stderr_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["job_object_assigned", "kill_on_close_configured", "process_memory_limit_bytes", "created_suspended", "assigned_before_first_resume", "assignment_race_closed", "creation_flags", "active_processes_after_completion", "total_processes"],
+      "properties": {
+        "job_object_assigned": {"type": "boolean"},
+        "kill_on_close_configured": {"type": "boolean"},
+        "process_memory_limit_bytes": {"type": "integer", "minimum": 1},
+        "created_suspended": {"const": true},
+        "assigned_before_first_resume": {"const": true},
+        "assignment_race_closed": {"const": true},
+        "creation_flags": {"const": 134217732},
+        "active_processes_after_completion": {"type": "integer", "minimum": 0},
+        "total_processes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_time_milliseconds", "cpu_time_milliseconds", "compute_units", "peak_memory_bytes", "peak_storage_bytes", "read_bytes", "write_bytes"],
+      "properties": {
+        "wall_time_milliseconds": {"type": "integer", "minimum": 1},
+        "cpu_time_milliseconds": {"type": "integer", "minimum": 0},
+        "compute_units": {"type": "integer", "minimum": 1},
+        "peak_memory_bytes": {"type": "integer", "minimum": 0},
+        "peak_storage_bytes": {"type": "integer", "minimum": 0},
+        "read_bytes": {"type": "integer", "minimum": 0},
+        "write_bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "durability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prepared_record_digest", "observation_record_digest", "crash_recovered", "injected_process_crash_recovery_verified", "file_data_flush_verified", "write_through_publish_verified", "abrupt_process_crash_recovery_verified", "physical_power_loss_test_performed", "power_loss_durability_verified"],
+      "properties": {
+        "prepared_record_digest": {"$ref": "#/$defs/digest"},
+        "observation_record_digest": {"$ref": "#/$defs/digest"},
+        "crash_recovered": {"type": "boolean"},
+        "injected_process_crash_recovery_verified": {"type": "boolean"},
+        "file_data_flush_verified": {"const": true},
+        "write_through_publish_verified": {"const": true},
+        "abrupt_process_crash_recovery_verified": {"type": "boolean"},
+        "physical_power_loss_test_performed": {"const": false},
+        "power_loss_durability_verified": {"const": false}
+      }
+    },
+    "status": {"enum": ["measured_contract_only", "blocked"]},
+    "blockers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "network_access_performed": {"const": false},
+    "candidate_executed": {"const": false},
+    "production_promotion_authorized": {"const": false},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_allocate", "can_extend_lease", "can_execute_candidate", "can_promote"],
+      "properties": {"can_allocate": {"const": false}, "can_extend_lease": {"const": false}, "can_execute_candidate": {"const": false}, "can_promote": {"const": false}}
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

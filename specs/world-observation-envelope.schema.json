@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/world-observation-envelope.schema.json",
+  "title": "nimrod CACIS world observation envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["observation_version", "observation_id", "origin", "replay_sequence", "domain", "subject", "fact_key", "assertion", "source", "observed_at", "collected_at", "valid_until", "confidence", "evidence_refs", "parent_event_digest", "authority"],
+  "properties": {
+    "observation_version": {"const": "0.1.0"},
+    "observation_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "replayed"},
+    "replay_sequence": {"type": "integer", "minimum": 1},
+    "domain": {"enum": ["identity", "endpoint", "network", "cloud", "threat", "recovery"]},
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "subject_type"],
+      "properties": {
+        "subject_id": {"type": "string", "minLength": 3, "maxLength": 160},
+        "subject_type": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]{1,63}$"}
+      }
+    },
+    "fact_key": {"type": "string", "pattern": "^[a-z][a-z0-9_.-]{2,127}$"},
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["posture", "value"],
+      "properties": {
+        "posture": {"enum": ["observed", "unknown"]},
+        "value": {"type": ["string", "null"], "maxLength": 512}
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "source_kind", "artifact_digest"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 3, "maxLength": 160},
+        "source_kind": {"enum": ["identity_log", "endpoint_sensor", "network_sensor", "cloud_audit", "threat_intelligence", "recovery_verifier"]},
+        "artifact_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "observed_at": {"type": "string", "format": "date-time"},
+    "collected_at": {"type": "string", "format": "date-time"},
+    "valid_until": {"type": "string", "format": "date-time"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "evidence_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+    },
+    "parent_event_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "can_change_policy", "can_claim_truth"],
+      "properties": {
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "can_change_policy": {"const": false},
+        "can_claim_truth": {"const": false}
+      }
+    }
+  }
+}

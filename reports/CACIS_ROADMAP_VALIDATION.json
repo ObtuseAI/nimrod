@@ -1,0 +1,33 @@
+{
+  "architectural_plane_count": 8,
+  "authority_change": "none",
+  "blockers": [
+    "signed_live_sensor_identity_and_health",
+    "production_retention_and_intake_backpressure",
+    "separately_administered_world_model_verifier",
+    "production_grade_organism_isolation",
+    "sealed_private_and_external_evaluators",
+    "authorized_isolated_range_live_evidence",
+    "design_partner_validation",
+    "stage_budget_and_accountable_leads"
+  ],
+  "cacis_arenas_observatory_implemented": true,
+  "cacis_genome_evaluation_implemented": true,
+  "cacis_homeostasis_chronos_implemented": true,
+  "cacis_immune_runtime_implemented": true,
+  "cacis_world_model_replay_implemented": true,
+  "constitutional_invariant_count": 10,
+  "doctrine_version": "0.1",
+  "execution_authorized": false,
+  "execution_performed": false,
+  "implementation_wave_count": 8,
+  "intelligence_research_hypothesis_cortex_implemented": true,
+  "negative_fail_closed_case_count": 21,
+  "origin": "owner_plan",
+  "production_claims_authorized": false,
+  "recursive_level_count": 6,
+  "roadmap_id": "cacis_vnext_20260715",
+  "roadmap_version": "0.1.0",
+  "status": "CACIS_ROADMAP_CONTRACT_VALID_IMPLEMENTATION_GATED",
+  "target_contact_performed": false
+}

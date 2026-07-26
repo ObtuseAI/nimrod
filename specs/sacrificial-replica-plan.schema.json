@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/sacrificial-replica-plan.schema.json",
+  "title": "nimrod sacrificial replica plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plan_version", "plan_id", "origin", "status", "registry_id", "registry_digest", "network", "replicas", "forbidden_targets", "authority"],
+  "properties": {
+    "plan_version": {"const": "0.1.0"},
+    "plan_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "declaration_only_sources_not_staged_or_built"},
+    "registry_id": {"type": "string", "format": "uuid"},
+    "registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "network": {"$ref": "#/$defs/network"},
+    "replicas": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/replica"}},
+    "forbidden_targets": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"enum": ["github_api", "github_ci", "github_content_delivery", "github_hosted_repository", "maintainer_infrastructure", "package_or_container_registry", "public_demo", "third_party_deployment"]}},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "network": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "upstream_access", "internet_egress", "public_ingress", "github_access", "registry_access", "dns_external_resolution"],
+      "properties": {"mode": {"const": "internal_only_default_deny"}, "upstream_access": {"const": false}, "internet_egress": {"const": false}, "public_ingress": {"const": false}, "github_access": {"const": false}, "registry_access": {"const": false}, "dns_external_resolution": {"const": false}}
+    },
+    "replica": {
+      "type": "object", "additionalProperties": false,
+      "required": ["replica_id", "source_id", "source_commit_sha", "replica_kind", "zone", "state", "source_archive_present", "content_digest_verified", "dependencies_resolved", "image_built", "replica_provisioned", "network_connected", "public_target_authorized", "execution_authorized"],
+      "properties": {"replica_id": {"type": "string", "minLength": 1}, "source_id": {"type": "string", "minLength": 1}, "source_commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "replica_kind": {"enum": ["firmware_static_analysis_only", "web_application_offline_replica"]}, "zone": {"const": "sacrificial_target"}, "state": {"const": "declared_not_built"}, "source_archive_present": {"const": false}, "content_digest_verified": {"const": false}, "dependencies_resolved": {"const": false}, "image_built": {"const": false}, "replica_provisioned": {"const": false}, "network_connected": {"const": false}, "public_target_authorized": {"const": false}, "execution_authorized": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_download_source", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"],
+      "properties": {"can_download_source": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}
+    }
+  }
+}

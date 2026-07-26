@@ -1,0 +1,18 @@
+{
+  "health_version": "0.1.0",
+  "request_id": "health-1",
+  "origin": "simulated",
+  "service_id": "verifier:anchor-primary",
+  "logical_principal": "service:nimrod-independent-verifier-primary",
+  "process_id": 12345,
+  "os_account_identifier": "desktop-validation-account",
+  "status": "healthy_reference_boundary",
+  "read_only_inputs_required": true,
+  "filesystem_write_capability_exposed": false,
+  "credential_environment_variable_count": 0,
+  "unexpected_environment_variable_count": 0,
+  "os_account_boundary_verified": false,
+  "production_ready": false,
+  "allowed_capabilities": ["health.report", "witness.verify", "anchor.verify"],
+  "prohibited_capabilities": ["plan", "authorize", "execute", "sign", "write_evidence", "read_credentials"]
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-preexecution-evidence-packet.schema.json",
+  "title": "nimrod Fail-Closed Range Pre-Execution Evidence Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["packet_version", "packet_id", "origin", "status", "assembled_at", "scope_id", "scope_digest", "connector_manifest_digest", "topology_verdict_digest", "preflight_result_digest", "required_attestation_controls", "environment_attestations", "missing_real_attestations", "real_environment_attestation_count", "distinct_verified_verifier_count", "evidence_complete", "blockers", "provisioning_performed", "installation_performed", "source_tool_contacted", "network_contact_performed", "range_connection_authorized", "execution_authorized", "authority"],
+  "properties": {
+    "packet_version": {"const": "0.1.0"},
+    "packet_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "blocked_missing_real_environment_evidence"},
+    "assembled_at": {"type": "string", "format": "date-time"},
+    "scope_id": {"type": "string", "format": "uuid"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "connector_manifest_digest": {"$ref": "#/$defs/digest"},
+    "topology_verdict_digest": {"$ref": "#/$defs/digest"},
+    "preflight_result_digest": {"$ref": "#/$defs/digest"},
+    "required_attestation_controls": {"$ref": "#/$defs/controlSet"},
+    "environment_attestations": {"type": "array", "minItems": 9, "maxItems": 9, "items": {"$ref": "#/$defs/attestation"}},
+    "missing_real_attestations": {"$ref": "#/$defs/controlSet"},
+    "real_environment_attestation_count": {"const": 0},
+    "distinct_verified_verifier_count": {"const": 0},
+    "evidence_complete": {"const": false},
+    "blockers": {"type": "array", "minItems": 14, "maxItems": 14, "uniqueItems": true, "items": {"$ref": "#/$defs/blocker"}},
+    "provisioning_performed": {"const": false},
+    "installation_performed": {"const": false},
+    "source_tool_contacted": {"const": false},
+    "network_contact_performed": {"const": false},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "control": {"enum": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"]},
+    "controlSet": {"type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": {"$ref": "#/$defs/control"}},
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {"id": {"$ref": "#/$defs/nonEmptyString"}, "digest": {"$ref": "#/$defs/digest"}}
+    },
+    "verifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verifier_id", "logical_principal", "process_id"],
+      "properties": {
+        "verifier_id": {"$ref": "#/$defs/nonEmptyString"},
+        "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+        "process_id": {"type": "integer", "minimum": 1}
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["control_id", "origin", "status", "observed_at", "evidence", "verifier"],
+      "properties": {
+        "control_id": {"$ref": "#/$defs/control"},
+        "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+        "status": {"enum": ["verified", "unproven", "failed"]},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+        "verifier": {"oneOf": [{"$ref": "#/$defs/verifier"}, {"type": "null"}]}
+      }
+    },
+    "blocker": {
+      "enum": [
+        "CONNECTOR_RUNTIME_MISSING",
+        "EXECUTION_AUTHORIZATION_MISSING",
+        "RANGE_PREFLIGHT_BLOCKED",
+        "RANGE_TOPOLOGY_ENVIRONMENT_UNVERIFIED",
+        "SEPARATE_CONNECTION_AUTHORIZATION_MISSING",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:CLEANUP_CONTRACT",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:DEDICATED_CREDENTIALS",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:DEFAULT_DENY_EGRESS",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:DISPOSABLE_TARGET",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:INDEPENDENT_VERIFIER",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:OUT_OF_BAND_KILL",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:RESTORABLE_SNAPSHOT",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:TELEMETRY_SEPARATION",
+        "REAL_ENVIRONMENT_ATTESTATION_MISSING:TRUSTED_TIME"
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_provision", "can_connect", "can_execute", "can_mark_evidence_complete"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_provision": {"const": false},
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_mark_evidence_complete": {"const": false}
+      }
+    }
+  }
+}

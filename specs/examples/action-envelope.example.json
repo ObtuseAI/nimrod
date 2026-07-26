@@ -1,0 +1,86 @@
+{
+  "envelope_version": "0.1.0",
+  "event_id": "11111111-1111-4111-8111-111111111111",
+  "mission_id": "22222222-2222-4222-8222-222222222222",
+  "timestamp": "2026-07-12T18:00:00Z",
+  "origin": "simulated",
+  "actor": {
+    "principal_id": "user:local-owner",
+    "actor_type": "human",
+    "authentication": [],
+    "device_attestation": null,
+    "workload_attestation": null
+  },
+  "intent": {
+    "operation": "restrict_process_egress",
+    "purpose": "Demonstrate a reversible planning contract without changing a real device",
+    "target": {
+      "resource_type": "windows_process",
+      "resource_id": "simulated-process-42",
+      "binding": {
+        "process_start_time": "2026-07-12T17:59:55Z",
+        "executable_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    "requested_capability": "endpoint.network.restrict_process"
+  },
+  "context": {
+    "data_classification": "internal",
+    "incident_id": null,
+    "supporting_evidence": [],
+    "contradicting_evidence": [],
+    "uncertainties": [
+      "This example is simulated and does not establish platform support"
+    ]
+  },
+  "risk": {
+    "impact": "low",
+    "confidence_interval": [0.0, 0.0],
+    "blast_radius": "one simulated process",
+    "reversibility": "fully_reversible",
+    "urgency": "routine"
+  },
+  "execution_contract": {
+    "preconditions": [
+      "The target identity still matches the bound simulated process"
+    ],
+    "expected_state_delta": {
+      "egress": "restricted"
+    },
+    "prohibited_side_effects": [
+      "Do not change host-wide network policy"
+    ],
+    "resource_limits": {
+      "duration_seconds": 300
+    },
+    "idempotency_key": "33333333-3333-4333-8333-333333333333",
+    "expires_at": "2026-07-12T18:05:00Z"
+  },
+  "recovery": {
+    "snapshot_required": false,
+    "rollback_operation": "remove_process_egress_restriction",
+    "compensation_plan": []
+  },
+  "verification": {
+    "required_oracles": [],
+    "independent_verifiers": [
+      {
+        "id": "simulated-verifier",
+        "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ],
+    "success_postconditions": [
+      "The simulated target cannot create a new outbound connection"
+    ],
+    "failure_postconditions": [
+      "A host-wide network policy changed"
+    ]
+  },
+  "authorization": {
+    "policy_decision": "deny",
+    "policy_version": "planning-only",
+    "approvals": []
+  },
+  "signatures": []
+}
+

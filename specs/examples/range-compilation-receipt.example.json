@@ -1,0 +1,19 @@
+{
+  "compilation_version": "0.1.0",
+  "origin": "simulated",
+  "status": "compiled_no_execution",
+  "source_kind": "atomic_red_team",
+  "source_object_id": "3f3a9f2c-8c2f-4e91-9d45-8ec2a8805274",
+  "source_artifact_digest": "sha256:cab10223735479aa519a03c043de6958ed51e8f62f31c785f83353d0d4569307",
+  "import_receipt_digest": "sha256:d4e965a00ca1dc51c25d80a19b6f7cc635edc584354a930cdb914665cb1d7d1c",
+  "mapping_policy_digest": "sha256:ae99d5bb6414c684102f83992a628c873d9df2e487084723c04d6ffa24dc6625",
+  "campaign_id": "3da7e144-cab2-54d6-ade4-92f41ec3c703",
+  "campaign_digest": "sha256:03d2ddf812bcb681893f2bcad207d27343885e56bbd6a5413218d0102db2df3f",
+  "connector_id": "connector.simulated.atomic",
+  "capability": "range.test.simulate",
+  "raw_execution_material_forwarded": false,
+  "source_tool_contacted": false,
+  "target_discovery_performed": false,
+  "live_execution_performed": false,
+  "authority": {"can_connect": false, "can_execute": false, "can_discover_targets": false}
+}

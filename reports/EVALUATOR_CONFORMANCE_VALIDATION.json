@@ -1,0 +1,19 @@
+{
+  "adversarial_case_count": 8,
+  "candidate_executed": false,
+  "canonical_json_implemented_independently": true,
+  "evaluator_count": 4,
+  "evaluator_policy_semantics_implemented_independently": true,
+  "implementation_language": "typescript",
+  "isolation_attestation_count": 4,
+  "isolation_semantics_implemented_independently": true,
+  "live_os_enforcement_verified": false,
+  "origin": "simulated",
+  "production_promotion_authorized": false,
+  "resource_chain_semantics_implemented_independently": true,
+  "resource_ledger_entry_count": 1,
+  "runtime_cryptography": "node_crypto_ed25519",
+  "shared_python_verification_logic": false,
+  "status": "INDEPENDENT_TYPESCRIPT_EVALUATOR_CONFORMANCE_VALID",
+  "threshold_signature_verification_implemented_independently": true
+}

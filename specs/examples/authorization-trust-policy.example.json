@@ -1,0 +1,33 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "origin": "simulated",
+  "trust_source": "local_operator_file",
+  "not_before": "2026-07-12T18:55:00Z",
+  "expires_at": "2026-07-12T20:00:00Z",
+  "threshold": 2,
+  "required_roles": [
+    "customer_authority",
+    "safety_officer"
+  ],
+  "trusted_signers": [
+    {
+      "signer_id": "signer:customer-authority",
+      "role": "customer_authority",
+      "algorithm": "Ed25519",
+      "public_key_base64": "KuPRKTsvC/jv6+BncOY5BurTmjPqpI4wCDJ07DTgL5o="
+    },
+    {
+      "signer_id": "signer:safety-officer",
+      "role": "safety_officer",
+      "algorithm": "Ed25519",
+      "public_key_base64": "6UjEUaX5X6mSCUPA8DtxtXU/mY1LjlGGjRVcfXVnLXQ="
+    },
+    {
+      "signer_id": "signer:range-owner",
+      "role": "range_owner",
+      "algorithm": "Ed25519",
+      "public_key_base64": "uAn3Mc2VqBKhyQ7puWVNqL1qDqy5vrHREkAAwep7I6Y="
+    }
+  ]
+}

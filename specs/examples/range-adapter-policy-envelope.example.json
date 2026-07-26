@@ -1,0 +1,16 @@
+{
+  "envelope_version": "0.1.0",
+  "envelope_id": "ca3de22d-640a-48d9-b9ab-4d41289c4940",
+  "origin": "simulated",
+  "policy_id": "b27336c4-e9bc-49d2-919b-5bfaebfd636a",
+  "policy_digest": "sha256:ae99d5bb6414c684102f83992a628c873d9df2e487084723c04d6ffa24dc6625",
+  "governance_state_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "issued_at": "2026-07-12T23:30:00Z",
+  "not_before": "2026-07-12T23:30:00Z",
+  "expires_at": "2026-07-12T23:35:00Z",
+  "authority": {"can_connect": false, "can_execute": false, "can_discover_targets": false},
+  "signatures": [
+    {"signer_id": "key:range-a", "algorithm": "Ed25519", "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="},
+    {"signer_id": "key:range-b", "algorithm": "Ed25519", "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="}
+  ]
+}

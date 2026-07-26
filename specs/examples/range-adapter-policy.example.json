@@ -1,0 +1,31 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "b27336c4-e9bc-49d2-919b-5bfaebfd636a",
+  "origin": "simulated",
+  "stage": "no_execution_fixture_only",
+  "source_mappings": [
+    {
+      "source_kind": "atomic_red_team",
+      "source_object_id": "3f3a9f2c-8c2f-4e91-9d45-8ec2a8805274",
+      "source_artifact_digest": "sha256:cab10223735479aa519a03c043de6958ed51e8f62f31c785f83353d0d4569307",
+      "technique_id": "T1007",
+      "allowed_platforms": ["windows"],
+      "allowed_executors": ["powershell"]
+    },
+    {
+      "source_kind": "caldera_ability",
+      "source_object_id": "89326aa2-7717-4c57-a2e0-3d6a03a74d58",
+      "source_artifact_digest": "sha256:c34ec777384c970f37d184f2d4e0e11ab1d0cbcfe5a979c8241f7db1616fb83e",
+      "technique_id": "T1082",
+      "allowed_platforms": ["windows"],
+      "allowed_executors": ["psh"]
+    }
+  ],
+  "output_template": {
+    "connector_id": "connector.simulated.atomic",
+    "capability": "range.test.simulate",
+    "target_id": "device:simulated-windows-01",
+    "cleanup_step_id": "cleanup:verify-no-state-created"
+  },
+  "authority": {"can_connect": false, "can_execute": false, "can_discover_targets": false}
+}

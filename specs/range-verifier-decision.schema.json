@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-verifier-decision.schema.json",
+  "title": "nimrod Signed Independent Range Evidence Verifier Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_version", "decision_id", "origin", "status", "policy_id", "policy_digest", "admission_report_id", "admission_report_digest", "environment_id", "scope_digest", "observation_id", "observation_digest", "raw_evidence_digest", "control_id", "verifier", "decision", "reason", "decided_at", "evidence_read_only", "activity", "authority", "signature"],
+  "properties": {
+    "decision_version": {"const": "0.1.0"},
+    "decision_id": {"type": "string", "format": "uuid"},
+    "origin": {"$ref": "#/$defs/origin"},
+    "status": {"enum": ["fixture_decision_non_accepting", "externally_supplied_pending_acceptance"]},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "admission_report_id": {"type": "string", "format": "uuid"},
+    "admission_report_digest": {"$ref": "#/$defs/digest"},
+    "environment_id": {"$ref": "#/$defs/nonEmptyString"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "observation_id": {"type": "string", "format": "uuid"},
+    "observation_digest": {"$ref": "#/$defs/digest"},
+    "raw_evidence_digest": {"$ref": "#/$defs/digest"},
+    "control_id": {"$ref": "#/$defs/control"},
+    "verifier": {"$ref": "#/$defs/verifierIdentity"},
+    "decision": {"enum": ["accept", "reject", "abstain", "timeout"]},
+    "reason": {"enum": ["evidence_supports_control", "evidence_contradicts_control", "insufficient_or_fixture_evidence", "verification_deadline_exceeded"]},
+    "decided_at": {"type": "string", "format": "date-time"},
+    "evidence_read_only": {"const": true},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"origin": {"const": "simulated"}}},
+      "then": {
+        "properties": {
+          "status": {"const": "fixture_decision_non_accepting"},
+          "decision": {"enum": ["reject", "abstain", "timeout"]}
+        }
+      },
+      "else": {"properties": {"status": {"const": "externally_supplied_pending_acceptance"}}}
+    }
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+    "control": {"enum": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"]},
+    "verifierIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verifier_id", "logical_principal", "process_id", "identity_enforcement", "independence_evidence_digest"],
+      "properties": {
+        "verifier_id": {"$ref": "#/$defs/nonEmptyString"},
+        "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+        "process_id": {"type": "integer", "minimum": 1},
+        "identity_enforcement": {"enum": ["fixture_logical_only", "externally_attested"]},
+        "independence_evidence_digest": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]}
+      }
+    },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment_contact_performed_by_nimrod", "collection_performed", "policy_mutation_performed", "credential_access_performed", "tool_installation_performed", "network_contact_performed", "range_connection_performed", "campaign_execution_performed"],
+      "properties": {
+        "environment_contact_performed_by_nimrod": {"const": false},
+        "collection_performed": {"const": false},
+        "policy_mutation_performed": {"const": false},
+        "credential_access_performed": {"const": false},
+        "tool_installation_performed": {"const": false},
+        "network_contact_performed": {"const": false},
+        "range_connection_performed": {"const": false},
+        "campaign_execution_performed": {"const": false}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_collect", "can_install", "can_provision", "can_change_policy", "can_access_credentials", "can_connect", "can_execute", "can_mark_evidence_complete", "can_authorize_action"],
+      "properties": {
+        "can_collect": {"const": false},
+        "can_install": {"const": false},
+        "can_provision": {"const": false},
+        "can_change_policy": {"const": false},
+        "can_access_credentials": {"const": false},
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_mark_evidence_complete": {"const": false},
+        "can_authorize_action": {"const": false}
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {
+        "signer_id": {"$ref": "#/$defs/nonEmptyString"},
+        "algorithm": {"const": "Ed25519"},
+        "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}
+      }
+    }
+  }
+}

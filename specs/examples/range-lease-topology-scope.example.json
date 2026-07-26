@@ -1,0 +1,47 @@
+{
+  "scope_version": "0.1.0",
+  "scope_id": "cd4da27c-6d6d-5271-a644-3ae442a7fa09",
+  "origin": "simulated",
+  "status": "compiled_contract_only_environment_unproven",
+  "compiled_at": "2026-07-12T19:05:00Z",
+  "lease_id": "44444444-4444-4444-8444-444444444444",
+  "lease_digest": "sha256:92e3a086a938b9539126aa19c6a3f19b52f7a63699242ea3b4818d2466c7893c",
+  "authorization_proof_bundle_digest": "sha256:74fac5072ab6701a8543e24a3765edcbb7cb4a33f280cf5e5e16f01f99e35445",
+  "trust_policy_digest": "sha256:271043c091adef6c3f2602ea73fcfc3b46632c0de9ea7221b7c3583091a4fc08",
+  "cryptographic_authorization_verified": true,
+  "verified_authorization_signer_ids": ["signer:customer-authority", "signer:safety-officer"],
+  "verified_authorization_roles": ["customer_authority", "safety_officer"],
+  "topology_id": "d20404d6-49a0-4aa4-9d82-fc43bf4f35df",
+  "topology_digest": "sha256:4c54ed8d18956c3f38c9b236ab429df010958ab6a8a12f668d49f6135b9ade99",
+  "topology_generation": 1,
+  "topology_environment_verified": false,
+  "connector_id": "connector.simulated.atomic",
+  "connector_manifest_digest": "sha256:1a601e4f349d7b29000c07c0039efc573a8e12d26e6d67ef5d974d1a4b6425c3",
+  "capability_intersection": ["range.test.simulate"],
+  "target_bindings": [
+    {
+      "lease_target_id": "device:simulated-windows-01",
+      "resource_type": "windows_device",
+      "environment_class": "range",
+      "binding_digest": "sha256:53d8854d9e2282795d9e509a4ad09d7f76d84bd6463208177739d54106174862",
+      "topology_node_id": "node:sacrificial-target-01",
+      "topology_zone_id": "zone:target",
+      "effect_ceiling": "reversible_local"
+    }
+  ],
+  "kill_switch_binding": {
+    "lease_kill_switch_id": "kill-switch:range-01",
+    "controller": "customer:example",
+    "maximum_revocation_seconds": 5,
+    "out_of_band": true,
+    "topology_node_id": "node:kill-switch-01"
+  },
+  "budgets": {"maximum_actions": 1, "maximum_concurrency": 1, "maximum_seconds": 300, "maximum_cost_usd": 0, "maximum_export_bytes": 0},
+  "blockers": ["CONNECTOR_RUNTIME_MISSING", "EXECUTION_AUTHORIZATION_MISSING", "RANGE_CONNECTION_AUTHORIZATION_MISSING", "REAL_RANGE_ENVIRONMENT_UNPROVEN"],
+  "provisioning_performed": false,
+  "installation_performed": false,
+  "network_contact_performed": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "authority": {"can_install": false, "can_provision": false, "can_connect": false, "can_execute": false}
+}

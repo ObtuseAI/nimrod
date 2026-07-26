@@ -1,0 +1,52 @@
+{
+  "status": "SOURCE_STAGING_SIGNED_DENIAL_OWNER_SCOPE_AND_QUARANTINE_BLOCKED",
+  "origin": "simulated",
+  "verified_signer_count": 2,
+  "verified_role_count": 2,
+  "requested_source_count": 5,
+  "authorized_source_count": 0,
+  "staged_source_count": 0,
+  "quarantine_requirement_count": 8,
+  "quarantine_completed_count": 0,
+  "owner_exclusion_registry_complete": false,
+  "owner_attestation_present": false,
+  "staging_authorized": false,
+  "build_authorized": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "adversarial_case_count": 36,
+  "blockers": [
+    "CONTENT_DIGEST_NOT_RETAINED",
+    "ISOLATED_CONSTRUCTION_ZONE_MISSING",
+    "OWNER_ATTESTATION_MISSING",
+    "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+    "OWNER_SCOPE_PROOF_MISSING",
+    "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+    "SOURCE_ARCHIVE_NOT_STAGED",
+    "SOURCE_STAGING_AUTHORIZATION_DENIED"
+  ],
+  "activity": {
+    "repository_content_downloaded": false,
+    "source_archive_staged": false,
+    "source_extracted": false,
+    "quarantine_checks_performed": false,
+    "dependency_resolution_performed": false,
+    "replica_built": false,
+    "infrastructure_provisioned": false,
+    "public_host_contacted_for_testing": false,
+    "range_connected": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_download_source": false,
+    "can_stage_source": false,
+    "can_extract_source": false,
+    "can_resolve_dependencies": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  }
+}

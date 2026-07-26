@@ -1,0 +1,64 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "d47cc48a-dcf2-4db2-83bc-d19385a22347",
+  "origin": "simulated",
+  "status": "fixture_policy_non_completing",
+  "governance_state_digest": "sha256:85ba53d7ad441c18635a9ddd12da2ed93f9793edb9ebcd88e3700a0205c32fb1",
+  "acceptance_report_id": "dd4ccab9-9720-5369-b716-3ec0c463d078",
+  "acceptance_report_digest": "sha256:8304e4977d6652bc4c6c6714afa535e5936339d07b3ce0595a2af8b5ee24097f",
+  "scope_digest": "sha256:2eec5a164643739b53273baf7e30ae256491fb295a94ff46e5f6b785dab66d39",
+  "environment_id": "range-environment:owner-name-required",
+  "issued_at": "2026-07-13T16:32:30Z",
+  "not_before": "2026-07-13T16:32:30Z",
+  "expires_at": "2026-07-13T16:40:00Z",
+  "required_controls": [
+    "CLEANUP_CONTRACT",
+    "DEDICATED_CREDENTIALS",
+    "DEFAULT_DENY_EGRESS",
+    "DISPOSABLE_TARGET",
+    "INDEPENDENT_VERIFIER",
+    "OUT_OF_BAND_KILL",
+    "RESTORABLE_SNAPSHOT",
+    "TELEMETRY_SEPARATION",
+    "TRUSTED_TIME"
+  ],
+  "required_accepted_control_count": 9,
+  "required_verified_attestation_count": 9,
+  "required_real_independent_verifier_count": 2,
+  "required_acceptance_status": "accepted_controls_pending_separate_evidence_completion_authority",
+  "allowed_outcomes": [
+    "authorize_completion",
+    "deny_completion"
+  ],
+  "network_destinations": [],
+  "secret_references": [],
+  "blockers": [
+    "EVIDENCE_COMPLETION_AUTHORIZATION_MISSING",
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+    "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING",
+    "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+  ],
+  "authority": {
+    "can_collect": false,
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_authorize_action": false
+  },
+  "signatures": [
+    {
+      "signer_id": "key:range-owner",
+      "algorithm": "Ed25519",
+      "signature_base64": "xIO4d685WM/noxbjIdB84kMsrL+3ImN0WQQC97HlukmCCVn983av3F1Z3m6XWWXSLDcJa4mFmLRiR+mka/jfDg=="
+    },
+    {
+      "signer_id": "key:range-safety",
+      "algorithm": "Ed25519",
+      "signature_base64": "fPJDaVuF/zKC7WS2kf6SnehmWpCd8ngVwtMkL4oOkDKbB+MzNAS/u98yy0OJ288RZlYn9GmjrFeO4FXj/0twAg=="
+    }
+  ]
+}

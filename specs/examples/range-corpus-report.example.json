@@ -1,0 +1,24 @@
+{
+  "report_version": "0.1.0",
+  "report_id": "a20269fc-d6c0-40fb-abfe-63bc61de13f2",
+  "origin": "simulated",
+  "scanned_at": "2026-07-12T23:31:00Z",
+  "status": "compatible_no_execution",
+  "manifest_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "policy_envelope_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "policy_digest": "sha256:ae99d5bb6414c684102f83992a628c873d9df2e487084723c04d6ffa24dc6625",
+  "declared_entry_count": 2,
+  "compatible_entry_count": 2,
+  "blocked_entry_count": 0,
+  "missing_files": [],
+  "unexpected_files": [],
+  "items": [
+    {"entry_id": "fixture:atomic-t1007", "source_kind": "atomic_red_team", "source_object_id": "3f3a9f2c-8c2f-4e91-9d45-8ec2a8805274", "artifact_digest": "sha256:cab10223735479aa519a03c043de6958ed51e8f62f31c785f83353d0d4569307", "import_receipt_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "digest_match": true, "quarantine_status": "eligible_for_no_execution_mapping", "mapping_status": "pinned_exact", "findings": [], "error": null},
+    {"entry_id": "fixture:caldera-t1082", "source_kind": "caldera_ability", "source_object_id": "89326aa2-7717-4c57-a2e0-3d6a03a74d58", "artifact_digest": "sha256:c34ec777384c970f37d184f2d4e0e11ab1d0cbcfe5a979c8241f7db1616fb83e", "import_receipt_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "digest_match": true, "quarantine_status": "eligible_for_no_execution_mapping", "mapping_status": "pinned_exact", "findings": [], "error": null}
+  ],
+  "compilation_performed": false,
+  "source_tool_contacted": false,
+  "network_access_performed": false,
+  "live_execution_performed": false,
+  "authority": {"can_connect": false, "can_compile": false, "can_execute": false}
+}

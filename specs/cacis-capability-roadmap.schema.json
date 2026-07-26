@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/cacis-capability-roadmap.schema.json",
+  "title": "nimrod CACIS capability roadmap",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "roadmap_version",
+    "roadmap_id",
+    "title",
+    "status",
+    "doctrine_version",
+    "source_brief_digest",
+    "authority_change",
+    "constitutional_invariants",
+    "planes",
+    "waves",
+    "recursive_levels",
+    "arena_policy",
+    "evaluation",
+    "benchmarks",
+    "blockers",
+    "authority"
+  ],
+  "properties": {
+    "roadmap_version": {"const": "0.1.0"},
+    "roadmap_id": {"type": "string", "pattern": "^cacis_[a-z0-9_]{8,64}$"},
+    "title": {"const": "nimrod Constitutional Autonomous Cyber Immune System"},
+    "status": {"const": "CACIS_TARGET_ARCHITECTURE_ACCEPTED_IMPLEMENTATION_GATED"},
+    "doctrine_version": {"const": "0.1"},
+    "source_brief_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority_change": {"const": "none"},
+    "constitutional_invariants": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "operator_authority",
+          "execution_authority",
+          "constitutional_law",
+          "trust_anchors",
+          "threshold_signatures",
+          "evidence_law",
+          "recovery_verification",
+          "cryptographic_trust",
+          "promotion_requirements",
+          "safety_ceilings"
+        ]
+      }
+    },
+    "planes": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/plane"}
+    },
+    "waves": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/wave"}
+    },
+    "recursive_levels": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {"$ref": "#/$defs/recursiveLevel"}
+    },
+    "arena_policy": {"$ref": "#/$defs/arenaPolicy"},
+    "evaluation": {"$ref": "#/$defs/evaluation"},
+    "benchmarks": {
+      "type": "array",
+      "minItems": 14,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 3, "maxLength": 64}
+    },
+    "blockers": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 3, "maxLength": 128}
+    },
+    "authority": {"$ref": "#/$defs/falseAuthority"}
+  },
+  "$defs": {
+    "plane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plane_id", "maximum_outcome", "can_authorize", "can_self_authorize", "can_execute", "can_modify_constitution"],
+      "properties": {
+        "plane_id": {
+          "enum": [
+            "constitutional_kernel",
+            "sovereign_governor",
+            "immune_runtime",
+            "world_model",
+            "hypothesis_cortex",
+            "truth_recovery_settlement",
+            "genome_evolution_foundry",
+            "observatory"
+          ]
+        },
+        "maximum_outcome": {
+          "enum": [
+            "deterministic_policy_decision",
+            "scheduling_decision",
+            "typed_proposal",
+            "derived_state",
+            "ranked_hypothesis_set",
+            "verification_or_settlement",
+            "candidate_bundle",
+            "display_projection"
+          ]
+        },
+        "can_authorize": {"type": "boolean"},
+        "can_self_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "can_modify_constitution": {"const": false}
+      }
+    },
+    "wave": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "wave_id", "objective", "entry_gate", "exit_evidence", "maximum_authority_delta", "status"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 0, "maximum": 7},
+        "wave_id": {"type": "string", "pattern": "^cacis-w[0-7]-[a-z0-9-]{3,48}$"},
+        "objective": {"type": "string", "minLength": 8, "maxLength": 240},
+        "entry_gate": {"type": "string", "minLength": 3, "maxLength": 160},
+        "exit_evidence": {"type": "string", "minLength": 8, "maxLength": 240},
+        "maximum_authority_delta": {"const": "none"},
+        "status": {"enum": ["validated_contract_only", "validated_replay_only", "planned", "blocked"]}
+      }
+    },
+    "recursiveLevel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "improves", "maximum_outcome", "can_modify_authority"],
+      "properties": {
+        "level": {"type": "integer", "minimum": 0, "maximum": 5},
+        "improves": {"type": "string", "minLength": 3, "maxLength": 80},
+        "maximum_outcome": {"const": "candidate_only"},
+        "can_modify_authority": {"const": false}
+      }
+    },
+    "arenaPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public_host_targeting",
+        "owner_repositories_targetable",
+        "unknown_ownership_targetable",
+        "source_replica_required",
+        "isolated_range_required",
+        "separate_execution_authorization_required",
+        "arbitrary_command_bridge_allowed",
+        "destructive_effects_allowed",
+        "production_effect_ceiling"
+      ],
+      "properties": {
+        "public_host_targeting": {"const": false},
+        "owner_repositories_targetable": {"const": false},
+        "unknown_ownership_targetable": {"const": false},
+        "source_replica_required": {"const": true},
+        "isolated_range_required": {"const": true},
+        "separate_execution_authorization_required": {"const": true},
+        "arbitrary_command_bridge_allowed": {"const": false},
+        "destructive_effects_allowed": {"const": false},
+        "production_effect_ceiling": {"const": "safe_realism"}
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["partitions", "hard_failure_overrides_aggregate", "self_verification_allowed", "sealed_answers_visible_to_candidate", "reward_hacking_defenses"],
+      "properties": {
+        "partitions": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {"enum": ["visible", "private", "external"]}
+        },
+        "hard_failure_overrides_aggregate": {"const": true},
+        "self_verification_allowed": {"const": false},
+        "sealed_answers_visible_to_candidate": {"const": false},
+        "reward_hacking_defenses": {
+          "type": "array",
+          "minItems": 9,
+          "maxItems": 9,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "future_leakage",
+              "telemetry_leakage",
+              "replay_contamination",
+              "simulation_exploitation",
+              "verifier_exploitation",
+              "authority_expansion",
+              "confidence_gaming",
+              "recovery_gaming",
+              "complexity_inflation"
+            ]
+          }
+        }
+      }
+    },
+    "falseAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize_execution", "can_execute", "can_modify_constitution", "can_modify_trust", "can_promote", "can_contact_targets", "can_provision"],
+      "properties": {
+        "can_authorize_execution": {"const": false},
+        "can_execute": {"const": false},
+        "can_modify_constitution": {"const": false},
+        "can_modify_trust": {"const": false},
+        "can_promote": {"const": false},
+        "can_contact_targets": {"const": false},
+        "can_provision": {"const": false}
+      }
+    }
+  }
+}

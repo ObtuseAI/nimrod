@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/key-governance-transition.schema.json",
+  "title": "nimrod Key Governance Transition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["transition_version", "transition_id", "origin", "governance_id", "from_epoch", "to_epoch", "kind", "issued_at", "previous_state_digest", "next_state_digest", "affected_key_ids", "reason", "signatures"],
+  "properties": {
+    "transition_version": { "const": "0.1.0" },
+    "transition_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "governance_id": { "$ref": "#/$defs/uuid" },
+    "from_epoch": { "type": "integer", "minimum": 1 },
+    "to_epoch": { "type": "integer", "minimum": 2 },
+    "kind": { "enum": ["rotation", "revocation", "lost_key_recovery", "compromise_recovery"] },
+    "issued_at": { "$ref": "#/$defs/timestamp" },
+    "previous_state_digest": { "$ref": "#/$defs/digest" },
+    "next_state_digest": { "$ref": "#/$defs/digest" },
+    "affected_key_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "reason": { "$ref": "#/$defs/nonEmptyString" },
+    "signatures": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/signature" } }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {
+        "signer_id": { "$ref": "#/$defs/nonEmptyString" },
+        "algorithm": { "const": "Ed25519" },
+        "signature_base64": { "type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$" }
+      }
+    }
+  }
+}

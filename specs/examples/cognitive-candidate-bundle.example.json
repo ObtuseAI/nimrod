@@ -1,0 +1,12 @@
+{
+  "bundle_version": "0.1.0", "candidate_id": "88888888-8888-4888-8888-888888888888", "origin": "simulated", "compiled_at": "2026-07-12T23:52:00Z",
+  "source_candidate_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "active_baseline_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "constitution_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "candidate_class": "detection", "authority_tier": "B", "lens": "adversarial", "mutation_family": "detection",
+  "epistemic_posture": {"posture_version": "0.1.0", "posture_id": "81b82841-b718-4d68-8ff7-fb0cf5c4f07b", "origin": "simulated", "mode": "probabilistic", "claim_type": "predicted", "evidence_standard": "calibrated_evidence", "counterfactual": false, "context_boundaries": ["simulated security fixture corpus"], "authority": {"can_relabel_evidence": false, "can_waive_hard_failures": false}},
+  "source_evidence": [{"id": "evidence:simulated-gap", "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"}], "contradicting_evidence": [],
+  "proposed_delta_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777", "proposed_delta_retained": false,
+  "prediction": "The candidate may improve simulated marker detection without reducing negative-control precision", "uncertainty": {"level": "bounded", "known_limitations": ["fixture-only evidence"]},
+  "resource_lease": {"cycle_id": "a28085e4-88c7-445e-a17e-8410ce5937e9", "maximum_cycle_seconds": 60, "maximum_compute_units": 10, "maximum_memory_megabytes": 128, "maximum_storage_megabytes": 64, "maximum_candidate_children": 1, "expires_at": "2026-07-13T00:00:00Z", "authority": {"can_self_extend": false, "can_purchase_compute": false}},
+  "rollback_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888", "status": "quarantined", "active_baseline_modified": false, "candidate_executed": false,
+  "authority": {"can_execute": false, "can_modify_active_baseline": false, "can_modify_constitution": false, "can_modify_evaluators": false, "can_select_signers": false, "can_access_sealed_answers": false, "can_acquire_credentials": false, "can_expand_network": false, "can_replicate_or_persist": false, "can_expand_compute": false}
+}

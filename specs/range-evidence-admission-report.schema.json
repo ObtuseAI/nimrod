@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-evidence-admission-report.schema.json",
+  "title": "nimrod Attestation-Only Range Evidence Admission Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_version", "report_id", "origin", "status", "assembled_at", "policy_id", "policy_digest", "scope_digest", "environment_id", "environment_name", "owner_named_environment", "policy_verified_signer_count", "required_control_count", "signed_observation_count", "content_addressed_observation_count", "distinct_collector_count", "real_observation_count", "missing_real_observation_controls", "retained_observations", "emitted_attestations", "emitted_attestation_count", "verified_attestation_count", "independent_verifier_count", "evidence_complete", "blockers", "activity", "authority"],
+  "properties": {
+    "report_version": {"const": "0.1.0"},
+    "report_id": {"type": "string", "format": "uuid"},
+    "origin": {"$ref": "#/$defs/origin"},
+    "status": {"enum": ["blocked_owner_named_environment_and_real_observations_missing", "blocked_independent_verification_missing"]},
+    "assembled_at": {"type": "string", "format": "date-time"},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "environment_id": {"$ref": "#/$defs/nonEmptyString"},
+    "environment_name": {"oneOf": [{"$ref": "#/$defs/nonEmptyString"}, {"type": "null"}]},
+    "owner_named_environment": {"type": "boolean"},
+    "policy_verified_signer_count": {"type": "integer", "minimum": 2, "maximum": 3},
+    "required_control_count": {"const": 9},
+    "signed_observation_count": {"const": 9},
+    "content_addressed_observation_count": {"const": 9},
+    "distinct_collector_count": {"const": 9},
+    "real_observation_count": {"type": "integer", "minimum": 0, "maximum": 9},
+    "missing_real_observation_controls": {"type": "array", "maxItems": 9, "uniqueItems": true, "items": {"$ref": "#/$defs/control"}},
+    "retained_observations": {"type": "array", "minItems": 9, "maxItems": 9, "items": {"$ref": "#/$defs/retainedObservation"}},
+    "emitted_attestations": {"type": "array", "minItems": 9, "maxItems": 9, "items": {"$ref": "#/$defs/attestation"}},
+    "emitted_attestation_count": {"const": 9},
+    "verified_attestation_count": {"const": 0},
+    "independent_verifier_count": {"const": 0},
+    "evidence_complete": {"const": false},
+    "blockers": {"type": "array", "minItems": 4, "maxItems": 6, "uniqueItems": true, "items": {"$ref": "#/$defs/blocker"}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+    "control": {"enum": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"]},
+    "retainedObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observation_id", "observation_digest", "raw_evidence_digest", "control_id", "collector_id"],
+      "properties": {
+        "observation_id": {"type": "string", "format": "uuid"},
+        "observation_digest": {"$ref": "#/$defs/digest"},
+        "raw_evidence_digest": {"$ref": "#/$defs/digest"},
+        "control_id": {"$ref": "#/$defs/control"},
+        "collector_id": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": {"type": "string", "format": "uuid"},
+        "digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["control_id", "origin", "status", "observed_at", "evidence", "verifier"],
+      "properties": {
+        "control_id": {"$ref": "#/$defs/control"},
+        "origin": {"$ref": "#/$defs/origin"},
+        "status": {"const": "unproven"},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "evidence": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"$ref": "#/$defs/reference"}},
+        "verifier": {"type": "null"}
+      }
+    },
+    "blocker": {"enum": ["OWNER_NAMED_SACRIFICIAL_RANGE_MISSING", "REAL_READ_ONLY_OBSERVATIONS_MISSING", "INDEPENDENT_VERIFIER_ATTESTATIONS_MISSING", "EVIDENCE_COMPLETION_AUTHORITY_MISSING", "RANGE_CONNECTION_AUTHORIZATION_MISSING", "EXECUTION_AUTHORIZATION_MISSING"]},
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["infrastructure_provisioned", "host_or_network_policy_changed", "credentials_handled", "tools_installed", "source_tools_contacted", "network_contact_performed", "range_connected", "campaign_executed"],
+      "properties": {
+        "infrastructure_provisioned": {"const": false},
+        "host_or_network_policy_changed": {"const": false},
+        "credentials_handled": {"const": false},
+        "tools_installed": {"const": false},
+        "source_tools_contacted": {"const": false},
+        "network_contact_performed": {"const": false},
+        "range_connected": {"const": false},
+        "campaign_executed": {"const": false}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_provision", "can_change_policy", "can_access_credentials", "can_connect", "can_execute", "can_mark_evidence_complete", "can_verify_attestation"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_provision": {"const": false},
+        "can_change_policy": {"const": false},
+        "can_access_credentials": {"const": false},
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_mark_evidence_complete": {"const": false},
+        "can_verify_attestation": {"const": false}
+      }
+    }
+  }
+}

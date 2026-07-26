@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/immune-organism-lifecycle-receipt.schema.json",
+  "title": "nimrod CACIS immune organism lifecycle receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receipt_version", "receipt_digest", "receipt"],
+  "properties": {
+    "receipt_version": {"const": "0.1.0"},
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_id", "origin", "mission_digest", "world_model_generation_digest", "organism_id", "cell_count", "started_at", "terminated_at", "terminal_reason", "events", "contributions", "resource_usage", "termination", "retained_knowledge", "independent_verification", "authority", "security_claim"],
+      "properties": {
+        "receipt_id": {"type": "string", "format": "uuid"},
+        "origin": {"const": "replayed"},
+        "mission_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "world_model_generation_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "organism_id": {"type": "string", "format": "uuid"},
+        "cell_count": {"type": "integer", "minimum": 6, "maximum": 12},
+        "started_at": {"type": "string", "format": "date-time"},
+        "terminated_at": {"type": "string", "format": "date-time"},
+        "terminal_reason": {"enum": ["mission_complete", "shadow_terminated", "lease_expired", "resource_exhausted", "authority_violation"]},
+        "events": {"type": "array", "minItems": 8, "items": {"$ref": "#/$defs/event"}},
+        "contributions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/contribution"}},
+        "resource_usage": {"$ref": "#/$defs/resources"},
+        "termination": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["lifecycle_state", "all_cells_terminated", "capability_lease_revoked", "resource_lease_revoked", "scratch_state_destroyed", "conversational_context_destroyed", "credentials_issued", "target_contact_performed", "execution_performed"],
+          "properties": {
+            "lifecycle_state": {"const": "disposed"},
+            "all_cells_terminated": {"const": true},
+            "capability_lease_revoked": {"const": true},
+            "resource_lease_revoked": {"const": true},
+            "scratch_state_destroyed": {"const": true},
+            "conversational_context_destroyed": {"const": true},
+            "credentials_issued": {"const": false},
+            "target_contact_performed": {"const": false},
+            "execution_performed": {"const": false}
+          }
+        },
+        "retained_knowledge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["entries", "retention_ceiling", "raw_context_retained", "authority_retained"],
+          "properties": {
+            "entries": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/knowledge"}},
+            "retention_ceiling": {"const": "candidate_only"},
+            "raw_context_retained": {"const": false},
+            "authority_retained": {"const": false}
+          }
+        },
+        "independent_verification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["required", "performed", "status", "verifier_identity"],
+          "properties": {
+            "required": {"const": true},
+            "performed": {"const": false},
+            "status": {"const": "pending_external_verification"},
+            "verifier_identity": {"type": "null"}
+          }
+        },
+        "authority": {"$ref": "#/$defs/authority"},
+        "security_claim": {"const": "Replay-only organism lifecycle; typed proposals retained, organism disposed, independent verification pending, no execution or target contact"}
+      }
+    }
+  },
+  "$defs": {
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "timestamp", "actor", "event_type", "reason", "parent_event_digest"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "actor": {"enum": ["governor", "organism", "shadow"]},
+        "event_type": {"enum": ["spawned", "running", "shadow_paused", "shadow_resumed", "contribution_emitted", "abstained", "terminated", "scratch_destroyed", "leases_revoked", "disposed"]},
+        "reason": {"type": "string", "minLength": 3, "maxLength": 160},
+        "parent_event_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "contribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contribution_id", "cell_id", "role", "kind", "status", "content_digest", "parent_generation_digest", "can_verify", "can_authorize", "can_execute"],
+      "properties": {
+        "contribution_id": {"type": "string", "format": "uuid"},
+        "cell_id": {"type": "string", "format": "uuid"},
+        "role": {"enum": ["identity", "endpoint", "network", "cloud", "threat", "recovery", "evidence", "historian", "script_analysis", "memory_analysis", "behavior", "containment"]},
+        "kind": {"enum": ["observation_assessment", "coverage_gap", "open_question", "investigation_pattern"]},
+        "status": {"enum": ["proposed", "abstained"]},
+        "content_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "parent_generation_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "can_verify": {"const": false},
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false}
+      }
+    },
+    "knowledge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["knowledge_id", "knowledge_type", "content_digest", "source_contribution_id", "status"],
+      "properties": {
+        "knowledge_id": {"type": "string", "format": "uuid"},
+        "knowledge_type": {"enum": ["evidence_reference", "investigation_pattern", "open_question"]},
+        "content_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "source_contribution_id": {"type": "string", "format": "uuid"},
+        "status": {"const": "candidate_only"}
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpu_millis", "peak_memory_mb", "storage_bytes", "telemetry_reads", "model_calls", "sandbox_runs"],
+      "properties": {
+        "cpu_millis": {"type": "integer", "minimum": 0},
+        "peak_memory_mb": {"type": "integer", "minimum": 0},
+        "storage_bytes": {"type": "integer", "minimum": 0},
+        "telemetry_reads": {"type": "integer", "minimum": 0},
+        "model_calls": {"const": 0},
+        "sandbox_runs": {"const": 0}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "can_change_policy", "can_contact_targets", "can_use_credentials", "can_self_verify", "can_promote"],
+      "properties": {
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "can_change_policy": {"const": false},
+        "can_contact_targets": {"const": false},
+        "can_use_credentials": {"const": false},
+        "can_self_verify": {"const": false},
+        "can_promote": {"const": false}
+      }
+    }
+  }
+}

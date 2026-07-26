@@ -1,0 +1,192 @@
+{
+  "plan_version": "0.1.0",
+  "plan_id": "68d5bb0d-56d5-4b24-a946-f6ce4570a99e",
+  "origin": "simulated",
+  "status": "independent_attestors_unassigned",
+  "declared_at": "2026-07-13T19:12:30Z",
+  "zone_id": "46295d08-2990-4f04-a207-e9cc298b99c5",
+  "zone_digest": "sha256:ff9237dec84c196f13eced8ad571942083d732b4bea7273d8ac9d52f012622c6",
+  "preflight_result_id": "7ec88c9b-c8ef-5081-b068-ea6d1a3b0966",
+  "preflight_result_digest": "sha256:8e5b78d783f5d814fda72fb7add57544586da877ad3fef33c36c13e0a1519b27",
+  "evidence_origin_requirement": "live",
+  "minimum_distinct_principals_per_control": 2,
+  "minimum_distinct_processes_per_control": 2,
+  "controls": [
+    {
+      "control_id": "CLEAN_BASE_IMAGE",
+      "required_evidence_kinds": [
+        "BASE_IMAGE_DIGEST",
+        "IMAGE_PROVENANCE_SIGNATURE",
+        "IMAGE_SCAN_REPORT"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "DEDICATED_EPHEMERAL_IDENTITY",
+      "required_evidence_kinds": [
+        "IDENTITY_PRINCIPAL",
+        "IDENTITY_EXPIRY",
+        "CREDENTIAL_SCOPE"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "DISPOSABLE_WORKSPACE",
+      "required_evidence_kinds": [
+        "WORKSPACE_IDENTITY",
+        "LIFECYCLE_POLICY",
+        "DESTRUCTION_PROOF_CONTRACT"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_EXTERNAL_DNS",
+      "required_evidence_kinds": [
+        "DNS_POLICY_EXPORT",
+        "DNS_RESOLUTION_DENIAL_OBSERVATION"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_GITHUB_ACCESS",
+      "required_evidence_kinds": [
+        "EGRESS_POLICY_EXPORT",
+        "GITHUB_ROUTE_DENIAL_OBSERVATION"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_INTERNET_EGRESS",
+      "required_evidence_kinds": [
+        "EGRESS_POLICY_EXPORT",
+        "DEFAULT_ROUTE_DENIAL_OBSERVATION"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_PUBLIC_INGRESS",
+      "required_evidence_kinds": [
+        "INGRESS_POLICY_EXPORT",
+        "PUBLIC_ROUTE_ABSENCE_OBSERVATION"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_REGISTRY_ACCESS",
+      "required_evidence_kinds": [
+        "EGRESS_POLICY_EXPORT",
+        "REGISTRY_ROUTE_DENIAL_OBSERVATION"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "OUT_OF_BAND_KILL",
+      "required_evidence_kinds": [
+        "KILL_CONTROL_IDENTITY",
+        "INDEPENDENT_KILL_PATH_OBSERVATION"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    },
+    {
+      "control_id": "SEPARATE_OUTPUT_STORE",
+      "required_evidence_kinds": [
+        "OUTPUT_STORE_IDENTITY",
+        "WRITE_PRINCIPAL_SEPARATION",
+        "SOURCE_MOUNT_READ_ONLY"
+      ],
+      "collector_id": null,
+      "collector_principal": null,
+      "collector_process_id": null,
+      "verifier_id": null,
+      "verifier_principal": null,
+      "verifier_process_id": null,
+      "status": "unassigned",
+      "evidence": []
+    }
+  ],
+  "blockers": [
+    "INDEPENDENT_ATTESTORS_UNASSIGNED",
+    "LIVE_ISOLATION_EVIDENCE_MISSING"
+  ],
+  "activity": {
+    "environment_contact_performed": false,
+    "collector_identity_assigned": false,
+    "verifier_identity_assigned": false,
+    "observation_collected": false,
+    "independent_verification_performed": false
+  },
+  "authority": {
+    "can_collect": false,
+    "can_verify": false,
+    "can_mark_control_verified": false,
+    "can_provision": false,
+    "can_stage_source": false,
+    "can_build_replica": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_authorize_action": false
+  }
+}

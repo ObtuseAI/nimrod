@@ -1,0 +1,31 @@
+{
+  "snapshot_version": "0.1.0",
+  "snapshot_id": "d0f42d6e-4623-4e70-9ca6-c92c74717f81",
+  "snapshot_kind": "verifier_projection",
+  "origin": "simulated",
+  "issuer_service_id": "verifier-supervisor-primary",
+  "audience": "nimrod-control-board",
+  "sequence": 1,
+  "issued_at": "2026-07-12T23:00:02Z",
+  "not_before": "2026-07-12T23:00:02Z",
+  "expires_at": "2026-07-12T23:00:32Z",
+  "previous_snapshot_digest": null,
+  "projection_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "authority": {
+    "can_authorize": false,
+    "can_execute": false
+  },
+  "signatures": [
+    {
+      "signer_id": "governance-a",
+      "algorithm": "Ed25519",
+      "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+    },
+    {
+      "signer_id": "governance-b",
+      "algorithm": "Ed25519",
+      "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="
+    }
+  ]
+}

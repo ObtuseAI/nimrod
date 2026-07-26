@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/verifier-service-policy.schema.json",
+  "title": "nimrod Verifier Service Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_version", "policy_id", "origin", "service_id", "logical_principal", "process_boundary_required", "read_only_inputs_required", "production_distinct_os_account_required", "expected_os_account_identifier", "os_account_boundary_status", "allowed_capabilities", "prohibited_capabilities", "environment_allowlist", "denied_environment_prefixes", "request_timeout_ms"],
+  "properties": {
+    "policy_version": { "const": "0.1.0" },
+    "policy_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "service_id": { "$ref": "#/$defs/nonEmptyString" },
+    "logical_principal": { "$ref": "#/$defs/nonEmptyString" },
+    "process_boundary_required": { "const": true },
+    "read_only_inputs_required": { "const": true },
+    "production_distinct_os_account_required": { "const": true },
+    "expected_os_account_identifier": { "oneOf": [{ "$ref": "#/$defs/nonEmptyString" }, { "type": "null" }] },
+    "os_account_boundary_status": { "enum": ["required_unproven", "verified"] },
+    "allowed_capabilities": { "const": ["health.report", "witness.verify", "anchor.verify"] },
+    "prohibited_capabilities": {
+      "const": ["plan", "authorize", "execute", "sign", "write_evidence", "read_credentials"]
+    },
+    "environment_allowlist": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/nonEmptyString" }
+    },
+    "denied_environment_prefixes": {
+      "const": ["AWS_", "AZURE_", "GOOGLE_", "OPENAI_", "ANTHROPIC_", "GITHUB_TOKEN", "GH_TOKEN", "KUBECONFIG", "DOCKER_"]
+    },
+    "request_timeout_ms": { "type": "integer", "minimum": 100, "maximum": 60000 }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "nonEmptyString": { "type": "string", "minLength": 1 }
+  }
+}

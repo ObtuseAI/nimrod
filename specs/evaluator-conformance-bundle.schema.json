@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/evaluator-conformance-bundle.schema.json",
+  "title": "nimrod Cross-Implementation Evaluator Conformance Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["bundle_version", "origin", "verification_time", "maximum_lifetime_seconds", "constitution", "governance_state", "evaluator_policy", "isolation_attestations", "resource_ledger", "evaluator_envelopes", "expected_bindings", "authority"],
+  "properties": {
+    "bundle_version": {"const": "0.1.0"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "verification_time": {"type": "string", "format": "date-time"},
+    "maximum_lifetime_seconds": {"type": "integer", "minimum": 1},
+    "constitution": {"type": "object"},
+    "governance_state": {"type": "object"},
+    "evaluator_policy": {"type": "object"},
+    "isolation_attestations": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "object"}},
+    "resource_ledger": {"type": "object"},
+    "evaluator_envelopes": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "object"}},
+    "expected_bindings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidate_digest", "constitution_digest", "capability_report_digest", "evaluation_input_digest", "resource_ledger_digest"],
+      "properties": {
+        "candidate_digest": {"$ref": "#/$defs/digest"},
+        "constitution_digest": {"$ref": "#/$defs/digest"},
+        "capability_report_digest": {"$ref": "#/$defs/digest"},
+        "evaluation_input_digest": {"$ref": "#/$defs/digest"},
+        "resource_ledger_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "can_promote"],
+      "properties": {"can_authorize": {"const": false}, "can_execute": {"const": false}, "can_promote": {"const": false}}
+    }
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

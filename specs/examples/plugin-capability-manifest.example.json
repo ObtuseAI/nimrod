@@ -1,0 +1,39 @@
+{
+  "manifest_version": "0.1.0",
+  "plugin_id": "plugin:edge-process-metadata",
+  "plugin_version": "0.1.0",
+  "origin": "simulated",
+  "artifact_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "runtime": {
+    "kind": "wasm_component",
+    "abi": "wasi_preview2",
+    "maximum_memory_bytes": 33554432,
+    "maximum_fuel": 10000000,
+    "wall_clock_timeout_ms": 250,
+    "threads": false
+  },
+  "capabilities": {
+    "allow": ["observe_process_metadata"],
+    "deny": ["credential_access", "filesystem_write", "host_command", "network_access", "policy_write", "process_control", "signing"]
+  },
+  "filesystem": {
+    "read_paths": [],
+    "write_paths": []
+  },
+  "network": {
+    "allowed_destinations": [],
+    "dns": false
+  },
+  "lifecycle": {
+    "auto_start": false,
+    "install_authorized": false,
+    "load_authorized": false
+  },
+  "authority": {
+    "can_install": false,
+    "can_load": false,
+    "can_execute_host_command": false,
+    "can_request_credentials": false,
+    "can_change_policy": false
+  }
+}

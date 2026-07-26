@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-compilation-receipt.schema.json",
+  "title": "nimrod Range Definition Compilation Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["compilation_version", "origin", "status", "source_kind", "source_object_id", "source_artifact_digest", "import_receipt_digest", "mapping_policy_digest", "campaign_id", "campaign_digest", "connector_id", "capability", "raw_execution_material_forwarded", "source_tool_contacted", "target_discovery_performed", "live_execution_performed", "authority"],
+  "properties": {
+    "compilation_version": {"const": "0.1.0"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "compiled_no_execution"},
+    "source_kind": {"enum": ["atomic_red_team", "caldera_ability"]},
+    "source_object_id": {"$ref": "#/$defs/nonEmptyString"},
+    "source_artifact_digest": {"$ref": "#/$defs/digest"},
+    "import_receipt_digest": {"$ref": "#/$defs/digest"},
+    "mapping_policy_digest": {"$ref": "#/$defs/digest"},
+    "campaign_id": {"type": "string", "format": "uuid"},
+    "campaign_digest": {"$ref": "#/$defs/digest"},
+    "connector_id": {"const": "connector.simulated.atomic"},
+    "capability": {"const": "range.test.simulate"},
+    "raw_execution_material_forwarded": {"const": false},
+    "source_tool_contacted": {"const": false},
+    "target_discovery_performed": {"const": false},
+    "live_execution_performed": {"const": false},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_connect", "can_execute", "can_discover_targets"],
+      "properties": {
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_discover_targets": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

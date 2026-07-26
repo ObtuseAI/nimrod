@@ -1,0 +1,15 @@
+{
+  "result_version": "0.1.0",
+  "origin": "simulated",
+  "status": "blocked",
+  "preflight_id": "31d91e46-e78d-4f70-9200-6062ec01ad42",
+  "range_id": "range:disposable-unprovisioned-01",
+  "policy_envelope_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "corpus_report_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "connection_gate_satisfied": false,
+  "blocked_controls": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"],
+  "tool_installation_authorized": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "authority": {"can_connect": false, "can_execute": false}
+}

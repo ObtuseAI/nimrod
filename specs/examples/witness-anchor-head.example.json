@@ -1,0 +1,14 @@
+{
+  "head_version": "0.1.0",
+  "head_id": "66666666-7777-4888-8999-aaaaaaaaaaaa",
+  "origin": "simulated",
+  "anchor_store_id": "anchor:simulated-external",
+  "anchor_policy_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+  "sequence": 1,
+  "latest_receipt_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+  "latest_checkpoint_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+  "tree_size": 4,
+  "issued_at": "2026-07-12T21:11:00Z",
+  "anchor_key_id": "key:anchor-independent",
+  "signature_base64": "BQB/lQ6HMbE0hIdjJet3k6maV8sVV4MvAOhdZ8o3JTo0kiVk2QF21eODq8V5seYXqP9AEL7HPU5coyRVjWZ5Bw=="
+}

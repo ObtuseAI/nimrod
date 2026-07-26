@@ -1,0 +1,20 @@
+{
+  "projection_version": "0.1.0",
+  "origin": "simulated",
+  "captured_at": "2026-07-13T04:31:02Z",
+  "candidate_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+  "evaluation_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "assurance_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "operator_state": "shadow_eligible_contract_only",
+  "severity": "contract_valid",
+  "summary": "Signed evaluator observations, isolation contracts, and lineage resource accounting permit shadow evaluation only.",
+  "evaluator_mesh": [
+    {"evaluator_id": "evaluator:adversarial", "logical_principal": "principal:adversarial", "process_id": 8103, "role": "adversarial", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "isolation_attestation_digest": "sha256:a111111111111111111111111111111111111111111111111111111111111111"},
+    {"evaluator_id": "evaluator:public_regression", "logical_principal": "principal:public_regression", "process_id": 8101, "role": "public_regression", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "isolation_attestation_digest": "sha256:a222222222222222222222222222222222222222222222222222222222222222"},
+    {"evaluator_id": "evaluator:rights_and_recovery", "logical_principal": "principal:rights_and_recovery", "process_id": 8104, "role": "rights_and_recovery", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "isolation_attestation_digest": "sha256:a333333333333333333333333333333333333333333333333333333333333333"},
+    {"evaluator_id": "evaluator:sealed_holdout", "logical_principal": "principal:sealed_holdout", "process_id": 8102, "role": "sealed_holdout", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "isolation_attestation_digest": "sha256:a444444444444444444444444444444444444444444444444444444444444444"}
+  ],
+  "resource_lineage": {"ledger_id": "72f836fd-da75-438e-aae9-f4614aababe0", "lineage_id": "e56338ee-47fe-4252-866c-4f289b138fe3", "ledger_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "head_entry_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "entry_count": 1, "status": "within_constitution", "totals": {"total_cycle_seconds": 12, "total_compute_units": 4, "peak_memory_megabytes": 96, "peak_storage_megabytes": 24, "candidate_count": 1}, "blockers": []},
+  "boundary": {"signed_evaluators_complete": true, "os_isolation_contract_complete": true, "live_os_enforcement_verified": false, "resource_ledger_within_constitution": true, "shadow_eligible": true, "production_ready": false, "missing_controls": ["LIVE_OS_ISOLATION_UNPROVEN"]},
+  "authority": {"can_promote": false, "can_execute": false, "can_modify_evaluators": false, "can_expand_resources": false}
+}

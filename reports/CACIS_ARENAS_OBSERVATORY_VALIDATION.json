@@ -1,0 +1,18 @@
+{
+  "arena_count": 15,
+  "arena_digest": "sha256:361469abce98664773cc39969af4ea4e4abe292498eb9d07b1a65eba86c7bee5",
+  "benchmark_dimension_count": 14,
+  "blocked_live_gate_count": 15,
+  "display_only": true,
+  "evaluated_arena_count": 15,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "external_replication_performed": false,
+  "hard_failure_count": 0,
+  "live_range_connected": false,
+  "negative_fail_closed_case_count": 9,
+  "status": "CACIS_ARENAS_OBSERVATORY_W6_REPLAY_VALID_DISPLAY_ONLY",
+  "synthetic_replay_fixture_count": 15,
+  "verified_role_count": 2,
+  "verified_signer_count": 2
+}

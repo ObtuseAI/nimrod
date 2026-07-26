@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/witness-anchor-receipt.schema.json",
+  "title": "nimrod Witness Anchor Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receipt_version", "receipt_id", "origin", "anchor_store_id", "anchor_policy_digest", "sequence", "anchored_at", "checkpoint_digest", "checkpoint_id", "tree_size", "previous_receipt_digest", "anchor_key_id", "signature_base64"],
+  "properties": {
+    "receipt_version": { "const": "0.1.0" },
+    "receipt_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "anchor_store_id": { "$ref": "#/$defs/nonEmptyString" },
+    "anchor_policy_digest": { "$ref": "#/$defs/digest" },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "anchored_at": { "$ref": "#/$defs/timestamp" },
+    "checkpoint_digest": { "$ref": "#/$defs/digest" },
+    "checkpoint_id": { "$ref": "#/$defs/uuid" },
+    "tree_size": { "type": "integer", "minimum": 1 },
+    "previous_receipt_digest": { "oneOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] },
+    "anchor_key_id": { "$ref": "#/$defs/nonEmptyString" },
+    "signature_base64": { "type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$" }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 }
+  }
+}

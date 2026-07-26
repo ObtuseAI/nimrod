@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/intelligence-research-settlement.schema.json",
+  "title": "nimrod constitutional intelligence research settlement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["settlement_version", "settlement_digest", "settlement"],
+  "properties": {
+    "settlement_version": {"const": "0.1.0"},
+    "settlement_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "settlement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["settlement_id", "origin", "mission_digest", "source_evidence_digests", "research_question", "discovery_trace", "method_results", "aggregate_comparison", "hypotheses", "predictions", "challenge_log", "metacognition", "independent_verification", "candidate_theory", "authority", "security_claim"],
+      "properties": {
+        "settlement_id": {"type": "string", "format": "uuid"},
+        "origin": {"const": "replayed"},
+        "mission_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "source_evidence_digests": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}},
+        "research_question": {"type": "string", "minLength": 20},
+        "discovery_trace": {
+          "type": "object", "additionalProperties": false, "required": ["opportunity_id", "creative_operator_count", "hypothesis_count", "experiment_count", "theory_count"],
+          "properties": {"opportunity_id": {"type": "string", "format": "uuid"}, "creative_operator_count": {"type": "integer", "minimum": 1}, "hypothesis_count": {"const": 4}, "experiment_count": {"const": 1}, "theory_count": {"const": 1}}
+        },
+        "method_results": {"type": "array", "minItems": 4, "items": {"$ref": "#/$defs/method_result"}},
+        "aggregate_comparison": {"$ref": "#/$defs/aggregate"},
+        "hypotheses": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/hypothesis_result"}},
+        "predictions": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/prediction_result"}},
+        "challenge_log": {"type": "array", "minItems": 5, "items": {"$ref": "#/$defs/challenge"}},
+        "metacognition": {"$ref": "#/$defs/metacognition"},
+        "independent_verification": {"$ref": "#/$defs/verification"},
+        "candidate_theory": {"$ref": "#/$defs/theory"},
+        "authority": {"$ref": "#/$defs/authority"},
+        "security_claim": {"const": "Replay-only structural research supports one scope-limited candidate theory; generalization, production independence, promotion, execution, and target contact remain unproven or prohibited"}
+      }
+    }
+  },
+  "$defs": {
+    "metrics": {
+      "type": "object", "additionalProperties": false, "required": ["required_operation_coverage", "uncertainty_preservation", "challenge_coverage", "evidence_efficiency", "complexity_cost"],
+      "properties": {"required_operation_coverage": {"type": "number", "minimum": 0, "maximum": 1}, "uncertainty_preservation": {"enum": [0, 1]}, "challenge_coverage": {"type": "number", "minimum": 0, "maximum": 1}, "evidence_efficiency": {"type": "number", "minimum": 0, "maximum": 1}, "complexity_cost": {"type": "integer", "minimum": 1}}
+    },
+    "method_result": {
+      "type": "object", "additionalProperties": false, "required": ["result_id", "method_id", "case_id", "metrics", "abstention_preserved", "result_digest"],
+      "properties": {"result_id": {"type": "string", "format": "uuid"}, "method_id": {"type": "string", "format": "uuid"}, "case_id": {"type": "string", "format": "uuid"}, "metrics": {"$ref": "#/$defs/metrics"}, "abstention_preserved": {"type": "boolean"}, "result_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+    },
+    "aggregate": {
+      "type": "object", "additionalProperties": false, "required": ["baseline_method_id", "candidate_method_id", "mean_required_operation_coverage_baseline", "mean_required_operation_coverage_candidate", "mean_required_operation_coverage_delta", "mean_uncertainty_preservation_delta", "maximum_complexity_delta", "preregistered_predictions_passed", "hard_failure_count"],
+      "properties": {"baseline_method_id": {"type": "string", "format": "uuid"}, "candidate_method_id": {"type": "string", "format": "uuid"}, "mean_required_operation_coverage_baseline": {"type": "number", "minimum": 0, "maximum": 1}, "mean_required_operation_coverage_candidate": {"type": "number", "minimum": 0, "maximum": 1}, "mean_required_operation_coverage_delta": {"type": "number", "minimum": -1, "maximum": 1}, "mean_uncertainty_preservation_delta": {"type": "number", "minimum": -1, "maximum": 1}, "maximum_complexity_delta": {"type": "integer", "minimum": -8, "maximum": 8}, "preregistered_predictions_passed": {"type": "boolean"}, "hard_failure_count": {"const": 0}}
+    },
+    "hypothesis_result": {
+      "type": "object", "additionalProperties": false, "required": ["hypothesis_id", "kind", "status", "evidence_digests", "counter_evidence_ids"],
+      "properties": {"hypothesis_id": {"type": "string", "format": "uuid"}, "kind": {"enum": ["null", "candidate", "rival", "unknown"]}, "status": {"enum": ["supported_in_replay", "challenged_not_eliminated", "partially_supported", "retained"]}, "evidence_digests": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "counter_evidence_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "format": "uuid"}}}
+    },
+    "prediction_result": {
+      "type": "object", "additionalProperties": false, "required": ["prediction_id", "observed_value", "passed"],
+      "properties": {"prediction_id": {"type": "string", "format": "uuid"}, "observed_value": {"type": "number", "minimum": -1, "maximum": 8}, "passed": {"type": "boolean"}}
+    },
+    "challenge": {
+      "type": "object", "additionalProperties": false, "required": ["challenge_id", "kind", "target_hypothesis_id", "finding", "disposition", "material"],
+      "properties": {"challenge_id": {"type": "string", "format": "uuid"}, "kind": {"enum": ["null_challenge", "complexity_confound", "fixture_scarcity", "structural_proxy_limit", "verifier_boundary_limit", "generalization_limit"]}, "target_hypothesis_id": {"type": "string", "format": "uuid"}, "finding": {"type": "string", "minLength": 8, "maxLength": 400}, "disposition": {"enum": ["preserved", "bounded", "unresolved"]}, "material": {"const": true}}
+    },
+    "metacognition": {
+      "type": "object", "additionalProperties": false, "required": ["knowledge_state", "understanding_confidence", "calibration_confidence", "generalization_confidence", "missing_evidence", "should_investigate_further", "should_abstain_from_generalization", "stop_reason"],
+      "properties": {"knowledge_state": {"const": "partially_known"}, "understanding_confidence": {"type": "number", "minimum": 0, "maximum": 1}, "calibration_confidence": {"type": "number", "minimum": 0, "maximum": 1}, "generalization_confidence": {"type": "number", "minimum": 0, "maximum": 1}, "missing_evidence": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 3}}, "should_investigate_further": {"const": true}, "should_abstain_from_generalization": {"const": true}, "stop_reason": {"const": "preregistered_replay_complete_external_evaluation_missing"}}
+    },
+    "verification": {
+      "type": "object", "additionalProperties": false, "required": ["required", "performed", "verifier_id", "scope", "status", "read_only", "same_research_principal", "separate_process", "production_independence_verified", "verified_claims", "limitations"],
+      "properties": {"required": {"const": true}, "performed": {"const": true}, "verifier_id": {"type": "string", "pattern": "^verifier:[a-z0-9_.-]+$"}, "scope": {"const": "structural_replay_only"}, "status": {"const": "replay_structure_verified"}, "read_only": {"const": true}, "same_research_principal": {"const": false}, "separate_process": {"const": true}, "production_independence_verified": {"const": false}, "verified_claims": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 3}}, "limitations": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 3}}}
+    },
+    "theory": {
+      "type": "object", "additionalProperties": false, "required": ["theory_id", "statement", "status", "scope", "evidence_digests", "falsifiers", "generalization_allowed", "promotion_authorized", "authority_retained"],
+      "properties": {"theory_id": {"type": "string", "format": "uuid"}, "statement": {"type": "string", "minLength": 40, "maxLength": 800}, "status": {"const": "candidate_only"}, "scope": {"const": "two_replayed_security_method_structure_cases"}, "evidence_digests": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}, "falsifiers": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 8}}, "generalization_allowed": {"const": false}, "promotion_authorized": {"const": false}, "authority_retained": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false, "required": ["can_authorize", "can_execute", "can_change_policy", "can_contact_targets", "can_use_credentials", "can_self_verify", "can_promote", "can_modify_constitution"],
+      "properties": {"can_authorize": {"const": false}, "can_execute": {"const": false}, "can_change_policy": {"const": false}, "can_contact_targets": {"const": false}, "can_use_credentials": {"const": false}, "can_self_verify": {"const": false}, "can_promote": {"const": false}, "can_modify_constitution": {"const": false}}
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-kill-command.schema.json",
+  "title": "nimrod Threshold-Signed Range Kill Command",
+  "type": "object", "additionalProperties": false,
+  "required": ["command_version", "command_id", "origin", "topology_id", "topology_digest", "generation", "sequence", "command", "reason_code", "governance_state_digest", "issued_at", "not_before", "expires_at", "authority", "signatures"],
+  "properties": {
+    "command_version": {"const": "0.1.0"}, "command_id": {"type": "string", "format": "uuid"}, "origin": {"const": "simulated"},
+    "topology_id": {"type": "string", "format": "uuid"}, "topology_digest": {"$ref": "#/$defs/digest"},
+    "generation": {"type": "integer", "minimum": 1}, "sequence": {"type": "integer", "minimum": 1}, "command": {"const": "engage"},
+    "reason_code": {"enum": ["operator_emergency", "policy_revoked", "lease_expired", "test_fixture"]},
+    "governance_state_digest": {"$ref": "#/$defs/digest"}, "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"}, "expires_at": {"type": "string", "format": "date-time"},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signatures": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_disengage", "can_connect", "can_execute"], "properties": {"can_disengage": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}}},
+    "signature": {"type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"], "properties": {"signer_id": {"$ref": "#/$defs/nonEmptyString"}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}}}
+  }
+}

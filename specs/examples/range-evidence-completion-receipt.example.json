@@ -1,0 +1,65 @@
+{
+  "receipt_version": "0.1.0",
+  "receipt_id": "6abd927a-8be6-547c-bc7a-f07bd5903e57",
+  "origin": "simulated",
+  "status": "blocked_fixture_acceptance_non_completing",
+  "completed_at": "2026-07-13T16:34:00Z",
+  "policy_id": "d47cc48a-dcf2-4db2-83bc-d19385a22347",
+  "policy_digest": "sha256:15cf03b867d43aa8324dfbd50868a23f3ec46f1e208af183027289f6b046b1ea",
+  "authorization_id": "700175a4-a1fd-4db7-b25a-9a2cc0f65046",
+  "authorization_digest": "sha256:e38f412353561e81eee86ad408194a0814210e03d5dd71e43d8a95d742da6c66",
+  "acceptance_report_id": "dd4ccab9-9720-5369-b716-3ec0c463d078",
+  "acceptance_report_digest": "sha256:8304e4977d6652bc4c6c6714afa535e5936339d07b3ce0595a2af8b5ee24097f",
+  "scope_digest": "sha256:2eec5a164643739b53273baf7e30ae256491fb295a94ff46e5f6b785dab66d39",
+  "environment_id": "range-environment:owner-name-required",
+  "environment_name": null,
+  "owner_named_environment": false,
+  "required_control_count": 9,
+  "accepted_control_count": 0,
+  "verified_attestation_count": 0,
+  "real_independent_verifier_count": 0,
+  "completion_prerequisites_satisfied": false,
+  "completion_authorized": false,
+  "evidence_complete": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "verified_authorization_signer_ids": [
+    "key:range-owner",
+    "key:range-recovery"
+  ],
+  "verified_authorization_roles": [
+    "customer_authority",
+    "recovery_officer"
+  ],
+  "blockers": [
+    "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+    "EVIDENCE_COMPLETION_AUTHORIZATION_DENIED",
+    "EXECUTION_AUTHORIZATION_MISSING",
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+    "RANGE_CONNECTION_AUTHORIZATION_MISSING",
+    "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING",
+    "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+  ],
+  "activity": {
+    "environment_contact_performed": false,
+    "collection_performed": false,
+    "infrastructure_provisioned": false,
+    "host_or_network_policy_changed": false,
+    "credentials_handled": false,
+    "tools_installed": false,
+    "network_contact_performed": false,
+    "range_connected": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_collect": false,
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_authorize_action": false
+  }
+}

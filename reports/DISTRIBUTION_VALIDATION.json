@@ -1,0 +1,19 @@
+{
+  "command_module_count": 14,
+  "distribution_installation_performed": false,
+  "distribution_published": false,
+  "entry_point_metadata_count": 1,
+  "missing_command_module_count": 0,
+  "missing_package_count": 0,
+  "source_package_count": 6,
+  "source_package_roots": [
+    "nimrod_cacis",
+    "nimrod_edge",
+    "nimrod_platform_assurance",
+    "nimrod_release",
+    "nimrod_research",
+    "nimrod_simulator"
+  ],
+  "status": "DISTRIBUTION_WHEEL_CONTENT_VALID",
+  "wheel_filename": "nimrod_simulator-0.1.0-py3-none-any.whl"
+}

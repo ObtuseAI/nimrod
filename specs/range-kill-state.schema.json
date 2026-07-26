@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-kill-state.schema.json",
+  "title": "nimrod Durable Range Kill State",
+  "type": "object", "additionalProperties": false,
+  "required": ["state_version", "origin", "topology_id", "topology_digest", "generation", "sequence", "state", "engaged_at", "command_id", "command_digest", "governance_state_digest", "verified_signer_ids", "verified_roles", "previous_state_digest", "cleanup_required", "kill_remains_engaged", "authority"],
+  "properties": {
+    "state_version": {"const": "0.1.0"}, "origin": {"const": "simulated"}, "topology_id": {"type": "string", "format": "uuid"},
+    "topology_digest": {"$ref": "#/$defs/digest"}, "generation": {"type": "integer", "minimum": 1}, "sequence": {"type": "integer", "minimum": 1},
+    "state": {"const": "engaged"}, "engaged_at": {"type": "string", "format": "date-time"}, "command_id": {"type": "string", "format": "uuid"},
+    "command_digest": {"$ref": "#/$defs/digest"}, "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "verified_signer_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "verified_roles": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "previous_state_digest": {"type": "null"}, "cleanup_required": {"const": true}, "kill_remains_engaged": {"const": true},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "nonEmptyString": {"type": "string", "minLength": 1},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_disengage", "can_connect", "can_execute"], "properties": {"can_disengage": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}}}
+  }
+}

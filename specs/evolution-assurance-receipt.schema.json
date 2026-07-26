@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/evolution-assurance-receipt.schema.json",
+  "title": "nimrod Evolution Evaluator Assurance Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["assurance_version", "origin", "candidate_digest", "constitution_digest", "evaluator_policy_digest", "evaluation_input_digest", "resource_ledger_digest", "evaluator_verifications", "resource_ledger_verification", "contract_boundary_verified", "live_os_enforcement_verified", "shadow_evaluation_eligible", "production_promotion_authorized", "authority"],
+  "properties": {
+    "assurance_version": {"const": "0.1.0"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "candidate_digest": {"$ref": "#/$defs/digest"},
+    "constitution_digest": {"$ref": "#/$defs/digest"},
+    "evaluator_policy_digest": {"$ref": "#/$defs/digest"},
+    "evaluation_input_digest": {"$ref": "#/$defs/digest"},
+    "resource_ledger_digest": {"$ref": "#/$defs/digest"},
+    "evaluator_verifications": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/evaluatorVerification"}},
+    "resource_ledger_verification": {"$ref": "#/$defs/resourceVerification"},
+    "contract_boundary_verified": {"type": "boolean"},
+    "live_os_enforcement_verified": {"type": "boolean"},
+    "shadow_evaluation_eligible": {"type": "boolean"},
+    "production_promotion_authorized": {"const": false},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_promote", "can_execute", "can_modify_evaluators", "can_expand_resources"],
+      "properties": {"can_promote": {"const": false}, "can_execute": {"const": false}, "can_modify_evaluators": {"const": false}, "can_expand_resources": {"const": false}}
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "evaluatorVerification": {"type": "object", "additionalProperties": false, "required": ["verification_version", "envelope_id", "envelope_digest", "origin", "evaluator_id", "logical_principal", "process_id", "role", "signature_verified", "isolation_boundary_verified", "production_isolation_verified", "isolation_attestation_digest", "resource_ledger_digest", "status", "authority"], "properties": {"verification_version": {"const": "0.1.0"}, "envelope_id": {"type": "string", "format": "uuid"}, "envelope_digest": {"$ref": "#/$defs/digest"}, "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]}, "evaluator_id": {"$ref": "#/$defs/nonEmptyString"}, "logical_principal": {"$ref": "#/$defs/nonEmptyString"}, "process_id": {"type": "integer", "minimum": 1}, "role": {"enum": ["public_regression", "sealed_holdout", "adversarial", "rights_and_recovery"]}, "signature_verified": {"const": true}, "isolation_boundary_verified": {"const": true}, "production_isolation_verified": {"type": "boolean"}, "isolation_attestation_digest": {"$ref": "#/$defs/digest"}, "resource_ledger_digest": {"$ref": "#/$defs/digest"}, "status": {"enum": ["pass", "fail", "inconclusive"]}, "authority": {"type": "object"}}},
+    "totals": {"type": "object", "additionalProperties": false, "required": ["total_cycle_seconds", "total_compute_units", "peak_memory_megabytes", "peak_storage_megabytes", "candidate_count"], "properties": {"total_cycle_seconds": {"type": "integer", "minimum": 0}, "total_compute_units": {"type": "integer", "minimum": 0}, "peak_memory_megabytes": {"type": "integer", "minimum": 0}, "peak_storage_megabytes": {"type": "integer", "minimum": 0}, "candidate_count": {"type": "integer", "minimum": 1}}},
+    "resourceVerification": {"type": "object", "additionalProperties": false, "required": ["verification_version", "ledger_digest", "ledger_id", "lineage_id", "origin", "root_candidate_digest", "head_entry_digest", "entry_count", "totals", "status", "within_constitution", "blockers", "verified_signer_ids", "verified_roles", "authority"], "properties": {"verification_version": {"const": "0.1.0"}, "ledger_digest": {"$ref": "#/$defs/digest"}, "ledger_id": {"type": "string", "format": "uuid"}, "lineage_id": {"type": "string", "format": "uuid"}, "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]}, "root_candidate_digest": {"$ref": "#/$defs/digest"}, "head_entry_digest": {"$ref": "#/$defs/digest"}, "entry_count": {"type": "integer", "minimum": 1}, "totals": {"$ref": "#/$defs/totals"}, "status": {"enum": ["within_constitution", "blocked"]}, "within_constitution": {"type": "boolean"}, "blockers": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}}, "verified_signer_ids": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/nonEmptyString"}}, "verified_roles": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/nonEmptyString"}}, "authority": {"type": "object"}}}
+  }
+}

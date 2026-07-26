@@ -1,0 +1,15 @@
+{
+  "receipt_version": "0.1.0",
+  "receipt_id": "55555555-6666-4777-8888-999999999999",
+  "origin": "simulated",
+  "anchor_store_id": "anchor:simulated-external",
+  "anchor_policy_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+  "sequence": 1,
+  "anchored_at": "2026-07-12T21:11:00Z",
+  "checkpoint_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+  "checkpoint_id": "33333333-4444-4555-8666-777777777777",
+  "tree_size": 4,
+  "previous_receipt_digest": null,
+  "anchor_key_id": "key:anchor-independent",
+  "signature_base64": "YmyaTX1hvAeIWDAON24xTnKOWWizo+kk4jsHe3d+6N6H/TcGm1u60k86gacGiRfHS7rtutbFYBXSVrkaeMFHDw=="
+}

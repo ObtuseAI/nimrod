@@ -1,0 +1,12 @@
+{
+  "manifest_version": "0.1.0",
+  "manifest_id": "734f1094-22bb-4c5d-818c-e22fae25a994",
+  "origin": "simulated",
+  "snapshot_label": "controlled-local-atomic-caldera-fixtures",
+  "snapshot_digest": "sha256:9979dd9330c76911808995dcb55f496716a90d963904dda64d3b459ae752f21f",
+  "entries": [
+    {"entry_id": "fixture:atomic-t1007", "relative_path": "atomic.valid.yaml", "source_kind": "atomic_red_team", "source_object_id": "3f3a9f2c-8c2f-4e91-9d45-8ec2a8805274", "platform": "windows", "executor": "powershell", "expected_artifact_digest": "sha256:cab10223735479aa519a03c043de6958ed51e8f62f31c785f83353d0d4569307"},
+    {"entry_id": "fixture:caldera-t1082", "relative_path": "caldera.valid.yml", "source_kind": "caldera_ability", "source_object_id": "89326aa2-7717-4c57-a2e0-3d6a03a74d58", "platform": "windows", "executor": "psh", "expected_artifact_digest": "sha256:c34ec777384c970f37d184f2d4e0e11ab1d0cbcfe5a979c8241f7db1616fb83e"}
+  ],
+  "authority": {"can_fetch": false, "can_compile": false, "can_execute": false}
+}

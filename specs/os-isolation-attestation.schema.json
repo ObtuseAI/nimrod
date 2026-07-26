@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/os-isolation-attestation.schema.json",
+  "title": "nimrod Threshold-Certified OS Isolation Attestation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["attestation_version", "attestation_id", "origin", "component_kind", "component_id", "logical_principal", "governance_state_digest", "captured_at", "issued_at", "not_before", "expires_at", "process", "collector", "controls", "status", "blockers", "authority", "signatures"],
+  "properties": {
+    "attestation_version": {"const": "0.1.0"},
+    "attestation_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "component_kind": {"enum": ["verifier", "evaluator"]},
+    "component_id": {"$ref": "#/$defs/nonEmptyString"},
+    "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "process": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["process_id", "os_account_identifier", "os_account_sid", "executable_digest"],
+      "properties": {
+        "process_id": {"type": "integer", "minimum": 1},
+        "os_account_identifier": {"$ref": "#/$defs/nonEmptyString"},
+        "os_account_sid": {"$ref": "#/$defs/nonEmptyString"},
+        "executable_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "collector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["collector_id", "kind", "raw_evidence_digest"],
+      "properties": {
+        "collector_id": {"$ref": "#/$defs/nonEmptyString"},
+        "kind": {"enum": ["fixture", "windows_access_check", "linux_access_check", "macos_access_check"]},
+        "raw_evidence_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control_id", "status", "evidence"],
+        "properties": {
+          "control_id": {"enum": ["CREDENTIAL_ISOLATION", "DEDICATED_OS_ACCOUNT", "DISTINCT_PROCESS", "EXECUTABLE_IDENTITY", "NETWORK_EGRESS_DENIED", "READ_ONLY_INPUT_ACL", "SEPARATE_OUTPUT_ACL"]},
+          "status": {"enum": ["verified", "unproven", "violated"]},
+          "evidence": {"type": "array", "items": {"$ref": "#/$defs/reference"}}
+        }
+      }
+    },
+    "status": {"enum": ["verified", "boundary_unproven", "violated"]},
+    "blockers": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "can_modify_acl", "can_grant_credentials"],
+      "properties": {
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "can_modify_acl": {"const": false},
+        "can_grant_credentials": {"const": false}
+      }
+    },
+    "signatures": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "reference": {"type": "object", "additionalProperties": false, "required": ["id", "digest"], "properties": {"id": {"$ref": "#/$defs/nonEmptyString"}, "digest": {"$ref": "#/$defs/digest"}}},
+    "signature": {"type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"], "properties": {"signer_id": {"$ref": "#/$defs/nonEmptyString"}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}}}
+  }
+}

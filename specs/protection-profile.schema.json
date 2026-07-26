@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/protection-profile.schema.json",
+  "title": "nimrod Protection Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "profile_id",
+    "subject",
+    "environment_class",
+    "attestation",
+    "sensors",
+    "allowed_action_classes",
+    "prohibited_effects",
+    "data_policy",
+    "dependencies",
+    "safety_interlocks",
+    "resource_budgets",
+    "recovery",
+    "oracles",
+    "offline_behavior",
+    "known_limitations"
+  ],
+  "properties": {
+    "profile_version": { "const": "0.1.0" },
+    "profile_id": { "$ref": "#/$defs/nonEmptyString" },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "stable_id", "owner_id"],
+      "properties": {
+        "type": { "enum": ["device", "workload", "service", "ai_system", "robot", "iot", "ot", "other"] },
+        "stable_id": { "$ref": "#/$defs/nonEmptyString" },
+        "owner_id": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "environment_class": { "enum": ["twin", "range", "sacrificial_replica", "development", "staging", "production"] },
+    "attestation": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "sensors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/capability" } },
+    "allowed_action_classes": { "type": "array", "items": { "$ref": "#/$defs/capability" } },
+    "prohibited_effects": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "data_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "residency", "raw_export_allowed", "retention_seconds"],
+      "properties": {
+        "classification": { "enum": ["public", "internal", "confidential", "restricted"] },
+        "residency": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "raw_export_allowed": { "type": "boolean" },
+        "retention_seconds": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "dependencies": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "safety_interlocks": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "resource_budgets": { "type": "object", "minProperties": 1 },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "maximum_recovery_seconds", "snapshot_required"],
+      "properties": {
+        "method": { "$ref": "#/$defs/nonEmptyString" },
+        "maximum_recovery_seconds": { "type": "integer", "minimum": 1 },
+        "snapshot_required": { "type": "boolean" }
+      }
+    },
+    "oracles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/reference" } },
+    "offline_behavior": { "enum": ["continue_local", "observe_only", "isolate", "deny_new_actions", "unsupported"] },
+    "known_limitations": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+._-]*:[A-Fa-f0-9]{32,}$" }
+      }
+    },
+    "capability": { "type": "string", "pattern": "^[a-z][a-z0-9_.:-]{2,127}$" }
+  }
+}
+

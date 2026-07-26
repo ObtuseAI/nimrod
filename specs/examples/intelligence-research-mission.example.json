@@ -1,0 +1,59 @@
+{
+  "mission_version": "0.1.0",
+  "mission_id": "73000000-0000-4000-8000-000000000001",
+  "title": "Uncertainty-first cognitive method discovery",
+  "origin": "replayed",
+  "domain": "security",
+  "issued_at": "2026-07-15T07:00:00Z",
+  "expires_at": "2026-07-15T07:30:00Z",
+  "maximum_outcome": "candidate_theory",
+  "source_evidence": [
+    {"kind": "world_model_generation", "digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766", "origin": "replayed"},
+    {"kind": "immune_lifecycle_receipt", "digest": "sha256:6e860d5e51a210ce0056266b3b95fc460c078785ef0db8c0ff8fb143c9838cc8", "origin": "replayed"},
+    {"kind": "immune_lifecycle_receipt", "digest": "sha256:0ea0059f0c6e10d53870c2885f3004dcb0c334f0729cdb05a3a74449aeb8394a", "origin": "replayed"}
+  ],
+  "discovery": {
+    "opportunity_id": "73000000-0000-4000-8000-000000000002",
+    "trigger": "repeated_uncertainty_and_unverified_outcomes",
+    "observed_bottlenecks": ["recovery abstained because post-state evidence was absent", "independent settlement remained pending after organism disposal"],
+    "unknowns": ["which reasoning order best preserves uncertainty", "whether added challenge steps improve evidence coverage beyond their complexity cost"],
+    "question_not_previously_asked": "Which discovery process most reliably finds better investigation methods when evidence is contradictory and materially incomplete?"
+  },
+  "research_question": "Does uncertainty-first adversarial decomposition outperform retrieval-first planning for evidence-incomplete investigations without laundering uncertainty or exceeding the preregistered complexity ceiling?",
+  "creativity_operators": ["analogy", "inversion", "morphological_search", "cross_domain_transfer", "counterfactual_reasoning", "first_principles_reconstruction"],
+  "preregistration": {
+    "primary_hypothesis_id": "73000000-0000-4000-8000-000000000011",
+    "hypotheses": [
+      {"hypothesis_id": "73000000-0000-4000-8000-000000000010", "kind": "null", "claim": "The candidate method provides no material structural advantage over retrieval-first planning.", "falsifiable": true},
+      {"hypothesis_id": "73000000-0000-4000-8000-000000000011", "kind": "candidate", "claim": "Representing uncertainty and adversarially decomposing the problem before retrieval increases required-operation coverage while preserving abstention.", "falsifiable": true},
+      {"hypothesis_id": "73000000-0000-4000-8000-000000000012", "kind": "rival", "claim": "Any observed coverage gain is explained only by added method complexity and not by a better discovery order.", "falsifiable": true},
+      {"hypothesis_id": "73000000-0000-4000-8000-000000000013", "kind": "unknown", "claim": "Two replay fixtures are insufficient to establish whether the method generalizes to future domains or environments.", "falsifiable": true}
+    ],
+    "predictions": [
+      {"prediction_id": "73000000-0000-4000-8000-000000000020", "hypothesis_id": "73000000-0000-4000-8000-000000000011", "metric": "mean_required_operation_coverage_delta", "comparator": "greater_than_or_equal", "threshold": 0.4},
+      {"prediction_id": "73000000-0000-4000-8000-000000000021", "hypothesis_id": "73000000-0000-4000-8000-000000000011", "metric": "mean_uncertainty_preservation_delta", "comparator": "greater_than_or_equal", "threshold": 1.0},
+      {"prediction_id": "73000000-0000-4000-8000-000000000022", "hypothesis_id": "73000000-0000-4000-8000-000000000012", "metric": "maximum_complexity_delta", "comparator": "less_than_or_equal", "threshold": 5.0}
+    ],
+    "hard_failure_conditions": ["authority_growth", "evidence_substitution", "hypothesis_omission", "counter_evidence_omission", "metric_redefinition", "generalization_laundering", "self_verification", "candidate_promotion"],
+    "registered_before_experiment": true
+  },
+  "methods": [
+    {"method_id": "73000000-0000-4000-8000-000000000030", "role": "baseline", "name": "retrieval_first_planning", "operators": ["retrieve", "synthesize", "decide"], "decision_operator": "decide", "can_authorize": false, "can_execute": false},
+    {"method_id": "73000000-0000-4000-8000-000000000031", "role": "candidate", "name": "uncertainty_first_adversarial_decomposition", "operators": ["represent_uncertainty", "decompose", "adversarial_challenge", "counterfactual_reasoning", "retrieve", "synthesize", "abstain_or_decide"], "decision_operator": "abstain_or_decide", "can_authorize": false, "can_execute": false}
+  ],
+  "benchmark_cases": [
+    {"case_id": "73000000-0000-4000-8000-000000000040", "scenario": "credential_theft", "origin": "replayed", "required_operations": ["represent_uncertainty", "decompose", "adversarial_challenge", "retrieve", "synthesize"], "material_unknown_count": 2, "contradiction_count": 1, "evidence_budget": 8},
+    {"case_id": "73000000-0000-4000-8000-000000000041", "scenario": "suspicious_script", "origin": "replayed", "required_operations": ["represent_uncertainty", "decompose", "adversarial_challenge", "counterfactual_reasoning", "retrieve", "synthesize"], "material_unknown_count": 3, "contradiction_count": 2, "evidence_budget": 10}
+  ],
+  "experiment": {
+    "design": "paired_deterministic_method_structure_replay",
+    "metrics": ["required_operation_coverage", "uncertainty_preservation", "challenge_coverage", "evidence_efficiency", "complexity_cost"],
+    "maximum_candidate_complexity_delta": 5,
+    "held_out_evaluation_performed": false,
+    "generalization_claim_allowed": false,
+    "model_calls_allowed": false,
+    "network_access_allowed": false
+  },
+  "verifier": {"verifier_id": "verifier:cire-structural-v1", "scope": "structural_replay_only", "read_only": true, "same_research_principal": false, "can_promote": false, "production_independence_claimed": false},
+  "authority": {"can_authorize": false, "can_execute": false, "can_change_policy": false, "can_contact_targets": false, "can_use_credentials": false, "can_self_verify": false, "can_promote": false, "can_modify_constitution": false}
+}

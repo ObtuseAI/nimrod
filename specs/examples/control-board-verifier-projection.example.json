@@ -1,0 +1,90 @@
+{
+  "projection_version": "0.2.0",
+  "origin": "simulated",
+  "captured_at": "2026-07-12T23:00:02Z",
+  "operator_state": "boundary_unproven",
+  "severity": "blocked",
+  "summary": "Verifier agreement exists, but the production isolation boundary is incomplete.",
+  "consensus": {
+    "consensus_id": "bbbbbbbb-cccc-4ddd-8eee-ffffffffffff",
+    "observed_at": "2026-07-12T23:00:01Z",
+    "state": "agreed_valid_boundary_unproven",
+    "verification_accepted": false,
+    "reason": "Verifier services agreed, but dedicated OS-account isolation is unproven",
+    "primary_observation_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "secondary_observation_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "service_health": [
+    {
+      "service_id": "verifier:anchor-primary",
+      "logical_principal": "service:nimrod-independent-verifier-primary",
+      "process_id": 12345,
+      "os_account_identifier": "desktop-validation-account",
+      "status": "healthy_reference_boundary",
+      "os_account_boundary_verified": false,
+      "production_ready": false
+    },
+    {
+      "service_id": "verifier:anchor-secondary",
+      "logical_principal": "service:nimrod-independent-verifier-secondary",
+      "process_id": 12346,
+      "os_account_identifier": "desktop-validation-account",
+      "status": "healthy_reference_boundary",
+      "os_account_boundary_verified": false,
+      "production_ready": false
+    }
+  ],
+  "observations": [
+    {
+      "service_id": "verifier:anchor-primary",
+      "status": "valid",
+      "observed_at": "2026-07-12T23:00:00Z",
+      "subject_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "read_only_behavior_verified": true,
+      "detail": "No verifier error reported."
+    },
+    {
+      "service_id": "verifier:anchor-secondary",
+      "status": "valid",
+      "observed_at": "2026-07-12T23:00:00Z",
+      "subject_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "read_only_behavior_verified": true,
+      "detail": "No verifier error reported."
+    }
+  ],
+  "boundary": {
+    "production_ready": false,
+    "health_complete": true,
+    "isolation_evidence_verified": true,
+    "live_os_enforcement_verified": false,
+    "dedicated_os_identity_verified": false,
+    "os_read_only_acl_verified": false,
+    "isolation_attestation_digests": [
+      "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+    ],
+    "missing_controls": ["CONSENSUS_NOT_ACCEPTED", "DEDICATED_OS_IDENTITY_UNPROVEN", "OS_READ_ONLY_ACL_UNPROVEN"]
+  },
+  "dissent": [
+    {
+      "code": "CONSENSUS_NOT_ACCEPTED",
+      "source": "supervised_verifier",
+      "message": "Verifier consensus is not accepted."
+    },
+    {
+      "code": "DEDICATED_OS_IDENTITY_UNPROVEN",
+      "source": "supervised_verifier",
+      "message": "A dedicated verifier OS identity has not been proven for both services."
+    },
+    {
+      "code": "OS_READ_ONLY_ACL_UNPROVEN",
+      "source": "supervised_verifier",
+      "message": "OS-enforced read-only ACL evidence is missing."
+    }
+  ],
+  "authority": {
+    "can_authorize": false,
+    "can_execute": false,
+    "may_mark_verification_accepted": false
+  }
+}

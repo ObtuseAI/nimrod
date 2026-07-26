@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/construction-zone-provisioning-gate-result.schema.json",
+  "title": "nimrod construction-zone provisioning gate result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result_version", "result_id", "origin", "status", "assessed_at", "zone_id", "zone_digest", "preflight_result_id", "preflight_result_digest", "attestation_plan_id", "attestation_plan_digest", "authorization_id", "authorization_digest", "verified_signer_ids", "verified_roles", "required_control_count", "assigned_collector_count", "assigned_verifier_count", "verified_control_count", "attestation_plan_complete", "operator_approval_present", "provider_selected", "provisioning_authorized", "provisioning_performed", "staging_authorized", "build_authorized", "range_connection_authorized", "execution_authorized", "blockers", "activity", "authority"],
+  "properties": {
+    "result_version": {"const": "0.1.0"},
+    "result_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "CONSTRUCTION_ZONE_PROVISIONING_SIGNED_DENIAL_INDEPENDENT_ATTESTATION_BLOCKED"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "zone_id": {"type": "string", "format": "uuid"},
+    "zone_digest": {"$ref": "#/$defs/digest"},
+    "preflight_result_id": {"type": "string", "format": "uuid"},
+    "preflight_result_digest": {"$ref": "#/$defs/digest"},
+    "attestation_plan_id": {"type": "string", "format": "uuid"},
+    "attestation_plan_digest": {"$ref": "#/$defs/digest"},
+    "authorization_id": {"type": "string", "format": "uuid"},
+    "authorization_digest": {"$ref": "#/$defs/digest"},
+    "verified_signer_ids": {"type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "verified_roles": {"type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "required_control_count": {"const": 10},
+    "assigned_collector_count": {"const": 0},
+    "assigned_verifier_count": {"const": 0},
+    "verified_control_count": {"const": 0},
+    "attestation_plan_complete": {"const": false},
+    "operator_approval_present": {"const": false},
+    "provider_selected": {"const": false},
+    "provisioning_authorized": {"const": false},
+    "provisioning_performed": {"const": false},
+    "staging_authorized": {"const": false},
+    "build_authorized": {"const": false},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "blockers": {"type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": {"enum": ["ATTESTATION_PLAN_INCOMPLETE", "CONSTRUCTION_ZONE_CONTROLS_UNVERIFIED", "CONSTRUCTION_ZONE_NOT_PROVISIONED", "INDEPENDENT_ATTESTORS_UNASSIGNED", "OPERATOR_APPROVAL_MISSING", "PROVISIONING_AUTHORIZATION_DENIED", "PROVISIONING_PROVIDER_UNSELECTED", "QUARANTINE_EVIDENCE_MISSING", "SOURCE_STAGING_AUTHORIZATION_DENIED"]}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "activity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repository_content_downloaded", "source_archive_staged", "source_extracted", "quarantine_checks_performed", "dependency_resolution_performed", "replica_built", "infrastructure_provisioned", "public_host_contacted_for_testing", "range_connected", "campaign_executed", "construction_zone_provisioned", "identity_created", "storage_created", "network_policy_applied", "kill_control_installed", "source_ingress_mounted", "output_store_created", "scanner_executed", "sbom_generated", "operator_approval_recorded", "provider_selected", "provisioning_request_dispatched", "attestation_collectors_assigned", "attestation_verifiers_assigned", "attestation_observations_collected", "independent_verification_performed"],
+      "properties": {"repository_content_downloaded": {"const": false}, "source_archive_staged": {"const": false}, "source_extracted": {"const": false}, "quarantine_checks_performed": {"const": false}, "dependency_resolution_performed": {"const": false}, "replica_built": {"const": false}, "infrastructure_provisioned": {"const": false}, "public_host_contacted_for_testing": {"const": false}, "range_connected": {"const": false}, "campaign_executed": {"const": false}, "construction_zone_provisioned": {"const": false}, "identity_created": {"const": false}, "storage_created": {"const": false}, "network_policy_applied": {"const": false}, "kill_control_installed": {"const": false}, "source_ingress_mounted": {"const": false}, "output_store_created": {"const": false}, "scanner_executed": {"const": false}, "sbom_generated": {"const": false}, "operator_approval_recorded": {"const": false}, "provider_selected": {"const": false}, "provisioning_request_dispatched": {"const": false}, "attestation_collectors_assigned": {"const": false}, "attestation_verifiers_assigned": {"const": false}, "attestation_observations_collected": {"const": false}, "independent_verification_performed": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_create_identity", "can_create_storage", "can_apply_network_policy", "can_install_kill_control", "can_mount_source_ingress", "can_create_output_store", "can_provision", "can_stage_source", "can_build_replica", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"],
+      "properties": {"can_create_identity": {"const": false}, "can_create_storage": {"const": false}, "can_apply_network_policy": {"const": false}, "can_install_kill_control": {"const": false}, "can_mount_source_ingress": {"const": false}, "can_create_output_store": {"const": false}, "can_provision": {"const": false}, "can_stage_source": {"const": false}, "can_build_replica": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}
+    }
+  }
+}

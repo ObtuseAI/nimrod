@@ -1,0 +1,10 @@
+flowchart LR
+    Data["Typed evidence inputs"] --> Swarm["Fixed seven-cell proposal swarm"]
+    Swarm --> Board["Signed display-only control board"]
+    Swarm -. "typed proposal" .-> Kernel["Constitutional Kernel"]
+    Kernel --> Executor["Capability-specific executor"]
+    Executor --> Target["Owner-controlled target"]
+    Target --> Verifier["Independent verifier"]
+    Verifier --> Witness["Witness"]
+    Witness --> Board
+    Foundry["Candidate-only Evolution Foundry"] -. "shadow candidate" .-> Board

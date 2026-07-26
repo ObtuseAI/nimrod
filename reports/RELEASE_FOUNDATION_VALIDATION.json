@@ -1,0 +1,20 @@
+{
+  "anti_rollback_verified": true,
+  "artifact_verified": true,
+  "installation_authorized": false,
+  "installation_performed": false,
+  "negative_fail_closed_case_count": 12,
+  "network_access_performed": false,
+  "origin": "simulated",
+  "plugin_allowed_capability_count": 1,
+  "plugin_code_executed": false,
+  "plugin_denied_capability_count": 7,
+  "plugin_manifest_count": 1,
+  "previous_release_bound": true,
+  "provenance_present": true,
+  "rollback_contract_verified": true,
+  "sbom_present": true,
+  "status": "EDGE_UPDATE_AND_PLUGIN_TRUST_FOUNDATION_VALID_INSTALLATION_BLOCKED",
+  "verified_role_count": 2,
+  "verified_signer_count": 2
+}

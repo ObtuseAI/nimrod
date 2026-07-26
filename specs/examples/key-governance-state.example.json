@@ -1,0 +1,67 @@
+{
+  "state_version": "0.1.0",
+  "governance_id": "11111111-2222-4333-8444-555555555555",
+  "origin": "simulated",
+  "epoch": 1,
+  "issued_at": "2026-07-12T21:00:00Z",
+  "previous_state_digest": null,
+  "threshold": 2,
+  "ceremony_key_count": 3,
+  "minimum_distinct_roles": 2,
+  "keys": [
+    {
+      "key_id": "key:customer-a",
+      "role": "customer_authority",
+      "algorithm": "Ed25519",
+      "public_key_base64": "KuPRKTsvC/jv6+BncOY5BurTmjPqpI4wCDJ07DTgL5o=",
+      "status": "active",
+      "valid_from": "2026-07-12T21:00:00Z",
+      "valid_until": null,
+      "custody": {
+        "connector_kind": "test_ephemeral",
+        "connector_id": "connector:custody:test-a",
+        "key_reference": "memory:key:customer-a",
+        "private_key_exportable": false,
+        "hardware_backed": false,
+        "allowed_operations": ["sign"],
+        "attestation_digest": null
+      }
+    },
+    {
+      "key_id": "key:safety-b",
+      "role": "safety_officer",
+      "algorithm": "Ed25519",
+      "public_key_base64": "6UjEUaX5X6mSCUPA8DtxtXU/mY1LjlGGjRVcfXVnLXQ=",
+      "status": "active",
+      "valid_from": "2026-07-12T21:00:00Z",
+      "valid_until": null,
+      "custody": {
+        "connector_kind": "test_ephemeral",
+        "connector_id": "connector:custody:test-b",
+        "key_reference": "memory:key:safety-b",
+        "private_key_exportable": false,
+        "hardware_backed": false,
+        "allowed_operations": ["sign"],
+        "attestation_digest": null
+      }
+    },
+    {
+      "key_id": "key:recovery-c",
+      "role": "recovery_officer",
+      "algorithm": "Ed25519",
+      "public_key_base64": "uAn3Mc2VqBKhyQ7puWVNqL1qDqy5vrHREkAAwep7I6Y=",
+      "status": "active",
+      "valid_from": "2026-07-12T21:00:00Z",
+      "valid_until": null,
+      "custody": {
+        "connector_kind": "test_ephemeral",
+        "connector_id": "connector:custody:test-c",
+        "key_reference": "memory:key:recovery-c",
+        "private_key_exportable": false,
+        "hardware_backed": false,
+        "allowed_operations": ["sign"],
+        "attestation_digest": null
+      }
+    }
+  ]
+}

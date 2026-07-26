@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://specs.nimrod.invalid/v0.1/evolution-transition-receipt.schema.json",
+  "title": "nimrod Evolution Transition Receipt", "type": "object", "additionalProperties": false,
+  "required": ["receipt_version", "receipt_id", "origin", "candidate_id", "candidate_digest", "active_baseline_digest", "constitution_digest", "action", "sequence", "previous_receipt_digest", "envelope_digest", "recorded_at", "status", "destination", "verified_signer_ids", "verified_roles", "active_baseline_modified", "candidate_executed", "production_promotion_authorized", "authority"],
+  "properties": {
+    "receipt_version": {"const": "0.1.0"}, "receipt_id": {"type": "string", "format": "uuid"}, "origin": {"const": "simulated"}, "candidate_id": {"type": "string", "format": "uuid"}, "candidate_digest": {"$ref": "#/$defs/digest"}, "active_baseline_digest": {"$ref": "#/$defs/digest"}, "constitution_digest": {"$ref": "#/$defs/digest"},
+    "action": {"enum": ["register_shadow", "demote", "rollback"]}, "sequence": {"type": "integer", "minimum": 1}, "previous_receipt_digest": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]}, "envelope_digest": {"$ref": "#/$defs/digest"}, "recorded_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["shadow_candidate_registered", "candidate_demoted", "candidate_rolled_back"]}, "destination": {"enum": ["shadow", "quarantine", "rolled_back"]}, "verified_signer_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "verified_roles": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "active_baseline_modified": {"const": false}, "candidate_executed": {"const": false}, "production_promotion_authorized": {"const": false},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_modify_active_baseline", "can_execute_candidate", "can_promote_to_production"], "properties": {"can_modify_active_baseline": {"const": false}, "can_execute_candidate": {"const": false}, "can_promote_to_production": {"const": false}}}
+  }, "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

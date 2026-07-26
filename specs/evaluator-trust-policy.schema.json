@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/evaluator-trust-policy.schema.json",
+  "title": "nimrod Threshold-Signed Evaluator Trust Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_version", "policy_id", "origin", "constitution_digest", "governance_state_digest", "issued_at", "not_before", "expires_at", "evaluators", "authority", "signatures"],
+  "properties": {
+    "policy_version": {"const": "0.1.0"},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "constitution_digest": {"$ref": "#/$defs/digest"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "evaluators": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evaluator_id", "logical_principal", "role", "public_key_base64", "expected_os_account_identifier", "expected_os_account_sid"],
+        "properties": {
+          "evaluator_id": {"$ref": "#/$defs/nonEmptyString"},
+          "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+          "role": {"enum": ["public_regression", "sealed_holdout", "adversarial", "rights_and_recovery"]},
+          "public_key_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{43}=$"},
+          "expected_os_account_identifier": {"$ref": "#/$defs/nonEmptyString"},
+          "expected_os_account_sid": {"$ref": "#/$defs/nonEmptyString"}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_select_itself", "can_modify_constitution", "can_grant_credentials", "can_execute"],
+      "properties": {
+        "can_select_itself": {"const": false},
+        "can_modify_constitution": {"const": false},
+        "can_grant_credentials": {"const": false},
+        "can_execute": {"const": false}
+      }
+    },
+    "signatures": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "signature": {"type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"], "properties": {"signer_id": {"$ref": "#/$defs/nonEmptyString"}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}}}
+  }
+}

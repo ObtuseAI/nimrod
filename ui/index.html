@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <meta name="description" content="nimrod constitutional Edge and Crucible evidence control board">
+  <title>nimrod // constitutional control board</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
+  <header class="topbar">
+    <div class="brand-block" aria-label="Product identity">
+      <span class="brand-mark" aria-hidden="true">n/</span>
+      <div>
+        <p class="eyebrow">constitutional control plane</p>
+        <h1>nimrod</h1>
+      </div>
+    </div>
+    <div class="global-state" aria-label="Global state">
+      <span class="state-pill state-simulated" id="mode-pill">simulated // no execution</span>
+      <span class="state-pill state-crypto" id="crypto-pill"><span class="pulse-dot"></span>ed25519 2/2 verified</span>
+      <span class="state-pill state-ingress" id="ingress-pill">transport // loading</span>
+      <span class="state-pill state-verifier-blocked" id="verifier-pill">verifier // loading</span>
+      <button class="kill-switch" id="kill-switch" type="button" aria-pressed="false">
+        <span class="kill-icon" aria-hidden="true"></span>
+        engage kill
+      </button>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="mission-rail" aria-label="Mission and swarm cells">
+      <section class="mission-identity">
+        <p class="eyebrow">active evidence case</p>
+        <p class="mission-code" id="mission-code">loading</p>
+        <h2 id="mission-title">Loading governed mission…</h2>
+        <div class="mission-meta">
+          <span id="mission-origin">origin —</span>
+          <span id="mission-time">window —</span>
+        </div>
+      </section>
+
+      <label class="intent-filter" for="cell-filter">
+        <span>filter cells</span>
+        <input id="cell-filter" type="search" autocomplete="off" placeholder="role / stance / state">
+        <kbd>/</kbd>
+      </label>
+
+      <div class="cell-stack" id="cell-stack" aria-live="polite"></div>
+
+      <section class="rail-footer" aria-label="Swarm budget">
+        <div>
+          <span>role diversity</span>
+          <strong id="role-diversity">—</strong>
+        </div>
+        <div>
+          <span>execution authority</span>
+          <strong class="denied">denied</strong>
+        </div>
+      </section>
+    </aside>
+
+    <main class="workspace" id="workspace">
+      <nav class="workspace-tabs" aria-label="Workspace views">
+        <button class="tab active" type="button" data-view="edge" aria-selected="true">edge preview</button>
+        <button class="tab" type="button" data-view="causal" aria-selected="false">causal field</button>
+        <button class="tab" type="button" data-view="evidence" aria-selected="false">truth ledger</button>
+        <button class="tab" type="button" data-view="swarm" aria-selected="false">swarm matrix</button>
+        <button class="tab" type="button" data-view="verifier" aria-selected="false">verifier mesh</button>
+        <button class="tab" type="button" data-view="range-gate" aria-selected="false">range gate</button>
+        <button class="tab" type="button" data-view="observatory" aria-selected="false">CACIS observatory</button>
+        <button class="tab" type="button" data-view="foundry" aria-selected="false">evolution foundry</button>
+        <button class="tab" type="button" data-view="proof" aria-selected="false">proof console</button>
+      </nav>
+
+      <section class="view active" id="view-edge" data-view-panel="edge">
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">replayed observation → deterministic policy → proposal → proof</p>
+            <h2>Edge preview</h2>
+          </div>
+          <span class="literal-state">budget 1 // no endpoint authority</span>
+        </div>
+
+        <section class="edge-summary" id="edge-summary" aria-live="polite"></section>
+
+        <div class="edge-proof-flow" id="edge-proof-flow" aria-label="Edge replay proof flow"></div>
+
+        <div class="edge-detail-grid">
+          <section class="edge-panel" aria-labelledby="edge-explanation-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">why this proposal exists</p>
+                <h3 id="edge-explanation-title">Deterministic explanation</h3>
+              </div>
+              <span class="literal-state">user confirmation required</span>
+            </div>
+            <div id="edge-explanation"></div>
+          </section>
+
+          <section class="edge-panel" aria-labelledby="edge-uncertainty-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">literal non-success</p>
+                <h3 id="edge-uncertainty-title">Uncertainty and residual risk</h3>
+              </div>
+              <span class="count-badge">3</span>
+            </div>
+            <div id="edge-uncertainties"></div>
+          </section>
+        </div>
+
+        <section class="edge-panel edge-reference-panel" aria-labelledby="edge-reference-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">content-addressed handoff</p>
+              <h3 id="edge-reference-title">Witness references</h3>
+            </div>
+            <span class="literal-state">4 verified entries</span>
+          </div>
+          <div class="edge-reference-grid" id="edge-references"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-causal" data-view-panel="causal" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">attack → defense → recovery</p>
+            <h2>Causal field</h2>
+          </div>
+          <div class="view-actions">
+            <button class="ghost-button" id="focus-gaps" type="button">focus gaps</button>
+            <button class="primary-button" id="compile-proposal" type="button">compile typed proposal</button>
+          </div>
+        </div>
+
+        <div class="causal-map" id="causal-map" aria-label="Causal security chain"></div>
+
+        <div class="braid-grid">
+          <section class="truth-braid" aria-labelledby="truth-braid-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">evidence topology</p>
+                <h3 id="truth-braid-title">Truth braid</h3>
+              </div>
+              <span class="literal-state">no aggregate score</span>
+            </div>
+            <div id="truth-braid"></div>
+          </section>
+
+          <section class="dissent-panel" aria-labelledby="dissent-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">minority channel</p>
+                <h3 id="dissent-title">Persistent dissent</h3>
+              </div>
+              <span class="count-badge" id="dissent-count">0</span>
+            </div>
+            <div id="dissent-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-evidence" data-view-panel="evidence" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">support / contradiction / unknown</p>
+            <h2>Truth ledger</h2>
+          </div>
+          <span class="literal-state">append-only preview</span>
+        </div>
+        <div class="ledger" id="ledger"></div>
+      </section>
+
+      <section class="view" id="view-swarm" data-view-panel="swarm" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">separation of powers</p>
+            <h2>Swarm matrix</h2>
+          </div>
+          <span class="literal-state">7 roles // 0 executors</span>
+        </div>
+        <div class="swarm-matrix" id="swarm-matrix"></div>
+      </section>
+
+      <section class="view" id="view-verifier" data-view-panel="verifier" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">health / observation / consensus / boundary</p>
+            <h2>Verifier mesh</h2>
+          </div>
+          <span class="literal-state">display only // no authority</span>
+        </div>
+
+        <section class="verifier-ingress" id="board-ingress" aria-live="polite"></section>
+
+        <section class="verifier-consensus" id="verifier-consensus" aria-live="polite"></section>
+
+        <div class="verifier-grid">
+          <section class="verifier-panel" aria-labelledby="verifier-health-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">process boundary</p>
+                <h3 id="verifier-health-title">Service health</h3>
+              </div>
+              <span class="count-badge">2</span>
+            </div>
+            <div class="verifier-health" id="verifier-health"></div>
+          </section>
+
+          <section class="verifier-panel" aria-labelledby="verifier-boundary-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">production gate</p>
+                <h3 id="verifier-boundary-title">Isolation boundary</h3>
+              </div>
+              <span class="literal-state">fail closed</span>
+            </div>
+            <div id="verifier-boundary"></div>
+          </section>
+        </div>
+
+        <section class="verifier-panel verifier-observation-panel" aria-labelledby="verifier-observations-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">bound evidence subjects</p>
+              <h3 id="verifier-observations-title">Independent observations</h3>
+            </div>
+            <span class="literal-state">literal states</span>
+          </div>
+          <div class="verifier-observations" id="verifier-observations"></div>
+        </section>
+
+        <section class="verifier-panel verifier-dissent-panel" aria-labelledby="verifier-dissent-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">non-success cannot disappear</p>
+              <h3 id="verifier-dissent-title">Verifier dissent and blockers</h3>
+            </div>
+            <span class="count-badge" id="verifier-dissent-count">0</span>
+          </div>
+          <div id="verifier-dissent"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-range-gate" data-view-panel="range-gate" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">connector declaration / exact scope / real evidence</p>
+            <h2>Range execution gate</h2>
+          </div>
+          <span class="literal-state">non-provisioning // fail closed</span>
+        </div>
+
+        <section class="range-gate-summary" id="range-gate-summary" aria-live="polite"></section>
+
+        <div class="range-gate-grid" id="range-gate-stages"></div>
+
+        <section class="range-gate-panel" aria-labelledby="range-attestations-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">nine required real controls</p>
+              <h3 id="range-attestations-title">Environment attestations</h3>
+            </div>
+            <span class="count-badge">9</span>
+          </div>
+          <div class="range-attestation-grid" id="range-gate-attestations"></div>
+        </section>
+
+        <section class="range-gate-panel" aria-labelledby="range-authority-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">immutable negative authority</p>
+              <h3 id="range-authority-title">Activity and authority boundary</h3>
+            </div>
+            <span class="literal-state">all false</span>
+          </div>
+          <div class="range-authority-grid" id="range-gate-authority"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-observatory" data-view-panel="observatory" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">world model / organisms / hypotheses / recovery / genome</p>
+            <h2>CACIS Observatory</h2>
+          </div>
+          <span class="literal-state" id="world-model-state">W1 succession replay // loading</span>
+        </div>
+
+        <section class="cacis-constitution" aria-label="CACIS constitutional boundary">
+          <div>
+            <p class="eyebrow">immutable law</p>
+            <strong>authority never evolves</strong>
+            <p>Governor schedules. Organisms propose. Verifiers measure. The Constitutional Kernel alone authorizes deterministic policy.</p>
+          </div>
+          <dl>
+            <div><dt>roadmap</dt><dd>W6 replay valid</dd></div>
+            <div><dt>generation</dt><dd id="world-generation">loading</dd></div>
+            <div><dt>observations</dt><dd id="world-observations">loading</dd></div>
+            <div><dt>stored generations</dt><dd id="world-generations">loading</dd></div>
+            <div><dt>cursor transitions</dt><dd id="world-cursors">loading</dd></div>
+            <div><dt>record gaps</dt><dd id="world-gaps">loading</dd></div>
+            <div><dt>intake verifier</dt><dd id="world-intake-verifier">loading</dd></div>
+            <div><dt>source governance</dt><dd id="world-source-governance">loading</dd></div>
+            <div><dt>backpressure</dt><dd id="world-backpressure">loading</dd></div>
+            <div><dt>retention</dt><dd id="world-retention">loading</dd></div>
+            <div><dt>source health</dt><dd id="world-source-health">loading</dd></div>
+            <div><dt>verifier processes</dt><dd id="verifier-identity-surfaces">loading</dd></div>
+            <div><dt>dedicated accounts</dt><dd id="verifier-dedicated-accounts">loading</dd></div>
+            <div><dt>read-only ACLs</dt><dd id="verifier-readonly-acls">loading</dd></div>
+            <div><dt>production custody</dt><dd id="verifier-production-custody">loading</dd></div>
+            <div><dt>promotion standard</dt><dd id="promotion-state">loading</dd></div>
+            <div><dt>eligible tiers</dt><dd id="promotion-tiers">loading</dd></div>
+            <div><dt>promotion threshold</dt><dd id="promotion-threshold">loading</dd></div>
+            <div><dt>independent evaluators</dt><dd id="promotion-evaluators">loading</dd></div>
+            <div><dt>human gate</dt><dd id="promotion-human">loading</dd></div>
+            <div><dt>regression demotion</dt><dd id="promotion-demotion">loading</dd></div>
+            <div><dt>production promotion</dt><dd class="denied" id="promotion-production">loading</dd></div>
+            <div><dt>local gates</dt><dd id="completion-local-gates">loading</dd></div>
+            <div><dt>external gates</dt><dd id="completion-external-gates">loading</dd></div>
+            <div><dt>product state</dt><dd id="completion-product-state">loading</dd></div>
+            <div><dt>runtime</dt><dd id="organism-state">loading</dd></div>
+            <div><dt>execution</dt><dd class="denied">not authorized</dd></div>
+          </dl>
+        </section>
+
+        <div class="cacis-world-grid" id="cacis-world-grid" aria-label="CACIS world model domains"></div>
+
+        <section class="cacis-organism-flow" aria-labelledby="organism-flow-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">ephemeral immune lifecycle</p><h3 id="organism-flow-title">The organism dies. Governed knowledge survives.</h3></div>
+            <span class="literal-state" id="organism-ceiling">proposal only</span>
+          </div>
+          <dl class="cacis-organism-facts">
+            <div><dt>cells</dt><dd id="organism-cells">loading</dd></div>
+            <div><dt>events</dt><dd id="organism-events">loading</dd></div>
+            <div><dt>contributions</dt><dd id="organism-contributions">loading</dd></div>
+            <div><dt>abstentions</dt><dd id="organism-abstentions">loading</dd></div>
+            <div><dt>retained</dt><dd id="organism-retained">loading</dd></div>
+            <div><dt>verification</dt><dd id="organism-verification">loading</dd></div>
+          </dl>
+          <div class="cacis-flow-track" id="cacis-organism-events"></div>
+        </section>
+
+        <section class="cacis-research-lab" aria-labelledby="research-lab-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">discovery / preregistration / experiment / skepticism / theory</p><h3 id="research-lab-title">Constitutional Intelligence Research Engine</h3></div>
+            <span class="literal-state" id="research-ceiling">candidate theory only</span>
+          </div>
+          <p class="research-question" id="research-question">Loading the canonical research question.</p>
+          <dl class="cacis-research-facts">
+            <div><dt>state</dt><dd id="research-state">loading</dd></div>
+            <div><dt>hypotheses</dt><dd id="research-hypotheses">loading</dd></div>
+            <div><dt>cases</dt><dd id="research-cases">loading</dd></div>
+            <div><dt>paired results</dt><dd id="research-results">loading</dd></div>
+            <div><dt>challenges</dt><dd id="research-challenges">loading</dd></div>
+            <div><dt>coverage delta</dt><dd id="research-coverage">loading</dd></div>
+            <div><dt>verifier</dt><dd id="research-verifier">loading</dd></div>
+            <div><dt>theory</dt><dd id="research-theory">loading</dd></div>
+          </dl>
+          <div class="research-hypothesis-grid" id="research-hypothesis-grid" aria-label="Competing intelligence research hypotheses"></div>
+        </section>
+
+        <section class="cacis-homeostasis" aria-labelledby="homeostasis-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">metabolism / pressure / bounded leases / seven clocks</p><h3 id="homeostasis-title">Homeostasis + Chronos</h3></div>
+            <span class="literal-state" id="homeostasis-ceiling">schedule proposals only</span>
+          </div>
+          <dl class="homeostasis-facts">
+            <div><dt>state</dt><dd id="homeostasis-state">loading</dd></div>
+            <div><dt>breaches</dt><dd id="homeostasis-breaches">loading</dd></div>
+            <div><dt>pressure</dt><dd id="homeostasis-pressure">loading</dd></div>
+            <div><dt>confidence inflation</dt><dd id="homeostasis-confidence">loading</dd></div>
+            <div><dt>verifier backlog</dt><dd id="homeostasis-backlog">loading</dd></div>
+            <div><dt>scheduled</dt><dd id="homeostasis-scheduled">loading</dd></div>
+            <div><dt>deferred</dt><dd id="homeostasis-deferred">loading</dd></div>
+            <div><dt>abstained</dt><dd id="homeostasis-abstained">loading</dd></div>
+          </dl>
+          <div class="homeostasis-signal-grid" id="homeostasis-signal-grid" aria-label="Homeostatic signal assessments"></div>
+          <div class="chronos-decision-grid" id="chronos-decision-grid" aria-label="Chronos scheduling decisions"></div>
+        </section>
+
+        <section class="cacis-homeostasis" aria-labelledby="genome-arena-title">
+          <div class="panel-heading">
+            <div><p class="eyebrow">lineage / partitions / reward defenses / arenas / signed projection</p><h3 id="genome-arena-title">Genome + Security Arenas + Observatory</h3></div>
+            <span class="literal-state" id="observatory-mode">loading</span>
+          </div>
+          <dl class="homeostasis-facts">
+            <div><dt>genome</dt><dd id="genome-state">loading</dd></div>
+            <div><dt>memory strata</dt><dd id="genome-strata">loading</dd></div>
+            <div><dt>partitions</dt><dd id="genome-partitions">loading</dd></div>
+            <div><dt>reward defenses</dt><dd id="genome-reward-defenses">loading</dd></div>
+            <div><dt>complexity gates</dt><dd id="genome-complexity">loading</dd></div>
+            <div><dt>arenas</dt><dd id="arena-count">loading</dd></div>
+            <div><dt>replay evaluated</dt><dd id="arena-evaluated">loading</dd></div>
+            <div><dt>live-gated</dt><dd id="arena-blocked">loading</dd></div>
+            <div><dt>dimensions</dt><dd id="arena-dimensions">loading</dd></div>
+            <div><dt>contracts</dt><dd id="contract-count">loading</dd></div>
+            <div><dt>semantic validators</dt><dd id="contract-semantic">loading</dd></div>
+            <div><dt>runtime references</dt><dd id="contract-runtime-refs">loading</dd></div>
+            <div><dt>harness references</dt><dd id="contract-harness-refs">loading</dd></div>
+            <div><dt>live conformance</dt><dd id="contract-live-evidence">loading</dd></div>
+            <div><dt>signers</dt><dd id="observatory-signers">loading</dd></div>
+          </dl>
+        </section>
+      </section>
+
+      <section class="view" id="view-foundry" data-view-panel="foundry" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">signed evaluation / OS boundary / resource lineage</p>
+            <h2>Evolution assurance foundry</h2>
+          </div>
+          <span class="literal-state">shadow only // production blocked</span>
+        </div>
+
+        <section class="foundry-summary" id="foundry-summary" aria-live="polite"></section>
+
+        <section class="foundry-panel platform-assurance-panel" aria-labelledby="platform-assurance-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">effective access / race-free meter / custody readiness</p>
+              <h3 id="platform-assurance-title">Deployment assurance boundary</h3>
+            </div>
+            <span class="literal-state">measured // incomplete</span>
+          </div>
+          <div class="platform-assurance-grid" id="platform-assurance"></div>
+        </section>
+
+        <div class="foundry-grid">
+          <section class="foundry-panel" aria-labelledby="foundry-evaluators-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">four signatures / four principals / four processes</p>
+                <h3 id="foundry-evaluators-title">Evaluator mesh</h3>
+              </div>
+              <span class="count-badge">4</span>
+            </div>
+            <div class="foundry-evaluators" id="foundry-evaluators"></div>
+          </section>
+
+          <section class="foundry-panel" aria-labelledby="foundry-boundary-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">non-promoting evidence gate</p>
+                <h3 id="foundry-boundary-title">Assurance boundary</h3>
+              </div>
+              <span class="literal-state">fail closed</span>
+            </div>
+            <div id="foundry-boundary"></div>
+          </section>
+        </div>
+
+        <section class="foundry-panel foundry-resource-panel" aria-labelledby="foundry-resources-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">hash-chained candidate lineage</p>
+              <h3 id="foundry-resources-title">Resource ledger</h3>
+            </div>
+            <span class="literal-state">no self-extension</span>
+          </div>
+          <div id="foundry-resource-ledger"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-proof" data-view-panel="proof" hidden>
+        <div class="view-heading">
+          <div>
+            <p class="eyebrow">canonical evidence</p>
+            <h2>Proof console</h2>
+          </div>
+          <button class="ghost-button" id="copy-proof" type="button">copy visible proof</button>
+        </div>
+        <pre class="proof-console" id="proof-console" tabindex="0">Loading proof state…</pre>
+      </section>
+    </main>
+
+    <aside class="authority-deck" aria-label="Authority and blast radius">
+      <section class="authority-card signature-card">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow" id="authority-kicker">authority threshold</p>
+            <h2 id="authority-title">Lease proof</h2>
+          </div>
+          <span class="verified-seal" id="authority-seal">verified</span>
+        </div>
+        <div class="threshold-visual" id="threshold-visual" aria-label="Two of two required signatures verified">
+          <span class="signature-node verified">CA</span>
+          <span class="threshold-link"></span>
+          <span class="signature-node verified">SO</span>
+          <span class="threshold-equation">2 / 2</span>
+        </div>
+        <dl class="fact-list" id="lease-facts"></dl>
+      </section>
+
+      <section class="authority-card blast-card">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">exact target graph</p>
+            <h2>Blast radius</h2>
+          </div>
+          <span class="count-badge">1</span>
+        </div>
+        <div class="target-card">
+          <span class="target-icon" aria-hidden="true"></span>
+          <div>
+            <strong id="target-name">—</strong>
+            <span id="target-class">—</span>
+          </div>
+        </div>
+        <div class="effect-ceiling">
+          <span>effect ceiling</span>
+          <strong id="effect-ceiling">—</strong>
+        </div>
+        <ul class="prohibited-list" id="prohibited-list"></ul>
+      </section>
+
+      <section class="authority-card budget-card">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">resource constitution</p>
+            <h2>Budgets</h2>
+          </div>
+          <span class="literal-state">hard limits</span>
+        </div>
+        <div id="budget-list"></div>
+      </section>
+
+      <section class="authority-card verifier-gate-card">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">independent outcome gate</p>
+            <h2>Verifier gate</h2>
+          </div>
+          <span class="blocked-seal" id="verifier-gate-state">blocked</span>
+        </div>
+        <dl class="fact-list" id="verifier-gate-facts"></dl>
+      </section>
+    </aside>
+  </div>
+
+  <footer class="status-dock" aria-live="polite">
+    <div class="dock-event">
+      <span class="event-time">19:05:00.000Z</span>
+      <span class="event-kind">witness</span>
+      <span id="status-message">Local control-board preview loaded. No backend authority exists.</span>
+    </div>
+    <div class="dock-proof">
+      <span>origin <strong id="footer-origin">simulated</strong></span>
+      <span>verdict <strong id="footer-verdict">proposal_ready</strong></span>
+      <span>transport <strong class="verified-text" id="footer-ingress-state">loading</strong></span>
+      <span>verifier <strong class="denied" id="footer-verifier-state">loading</strong></span>
+      <span>execution <strong class="denied">false</strong></span>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

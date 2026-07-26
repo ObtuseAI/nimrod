@@ -1,0 +1,5 @@
+{
+  "baseline_version": "0.1.0", "baseline_id": "ccf20158-0b59-4e99-a29b-4463796d2d04", "origin": "simulated", "generation": 1, "active": true,
+  "artifact_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "authority": {"candidate_write_permitted": false, "can_execute": false}
+}

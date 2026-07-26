@@ -1,0 +1,66 @@
+{
+  "authorization_version": "0.1.0",
+  "authorization_id": "d59ab7b6-ab34-47ac-ac1d-c1c5ae6897d0",
+  "origin": "simulated",
+  "status": "signed_denial_environment_and_attestors_unassigned",
+  "governance_state_digest": "sha256:85ba53d7ad441c18635a9ddd12da2ed93f9793edb9ebcd88e3700a0205c32fb1",
+  "zone_id": "46295d08-2990-4f04-a207-e9cc298b99c5",
+  "zone_digest": "sha256:ff9237dec84c196f13eced8ad571942083d732b4bea7273d8ac9d52f012622c6",
+  "preflight_result_id": "7ec88c9b-c8ef-5081-b068-ea6d1a3b0966",
+  "preflight_result_digest": "sha256:8e5b78d783f5d814fda72fb7add57544586da877ad3fef33c36c13e0a1519b27",
+  "attestation_plan_id": "68d5bb0d-56d5-4b24-a946-f6ce4570a99e",
+  "attestation_plan_digest": "sha256:6fefbce6e108f958dd88c2c3abe8bf471ab4da66dd273552908dcfa629182f5d",
+  "issued_at": "2026-07-13T19:13:00Z",
+  "not_before": "2026-07-13T19:13:00Z",
+  "expires_at": "2026-07-13T19:18:00Z",
+  "outcome": "deny_provisioning",
+  "requested_operations": [
+    "APPLY_NETWORK_ISOLATION",
+    "CREATE_DEDICATED_EPHEMERAL_IDENTITY",
+    "CREATE_DISPOSABLE_WORKSPACE",
+    "CREATE_SEPARATE_OUTPUT_STORE",
+    "INSTALL_OUT_OF_BAND_KILL"
+  ],
+  "authorized_operations": [],
+  "operator_approval_reference": null,
+  "provider_id": null,
+  "credential_references": [],
+  "blockers": [
+    "ATTESTATION_PLAN_INCOMPLETE",
+    "CONSTRUCTION_ZONE_CONTROLS_UNVERIFIED",
+    "CONSTRUCTION_ZONE_NOT_PROVISIONED",
+    "INDEPENDENT_ATTESTORS_UNASSIGNED",
+    "OPERATOR_APPROVAL_MISSING",
+    "PROVISIONING_AUTHORIZATION_DENIED",
+    "PROVISIONING_PROVIDER_UNSELECTED",
+    "QUARANTINE_EVIDENCE_MISSING",
+    "SOURCE_STAGING_AUTHORIZATION_DENIED"
+  ],
+  "authority": {
+    "can_create_identity": false,
+    "can_create_storage": false,
+    "can_apply_network_policy": false,
+    "can_install_kill_control": false,
+    "can_mount_source_ingress": false,
+    "can_create_output_store": false,
+    "can_provision": false,
+    "can_stage_source": false,
+    "can_build_replica": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  },
+  "signatures": [
+    {
+      "signer_id": "key:range-owner",
+      "algorithm": "Ed25519",
+      "signature_base64": "nvt6TSPCOwIAxwPzsWp/NQ9OLnzvos9/28ySewsccobQ0iY01ZcTz9D+VEzE7tXQaC9O3QWzOSH2rouOQ293Ag=="
+    },
+    {
+      "signer_id": "key:range-recovery",
+      "algorithm": "Ed25519",
+      "signature_base64": "h5zKG8WTsmvu0pryFIZD9ZWhZjX1GHsqts2JIMWed3rqMbh7GsqFdo+QFRudb8+kjsTu2zJT3PxNSnaS+LmzCQ=="
+    }
+  ]
+}

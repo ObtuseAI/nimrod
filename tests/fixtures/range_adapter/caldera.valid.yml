@@ -1,0 +1,13 @@
+- id: 89326aa2-7717-4c57-a2e0-3d6a03a74d58
+  name: Emit a fixture-only system-information marker
+  description: Emits inert text used only to validate nimrod import normalization.
+  tactic: discovery
+  technique:
+    attack_id: T1082
+    name: System Information Discovery
+  platforms:
+    windows:
+      psh:
+        command: Write-Output 'nimrod caldera fixture marker'
+        cleanup: Write-Output 'nimrod caldera fixture cleanup marker'
+        timeout: 30

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/owner-scope-exclusion-registry.schema.json",
+  "title": "nimrod owner scope exclusion registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_version", "registry_id", "origin", "status", "recorded_at", "registry_complete", "owner_attestation_present", "unknown_ownership_action", "excluded_organizations", "excluded_repositories", "ownership_proof_digests", "blockers", "authority"],
+  "properties": {
+    "registry_version": {"const": "0.1.0"},
+    "registry_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "incomplete_owner_attestation_required"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "registry_complete": {"const": false},
+    "owner_attestation_present": {"const": false},
+    "unknown_ownership_action": {"const": "deny"},
+    "excluded_organizations": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "excluded_repositories": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[^/]+/[^/]+$"}},
+    "ownership_proof_digests": {"type": "array", "maxItems": 0},
+    "blockers": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["OWNER_ATTESTATION_MISSING", "OWNER_EXCLUSION_REGISTRY_INCOMPLETE", "OWNER_SCOPE_PROOF_MISSING"]}},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_complete_registry", "can_attest_ownership", "can_stage_source", "can_authorize_action"],
+      "properties": {
+        "can_complete_registry": {"const": false},
+        "can_attest_ownership": {"const": false},
+        "can_stage_source": {"const": false},
+        "can_authorize_action": {"const": false}
+      }
+    }
+  }
+}

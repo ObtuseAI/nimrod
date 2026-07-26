@@ -1,0 +1,286 @@
+{
+  "receipt": {
+    "authority": {
+      "can_authorize": false,
+      "can_change_policy": false,
+      "can_contact_targets": false,
+      "can_execute": false,
+      "can_promote": false,
+      "can_self_verify": false,
+      "can_use_credentials": false
+    },
+    "cell_count": 8,
+    "contributions": [
+      {
+        "can_authorize": false,
+        "can_execute": false,
+        "can_verify": false,
+        "cell_id": "72000000-0000-4000-8000-000000000101",
+        "content_digest": "sha256:0aaa2436e677d344c2325017840549449476ae923a2f90041bb18667f6e8458d",
+        "contribution_id": "b060dff5-23a6-5f90-873b-28f4e587ef99",
+        "kind": "observation_assessment",
+        "parent_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+        "role": "identity",
+        "status": "proposed"
+      },
+      {
+        "can_authorize": false,
+        "can_execute": false,
+        "can_verify": false,
+        "cell_id": "72000000-0000-4000-8000-000000000102",
+        "content_digest": "sha256:dbac206014e489b84967ee8efd98ba5e519b22e4637f7a84e60606334a14d582",
+        "contribution_id": "f0e62035-5975-5c0d-a2ca-6e03c3521bb4",
+        "kind": "coverage_gap",
+        "parent_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+        "role": "endpoint",
+        "status": "proposed"
+      },
+      {
+        "can_authorize": false,
+        "can_execute": false,
+        "can_verify": false,
+        "cell_id": "72000000-0000-4000-8000-000000000103",
+        "content_digest": "sha256:6ceec0400b3a1410c84dde1d1faa83b2542d9234ec3997b8b2bac58818dc66a5",
+        "contribution_id": "f2ab6a54-faee-5537-8187-fd81bf91f774",
+        "kind": "observation_assessment",
+        "parent_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+        "role": "network",
+        "status": "proposed"
+      },
+      {
+        "can_authorize": false,
+        "can_execute": false,
+        "can_verify": false,
+        "cell_id": "72000000-0000-4000-8000-000000000104",
+        "content_digest": "sha256:97f2bf03d60075590767419cbd522b22e03e1ab424719b0967c94b6ad3ab08b5",
+        "contribution_id": "db38eb40-1d48-5f66-ad7e-58fdd67ea385",
+        "kind": "observation_assessment",
+        "parent_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+        "role": "threat",
+        "status": "proposed"
+      },
+      {
+        "can_authorize": false,
+        "can_execute": false,
+        "can_verify": false,
+        "cell_id": "72000000-0000-4000-8000-000000000105",
+        "content_digest": "sha256:02cf717def6cd8d3c9900cf3124f4ea690a8f54c5f498aff1f6b8da9cd7b1d36",
+        "contribution_id": "8e8d8f8e-c779-527f-bc15-baae020f3b91",
+        "kind": "open_question",
+        "parent_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+        "role": "recovery",
+        "status": "abstained"
+      },
+      {
+        "can_authorize": false,
+        "can_execute": false,
+        "can_verify": false,
+        "cell_id": "72000000-0000-4000-8000-000000000106",
+        "content_digest": "sha256:e86f5d9c74339b515b4f5ebe9bcaf6f837bb8d0c0c88faa987c2a632db67637a",
+        "contribution_id": "88661344-5cb7-5ad8-883d-da00a381a7f2",
+        "kind": "coverage_gap",
+        "parent_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+        "role": "evidence",
+        "status": "proposed"
+      },
+      {
+        "can_authorize": false,
+        "can_execute": false,
+        "can_verify": false,
+        "cell_id": "72000000-0000-4000-8000-000000000107",
+        "content_digest": "sha256:af6e25ccfc65380c19a067ac4338981ff1bc4f6470023cd1f5daa68e205d06e3",
+        "contribution_id": "6d456c06-556d-5e3a-b4c7-210e18047a02",
+        "kind": "investigation_pattern",
+        "parent_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+        "role": "historian",
+        "status": "proposed"
+      }
+    ],
+    "events": [
+      {
+        "actor": "governor",
+        "event_type": "spawned",
+        "parent_event_digest": null,
+        "reason": "minimum capability topology leased",
+        "sequence": 1,
+        "timestamp": "2026-07-15T06:05:00Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "running",
+        "parent_event_digest": "sha256:5d52b57ca8bf66394d4f07a9136297fcaca9ac9a265009255a2ba95ce273e124",
+        "reason": "replay generation admitted as read-only input",
+        "sequence": 2,
+        "timestamp": "2026-07-15T06:05:01Z"
+      },
+      {
+        "actor": "shadow",
+        "event_type": "shadow_paused",
+        "parent_event_digest": "sha256:16f094eac83adcd5fb3e9c6c81803f462cf9b0d3122cb4bfdee87a302c976a68",
+        "reason": "identity contradiction requires preserved ambiguity",
+        "sequence": 3,
+        "timestamp": "2026-07-15T06:05:02Z"
+      },
+      {
+        "actor": "shadow",
+        "event_type": "shadow_resumed",
+        "parent_event_digest": "sha256:fed33979653ab0f70d23bf43df0c59d2496af800f75afcb7115b969528dd2f38",
+        "reason": "contradiction preserved without truth selection",
+        "sequence": 4,
+        "timestamp": "2026-07-15T06:05:03Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "contribution_emitted",
+        "parent_event_digest": "sha256:6d8023d9960bdcca2303fd0bdf9dfeab531b69ddd0a197943092f0667f0c94c1",
+        "reason": "typed identity contribution emitted",
+        "sequence": 5,
+        "timestamp": "2026-07-15T06:05:04Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "contribution_emitted",
+        "parent_event_digest": "sha256:e979536b546d93445f4f196e0db5eac3028d898620b64316821d041481dfa640",
+        "reason": "typed endpoint contribution emitted",
+        "sequence": 6,
+        "timestamp": "2026-07-15T06:05:05Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "contribution_emitted",
+        "parent_event_digest": "sha256:67128f72143e56ca373604cf33616f78af57617cf78892f5f100bcfa732a564b",
+        "reason": "typed network contribution emitted",
+        "sequence": 7,
+        "timestamp": "2026-07-15T06:05:06Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "contribution_emitted",
+        "parent_event_digest": "sha256:798bcdd4ad5a91cfd3dd69e53b246266b64773bd54db9025845a2814f9bfa3cf",
+        "reason": "typed threat contribution emitted",
+        "sequence": 8,
+        "timestamp": "2026-07-15T06:05:07Z"
+      },
+      {
+        "actor": "shadow",
+        "event_type": "abstained",
+        "parent_event_digest": "sha256:57ffa91200a415c8c25fd870dcdbb53b5a64b4ea862bf4d72b19b3936593797a",
+        "reason": "missing recovery evidence requires abstention",
+        "sequence": 9,
+        "timestamp": "2026-07-15T06:05:08Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "contribution_emitted",
+        "parent_event_digest": "sha256:f238d01ab52728aa2c826f52fcb71bb4692c26875b99ed75fca933a4cebade76",
+        "reason": "typed evidence contribution emitted",
+        "sequence": 10,
+        "timestamp": "2026-07-15T06:05:09Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "contribution_emitted",
+        "parent_event_digest": "sha256:26c3f126e405cbb2f0b223767716f2a2ef37c54f5db1495b0ce5a2938873bc25",
+        "reason": "typed historian contribution emitted",
+        "sequence": 11,
+        "timestamp": "2026-07-15T06:05:10Z"
+      },
+      {
+        "actor": "shadow",
+        "event_type": "terminated",
+        "parent_event_digest": "sha256:5a254d2ebd9b5e6c16d5ae11cd3d28b7732566efc921dc6486b684d8874828e0",
+        "reason": "typed proposal ceiling reached; ephemeral organism terminated",
+        "sequence": 12,
+        "timestamp": "2026-07-15T06:05:11Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "scratch_destroyed",
+        "parent_event_digest": "sha256:588b2df2398ff3a86e33dc5016ddc89c6bff488d49df01e4c1baa34724e63d80",
+        "reason": "scratch state and conversational context destroyed",
+        "sequence": 13,
+        "timestamp": "2026-07-15T06:05:12Z"
+      },
+      {
+        "actor": "governor",
+        "event_type": "leases_revoked",
+        "parent_event_digest": "sha256:a1ed730d449d844eb89fd49d84088f5f0cb1cd95b9893b4406b07cd7d7805438",
+        "reason": "capability and resource leases revoked",
+        "sequence": 14,
+        "timestamp": "2026-07-15T06:05:13Z"
+      },
+      {
+        "actor": "organism",
+        "event_type": "disposed",
+        "parent_event_digest": "sha256:d1722dfd0f1fef8f479e7aac50c1117284a8e48cdaebc0b35eaecd9e08b2ded9",
+        "reason": "all cells terminated; candidate knowledge retained separately",
+        "sequence": 15,
+        "timestamp": "2026-07-15T06:05:14Z"
+      }
+    ],
+    "independent_verification": {
+      "performed": false,
+      "required": true,
+      "status": "pending_external_verification",
+      "verifier_identity": null
+    },
+    "mission_digest": "sha256:2a62fccd7bbaa48dd98609d448092f6f1bb0fe75a2ab3f1054a5c601ed261e31",
+    "organism_id": "9629bfeb-2489-5861-af31-8676b104db3e",
+    "origin": "replayed",
+    "receipt_id": "3953ecbf-659b-530d-a2b4-1e831bc08692",
+    "resource_usage": {
+      "cpu_millis": 240,
+      "model_calls": 0,
+      "peak_memory_mb": 32,
+      "sandbox_runs": 0,
+      "storage_bytes": 12288,
+      "telemetry_reads": 7
+    },
+    "retained_knowledge": {
+      "authority_retained": false,
+      "entries": [
+        {
+          "content_digest": "sha256:0aaa2436e677d344c2325017840549449476ae923a2f90041bb18667f6e8458d",
+          "knowledge_id": "eebe3d2b-d999-57bd-92cf-909220c0daf1",
+          "knowledge_type": "evidence_reference",
+          "source_contribution_id": "b060dff5-23a6-5f90-873b-28f4e587ef99",
+          "status": "candidate_only"
+        },
+        {
+          "content_digest": "sha256:dbac206014e489b84967ee8efd98ba5e519b22e4637f7a84e60606334a14d582",
+          "knowledge_id": "8f64b8da-03b9-5248-8063-9852f37535cd",
+          "knowledge_type": "open_question",
+          "source_contribution_id": "f0e62035-5975-5c0d-a2ca-6e03c3521bb4",
+          "status": "candidate_only"
+        },
+        {
+          "content_digest": "sha256:af6e25ccfc65380c19a067ac4338981ff1bc4f6470023cd1f5daa68e205d06e3",
+          "knowledge_id": "799358a1-481b-59ba-aab7-27b0fe056afd",
+          "knowledge_type": "investigation_pattern",
+          "source_contribution_id": "6d456c06-556d-5e3a-b4c7-210e18047a02",
+          "status": "candidate_only"
+        }
+      ],
+      "raw_context_retained": false,
+      "retention_ceiling": "candidate_only"
+    },
+    "security_claim": "Replay-only organism lifecycle; typed proposals retained, organism disposed, independent verification pending, no execution or target contact",
+    "started_at": "2026-07-15T06:05:00Z",
+    "terminal_reason": "shadow_terminated",
+    "terminated_at": "2026-07-15T06:05:14Z",
+    "termination": {
+      "all_cells_terminated": true,
+      "capability_lease_revoked": true,
+      "conversational_context_destroyed": true,
+      "credentials_issued": false,
+      "execution_performed": false,
+      "lifecycle_state": "disposed",
+      "resource_lease_revoked": true,
+      "scratch_state_destroyed": true,
+      "target_contact_performed": false
+    },
+    "world_model_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766"
+  },
+  "receipt_digest": "sha256:6e860d5e51a210ce0056266b3b95fc460c078785ef0db8c0ff8fb143c9838cc8",
+  "receipt_version": "0.1.0"
+}

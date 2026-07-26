@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-source-import.schema.json",
+  "title": "nimrod Quarantined Range Source Import",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["import_version", "import_id", "origin", "source_kind", "source_artifact_digest", "source_object_id", "technique_id", "name", "platforms", "executors", "raw_execution_fields_present", "raw_execution_material_retained", "command_digest", "cleanup_digest", "elevation_required", "dynamic_input_or_payload_reference_count", "variable_names", "findings", "quarantine_status", "authority"],
+  "properties": {
+    "import_version": {"const": "0.1.0"},
+    "import_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "source_kind": {"enum": ["atomic_red_team", "caldera_ability"]},
+    "source_artifact_digest": {"$ref": "#/$defs/digest"},
+    "source_object_id": {"$ref": "#/$defs/nonEmptyString"},
+    "technique_id": {"type": "string", "pattern": "^T[0-9]{4}(?:\\.[0-9]{3})?$"},
+    "name": {"$ref": "#/$defs/nonEmptyString"},
+    "platforms": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "executors": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "raw_execution_fields_present": {"const": true},
+    "raw_execution_material_retained": {"const": false},
+    "command_digest": {"$ref": "#/$defs/digest"},
+    "cleanup_digest": {"$ref": "#/$defs/digest"},
+    "elevation_required": {"type": "boolean"},
+    "dynamic_input_or_payload_reference_count": {"type": "integer", "minimum": 0},
+    "variable_names": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "findings": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "quarantine_status": {"enum": ["eligible_for_no_execution_mapping", "blocked"]},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_connect", "can_execute", "can_discover_targets"],
+      "properties": {
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_discover_targets": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

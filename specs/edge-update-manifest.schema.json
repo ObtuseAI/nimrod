@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/edge-update-manifest.schema.json",
+  "title": "nimrod Edge signed update manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "release_id", "origin", "product", "channel", "version", "release_sequence", "issued_at", "expires_at", "governance_state_digest", "artifact", "previous_release", "plugins", "rollback", "rollout", "authority", "signatures"],
+  "properties": {
+    "manifest_version": {"const": "0.1.0"},
+    "release_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "product": {"const": "nimrod-edge"},
+    "channel": {"const": "candidate"},
+    "version": {"type": "string", "minLength": 1},
+    "release_sequence": {"type": "integer", "minimum": 2},
+    "issued_at": {"$ref": "#/$defs/timestamp"},
+    "expires_at": {"$ref": "#/$defs/timestamp"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "digest", "size_bytes", "provenance_digest", "sbom_digest"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "digest": {"$ref": "#/$defs/digest"},
+        "size_bytes": {"type": "integer", "minimum": 1},
+        "provenance_digest": {"$ref": "#/$defs/digest"},
+        "sbom_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "previous_release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "release_sequence", "manifest_digest"],
+      "properties": {
+        "version": {"type": "string", "minLength": 1},
+        "release_sequence": {"type": "integer", "minimum": 1},
+        "manifest_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["plugin_id", "manifest_digest"],
+        "properties": {
+          "plugin_id": {"type": "string", "pattern": "^plugin:[a-z0-9._-]+$"},
+          "manifest_digest": {"$ref": "#/$defs/digest"}
+        }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_release_manifest_digest", "offline_verified", "rollback_tested", "safe_uninstall_tested"],
+      "properties": {
+        "target_release_manifest_digest": {"$ref": "#/$defs/digest"},
+        "offline_verified": {"const": true},
+        "rollback_tested": {"const": true},
+        "safe_uninstall_tested": {"const": true}
+      }
+    },
+    "rollout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["percentage", "cohort", "installation_authorized"],
+      "properties": {
+        "percentage": {"const": 0},
+        "cohort": {"const": []},
+        "installation_authorized": {"const": false}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_promote", "can_change_rollout", "can_change_policy"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_promote": {"const": false},
+        "can_change_rollout": {"const": false},
+        "can_change_policy": {"const": false}
+      }
+    },
+    "signatures": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signer_id", "role", "algorithm", "signature_base64"],
+        "properties": {
+          "signer_id": {"type": "string", "minLength": 1},
+          "role": {"enum": ["customer_authority", "safety_officer", "recovery_officer"]},
+          "algorithm": {"const": "Ed25519"},
+          "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]+={0,2}$"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "timestamp": {"type": "string", "format": "date-time"},
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

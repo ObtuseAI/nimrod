@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/homeostasis-chronos-receipt.schema.json",
+  "title": "nimrod CACIS W4 homeostasis and Chronos receipt",
+  "type": "object", "additionalProperties": false,
+  "required": ["receipt_version", "receipt", "receipt_digest"],
+  "properties": {
+    "receipt_version": {"const": "0.1.0"},
+    "receipt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["receipt_id", "origin", "status", "mission_digest", "evaluated_at", "signal_assessments", "chronos_assessments", "allocation_decisions", "resource_ledger", "homeostasis", "security_claim", "authority"],
+      "properties": {
+        "receipt_id": {"type": "string", "format": "uuid"}, "origin": {"const": "replayed"},
+        "status": {"const": "replay_valid_schedule_proposal_only"},
+        "mission_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "evaluated_at": {"type": "string", "format": "date-time"},
+        "signal_assessments": {"type": "array", "minItems": 13, "maxItems": 13, "items": {"$ref": "#/$defs/signal_assessment"}},
+        "chronos_assessments": {"type": "array", "minItems": 5, "items": {"$ref": "#/$defs/clock_assessment"}},
+        "allocation_decisions": {"type": "array", "minItems": 5, "items": {"$ref": "#/$defs/decision"}},
+        "resource_ledger": {"$ref": "#/$defs/ledger"},
+        "homeostasis": {"$ref": "#/$defs/homeostasis"},
+        "security_claim": {"type": "string", "minLength": 40, "maxLength": 500},
+        "authority": {"$ref": "#/$defs/authority"}
+      }
+    },
+    "receipt_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "resources": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cpu", "memory", "storage", "telemetry", "model", "sandbox", "simulation", "verification", "investigation"],
+      "properties": {
+        "cpu": {"type": "integer", "minimum": 0}, "memory": {"type": "integer", "minimum": 0},
+        "storage": {"type": "integer", "minimum": 0}, "telemetry": {"type": "integer", "minimum": 0},
+        "model": {"type": "integer", "minimum": 0}, "sandbox": {"type": "integer", "minimum": 0},
+        "simulation": {"type": "integer", "minimum": 0}, "verification": {"type": "integer", "minimum": 0},
+        "investigation": {"type": "integer", "minimum": 0}
+      }
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "can_change_policy", "can_contact_targets", "can_use_credentials", "can_self_verify", "can_promote", "can_modify_constitution"],
+      "properties": {
+        "can_authorize": {"const": false}, "can_execute": {"const": false}, "can_change_policy": {"const": false},
+        "can_contact_targets": {"const": false}, "can_use_credentials": {"const": false}, "can_self_verify": {"const": false},
+        "can_promote": {"const": false}, "can_modify_constitution": {"const": false}
+      }
+    },
+    "signal_assessment": {
+      "type": "object", "additionalProperties": false, "required": ["signal", "observed", "threshold", "healthy_when", "state"],
+      "properties": {
+        "signal": {"type": "string"}, "observed": {"type": "number", "minimum": 0, "maximum": 1},
+        "threshold": {"type": "number", "minimum": 0, "maximum": 1}, "healthy_when": {"enum": ["at_or_above", "at_or_below"]},
+        "state": {"enum": ["healthy", "breached"]}
+      }
+    },
+    "clock_assessment": {
+      "type": "object", "additionalProperties": false, "required": ["work_id", "clock", "age_ms", "state"],
+      "properties": {"work_id": {"type": "string", "format": "uuid"}, "clock": {"type": "string"}, "age_ms": {"type": "integer", "minimum": 0}, "state": {"enum": ["fresh", "stale", "expired"]}}
+    },
+    "decision": {
+      "type": "object", "additionalProperties": false, "required": ["work_id", "work_kind", "action", "priority_score", "reason", "clock_state", "costs"],
+      "properties": {
+        "work_id": {"type": "string", "format": "uuid"}, "work_kind": {"type": "string"},
+        "action": {"enum": ["scheduled", "deferred", "abstained"]}, "priority_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "reason": {"enum": ["bounded_lease_available", "resource_backpressure", "chronos_evidence_expired", "prerequisites_unsatisfied"]},
+        "clock_state": {"enum": ["fresh", "stale", "expired"]}, "costs": {"$ref": "#/$defs/resources"}
+      }
+    },
+    "ledger_entry": {
+      "type": "object", "additionalProperties": false, "required": ["capacity", "allocated", "remaining"],
+      "properties": {"capacity": {"type": "integer", "minimum": 0}, "allocated": {"type": "integer", "minimum": 0}, "remaining": {"type": "integer", "minimum": 0}}
+    },
+    "ledger": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cpu", "memory", "storage", "telemetry", "model", "sandbox", "simulation", "verification", "investigation"],
+      "properties": {"cpu": {"$ref": "#/$defs/ledger_entry"}, "memory": {"$ref": "#/$defs/ledger_entry"}, "storage": {"$ref": "#/$defs/ledger_entry"}, "telemetry": {"$ref": "#/$defs/ledger_entry"}, "model": {"$ref": "#/$defs/ledger_entry"}, "sandbox": {"$ref": "#/$defs/ledger_entry"}, "simulation": {"$ref": "#/$defs/ledger_entry"}, "verification": {"$ref": "#/$defs/ledger_entry"}, "investigation": {"$ref": "#/$defs/ledger_entry"}}
+    },
+    "homeostasis": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "breached_signals", "breach_count", "pressure_index", "verification_backlog", "confidence_inflation", "scheduled_count", "deferred_count", "abstained_count"],
+      "properties": {
+        "state": {"enum": ["healthy_bounded", "degraded_bounded"]}, "breached_signals": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "breach_count": {"type": "integer", "minimum": 0}, "pressure_index": {"type": "number", "minimum": 0, "maximum": 1},
+        "verification_backlog": {"type": "number", "minimum": 0, "maximum": 1}, "confidence_inflation": {"type": "number", "minimum": 0, "maximum": 1},
+        "scheduled_count": {"type": "integer", "minimum": 0}, "deferred_count": {"type": "integer", "minimum": 0}, "abstained_count": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "candidate_version": "0.1.0",
+  "candidate_id": "88888888-8888-4888-8888-888888888888",
+  "candidate_class": "detection",
+  "authority_tier": "B",
+  "source_evidence": [
+    {
+      "id": "evidence:simulated-gap",
+      "digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888"
+    }
+  ],
+  "contradicting_evidence": [],
+  "lens": "adversarial",
+  "mutation_family": "detection",
+  "proposed_delta": {
+    "description": "Planning-only candidate for a simulated range marker rule"
+  },
+  "prediction": "The candidate would identify the simulated marker without matching its negative control",
+  "evaluation_plan": [
+    "Run positive and negative replay fixtures",
+    "Run sealed false-positive and rollback checks"
+  ],
+  "sealed_evaluation": {
+    "evaluator_id": "sealed-evaluator:planning-placeholder",
+    "result": "not_run",
+    "evidence": []
+  },
+  "champion_floor": {
+    "champion_id": "champion:none",
+    "must_not_regress": [
+      "Unauthorized-action count remains zero",
+      "Negative-control precision does not decline"
+    ]
+  },
+  "rollback": [
+    "Remove the candidate from shadow evaluation"
+  ],
+  "promotion_policy": {
+    "maximum_destination": "shadow",
+    "independent_signer_required": true,
+    "human_threshold_required": false
+  },
+  "demotion_triggers": [
+    "Any negative-control false positive",
+    "Any evidence-integrity failure"
+  ],
+  "status": "quarantined"
+}
+

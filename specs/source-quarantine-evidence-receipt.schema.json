@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/source-quarantine-evidence-receipt.schema.json",
+  "title": "nimrod source quarantine evidence receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receipt_version", "receipt_id", "origin", "status", "recorded_at", "zone_id", "zone_digest", "staging_authorization_id", "staging_authorization_digest", "requested_source_ids", "source_archive_count", "source_archive_digests", "results", "activity", "authority"],
+  "properties": {
+    "receipt_version": {"const": "0.1.0"},
+    "receipt_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "evidence_missing"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "zone_id": {"type": "string", "format": "uuid"},
+    "zone_digest": {"$ref": "#/$defs/digest"},
+    "staging_authorization_id": {"type": "string", "format": "uuid"},
+    "staging_authorization_digest": {"$ref": "#/$defs/digest"},
+    "requested_source_ids": {"type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "source_archive_count": {"const": 0},
+    "source_archive_digests": {"type": "array", "maxItems": 0},
+    "results": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"$ref": "#/$defs/result"}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "result": {"type": "object", "additionalProperties": false, "required": ["requirement_id", "status", "performed", "evidence_digest", "evidence"], "properties": {"requirement_id": {"enum": ["ARCHIVE_DIGEST", "COMMIT_SIGNATURE", "LICENSE_OBLIGATIONS", "MALWARE_SCAN", "REPRODUCIBLE_EXTRACTION", "SBOM_GENERATION", "SECRET_SCAN", "SOURCE_PROVENANCE"]}, "status": {"const": "missing"}, "performed": {"const": false}, "evidence_digest": {"type": "null"}, "evidence": {"type": "array", "maxItems": 0}}},
+    "activity": {"type": "object", "additionalProperties": false, "required": ["source_archive_present", "source_extracted", "scanner_executed", "sbom_generated", "secret_material_accessed", "network_access_performed"], "properties": {"source_archive_present": {"const": false}, "source_extracted": {"const": false}, "scanner_executed": {"const": false}, "sbom_generated": {"const": false}, "secret_material_accessed": {"const": false}, "network_access_performed": {"const": false}}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_download_source", "can_stage_source", "can_extract_source", "can_resolve_dependencies", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"], "properties": {"can_download_source": {"const": false}, "can_stage_source": {"const": false}, "can_extract_source": {"const": false}, "can_resolve_dependencies": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}}
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "transition_version": "0.1.0",
+  "transition_id": "22222222-3333-4444-8555-666666666666",
+  "origin": "simulated",
+  "governance_id": "11111111-2222-4333-8444-555555555555",
+  "from_epoch": 1,
+  "to_epoch": 2,
+  "kind": "rotation",
+  "issued_at": "2026-07-12T21:05:00Z",
+  "previous_state_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "next_state_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "affected_key_ids": ["key:customer-a", "key:customer-d"],
+  "reason": "Scheduled simulated ceremony rotation",
+  "signatures": [
+    {
+      "signer_id": "key:customer-a",
+      "algorithm": "Ed25519",
+      "signature_base64": "YmyaTX1hvAeIWDAON24xTnKOWWizo+kk4jsHe3d+6N6H/TcGm1u60k86gacGiRfHS7rtutbFYBXSVrkaeMFHDw=="
+    },
+    {
+      "signer_id": "key:safety-b",
+      "algorithm": "Ed25519",
+      "signature_base64": "BQB/lQ6HMbE0hIdjJet3k6maV8sVV4MvAOhdZ8o3JTo0kiVk2QF21eODq8V5seYXqP9AEL7HPU5coyRVjWZ5Bw=="
+    }
+  ]
+}

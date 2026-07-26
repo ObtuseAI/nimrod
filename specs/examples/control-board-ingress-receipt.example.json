@@ -1,0 +1,21 @@
+{
+  "ingress_version": "0.1.0",
+  "origin": "simulated",
+  "status": "accepted",
+  "issuer_service_id": "verifier-supervisor-primary",
+  "audience": "nimrod-control-board",
+  "sequence": 2,
+  "snapshot_id": "7bb63302-bc0d-4623-913b-a1ba43ad945f",
+  "snapshot_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "projection_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "accepted_at": "2026-07-12T23:00:04Z",
+  "freshness_seconds": 2,
+  "verified_signer_ids": ["governance-a", "governance-b"],
+  "verified_roles": ["release", "security"],
+  "durable_replay_guard": true,
+  "stale_state_guard": true,
+  "authority": {
+    "can_authorize": false,
+    "can_execute": false
+  }
+}

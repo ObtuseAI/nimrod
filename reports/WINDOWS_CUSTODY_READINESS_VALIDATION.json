@@ -1,0 +1,26 @@
+{
+  "adversarial_case_count": 6,
+  "blocker_count": 4,
+  "blockers": [
+    "HARDWARE_KEY_REFERENCE_MISSING",
+    "INDEPENDENT_CUSTODY_OPERATOR_MISSING",
+    "PROVIDER_ATTESTATION_MISSING",
+    "TPM_MANAGEMENT_STATE_UNAVAILABLE"
+  ],
+  "candidate_executed": false,
+  "key_created": false,
+  "key_reference_configured": false,
+  "origin": "live",
+  "platform": "windows",
+  "platform_crypto_provider_present": true,
+  "private_key_material_accessed": false,
+  "production_custody_verified": false,
+  "production_promotion_authorized": false,
+  "provider_attestation_collected": false,
+  "provider_count": 5,
+  "signing_operation_performed": false,
+  "software_key_storage_provider_present": true,
+  "status": "WINDOWS_CUSTODY_READINESS_LIVE_READ_ONLY_HARDWARE_CUSTODY_BLOCKED",
+  "tpm_hresult_recorded": true,
+  "tpm_management_query_succeeded": false
+}

@@ -1,0 +1,51 @@
+{
+  "custody_version": "0.1.0",
+  "measurement_id": "7d3e9b5f-912c-4f14-8d36-982a70cad86b",
+  "origin": "simulated",
+  "collected_at": "2026-07-13T06:30:00Z",
+  "platform": "windows",
+  "cng": {
+    "enumeration_method": "ncrypt_enum_storage_providers",
+    "provider_count": 2,
+    "provider_name_digests": [
+      "sha256:094fe67323d6d731ba7a0557867069e390c2a447448e7285cc18e6eed0b35abf",
+      "sha256:e7909b75599f116cdbd777131d867a6d67ee2aaeb169aa7169322f91c5639c23"
+    ],
+    "platform_crypto_provider_present": true,
+    "software_key_storage_provider_present": true,
+    "raw_provider_set_digest": "sha256:64fa03715d790e5239f61adec8810cdf993ce191c1d15033ce71f4d91f03c080"
+  },
+  "tpm": {
+    "inspection_method": "cim_win32_tpm_read_only",
+    "query_succeeded": false,
+    "tpm_present": null,
+    "tpm_enabled": null,
+    "tpm_activated": null,
+    "tpm_owned": null,
+    "error_id_digest": "sha256:1406c0f9a640c9d5d37689aea4323c612fcd2dc99902d65d86485909fd1b3ae6",
+    "hresult": -2146233088,
+    "attempt_count": 1
+  },
+  "key_material": {
+    "hardware_key_reference_configured": false,
+    "hardware_key_created": false,
+    "signing_operation_performed": false,
+    "provider_attestation_collected": false,
+    "private_key_material_accessed": false
+  },
+  "status": "blocked",
+  "blockers": [
+    "HARDWARE_KEY_REFERENCE_MISSING",
+    "INDEPENDENT_CUSTODY_OPERATOR_MISSING",
+    "PROVIDER_ATTESTATION_MISSING",
+    "TPM_MANAGEMENT_STATE_UNAVAILABLE"
+  ],
+  "production_custody_verified": false,
+  "authority": {
+    "can_create_key": false,
+    "can_delete_key": false,
+    "can_sign": false,
+    "can_export_private_key": false,
+    "can_authorize_production": false
+  }
+}

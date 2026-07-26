@@ -1,0 +1,22 @@
+{
+  "preflight_version": "0.1.0",
+  "preflight_id": "31d91e46-e78d-4f70-9200-6062ec01ad42",
+  "origin": "simulated",
+  "range_id": "range:disposable-unprovisioned-01",
+  "environment_class": "isolated_range",
+  "captured_at": "2026-07-12T23:31:00Z",
+  "policy_envelope_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "corpus_report_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "controls": [
+    {"control_id": "CLEANUP_CONTRACT", "status": "unproven", "evidence": []},
+    {"control_id": "DEDICATED_CREDENTIALS", "status": "unproven", "evidence": []},
+    {"control_id": "DEFAULT_DENY_EGRESS", "status": "unproven", "evidence": []},
+    {"control_id": "DISPOSABLE_TARGET", "status": "unproven", "evidence": []},
+    {"control_id": "INDEPENDENT_VERIFIER", "status": "unproven", "evidence": []},
+    {"control_id": "OUT_OF_BAND_KILL", "status": "unproven", "evidence": []},
+    {"control_id": "RESTORABLE_SNAPSHOT", "status": "unproven", "evidence": []},
+    {"control_id": "TELEMETRY_SEPARATION", "status": "unproven", "evidence": []},
+    {"control_id": "TRUSTED_TIME", "status": "unproven", "evidence": []}
+  ],
+  "authority": {"can_connect": false, "can_execute": false}
+}

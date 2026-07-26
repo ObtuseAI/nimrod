@@ -1,0 +1,20 @@
+{
+  "validation_version": "0.1.0",
+  "validated_at": "2026-07-12T17:43:29-05:00",
+  "status": "WITNESS_EXTERNAL_ANCHOR_VALID",
+  "origin": "simulated",
+  "checkpoint_count": 2,
+  "checkpoint_threshold": 2,
+  "governance_key_count": 3,
+  "anchor_receipt_count": 2,
+  "latest_tree_size": 5,
+  "independent_pin_verified": true,
+  "independent_verifier_process_count": 1,
+  "older_pin_forward_consistency_verified": true,
+  "merkle_construction": "rfc9162_sha256_domain_separated",
+  "negative_fail_closed_case_count": 16,
+  "tamper_truncation_reorder_rollback_covered": true,
+  "external_network_service_called": false,
+  "live_execution_performed": false,
+  "launch_readiness": "BLOCKED_NO_DEPLOYABLE_PRODUCT"
+}

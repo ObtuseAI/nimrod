@@ -1,0 +1,56 @@
+{
+  "meter_version": "0.2.0",
+  "meter_id": "66666666-7777-4888-9999-aaaaaaaaaaaa",
+  "origin": "simulated",
+  "candidate_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "resource_lease_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "prepared_at": "2026-07-13T13:10:00Z",
+  "completed_at": "2026-07-13T13:10:01Z",
+  "recorded_at": "2026-07-13T13:10:02Z",
+  "worker": {
+    "process_id": 9301,
+    "executable_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "command_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+    "output_root_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+    "exit_code": 0,
+    "stdout_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+    "stderr_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+  },
+  "job": {
+    "job_object_assigned": true,
+    "kill_on_close_configured": true,
+    "process_memory_limit_bytes": 268435456,
+    "created_suspended": true,
+    "assigned_before_first_resume": true,
+    "assignment_race_closed": true,
+    "creation_flags": 134217732,
+    "active_processes_after_completion": 0,
+    "total_processes": 1
+  },
+  "usage": {
+    "wall_time_milliseconds": 350,
+    "cpu_time_milliseconds": 120,
+    "compute_units": 2,
+    "peak_memory_bytes": 25165824,
+    "peak_storage_bytes": 65536,
+    "read_bytes": 8192,
+    "write_bytes": 65536
+  },
+  "durability": {
+    "prepared_record_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+    "observation_record_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+    "crash_recovered": true,
+    "injected_process_crash_recovery_verified": true,
+    "file_data_flush_verified": true,
+    "write_through_publish_verified": true,
+    "abrupt_process_crash_recovery_verified": true,
+    "physical_power_loss_test_performed": false,
+    "power_loss_durability_verified": false
+  },
+  "status": "measured_contract_only",
+  "blockers": ["PHYSICAL_POWER_LOSS_TEST_UNPROVEN"],
+  "network_access_performed": false,
+  "candidate_executed": false,
+  "production_promotion_authorized": false,
+  "authority": {"can_allocate": false, "can_extend_lease": false, "can_execute_candidate": false, "can_promote": false}
+}

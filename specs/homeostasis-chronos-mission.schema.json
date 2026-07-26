@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/homeostasis-chronos-mission.schema.json",
+  "title": "nimrod CACIS W4 homeostasis and Chronos mission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mission_version", "mission_id", "origin", "issued_at", "evaluated_at", "expires_at", "maximum_outcome", "source_settlement_digest", "resource_budget", "priority_weights", "signals", "confidence_vector", "chronos_policy", "work_items", "authority"],
+  "properties": {
+    "mission_version": {"const": "0.1.0"},
+    "mission_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "replayed"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "maximum_outcome": {"const": "schedule_proposal"},
+    "source_settlement_digest": {"const": "sha256:3bd1745396c7661dc351e51f006d79e2c0385857fcadb3a00cc746ae6b5c128f"},
+    "resource_budget": {"$ref": "#/$defs/resources"},
+    "priority_weights": {
+      "type": "object", "additionalProperties": false,
+      "required": ["information_gain", "risk_reduction", "recovery_improvement"],
+      "properties": {
+        "information_gain": {"type": "number", "minimum": 0, "maximum": 1},
+        "risk_reduction": {"type": "number", "minimum": 0, "maximum": 1},
+        "recovery_improvement": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "signals": {"type": "array", "minItems": 13, "maxItems": 13, "items": {"$ref": "#/$defs/signal"}},
+    "confidence_vector": {
+      "type": "object", "additionalProperties": false,
+      "required": ["understanding", "calibration", "generalization", "verification", "maximum_inflation"],
+      "properties": {
+        "understanding": {"type": "number", "minimum": 0, "maximum": 1},
+        "calibration": {"type": "number", "minimum": 0, "maximum": 1},
+        "generalization": {"type": "number", "minimum": 0, "maximum": 1},
+        "verification": {"type": "number", "minimum": 0, "maximum": 1},
+        "maximum_inflation": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "chronos_policy": {"type": "array", "minItems": 7, "maxItems": 7, "items": {"$ref": "#/$defs/clock"}},
+    "work_items": {"type": "array", "minItems": 5, "items": {"$ref": "#/$defs/work"}},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "resources": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cpu", "memory", "storage", "telemetry", "model", "sandbox", "simulation", "verification", "investigation"],
+      "properties": {
+        "cpu": {"type": "integer", "minimum": 0}, "memory": {"type": "integer", "minimum": 0},
+        "storage": {"type": "integer", "minimum": 0}, "telemetry": {"type": "integer", "minimum": 0},
+        "model": {"type": "integer", "minimum": 0}, "sandbox": {"type": "integer", "minimum": 0},
+        "simulation": {"type": "integer", "minimum": 0}, "verification": {"type": "integer", "minimum": 0},
+        "investigation": {"type": "integer", "minimum": 0}
+      }
+    },
+    "signal": {
+      "type": "object", "additionalProperties": false, "required": ["signal", "observed", "threshold", "healthy_when"],
+      "properties": {
+        "signal": {"enum": ["telemetry_freshness", "evidence_completeness", "trust_health", "identity_health", "model_diversity", "sensor_health", "recovery_health", "verification_backlog", "threat_pressure", "false_positive_rate", "confidence_inflation", "agent_diversity", "resource_pressure"]},
+        "observed": {"type": "number", "minimum": 0, "maximum": 1},
+        "threshold": {"type": "number", "minimum": 0, "maximum": 1},
+        "healthy_when": {"enum": ["at_or_above", "at_or_below"]}
+      }
+    },
+    "clock": {
+      "type": "object", "additionalProperties": false, "required": ["clock", "freshness_ms", "expiry_ms"],
+      "properties": {
+        "clock": {"enum": ["endpoint_millisecond", "identity_second", "containment_minute", "recovery_hour", "threat_intelligence_day", "architecture_week", "capability_month"]},
+        "freshness_ms": {"type": "integer", "minimum": 1}, "expiry_ms": {"type": "integer", "minimum": 2}
+      }
+    },
+    "work": {
+      "type": "object", "additionalProperties": false,
+      "required": ["work_id", "work_kind", "clock", "observed_at", "expected_information_gain", "expected_risk_reduction", "expected_recovery_improvement", "responds_to", "costs", "prerequisites_satisfied"],
+      "properties": {
+        "work_id": {"type": "string", "format": "uuid"},
+        "work_kind": {"enum": ["telemetry_refresh", "independent_verifier_replication", "recovery_replay_validation", "model_diversity_challenge", "identity_corroboration", "capability_mutation_review"]},
+        "clock": {"enum": ["endpoint_millisecond", "identity_second", "containment_minute", "recovery_hour", "threat_intelligence_day", "architecture_week", "capability_month"]},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "expected_information_gain": {"type": "number", "minimum": 0, "maximum": 1},
+        "expected_risk_reduction": {"type": "number", "minimum": 0, "maximum": 1},
+        "expected_recovery_improvement": {"type": "number", "minimum": 0, "maximum": 1},
+        "responds_to": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["telemetry_freshness", "evidence_completeness", "trust_health", "identity_health", "model_diversity", "sensor_health", "recovery_health", "verification_backlog", "threat_pressure", "false_positive_rate", "confidence_inflation", "agent_diversity", "resource_pressure"]}},
+        "costs": {"$ref": "#/$defs/resources"},
+        "prerequisites_satisfied": {"type": "boolean"}
+      }
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "can_change_policy", "can_contact_targets", "can_use_credentials", "can_self_verify", "can_promote", "can_modify_constitution"],
+      "properties": {
+        "can_authorize": {"const": false}, "can_execute": {"const": false}, "can_change_policy": {"const": false},
+        "can_contact_targets": {"const": false}, "can_use_credentials": {"const": false}, "can_self_verify": {"const": false},
+        "can_promote": {"const": false}, "can_modify_constitution": {"const": false}
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "manifest_version": "0.1.0",
+  "manifest_id": "0b99147a-88ae-47db-b9ad-bf6ab46433ea",
+  "origin": "simulated",
+  "connector_id": "connector.simulated.atomic",
+  "connector_version": "0.1.0",
+  "source_manifest_digest": "sha256:0b4801f04cbcc7eb51bbcd01749fa9192672291e80c429b62495741dea6d9819",
+  "governance_state_digest": "sha256:9b22cb3384effd979cd494750f8656f7f11c71b9bd75be9832a45cff972dfbeb",
+  "issued_at": "2026-07-12T19:04:00Z",
+  "not_before": "2026-07-12T19:04:00Z",
+  "expires_at": "2026-07-12T19:10:00Z",
+  "capability_allowlist": ["range.test.simulate"],
+  "operation_allowlist": ["compile", "preflight", "verify"],
+  "supported_environment_classes": ["isolated_range"],
+  "network_destinations": [],
+  "secret_references": [],
+  "installation_required": false,
+  "source_tool_contact_required": false,
+  "target_discovery_performed": false,
+  "artifact_digest_required": true,
+  "status": "non_provisioning_contract_only_blocked",
+  "blockers": ["CONNECTOR_RUNTIME_MISSING", "LICENSE_REVIEW_NOT_APPROVED", "REAL_RANGE_ATTESTATION_MISSING"],
+  "authority": {"can_install": false, "can_provision": false, "can_connect": false, "can_execute": false, "can_discover_targets": false},
+  "signatures": [
+    {"signer_id": "key:range-owner", "algorithm": "Ed25519", "signature_base64": "tgLjiRmuY/CUgFJmafLqcFJP6J1wzjk4IYAK6qMsruMu+wRhsU/3DqQ70y96dyjnxeOadnaOuLagqiXS47MXAA=="},
+    {"signer_id": "key:range-safety", "algorithm": "Ed25519", "signature_base64": "aNm+V1vnpuQSd2NG3BmSxmU6FTpcps+lybnzkgrANuODG+XPVEVOwMjSWV/plGVaLsavZaum87+QKnh4Miy7BQ=="}
+  ]
+}

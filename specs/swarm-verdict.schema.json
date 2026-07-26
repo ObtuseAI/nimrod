@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/swarm-verdict.schema.json",
+  "title": "nimrod Governed Swarm Verdict",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verdict_version",
+    "verdict_id",
+    "mission_id",
+    "origin",
+    "status",
+    "contributions",
+    "quorum",
+    "authority",
+    "dissent",
+    "uncertainties",
+    "next_gate"
+  ],
+  "properties": {
+    "verdict_version": { "const": "0.1.0" },
+    "verdict_id": { "$ref": "#/$defs/uuid" },
+    "mission_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "const": "simulated" },
+    "status": { "enum": ["proposal_ready", "blocked", "dissent", "inconclusive"] },
+    "contributions": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["agent_id", "role", "stance", "claim", "evidence", "uncertainty", "proposed_capability"],
+        "properties": {
+          "agent_id": { "$ref": "#/$defs/capability" },
+          "role": { "$ref": "#/$defs/nonEmptyString" },
+          "stance": { "enum": ["support", "oppose", "abstain", "veto"] },
+          "claim": { "$ref": "#/$defs/nonEmptyString" },
+          "evidence": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+          "uncertainty": { "type": "number", "minimum": 0, "maximum": 1 },
+          "proposed_capability": { "oneOf": [{ "$ref": "#/$defs/capability" }, { "type": "null" }] }
+        }
+      }
+    },
+    "quorum": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_distinct_roles", "observed_distinct_roles", "support", "oppose", "vetoes", "satisfied"],
+      "properties": {
+        "required_distinct_roles": { "type": "integer", "minimum": 5 },
+        "observed_distinct_roles": { "type": "integer", "minimum": 0 },
+        "support": { "type": "integer", "minimum": 0 },
+        "oppose": { "type": "integer", "minimum": 0 },
+        "vetoes": { "type": "integer", "minimum": 0 },
+        "satisfied": { "type": "boolean" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["execution_authorized", "maximum_outcome", "reason"],
+      "properties": {
+        "execution_authorized": { "const": false },
+        "maximum_outcome": { "const": "typed_proposal" },
+        "reason": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "dissent": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "uncertainties": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "next_gate": { "$ref": "#/$defs/nonEmptyString" }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "capability": { "type": "string", "pattern": "^[a-z][a-z0-9_.:-]{2,127}$" },
+    "digest": { "type": "string", "pattern": "^sha256:[A-Fa-f0-9]{64}$" },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    }
+  }
+}

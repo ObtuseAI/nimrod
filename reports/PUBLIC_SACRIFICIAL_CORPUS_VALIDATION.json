@@ -1,0 +1,47 @@
+{
+  "status": "PUBLIC_SACRIFICIAL_CORPUS_PINNED_METADATA_ONLY_OWNER_REGISTRY_AND_OFFLINE_REPLICAS_BLOCKED",
+  "origin": "live_metadata_observation",
+  "pinned_source_count": 5,
+  "metadata_reviewed_source_count": 5,
+  "source_archive_count": 0,
+  "replica_declared_count": 5,
+  "replica_ready_count": 0,
+  "owner_exclusion_registry_complete": false,
+  "unknown_ownership_action": "deny",
+  "excluded_organizations": [
+    "obtuseai"
+  ],
+  "public_host_target_authorized": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "forbidden_target_class_count": 8,
+  "adversarial_case_count": 38,
+  "blockers": [
+    "CONTENT_DIGEST_NOT_RETAINED",
+    "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+    "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+    "REPLICA_NOT_BUILT",
+    "SOURCE_ARCHIVE_NOT_STAGED"
+  ],
+  "activity": {
+    "github_metadata_network_read_performed": true,
+    "repository_content_downloaded": false,
+    "source_archive_staged": false,
+    "dependency_resolution_performed": false,
+    "container_image_pulled": false,
+    "replica_built": false,
+    "infrastructure_provisioned": false,
+    "public_host_contacted_for_testing": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_download_source": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  }
+}

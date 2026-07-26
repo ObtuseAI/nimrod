@@ -1,0 +1,289 @@
+{
+    "generation": {
+                       "authority":  {
+                                         "can_authorize":  false,
+                                         "can_change_policy":  false,
+                                         "can_contact_targets":  false,
+                                         "can_execute":  false,
+                                         "policy_input_ready":  false,
+                                         "production_truth_claimed":  false
+                                     },
+                       "domains":  [
+                                       {
+                                           "domain":  "identity",
+                                           "facts":  [
+                                                         {
+                                                             "candidates":  [
+                                                                                {
+                                                                                    "confidence":  0.94,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T06:00:00Z",
+                                                                                    "posture":  "observed",
+                                                                                    "source_ids":  [
+                                                                                                       "source:identity-primary"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T06:10:00Z",
+                                                                                    "value":  "standard"
+                                                                                },
+                                                                                {
+                                                                                    "confidence":  0.81,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T06:00:01Z",
+                                                                                    "posture":  "observed",
+                                                                                    "source_ids":  [
+                                                                                                       "source:identity-secondary"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T06:10:00Z",
+                                                                                    "value":  "elevated"
+                                                                                }
+                                                                            ],
+                                                             "derived_from_observation_digests":  [
+                                                                                                      "sha256:e5de51c4e1e94ab5fef33ef5680fcaf73124697c4a79fab61e3304da5cabcdad",
+                                                                                                      "sha256:b67b97665cfb6dae2efa4fb2396820deabda9de7872568785a1313df59107465"
+                                                                                                  ],
+                                                             "fact_key":  "privilege.level",
+                                                             "state":  "contradictory",
+                                                             "subject_id":  "user:alice",
+                                                             "subject_type":  "user"
+                                                         },
+                                                         {
+                                                             "candidates":  [
+                                                                                {
+                                                                                    "confidence":  0.96,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T06:00:04Z",
+                                                                                    "posture":  "observed",
+                                                                                    "source_ids":  [
+                                                                                                       "source:identity-primary"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T06:10:00Z",
+                                                                                    "value":  "satisfied"
+                                                                                }
+                                                                            ],
+                                                             "derived_from_observation_digests":  [
+                                                                                                      "sha256:f96cca20926e1dbeafdd416c19c745f4679399f9502a427b165593a7fda8ffdf"
+                                                                                                  ],
+                                                             "fact_key":  "authentication.mfa",
+                                                             "state":  "known",
+                                                             "subject_id":  "user:alice",
+                                                             "subject_type":  "user"
+                                                         }
+                                                     ],
+                                           "knowledge_state":  "contradictory",
+                                           "missing_requirements":  [
+
+                                                                    ]
+                                       },
+                                       {
+                                           "domain":  "endpoint",
+                                           "facts":  [
+                                                         {
+                                                             "candidates":  [
+                                                                                {
+                                                                                    "confidence":  0.91,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T06:00:06Z",
+                                                                                    "posture":  "observed",
+                                                                                    "source_ids":  [
+                                                                                                       "source:endpoint-replay"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T06:10:00Z",
+                                                                                    "value":  "medium"
+                                                                                }
+                                                                            ],
+                                                             "derived_from_observation_digests":  [
+                                                                                                      "sha256:d385473e3c3a5d2f53360540fc57cb47b82732470d206fe52367464bc4741e2c"
+                                                                                                  ],
+                                                             "fact_key":  "process.powershell.integrity",
+                                                             "state":  "known",
+                                                             "subject_id":  "host:workstation-01",
+                                                             "subject_type":  "windows_host"
+                                                         },
+                                                         {
+                                                             "candidates":  [
+                                                                                {
+                                                                                    "confidence":  0.85,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T05:50:00Z",
+                                                                                    "posture":  "observed",
+                                                                                    "source_ids":  [
+                                                                                                       "source:endpoint-replay"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T05:55:00Z",
+                                                                                    "value":  "healthy"
+                                                                                }
+                                                                            ],
+                                                             "derived_from_observation_digests":  [
+                                                                                                      "sha256:e47674487911b07984be770eb3230c8617dbcf6d4c9da5299ebaad6ad7bcc2ff"
+                                                                                                  ],
+                                                             "fact_key":  "sensor.health",
+                                                             "state":  "stale",
+                                                             "subject_id":  "host:workstation-01",
+                                                             "subject_type":  "windows_host"
+                                                         }
+                                                     ],
+                                           "knowledge_state":  "partially_known",
+                                           "missing_requirements":  [
+
+                                                                    ]
+                                       },
+                                       {
+                                           "domain":  "network",
+                                           "facts":  [
+                                                         {
+                                                             "candidates":  [
+                                                                                {
+                                                                                    "confidence":  0.89,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T06:00:08Z",
+                                                                                    "posture":  "observed",
+                                                                                    "source_ids":  [
+                                                                                                       "source:network-replay"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T06:10:00Z",
+                                                                                    "value":  "198.51.100.25:443"
+                                                                                }
+                                                                            ],
+                                                             "derived_from_observation_digests":  [
+                                                                                                      "sha256:4c08d39886d120139221dcdb7c3cce4b09609f43457e471fc12bc830c877d6e2"
+                                                                                                  ],
+                                                             "fact_key":  "tls.destination",
+                                                             "state":  "known",
+                                                             "subject_id":  "flow:egress-01",
+                                                             "subject_type":  "network_flow"
+                                                         }
+                                                     ],
+                                           "knowledge_state":  "known",
+                                           "missing_requirements":  [
+
+                                                                    ]
+                                       },
+                                       {
+                                           "domain":  "cloud",
+                                           "facts":  [
+
+                                                     ],
+                                           "knowledge_state":  "unknown",
+                                           "missing_requirements":  [
+                                                                        "tenant:primary::iam.risk"
+                                                                    ]
+                                       },
+                                       {
+                                           "domain":  "threat",
+                                           "facts":  [
+                                                         {
+                                                             "candidates":  [
+                                                                                {
+                                                                                    "confidence":  0.73,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:1212121212121212121212121212121212121212121212121212121212121212"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T06:00:10Z",
+                                                                                    "posture":  "observed",
+                                                                                    "source_ids":  [
+                                                                                                       "source:threat-replay"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T07:00:00Z",
+                                                                                    "value":  "credential_access_pattern"
+                                                                                }
+                                                                            ],
+                                                             "derived_from_observation_digests":  [
+                                                                                                      "sha256:efb5b2a761f78b1894cacf7428ba6056069d524dbea0bbe1f2c1cb1870ebb2a6"
+                                                                                                  ],
+                                                             "fact_key":  "hypothesis.signal",
+                                                             "state":  "known",
+                                                             "subject_id":  "incident:credential-01",
+                                                             "subject_type":  "incident"
+                                                         }
+                                                     ],
+                                           "knowledge_state":  "known",
+                                           "missing_requirements":  [
+
+                                                                    ]
+                                       },
+                                       {
+                                           "domain":  "recovery",
+                                           "facts":  [
+                                                         {
+                                                             "candidates":  [
+                                                                                {
+                                                                                    "confidence":  0.0,
+                                                                                    "evidence_refs":  [
+                                                                                                          "sha256:3434343434343434343434343434343434343434343434343434343434343434"
+                                                                                                      ],
+                                                                                    "observed_at":  "2026-07-15T06:00:12Z",
+                                                                                    "posture":  "unknown",
+                                                                                    "source_ids":  [
+                                                                                                       "source:recovery-replay"
+                                                                                                   ],
+                                                                                    "valid_until":  "2026-07-15T06:10:00Z",
+                                                                                    "value":  null
+                                                                                }
+                                                                            ],
+                                                             "derived_from_observation_digests":  [
+                                                                                                      "sha256:fd6e014c639e0b773fc88a36ab84b3ac8f8b710c55f2efb2d5ab655db76ada84"
+                                                                                                  ],
+                                                             "fact_key":  "snapshot.health",
+                                                             "state":  "unknown",
+                                                             "subject_id":  "incident:credential-01",
+                                                             "subject_type":  "incident"
+                                                         }
+                                                     ],
+                                           "knowledge_state":  "unknown",
+                                           "missing_requirements":  [
+
+                                                                    ]
+                                       }
+                                   ],
+                       "generated_at":  "2026-07-15T06:05:00Z",
+                       "generation_id":  "c8931ae1-8192-5137-b0be-e3e0e2013141",
+                       "observation_digests":  [
+                                                   "sha256:e5de51c4e1e94ab5fef33ef5680fcaf73124697c4a79fab61e3304da5cabcdad",
+                                                   "sha256:b67b97665cfb6dae2efa4fb2396820deabda9de7872568785a1313df59107465",
+                                                   "sha256:f96cca20926e1dbeafdd416c19c745f4679399f9502a427b165593a7fda8ffdf",
+                                                   "sha256:d385473e3c3a5d2f53360540fc57cb47b82732470d206fe52367464bc4741e2c",
+                                                   "sha256:e47674487911b07984be770eb3230c8617dbcf6d4c9da5299ebaad6ad7bcc2ff",
+                                                   "sha256:4c08d39886d120139221dcdb7c3cce4b09609f43457e471fc12bc830c877d6e2",
+                                                   "sha256:efb5b2a761f78b1894cacf7428ba6056069d524dbea0bbe1f2c1cb1870ebb2a6",
+                                                   "sha256:fd6e014c639e0b773fc88a36ab84b3ac8f8b710c55f2efb2d5ab655db76ada84"
+                                               ],
+                       "observation_set_digest":  "sha256:9b5e815ee2aea95b53243efe8870114412ebd221351260295801a35f692190ac",
+                       "origin":  "replayed",
+                       "previous_generation_digest":  null,
+                       "replay":  {
+                                      "deterministic":  true,
+                                      "duplicate_count":  0,
+                                      "first_sequence":  1,
+                                      "last_sequence":  8,
+                                      "observation_count":  8,
+                                      "out_of_order_count":  0
+                                  },
+                       "scenario_digest":  "sha256:fae7897e2943281498fe89ab3d6fdb6a61945edb0ed10f17b74fd94ddc06e262",
+                       "scenario_id":  "6158b1a0-5b5b-5ddb-980d-63442f2dc001",
+                       "security_claim":  "Deterministic replay derived world state; no live sensing, policy readiness, execution, containment, recovery, or production truth established",
+                       "summary":  {
+                                       "contradictory_domain_count":  1,
+                                       "contradictory_fact_count":  1,
+                                       "known_domain_count":  2,
+                                       "known_fact_count":  4,
+                                       "partially_known_domain_count":  1,
+                                       "stale_fact_count":  1,
+                                       "unknown_domain_count":  2,
+                                       "unknown_fact_count":  1
+                                   }
+                   },
+    "generation_digest":  "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+    "generation_version":  "0.1.0"
+}

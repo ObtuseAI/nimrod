@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/authorization-trust-policy.schema.json",
+  "title": "nimrod Authorization Trust Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "policy_version",
+    "policy_id",
+    "origin",
+    "trust_source",
+    "not_before",
+    "expires_at",
+    "threshold",
+    "required_roles",
+    "trusted_signers"
+  ],
+  "properties": {
+    "policy_version": { "const": "0.1.0" },
+    "policy_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "trust_source": { "enum": ["local_operator_file", "customer_hsm", "organization_kms", "offline_root"] },
+    "not_before": { "$ref": "#/$defs/timestamp" },
+    "expires_at": { "$ref": "#/$defs/timestamp" },
+    "threshold": { "type": "integer", "minimum": 2 },
+    "required_roles": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/role" }
+    },
+    "trusted_signers": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signer_id", "role", "algorithm", "public_key_base64"],
+        "properties": {
+          "signer_id": { "$ref": "#/$defs/nonEmptyString" },
+          "role": { "$ref": "#/$defs/role" },
+          "algorithm": { "const": "Ed25519" },
+          "public_key_base64": { "type": "string", "pattern": "^[A-Za-z0-9+/]{43}=$" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "role": {
+      "enum": [
+        "customer_authority",
+        "safety_officer",
+        "range_owner",
+        "incident_commander",
+        "privacy_officer"
+      ]
+    }
+  }
+}

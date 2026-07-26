@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/source-staging-gate-report.schema.json",
+  "title": "nimrod source staging gate report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_version", "report_id", "origin", "status", "assessed_at", "authorization_id", "authorization_digest", "verified_signer_ids", "verified_roles", "requested_source_count", "authorized_source_count", "staged_source_count", "quarantine_requirement_count", "quarantine_completed_count", "owner_exclusion_registry_complete", "owner_attestation_present", "staging_authorized", "build_authorized", "range_connection_authorized", "execution_authorized", "blockers", "activity", "authority"],
+  "properties": {
+    "report_version": {"const": "0.1.0"},
+    "report_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "SOURCE_STAGING_SIGNED_DENIAL_OWNER_SCOPE_AND_QUARANTINE_BLOCKED"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "authorization_id": {"type": "string", "format": "uuid"},
+    "authorization_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "verified_signer_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "verified_roles": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "requested_source_count": {"const": 5},
+    "authorized_source_count": {"const": 0},
+    "staged_source_count": {"const": 0},
+    "quarantine_requirement_count": {"const": 8},
+    "quarantine_completed_count": {"const": 0},
+    "owner_exclusion_registry_complete": {"const": false},
+    "owner_attestation_present": {"const": false},
+    "staging_authorized": {"const": false},
+    "build_authorized": {"const": false},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "blockers": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"enum": ["CONTENT_DIGEST_NOT_RETAINED", "ISOLATED_CONSTRUCTION_ZONE_MISSING", "OWNER_ATTESTATION_MISSING", "OWNER_EXCLUSION_REGISTRY_INCOMPLETE", "OWNER_SCOPE_PROOF_MISSING", "PINNED_COMMIT_SIGNATURE_UNVERIFIED", "SOURCE_ARCHIVE_NOT_STAGED", "SOURCE_STAGING_AUTHORIZATION_DENIED"]}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "activity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repository_content_downloaded", "source_archive_staged", "source_extracted", "quarantine_checks_performed", "dependency_resolution_performed", "replica_built", "infrastructure_provisioned", "public_host_contacted_for_testing", "range_connected", "campaign_executed"],
+      "properties": {"repository_content_downloaded": {"const": false}, "source_archive_staged": {"const": false}, "source_extracted": {"const": false}, "quarantine_checks_performed": {"const": false}, "dependency_resolution_performed": {"const": false}, "replica_built": {"const": false}, "infrastructure_provisioned": {"const": false}, "public_host_contacted_for_testing": {"const": false}, "range_connected": {"const": false}, "campaign_executed": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_download_source", "can_stage_source", "can_extract_source", "can_resolve_dependencies", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"],
+      "properties": {"can_download_source": {"const": false}, "can_stage_source": {"const": false}, "can_extract_source": {"const": false}, "can_resolve_dependencies": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}
+    }
+  }
+}

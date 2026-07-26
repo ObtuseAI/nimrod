@@ -1,0 +1,65 @@
+{
+  "scenario_version": "0.1.0",
+  "scenario_id": "38d62339-e0c2-4eb7-948b-27f9b54270c6",
+  "origin": "replayed",
+  "observed_at": "2026-07-15T16:00:00Z",
+  "source": {
+    "source_id": "sensor:edge-replay-fixture",
+    "sensor_type": "process_egress_replay",
+    "collection_mode": "offline_fixture",
+    "content_digest": "sha256:351bf418bb7025cc30a2f41dd7d7a4518a8d963ce29d8af90c6e2bebd8630b45"
+  },
+  "device": {
+    "device_id": "device:windows-edge-preview",
+    "platform": "windows",
+    "display_name": "Windows preview fixture",
+    "live_attestation": null
+  },
+  "observation": {
+    "kind": "process_egress_attempt",
+    "process": {
+      "process_id": "process:fixture-4242",
+      "image_name": "C:\\Users\\preview\\AppData\\Local\\Temp\\sample.exe",
+      "image_digest": "sha256:a7f48b864b59ce369ac565e7bba2cd3c76c66030e2b7252d07eaff681f02c6db",
+      "publisher_status": "unsigned",
+      "user_writable_location": true,
+      "parent_image_name": "C:\\Windows\\explorer.exe"
+    },
+    "destination": {
+      "host": "telemetry.invalid",
+      "port": 443,
+      "protocol": "tcp",
+      "first_seen": true
+    },
+    "facts": [
+      "unsigned_executable",
+      "user_writable_location",
+      "new_egress_destination"
+    ]
+  },
+  "policy": {
+    "policy_id": "91c393a0-9e9e-4758-b82d-d26b44d63f3d",
+    "policy_version": "edge-preview-policy-0.1.0",
+    "mode": "unprivileged_preview",
+    "autonomy_budget": 1,
+    "rule": {
+      "rule_id": "edge.rule.unsigned_user_path_new_egress",
+      "match_all_facts": [
+        "unsigned_executable",
+        "user_writable_location",
+        "new_egress_destination"
+      ],
+      "outcome": "challenge",
+      "risk_level": "high",
+      "proposal_operation": "recommend_process_egress_isolation"
+    },
+    "default_outcome": "observe"
+  },
+  "authority": {
+    "can_replay": true,
+    "can_propose": true,
+    "can_authorize": false,
+    "can_execute": false,
+    "can_change_policy": false
+  }
+}

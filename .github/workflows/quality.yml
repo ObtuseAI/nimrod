@@ -1,0 +1,135 @@
+name: Quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nimrod-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: constitutional validation
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: conformance/typescript-evaluator/package-lock.json
+
+      - name: Install validation environment
+        shell: pwsh
+        run: python -m pip install -e ".[validation]"
+
+      - name: Build independent evaluator verifier
+        shell: pwsh
+        working-directory: conformance/typescript-evaluator
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run build
+
+      - name: Validate repository foundation
+        shell: pwsh
+        run: ./tools/validate-foundation.ps1
+
+      - name: Verify canonical checkout manifest
+        shell: pwsh
+        run: python ./tools/validate_manifest.py
+
+      - name: Run contract and integration ladder
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Get-ChildItem ./tools -Filter 'validate_*.py' -File |
+            Where-Object Name -ne 'validate_manifest.py' |
+            Sort-Object Name |
+            ForEach-Object {
+              python $_.FullName
+              if ($LASTEXITCODE -ne 0) {
+                throw "Validator failed: $($_.Name)"
+              }
+            }
+
+      - name: Compile Python surfaces
+        shell: pwsh
+        run: python -m compileall -q ./src ./tools
+
+      - name: Check public-release presentation and hygiene
+        shell: pwsh
+        run: python ./tools/public_release_readiness.py --root . --report ./reports/PUBLIC_RELEASE_READINESS.json
+
+  coverage:
+    # There is no pytest suite; the executable specification is the
+    # `validate_*.py` contract ladder. This job replays that ladder under
+    # coverage.py to report `src` package line coverage and enforce a
+    # conservative floor. Correctness of the ladder is owned by the
+    # `validate` job above, so per-validator failures here are tolerated —
+    # this job only measures how much of the source the ladder exercises.
+    name: coverage
+    runs-on: windows-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: conformance/typescript-evaluator/package-lock.json
+
+      - name: Install validation environment
+        shell: pwsh
+        run: |
+          python -m pip install -e ".[validation]"
+          python -m pip install coverage
+
+      - name: Build independent evaluator verifier
+        shell: pwsh
+        working-directory: conformance/typescript-evaluator
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run build
+
+      - name: Measure coverage across the contract ladder
+        shell: pwsh
+        run: |
+          coverage erase
+          Get-ChildItem ./tools -Filter 'validate_*.py' -File |
+            Sort-Object Name |
+            ForEach-Object {
+              coverage run -p --source=src $_.FullName *> $null
+            }
+          coverage combine
+          "## Coverage" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          '```' | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          (coverage report | Select-Object -Last 1) | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          '```' | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          # Enforce the floor last so its exit code is the step result.
+          coverage report --fail-under=76
+          if ($LASTEXITCODE -ne 0) { throw "Coverage below floor (--fail-under=76)." }

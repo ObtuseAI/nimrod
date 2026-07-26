@@ -1,0 +1,5 @@
+{
+  "posture_version": "0.1.0", "posture_id": "81b82841-b718-4d68-8ff7-fb0cf5c4f07b", "origin": "simulated", "mode": "probabilistic",
+  "claim_type": "predicted", "evidence_standard": "calibrated_evidence", "counterfactual": false, "context_boundaries": ["simulated security fixture corpus"],
+  "authority": {"can_relabel_evidence": false, "can_waive_hard_failures": false}
+}

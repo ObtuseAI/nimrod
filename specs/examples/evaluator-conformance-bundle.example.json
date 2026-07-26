@@ -1,0 +1,30 @@
+{
+  "bundle_version": "0.1.0",
+  "origin": "simulated",
+  "verification_time": "2026-07-13T04:31:00Z",
+  "maximum_lifetime_seconds": 900,
+  "constitution": {"contract_reference": "specs/examples/evolution-constitution.example.json"},
+  "governance_state": {"contract_reference": "specs/examples/key-governance-state.example.json"},
+  "evaluator_policy": {"contract_reference": "specs/examples/evaluator-trust-policy.example.json"},
+  "isolation_attestations": [
+    {"contract_reference": "specs/examples/os-isolation-attestation.example.json", "evaluator_index": 1},
+    {"contract_reference": "specs/examples/os-isolation-attestation.example.json", "evaluator_index": 2},
+    {"contract_reference": "specs/examples/os-isolation-attestation.example.json", "evaluator_index": 3},
+    {"contract_reference": "specs/examples/os-isolation-attestation.example.json", "evaluator_index": 4}
+  ],
+  "resource_ledger": {"contract_reference": "specs/examples/lineage-resource-ledger.example.json"},
+  "evaluator_envelopes": [
+    {"contract_reference": "specs/examples/evaluator-observation-envelope.example.json", "evaluator_index": 1},
+    {"contract_reference": "specs/examples/evaluator-observation-envelope.example.json", "evaluator_index": 2},
+    {"contract_reference": "specs/examples/evaluator-observation-envelope.example.json", "evaluator_index": 3},
+    {"contract_reference": "specs/examples/evaluator-observation-envelope.example.json", "evaluator_index": 4}
+  ],
+  "expected_bindings": {
+    "candidate_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "constitution_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "capability_report_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "evaluation_input_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+    "resource_ledger_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "authority": {"can_authorize": false, "can_execute": false, "can_promote": false}
+}

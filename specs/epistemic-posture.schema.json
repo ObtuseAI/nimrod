@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://specs.nimrod.invalid/v0.1/epistemic-posture.schema.json",
+  "title": "nimrod Epistemic Posture", "type": "object", "additionalProperties": false,
+  "required": ["posture_version", "posture_id", "origin", "mode", "claim_type", "evidence_standard", "counterfactual", "context_boundaries", "authority"],
+  "properties": {
+    "posture_version": {"const": "0.1.0"}, "posture_id": {"type": "string", "format": "uuid"}, "origin": {"const": "simulated"},
+    "mode": {"enum": ["deterministic", "probabilistic", "plural_context"]}, "claim_type": {"enum": ["observed", "inferred", "predicted", "counterfactual", "normative", "human_assertion"]},
+    "evidence_standard": {"enum": ["exact_proof", "calibrated_evidence", "context_bounded_interpretation"]}, "counterfactual": {"type": "boolean"},
+    "context_boundaries": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_relabel_evidence", "can_waive_hard_failures"], "properties": {"can_relabel_evidence": {"const": false}, "can_waive_hard_failures": {"const": false}}}
+  }
+}

@@ -1,0 +1,697 @@
+{
+  "ui_state_version": "0.1.0",
+  "origin": "simulated",
+  "mission": {
+    "id": "88888888-8888-4888-8888-888888888888",
+    "code": "CRU-SIM-0712-A",
+    "title": "Challenge the marker evidence chain without creating target state",
+    "window": "19:00–19:15Z",
+    "status": "proposal_ready",
+    "execution_authorized": false
+  },
+  "authorization": {
+    "lease_id": "44444444-4444-4444-8444-444444444444",
+    "policy_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    "algorithm": "Ed25519",
+    "threshold": "2 / 2",
+    "signers": ["customer_authority", "safety_officer"],
+    "nonce_state": "unconsumed by proposal swarm",
+    "expires_at": "2026-07-12T19:15:00Z",
+    "kill_switch": "armed / customer controlled"
+  },
+  "target": {
+    "id": "device:simulated-windows-01",
+    "environment": "range",
+    "effect_ceiling": "reversible_local",
+    "prohibited": ["external targets", "destructive effects", "secret collection"]
+  },
+  "budgets": [
+    {"label": "actions", "used": 0, "maximum": 1},
+    {"label": "seconds", "used": 0, "maximum": 300},
+    {"label": "export bytes", "used": 0, "maximum": 0}
+  ],
+  "cells": [
+    {"id": "cell.red.hypothesis", "role": "offensive planner", "lens": "narrow adversary hypothesis", "stance": "support", "color": "#ff5f6d"},
+    {"id": "cell.blue.hunter", "role": "defensive hunter", "lens": "coverage and sensor challenge", "stance": "oppose", "color": "#5ca7ff"},
+    {"id": "cell.purple.compiler", "role": "purple compiler", "lens": "typed proposal compilation", "stance": "support", "color": "#b78cff"},
+    {"id": "cell.evidence.analyst", "role": "evidence analyst", "lens": "causal completeness and contradiction", "stance": "oppose", "color": "#ffc25c"},
+    {"id": "cell.recovery.planner", "role": "recovery planner", "lens": "cleanup and post-state proof", "stance": "support", "color": "#70e28f"},
+    {"id": "cell.verify.independent", "role": "independent verifier", "lens": "external process validation", "stance": "abstain", "color": "#55f2d2"},
+    {"id": "cell.safety.governor", "role": "safety governor", "lens": "authority and effect veto", "stance": "support", "color": "#e7edf0"}
+  ],
+  "causal_chain": [
+    {"index": "01", "name": "intent", "detail": "bounded marker hypothesis", "state": "witnessed", "color": "#ff5f6d", "gap": false},
+    {"index": "02", "name": "authorization", "detail": "Ed25519 threshold 2/2", "state": "verified", "color": "#70e28f", "gap": false},
+    {"index": "03", "name": "typed proposal", "detail": "range.test.simulate", "state": "compiled", "color": "#b78cff", "gap": false},
+    {"index": "04", "name": "attempt", "detail": "no executor present", "state": "not attempted", "color": "#82919a", "gap": true},
+    {"index": "05", "name": "observation", "detail": "no real sensor connected", "state": "unknown", "color": "#ffc25c", "gap": true},
+    {"index": "06", "name": "detection", "detail": "coverage unproven", "state": "unknown", "color": "#ffc25c", "gap": true},
+    {"index": "07", "name": "recovery", "detail": "cleanup plan structural", "state": "proposal only", "color": "#70e28f", "gap": true},
+    {"index": "08", "name": "post-state", "detail": "independent range proof required", "state": "blocked", "color": "#ff5f6d", "gap": true}
+  ],
+  "truth_braid": [
+    {"label": "supporting", "value": 4, "maximum": 7, "color": "#70e28f"},
+    {"label": "contradicting", "value": 2, "maximum": 7, "color": "#ffc25c"},
+    {"label": "abstaining", "value": 1, "maximum": 7, "color": "#b78cff"},
+    {"label": "live evidence", "value": 0, "maximum": 7, "color": "#ff5f6d"}
+  ],
+  "dissent": [
+    {"role": "defensive hunter", "claim": "No real sensor or detector evidence exists, so defensive coverage remains unproven."},
+    {"role": "evidence analyst", "claim": "Structural completeness cannot establish prevention, detection, response, or recovery."},
+    {"role": "independent verifier", "claim": "Independent range-process verification remains a required next gate."}
+  ],
+  "ledger": [
+    {"time": "19:05:00.000", "class": "support", "claim": "Authorization threshold verified", "source": "proof bundle", "freshness": "0s"},
+    {"time": "19:05:00.004", "class": "support", "claim": "Seven distinct constitutional roles present", "source": "mission", "freshness": "0s"},
+    {"time": "19:05:00.006", "class": "contradiction", "claim": "No live sensor or defensive control evidence", "source": "blue cell", "freshness": "0s"},
+    {"time": "19:05:00.008", "class": "unknown", "claim": "Range cleanup and recovery behavior", "source": "recovery cell", "freshness": "0s"},
+    {"time": "19:05:00.010", "class": "support", "claim": "Execution authority remains false", "source": "safety cell", "freshness": "0s"}
+  ],
+  "ingress": {
+    "ingress_version": "0.1.0",
+    "origin": "simulated",
+    "status": "accepted",
+    "issuer_service_id": "verifier-supervisor-primary",
+    "audience": "nimrod-control-board",
+    "sequence": 2,
+    "snapshot_id": "7bb63302-bc0d-4623-913b-a1ba43ad945f",
+    "snapshot_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "projection_digest": "sha256:f23cf3ea29b53983092d81c5a2dabb578cb07a9f6448e9f6a327796b783ec022",
+    "accepted_at": "2026-07-12T23:00:04Z",
+    "freshness_seconds": 1,
+    "verified_signer_ids": ["key:board-a", "key:board-b"],
+    "verified_roles": ["release", "security"],
+    "durable_replay_guard": true,
+    "stale_state_guard": true,
+    "authority": {"can_authorize": false, "can_execute": false}
+  },
+  "verifier": {
+    "projection_version": "0.2.0",
+    "origin": "simulated",
+    "captured_at": "2026-07-12T23:00:02Z",
+    "operator_state": "boundary_unproven",
+    "severity": "blocked",
+    "summary": "Verifier agreement exists, but the production isolation boundary is incomplete.",
+    "consensus": {
+      "consensus_id": "bbbbbbbb-cccc-4ddd-8eee-ffffffffffff",
+      "observed_at": "2026-07-12T23:00:01Z",
+      "state": "agreed_valid_boundary_unproven",
+      "verification_accepted": false,
+      "reason": "Verifier services agreed, but dedicated OS-account isolation is unproven",
+      "primary_observation_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "secondary_observation_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "service_health": [
+      {
+        "service_id": "verifier:anchor-primary",
+        "logical_principal": "service:nimrod-independent-verifier-primary",
+        "process_id": 12345,
+        "os_account_identifier": "desktop-validation-account",
+        "status": "healthy_reference_boundary",
+        "os_account_boundary_verified": false,
+        "production_ready": false
+      },
+      {
+        "service_id": "verifier:anchor-secondary",
+        "logical_principal": "service:nimrod-independent-verifier-secondary",
+        "process_id": 12346,
+        "os_account_identifier": "desktop-validation-account",
+        "status": "healthy_reference_boundary",
+        "os_account_boundary_verified": false,
+        "production_ready": false
+      }
+    ],
+    "observations": [
+      {
+        "service_id": "verifier:anchor-primary",
+        "status": "valid",
+        "observed_at": "2026-07-12T23:00:00Z",
+        "subject_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "read_only_behavior_verified": true,
+        "detail": "No verifier error reported."
+      },
+      {
+        "service_id": "verifier:anchor-secondary",
+        "status": "valid",
+        "observed_at": "2026-07-12T23:00:00Z",
+        "subject_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "read_only_behavior_verified": true,
+        "detail": "No verifier error reported."
+      }
+    ],
+    "boundary": {
+      "production_ready": false,
+      "health_complete": true,
+      "isolation_evidence_verified": true,
+      "live_os_enforcement_verified": false,
+      "dedicated_os_identity_verified": false,
+      "os_read_only_acl_verified": false,
+      "isolation_attestation_digests": [
+        "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+      ],
+      "missing_controls": ["CONSENSUS_NOT_ACCEPTED", "DEDICATED_OS_IDENTITY_UNPROVEN", "OS_READ_ONLY_ACL_UNPROVEN"]
+    },
+    "dissent": [
+      {
+        "code": "CONSENSUS_NOT_ACCEPTED",
+        "source": "supervised_verifier",
+        "message": "Verifier consensus is not accepted."
+      },
+      {
+        "code": "DEDICATED_OS_IDENTITY_UNPROVEN",
+        "source": "supervised_verifier",
+        "message": "A dedicated verifier OS identity has not been proven for both services."
+      },
+      {
+        "code": "OS_READ_ONLY_ACL_UNPROVEN",
+        "source": "supervised_verifier",
+        "message": "OS-enforced read-only ACL evidence is missing."
+      }
+    ],
+    "authority": {
+      "can_authorize": false,
+      "can_execute": false,
+      "may_mark_verification_accepted": false
+    }
+  },
+  "range_execution_gate": {
+    "status": "CONSTRUCTION_ZONE_PROVISIONING_SIGNED_DENIAL_INDEPENDENT_ATTESTATION_BLOCKED",
+    "execution_gate_status": "RANGE_EXECUTION_GATE_NON_PROVISIONING_SCOPE_COMPILED_REAL_EVIDENCE_BLOCKED",
+    "origin": "simulated",
+    "connector_manifest_status": "non_provisioning_contract_only_blocked",
+    "connector_verified_signer_count": 2,
+    "connector_operation_count": 3,
+    "connector_capability_count": 1,
+    "scope_status": "compiled_contract_only_environment_unproven",
+    "scope_target_binding_count": 1,
+    "cryptographic_authorization_verified": true,
+    "topology_environment_verified": false,
+    "preexecution_packet_status": "blocked_missing_real_environment_evidence",
+    "required_real_attestation_count": 9,
+    "missing_real_attestation_count": 9,
+    "real_environment_attestation_count": 0,
+    "evidence_complete": false,
+    "evidence_admission": {
+      "status": "RANGE_EVIDENCE_ADMISSION_SIGNED_FIXTURES_RETAINED_OWNER_RANGE_AND_INDEPENDENT_VERIFICATION_BLOCKED",
+      "collector_policy_status": "blocked_owner_named_environment_missing",
+      "collector_policy_signer_count": 2,
+      "signed_observation_count": 9,
+      "content_addressed_observation_count": 9,
+      "distinct_collector_count": 9,
+      "owner_named_environment": false,
+      "real_observation_count": 0,
+      "emitted_attestation_count": 9,
+      "verified_attestation_count": 0,
+      "independent_verifier_count": 0,
+      "fixture_independent_document_api": true,
+      "evidence_complete": false,
+      "blockers": [
+        "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+        "EXECUTION_AUTHORIZATION_MISSING",
+        "INDEPENDENT_VERIFIER_ATTESTATIONS_MISSING",
+        "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+        "RANGE_CONNECTION_AUTHORIZATION_MISSING",
+        "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+      ],
+      "activity": {
+        "infrastructure_provisioned": false,
+        "host_or_network_policy_changed": false,
+        "credentials_handled": false,
+        "tools_installed": false,
+        "source_tools_contacted": false,
+        "network_contact_performed": false,
+        "range_connected": false,
+        "campaign_executed": false
+      },
+      "authority": {
+        "can_install": false,
+        "can_provision": false,
+        "can_change_policy": false,
+        "can_access_credentials": false,
+        "can_connect": false,
+        "can_execute": false,
+        "can_mark_evidence_complete": false,
+        "can_verify_attestation": false
+      }
+    },
+    "evidence_acceptance": {
+      "status": "RANGE_EVIDENCE_ACCEPTANCE_SIGNED_FIXTURE_DECISIONS_RETAINED_REAL_INDEPENDENT_ACCEPTANCE_BLOCKED",
+      "verifier_policy_status": "fixture_policy_non_accepting",
+      "verifier_policy_signer_count": 2,
+      "configured_verifier_count": 3,
+      "required_control_count": 9,
+      "verified_decision_count": 18,
+      "distinct_signed_verifier_count": 2,
+      "real_independent_verifier_count": 0,
+      "resolution_counts": {
+        "accepted": 0,
+        "rejected": 2,
+        "abstained": 2,
+        "disagreement": 2,
+        "timeout": 3
+      },
+      "accepted_control_count": 0,
+      "verified_attestation_count": 0,
+      "evidence_complete": false,
+      "blockers": [
+        "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+        "EXECUTION_AUTHORIZATION_MISSING",
+        "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+        "RANGE_CONNECTION_AUTHORIZATION_MISSING",
+        "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING",
+        "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+      ],
+      "activity": {
+        "environment_contact_performed": false,
+        "collection_performed": false,
+        "infrastructure_provisioned": false,
+        "host_or_network_policy_changed": false,
+        "credentials_handled": false,
+        "tools_installed": false,
+        "network_contact_performed": false,
+        "range_connected": false,
+        "campaign_executed": false
+      },
+      "authority": {
+        "can_collect": false,
+        "can_install": false,
+        "can_provision": false,
+        "can_change_policy": false,
+        "can_access_credentials": false,
+        "can_connect": false,
+        "can_execute": false,
+        "can_mark_evidence_complete": false,
+        "can_authorize_action": false
+      }
+    },
+    "evidence_completion": {
+      "status": "RANGE_EVIDENCE_COMPLETION_SIGNED_DENIAL_RETAINED_REAL_COMPLETION_BLOCKED",
+      "completion_policy_status": "fixture_policy_non_completing",
+      "completion_policy_signer_count": 2,
+      "completion_authorization_status": "completion_denied",
+      "completion_authorization_signer_count": 2,
+      "completion_prerequisites_satisfied": false,
+      "completion_authorized": false,
+      "accepted_control_count": 0,
+      "verified_attestation_count": 0,
+      "real_independent_verifier_count": 0,
+      "evidence_complete": false,
+      "range_connection_authorized": false,
+      "execution_authorized": false,
+      "blockers": [
+        "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+        "EVIDENCE_COMPLETION_AUTHORIZATION_DENIED",
+        "EXECUTION_AUTHORIZATION_MISSING",
+        "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+        "RANGE_CONNECTION_AUTHORIZATION_MISSING",
+        "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING",
+        "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+      ],
+      "activity": {
+        "environment_contact_performed": false,
+        "collection_performed": false,
+        "infrastructure_provisioned": false,
+        "host_or_network_policy_changed": false,
+        "credentials_handled": false,
+        "tools_installed": false,
+        "network_contact_performed": false,
+        "range_connected": false,
+        "campaign_executed": false
+      },
+      "authority": {
+        "can_collect": false,
+        "can_install": false,
+        "can_provision": false,
+        "can_change_policy": false,
+        "can_access_credentials": false,
+        "can_connect": false,
+        "can_execute": false,
+        "can_mark_evidence_complete": false,
+        "can_authorize_action": false
+      }
+    },
+    "public_sacrificial_corpus": {
+      "status": "PUBLIC_SACRIFICIAL_CORPUS_PINNED_METADATA_ONLY_OWNER_REGISTRY_AND_OFFLINE_REPLICAS_BLOCKED",
+      "origin": "live_metadata_observation",
+      "pinned_source_count": 5,
+      "metadata_reviewed_source_count": 5,
+      "source_archive_count": 0,
+      "replica_declared_count": 5,
+      "replica_ready_count": 0,
+      "owner_exclusion_registry_complete": false,
+      "unknown_ownership_action": "deny",
+      "excluded_organizations": ["obtuseai"],
+      "public_host_target_authorized": false,
+      "range_connection_authorized": false,
+      "execution_authorized": false,
+      "forbidden_target_class_count": 8,
+      "adversarial_case_count": 38,
+      "blockers": [
+        "CONTENT_DIGEST_NOT_RETAINED",
+        "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+        "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+        "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+        "REPLICA_NOT_BUILT",
+        "SOURCE_ARCHIVE_NOT_STAGED"
+      ],
+      "activity": {
+        "github_metadata_network_read_performed": true,
+        "repository_content_downloaded": false,
+        "source_archive_staged": false,
+        "dependency_resolution_performed": false,
+        "container_image_pulled": false,
+        "replica_built": false,
+        "infrastructure_provisioned": false,
+        "public_host_contacted_for_testing": false,
+        "campaign_executed": false
+      },
+      "authority": {
+        "can_download_source": false,
+        "can_build_replica": false,
+        "can_provision": false,
+        "can_connect": false,
+        "can_execute": false,
+        "can_target_public_host": false,
+        "can_authorize_action": false
+      }
+    },
+    "source_staging_gate": {
+      "status": "SOURCE_STAGING_SIGNED_DENIAL_OWNER_SCOPE_AND_QUARANTINE_BLOCKED",
+      "origin": "simulated",
+      "verified_signer_count": 2,
+      "verified_role_count": 2,
+      "requested_source_count": 5,
+      "authorized_source_count": 0,
+      "staged_source_count": 0,
+      "quarantine_requirement_count": 8,
+      "quarantine_completed_count": 0,
+      "owner_exclusion_registry_complete": false,
+      "owner_attestation_present": false,
+      "staging_authorized": false,
+      "build_authorized": false,
+      "range_connection_authorized": false,
+      "execution_authorized": false,
+      "adversarial_case_count": 36,
+      "blockers": [
+        "CONTENT_DIGEST_NOT_RETAINED",
+        "ISOLATED_CONSTRUCTION_ZONE_MISSING",
+        "OWNER_ATTESTATION_MISSING",
+        "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+        "OWNER_SCOPE_PROOF_MISSING",
+        "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+        "SOURCE_ARCHIVE_NOT_STAGED",
+        "SOURCE_STAGING_AUTHORIZATION_DENIED"
+      ],
+      "activity": {
+        "repository_content_downloaded": false,
+        "source_archive_staged": false,
+        "source_extracted": false,
+        "quarantine_checks_performed": false,
+        "dependency_resolution_performed": false,
+        "replica_built": false,
+        "infrastructure_provisioned": false,
+        "public_host_contacted_for_testing": false,
+        "range_connected": false,
+        "campaign_executed": false
+      },
+      "authority": {
+        "can_download_source": false,
+        "can_stage_source": false,
+        "can_extract_source": false,
+        "can_resolve_dependencies": false,
+        "can_build_replica": false,
+        "can_provision": false,
+        "can_connect": false,
+        "can_execute": false,
+        "can_target_public_host": false,
+        "can_authorize_action": false
+      }
+    },
+    "construction_zone_preflight": {
+      "status": "CONSTRUCTION_ZONE_DECLARED_QUARANTINE_EVIDENCE_MISSING_STAGING_BLOCKED",
+      "origin": "simulated",
+      "zone_control_count": 10,
+      "verified_zone_control_count": 0,
+      "quarantine_requirement_count": 8,
+      "verified_quarantine_requirement_count": 0,
+      "source_archive_count": 0,
+      "construction_zone_provisioned": false,
+      "quarantine_evidence_complete": false,
+      "staging_authorized": false,
+      "build_authorized": false,
+      "range_connection_authorized": false,
+      "execution_authorized": false,
+      "adversarial_case_count": 40,
+      "blockers": [
+        "CONSTRUCTION_ZONE_CONTROLS_UNVERIFIED",
+        "CONSTRUCTION_ZONE_NOT_PROVISIONED",
+        "CONTENT_DIGEST_NOT_RETAINED",
+        "ISOLATED_CONSTRUCTION_ZONE_MISSING",
+        "OWNER_ATTESTATION_MISSING",
+        "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+        "OWNER_SCOPE_PROOF_MISSING",
+        "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+        "QUARANTINE_EVIDENCE_MISSING",
+        "SOURCE_ARCHIVE_NOT_STAGED",
+        "SOURCE_STAGING_AUTHORIZATION_DENIED"
+      ],
+      "activity": {
+        "repository_content_downloaded": false,
+        "source_archive_staged": false,
+        "source_extracted": false,
+        "quarantine_checks_performed": false,
+        "dependency_resolution_performed": false,
+        "replica_built": false,
+        "infrastructure_provisioned": false,
+        "public_host_contacted_for_testing": false,
+        "range_connected": false,
+        "campaign_executed": false,
+        "construction_zone_provisioned": false,
+        "identity_created": false,
+        "storage_created": false,
+        "network_policy_applied": false,
+        "kill_control_installed": false,
+        "source_ingress_mounted": false,
+        "output_store_created": false,
+        "scanner_executed": false,
+        "sbom_generated": false
+      },
+      "authority": {
+        "can_download_source": false,
+        "can_stage_source": false,
+        "can_extract_source": false,
+        "can_resolve_dependencies": false,
+        "can_build_replica": false,
+        "can_provision": false,
+        "can_connect": false,
+        "can_execute": false,
+        "can_target_public_host": false,
+        "can_authorize_action": false
+      }
+    },
+    "construction_zone_provisioning_gate": {
+      "status": "CONSTRUCTION_ZONE_PROVISIONING_SIGNED_DENIAL_INDEPENDENT_ATTESTATION_BLOCKED",
+      "origin": "simulated",
+      "verified_signer_count": 2,
+      "verified_role_count": 2,
+      "required_control_count": 10,
+      "assigned_collector_count": 0,
+      "assigned_verifier_count": 0,
+      "verified_control_count": 0,
+      "attestation_plan_complete": false,
+      "operator_approval_present": false,
+      "provider_selected": false,
+      "provisioning_authorized": false,
+      "provisioning_performed": false,
+      "staging_authorized": false,
+      "build_authorized": false,
+      "range_connection_authorized": false,
+      "execution_authorized": false,
+      "adversarial_case_count": 55,
+      "blockers": [
+        "ATTESTATION_PLAN_INCOMPLETE",
+        "CONSTRUCTION_ZONE_CONTROLS_UNVERIFIED",
+        "CONSTRUCTION_ZONE_NOT_PROVISIONED",
+        "INDEPENDENT_ATTESTORS_UNASSIGNED",
+        "OPERATOR_APPROVAL_MISSING",
+        "PROVISIONING_AUTHORIZATION_DENIED",
+        "PROVISIONING_PROVIDER_UNSELECTED",
+        "QUARANTINE_EVIDENCE_MISSING",
+        "SOURCE_STAGING_AUTHORIZATION_DENIED"
+      ],
+      "activity": {
+        "repository_content_downloaded": false,
+        "source_archive_staged": false,
+        "source_extracted": false,
+        "quarantine_checks_performed": false,
+        "dependency_resolution_performed": false,
+        "replica_built": false,
+        "infrastructure_provisioned": false,
+        "public_host_contacted_for_testing": false,
+        "range_connected": false,
+        "campaign_executed": false,
+        "construction_zone_provisioned": false,
+        "identity_created": false,
+        "storage_created": false,
+        "network_policy_applied": false,
+        "kill_control_installed": false,
+        "source_ingress_mounted": false,
+        "output_store_created": false,
+        "scanner_executed": false,
+        "sbom_generated": false,
+        "operator_approval_recorded": false,
+        "provider_selected": false,
+        "provisioning_request_dispatched": false,
+        "attestation_collectors_assigned": false,
+        "attestation_verifiers_assigned": false,
+        "attestation_observations_collected": false,
+        "independent_verification_performed": false
+      },
+      "authority": {
+        "can_create_identity": false,
+        "can_create_storage": false,
+        "can_apply_network_policy": false,
+        "can_install_kill_control": false,
+        "can_mount_source_ingress": false,
+        "can_create_output_store": false,
+        "can_provision": false,
+        "can_stage_source": false,
+        "can_build_replica": false,
+        "can_connect": false,
+        "can_execute": false,
+        "can_target_public_host": false,
+        "can_authorize_action": false
+      }
+    },
+    "required_attestation_controls": [
+      "CLEANUP_CONTRACT",
+      "DEDICATED_CREDENTIALS",
+      "DEFAULT_DENY_EGRESS",
+      "DISPOSABLE_TARGET",
+      "INDEPENDENT_VERIFIER",
+      "OUT_OF_BAND_KILL",
+      "RESTORABLE_SNAPSHOT",
+      "TELEMETRY_SEPARATION",
+      "TRUSTED_TIME"
+    ],
+    "activity": {
+      "provisioning_performed": false,
+      "installation_performed": false,
+      "source_tool_contacted": false,
+      "network_contact_performed": false,
+      "offensive_tools_installed_or_launched": false,
+      "live_execution_performed": false
+    },
+    "authority": {
+      "can_install": false,
+      "can_provision": false,
+      "can_connect": false,
+      "can_execute": false,
+      "can_mark_evidence_complete": false,
+      "range_connection_authorized": false,
+      "execution_authorized": false
+    }
+  },
+  "foundry": {
+    "projection_version": "0.1.0",
+    "origin": "simulated",
+    "captured_at": "2026-07-13T04:31:02Z",
+    "candidate_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+    "evaluation_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "assurance_digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "operator_state": "shadow_eligible_contract_only",
+    "severity": "contract_valid",
+    "summary": "Signed evaluator observations, isolation contracts, and lineage resource accounting permit shadow evaluation only.",
+    "evaluator_mesh": [
+      {"evaluator_id": "evaluator:adversarial", "logical_principal": "principal:adversarial", "process_id": 8103, "role": "adversarial", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111", "isolation_attestation_digest": "sha256:a111111111111111111111111111111111111111111111111111111111111111"},
+      {"evaluator_id": "evaluator:public_regression", "logical_principal": "principal:public_regression", "process_id": 8101, "role": "public_regression", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222", "isolation_attestation_digest": "sha256:a222222222222222222222222222222222222222222222222222222222222222"},
+      {"evaluator_id": "evaluator:rights_and_recovery", "logical_principal": "principal:rights_and_recovery", "process_id": 8104, "role": "rights_and_recovery", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333", "isolation_attestation_digest": "sha256:a333333333333333333333333333333333333333333333333333333333333333"},
+      {"evaluator_id": "evaluator:sealed_holdout", "logical_principal": "principal:sealed_holdout", "process_id": 8102, "role": "sealed_holdout", "status": "pass", "signature_verified": true, "isolation_boundary_verified": true, "production_isolation_verified": false, "envelope_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444", "isolation_attestation_digest": "sha256:a444444444444444444444444444444444444444444444444444444444444444"}
+    ],
+    "resource_lineage": {
+      "ledger_id": "72f836fd-da75-438e-aae9-f4614aababe0",
+      "lineage_id": "e56338ee-47fe-4252-866c-4f289b138fe3",
+      "ledger_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "head_entry_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "entry_count": 1,
+      "status": "within_constitution",
+      "totals": {"total_cycle_seconds": 12, "total_compute_units": 4, "peak_memory_megabytes": 96, "peak_storage_megabytes": 24, "candidate_count": 1},
+      "blockers": []
+    },
+    "boundary": {
+      "signed_evaluators_complete": true,
+      "os_isolation_contract_complete": true,
+      "live_os_enforcement_verified": false,
+      "resource_ledger_within_constitution": true,
+      "shadow_eligible": true,
+      "production_ready": false,
+      "missing_controls": ["LIVE_OS_ISOLATION_UNPROVEN"]
+    },
+    "authority": {"can_promote": false, "can_execute": false, "can_modify_evaluators": false, "can_expand_resources": false}
+  },
+  "platform_assurance": {
+    "status": "boundary_incomplete",
+    "production_ready": false,
+    "windows_isolation": {
+      "origin": "live",
+      "status": "WINDOWS_ISOLATION_LIVE_OBSERVED_BOUNDARY_INCOMPLETE_PRODUCTION_BLOCKED",
+      "verified_control_count": 2,
+      "control_count": 7,
+      "blockers": ["CREDENTIAL_ISOLATION", "DEDICATED_OS_ACCOUNT", "NETWORK_EGRESS_DENIED", "READ_ONLY_INPUT_ACL", "SEPARATE_OUTPUT_ACL"],
+      "signed_attestation_verified": true,
+      "boundary_verified": false,
+      "effective_acl_rights_computed": true,
+      "target_specific_firewall_inspection": true,
+      "all_traffic_target_block_rule_count": 0
+    },
+    "independent_evaluator": {
+      "origin": "simulated",
+      "status": "INDEPENDENT_TYPESCRIPT_EVALUATOR_CONFORMANCE_VALID",
+      "implementation_language": "typescript",
+      "runtime_cryptography": "node_crypto_ed25519",
+      "adversarial_case_count": 8,
+      "shared_python_verification_logic": false
+    },
+    "resource_meter": {
+      "origin": "live",
+      "status": "WINDOWS_RESOURCE_METER_SUSPENDED_ASSIGNMENT_DURABLE_RECOVERY_VALID_PHYSICAL_POWER_LOSS_BLOCKED",
+      "job_object_assigned": true,
+      "kill_on_close_configured": true,
+      "lineage_ledger_within_constitution": true,
+      "injected_process_crash_recovery_verified": true,
+      "created_suspended": true,
+      "assigned_before_first_resume": true,
+      "assignment_race_closed": true,
+      "abrupt_process_crash_recovery_verified": true,
+      "write_through_publish_verified": true,
+      "physical_power_loss_test_performed": false,
+      "power_loss_durability_verified": false
+    },
+    "custody_readiness": {
+      "origin": "live",
+      "status": "WINDOWS_CUSTODY_READINESS_LIVE_READ_ONLY_HARDWARE_CUSTODY_BLOCKED",
+      "provider_count": 5,
+      "platform_crypto_provider_present": true,
+      "tpm_management_query_succeeded": false,
+      "blockers": ["HARDWARE_KEY_REFERENCE_MISSING", "INDEPENDENT_CUSTODY_OPERATOR_MISSING", "PROVIDER_ATTESTATION_MISSING", "TPM_MANAGEMENT_STATE_UNAVAILABLE"],
+      "key_created": false,
+      "signing_operation_performed": false,
+      "private_key_material_accessed": false,
+      "production_custody_verified": false
+    }
+  },
+  "proof": {
+    "status": "GOVERNED_SWARM_VALID",
+    "origin": "simulated",
+    "cryptographic_authorization_verified": true,
+    "verified_signer_ids": ["signer:customer-authority", "signer:safety-officer"],
+    "distinct_role_count": 7,
+    "dissent_count": 3,
+    "maximum_outcome": "typed_proposal",
+    "execution_authorized": false,
+    "live_execution_performed": false,
+    "model_or_agent_api_called": false,
+    "next_gate": "independent range verification"
+  }
+}

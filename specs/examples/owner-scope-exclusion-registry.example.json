@@ -1,0 +1,28 @@
+{
+  "registry_version": "0.1.0",
+  "registry_id": "f738d581-922c-45f2-b389-72aa025c92b6",
+  "origin": "simulated",
+  "status": "incomplete_owner_attestation_required",
+  "recorded_at": "2026-07-13T19:09:00Z",
+  "registry_complete": false,
+  "owner_attestation_present": false,
+  "unknown_ownership_action": "deny",
+  "excluded_organizations": [
+    "obtuseai"
+  ],
+  "excluded_repositories": [
+    "obtuseai/nimrod"
+  ],
+  "ownership_proof_digests": [],
+  "blockers": [
+    "OWNER_ATTESTATION_MISSING",
+    "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+    "OWNER_SCOPE_PROOF_MISSING"
+  ],
+  "authority": {
+    "can_complete_registry": false,
+    "can_attest_ownership": false,
+    "can_stage_source": false,
+    "can_authorize_action": false
+  }
+}

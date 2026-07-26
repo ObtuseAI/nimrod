@@ -1,0 +1,20 @@
+{
+  "receipt_version": "0.1.0",
+  "origin": "simulated",
+  "status": "blocked",
+  "evidence_id": "143d5819-884d-47ed-a9c3-d907fefa5322",
+  "evidence_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+  "topology_digest": "sha256:4c54ed8d18956c3f38c9b236ab429df010958ab6a8a12f668d49f6135b9ade99",
+  "kill_state_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "cleanup_subject_digest": "sha256:5976a168c2c9530d88b7544faa4dcdca08e0a2f64184aefcb85c29feae3c6772",
+  "snapshot_restored": true,
+  "cleanup_verified": false,
+  "cleanup_obligation_count": 6,
+  "verified_verifier_count": 0,
+  "blockers": ["AGENT_ABSENCE", "CREDENTIAL_DISPOSITION", "ROUTE_CLOSURE", "TARGET_RESTORED", "TELEMETRY_FINALIZED", "TOOL_ARTIFACT_REMOVAL", "VERIFIER_REJECTED"],
+  "kill_remains_engaged": true,
+  "range_reuse_authorized": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "authority": {"can_reset_kill": false, "can_reuse_range": false, "can_execute": false}
+}

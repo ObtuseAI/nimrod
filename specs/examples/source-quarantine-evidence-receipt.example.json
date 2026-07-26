@@ -1,0 +1,98 @@
+{
+  "receipt_version": "0.1.0",
+  "receipt_id": "00cffec9-4ccc-4077-9292-1d0aff7f29b6",
+  "origin": "simulated",
+  "status": "evidence_missing",
+  "recorded_at": "2026-07-13T19:11:30Z",
+  "zone_id": "46295d08-2990-4f04-a207-e9cc298b99c5",
+  "zone_digest": "sha256:ff9237dec84c196f13eced8ad571942083d732b4bea7273d8ac9d52f012622c6",
+  "staging_authorization_id": "c0ef9fcc-126e-4aab-98aa-2273fd2178aa",
+  "staging_authorization_digest": "sha256:41a7224ccc920de29b8ca776674babc6c6455ba945b16871ac3b76e5910dc521",
+  "requested_source_ids": [
+    "public-source:dvwa",
+    "public-source:iotgoat",
+    "public-source:juice-shop",
+    "public-source:nodegoat",
+    "public-source:webgoat"
+  ],
+  "source_archive_count": 0,
+  "source_archive_digests": [],
+  "results": [
+    {
+      "requirement_id": "ARCHIVE_DIGEST",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    },
+    {
+      "requirement_id": "COMMIT_SIGNATURE",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    },
+    {
+      "requirement_id": "LICENSE_OBLIGATIONS",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    },
+    {
+      "requirement_id": "MALWARE_SCAN",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    },
+    {
+      "requirement_id": "REPRODUCIBLE_EXTRACTION",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    },
+    {
+      "requirement_id": "SBOM_GENERATION",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    },
+    {
+      "requirement_id": "SECRET_SCAN",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    },
+    {
+      "requirement_id": "SOURCE_PROVENANCE",
+      "status": "missing",
+      "performed": false,
+      "evidence_digest": null,
+      "evidence": []
+    }
+  ],
+  "activity": {
+    "source_archive_present": false,
+    "source_extracted": false,
+    "scanner_executed": false,
+    "sbom_generated": false,
+    "secret_material_accessed": false,
+    "network_access_performed": false
+  },
+  "authority": {
+    "can_download_source": false,
+    "can_stage_source": false,
+    "can_extract_source": false,
+    "can_resolve_dependencies": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  }
+}

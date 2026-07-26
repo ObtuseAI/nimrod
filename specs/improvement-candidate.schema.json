@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/improvement-candidate.schema.json",
+  "title": "nimrod Improvement Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_version",
+    "candidate_id",
+    "candidate_class",
+    "authority_tier",
+    "source_evidence",
+    "contradicting_evidence",
+    "lens",
+    "mutation_family",
+    "proposed_delta",
+    "prediction",
+    "evaluation_plan",
+    "sealed_evaluation",
+    "champion_floor",
+    "rollback",
+    "promotion_policy",
+    "demotion_triggers",
+    "status"
+  ],
+  "properties": {
+    "candidate_version": { "const": "0.1.0" },
+    "candidate_id": { "$ref": "#/$defs/uuid" },
+    "candidate_class": { "enum": ["knowledge", "fixture", "detection", "scoring", "playbook", "connector", "model", "policy", "executable"] },
+    "authority_tier": { "enum": ["A", "B", "C", "D"] },
+    "source_evidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/reference" } },
+    "contradicting_evidence": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "lens": { "enum": ["precision", "systems", "adversarial", "synthesis"] },
+    "mutation_family": { "enum": ["validation", "rollback", "inflow", "queue", "novelty", "observability", "detection", "recovery", "general"] },
+    "proposed_delta": { "type": "object", "minProperties": 1 },
+    "prediction": { "$ref": "#/$defs/nonEmptyString" },
+    "evaluation_plan": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "sealed_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evaluator_id", "result", "evidence"],
+      "properties": {
+        "evaluator_id": { "$ref": "#/$defs/nonEmptyString" },
+        "result": { "enum": ["not_run", "pass", "fail", "inconclusive"] },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/reference" } }
+      }
+    },
+    "champion_floor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["champion_id", "must_not_regress"],
+      "properties": {
+        "champion_id": { "$ref": "#/$defs/nonEmptyString" },
+        "must_not_regress": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "rollback": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "promotion_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maximum_destination", "independent_signer_required", "human_threshold_required"],
+      "properties": {
+        "maximum_destination": { "enum": ["quarantine", "evaluation", "shadow", "canary", "production_candidate", "production"] },
+        "independent_signer_required": { "const": true },
+        "human_threshold_required": { "type": "boolean" }
+      }
+    },
+    "demotion_triggers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "status": { "enum": ["quarantined", "replay_ready", "evaluation", "rejected", "shadow", "canary", "promotion_eligible", "promoted", "demoted", "rolled_back"] }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+._-]*:[A-Fa-f0-9]{32,}$" }
+      }
+    }
+  }
+}
+

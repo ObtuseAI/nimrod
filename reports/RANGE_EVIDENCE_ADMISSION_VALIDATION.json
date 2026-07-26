@@ -1,0 +1,49 @@
+{
+  "status": "RANGE_EVIDENCE_ADMISSION_SIGNED_FIXTURES_RETAINED_OWNER_RANGE_AND_INDEPENDENT_VERIFICATION_BLOCKED",
+  "origin": "simulated",
+  "collector_policy_status": "blocked_owner_named_environment_missing",
+  "collector_policy_signer_count": 2,
+  "required_control_count": 9,
+  "signed_observation_count": 9,
+  "content_addressed_observation_count": 9,
+  "distinct_collector_count": 9,
+  "owner_named_environment": false,
+  "real_observation_count": 0,
+  "emitted_attestation_count": 9,
+  "verified_attestation_count": 0,
+  "independent_verifier_count": 0,
+  "evidence_complete": false,
+  "blockers": [
+    "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+    "EXECUTION_AUTHORIZATION_MISSING",
+    "INDEPENDENT_VERIFIER_ATTESTATIONS_MISSING",
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+    "RANGE_CONNECTION_AUTHORIZATION_MISSING",
+    "REAL_READ_ONLY_OBSERVATIONS_MISSING"
+  ],
+  "adversarial_case_count": 41,
+  "fixture_independent_document_api": true,
+  "preexecution_packet_real_attestation_count": 0,
+  "preexecution_packet_evidence_complete": false,
+  "preexecution_packet_execution_authorized": false,
+  "activity": {
+    "infrastructure_provisioned": false,
+    "host_or_network_policy_changed": false,
+    "credentials_handled": false,
+    "tools_installed": false,
+    "source_tools_contacted": false,
+    "network_contact_performed": false,
+    "range_connected": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_verify_attestation": false
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "mission_version": "0.1.0",
+  "mission_id": "88888888-8888-4888-8888-888888888888",
+  "origin": "simulated",
+  "authorization_lease_id": "44444444-4444-4444-8444-444444444444",
+  "objective": "Challenge whether the simulated marker test produces a complete causal evidence chain",
+  "proposal_only": true,
+  "cells": [
+    {
+      "agent_id": "cell.red.hypothesis",
+      "role": "offensive_planner",
+      "lens": "Find the narrowest adversary hypothesis that challenges the stated defense",
+      "allowed_outputs": ["hypothesis", "dissent"],
+      "prohibited_capabilities": ["No execution", "No authorization", "No target expansion"],
+      "work_budget": { "maximum_items": 2, "maximum_seconds": 30 }
+    },
+    {
+      "agent_id": "cell.blue.hunter",
+      "role": "defensive_hunter",
+      "lens": "Challenge observation and detection assumptions using expected evidence",
+      "allowed_outputs": ["coverage_challenge", "dissent"],
+      "prohibited_capabilities": ["No active response", "No evidence deletion"],
+      "work_budget": { "maximum_items": 2, "maximum_seconds": 30 }
+    },
+    {
+      "agent_id": "cell.purple.compiler",
+      "role": "purple_compiler",
+      "lens": "Compile hypotheses into typed allowlisted proposal fields",
+      "allowed_outputs": ["typed_test_proposal"],
+      "prohibited_capabilities": ["No arbitrary command", "No lease modification"],
+      "work_budget": { "maximum_items": 2, "maximum_seconds": 30 }
+    },
+    {
+      "agent_id": "cell.evidence.analyst",
+      "role": "evidence_analyst",
+      "lens": "Score evidence completeness and preserve contradictions",
+      "allowed_outputs": ["evidence_assessment", "dissent"],
+      "prohibited_capabilities": ["No success declaration", "No evidence mutation"],
+      "work_budget": { "maximum_items": 2, "maximum_seconds": 30 }
+    },
+    {
+      "agent_id": "cell.recovery.planner",
+      "role": "recovery_planner",
+      "lens": "Require cleanup, rollback, and post-state proof",
+      "allowed_outputs": ["recovery_proposal", "dissent"],
+      "prohibited_capabilities": ["No recovery execution", "No snapshot deletion"],
+      "work_budget": { "maximum_items": 2, "maximum_seconds": 30 }
+    },
+    {
+      "agent_id": "cell.verify.independent",
+      "role": "independent_verifier",
+      "lens": "Verify contracts and evidence without trusting planner claims",
+      "allowed_outputs": ["evidence_assessment", "dissent"],
+      "prohibited_capabilities": ["No planning", "No execution"],
+      "work_budget": { "maximum_items": 2, "maximum_seconds": 30 }
+    },
+    {
+      "agent_id": "cell.safety.governor",
+      "role": "safety_governor",
+      "lens": "Veto authority, scope, effect, or evidence-boundary violations",
+      "allowed_outputs": ["safety_veto", "dissent"],
+      "prohibited_capabilities": ["No policy weakening", "No self-authorization"],
+      "work_budget": { "maximum_items": 2, "maximum_seconds": 30 }
+    }
+  ],
+  "separation_rules": {
+    "planner_cannot_verify": true,
+    "executor_absent": true,
+    "safety_governor_veto": true,
+    "independent_verifier_required": true,
+    "minimum_distinct_roles": 5
+  },
+  "work_items": [
+    {
+      "work_id": "work:red-hypothesis",
+      "assigned_agent_id": "cell.red.hypothesis",
+      "work_type": "hypothesize",
+      "target_id": "device:simulated-windows-01",
+      "technique_id": "simulation:reversible-marker",
+      "depends_on": []
+    },
+    {
+      "work_id": "work:blue-challenge",
+      "assigned_agent_id": "cell.blue.hunter",
+      "work_type": "challenge_coverage",
+      "target_id": "device:simulated-windows-01",
+      "technique_id": "simulation:reversible-marker",
+      "depends_on": ["work:red-hypothesis"]
+    },
+    {
+      "work_id": "work:purple-compile",
+      "assigned_agent_id": "cell.purple.compiler",
+      "work_type": "compile_typed_test",
+      "target_id": "device:simulated-windows-01",
+      "technique_id": "simulation:reversible-marker",
+      "depends_on": ["work:red-hypothesis", "work:blue-challenge"]
+    },
+    {
+      "work_id": "work:evidence-assess",
+      "assigned_agent_id": "cell.evidence.analyst",
+      "work_type": "assess_evidence",
+      "target_id": "device:simulated-windows-01",
+      "technique_id": "simulation:reversible-marker",
+      "depends_on": ["work:purple-compile"]
+    },
+    {
+      "work_id": "work:recovery-plan",
+      "assigned_agent_id": "cell.recovery.planner",
+      "work_type": "plan_recovery",
+      "target_id": "device:simulated-windows-01",
+      "technique_id": "simulation:reversible-marker",
+      "depends_on": ["work:purple-compile"]
+    },
+    {
+      "work_id": "work:verify",
+      "assigned_agent_id": "cell.verify.independent",
+      "work_type": "assess_evidence",
+      "target_id": "device:simulated-windows-01",
+      "technique_id": "simulation:reversible-marker",
+      "depends_on": ["work:evidence-assess", "work:recovery-plan"]
+    },
+    {
+      "work_id": "work:safety-review",
+      "assigned_agent_id": "cell.safety.governor",
+      "work_type": "review_safety",
+      "target_id": "device:simulated-windows-01",
+      "technique_id": "simulation:reversible-marker",
+      "depends_on": ["work:verify"]
+    }
+  ],
+  "success_contract": [
+    "At least five distinct roles contribute",
+    "No veto remains unresolved",
+    "The maximum outcome is a typed proposal"
+  ],
+  "failure_contract": [
+    "Any scope, authority, evidence, cleanup, or separation violation blocks the mission"
+  ]
+}

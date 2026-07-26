@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/range-evidence-completion-receipt.schema.json",
+  "title": "nimrod range evidence completion receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receipt_version", "receipt_id", "origin", "status", "completed_at", "policy_id", "policy_digest", "authorization_id", "authorization_digest", "acceptance_report_id", "acceptance_report_digest", "scope_digest", "environment_id", "environment_name", "owner_named_environment", "required_control_count", "accepted_control_count", "verified_attestation_count", "real_independent_verifier_count", "completion_prerequisites_satisfied", "completion_authorized", "evidence_complete", "range_connection_authorized", "execution_authorized", "verified_authorization_signer_ids", "verified_authorization_roles", "blockers", "activity", "authority"],
+  "properties": {
+    "receipt_version": {"const": "0.1.0"},
+    "receipt_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+    "status": {"enum": ["blocked_fixture_acceptance_non_completing", "evidence_completion_denied", "evidence_complete_pending_separate_connection_authorization"]},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "authorization_id": {"type": "string", "format": "uuid"},
+    "authorization_digest": {"$ref": "#/$defs/digest"},
+    "acceptance_report_id": {"type": "string", "format": "uuid"},
+    "acceptance_report_digest": {"$ref": "#/$defs/digest"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "environment_id": {"type": "string", "minLength": 1},
+    "environment_name": {"type": ["string", "null"]},
+    "owner_named_environment": {"type": "boolean"},
+    "required_control_count": {"const": 9},
+    "accepted_control_count": {"type": "integer", "minimum": 0, "maximum": 9},
+    "verified_attestation_count": {"type": "integer", "minimum": 0, "maximum": 9},
+    "real_independent_verifier_count": {"type": "integer", "minimum": 0, "maximum": 3},
+    "completion_prerequisites_satisfied": {"type": "boolean"},
+    "completion_authorized": {"type": "boolean"},
+    "evidence_complete": {"type": "boolean"},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "verified_authorization_signer_ids": {"type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "verified_authorization_roles": {"type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "blockers": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/blocker"}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "allOf": [
+    {"if": {"properties": {"evidence_complete": {"const": true}}, "required": ["evidence_complete"]}, "then": {"properties": {"origin": {"enum": ["range", "sacrificial_replica"]}, "status": {"const": "evidence_complete_pending_separate_connection_authorization"}, "owner_named_environment": {"const": true}, "accepted_control_count": {"const": 9}, "verified_attestation_count": {"const": 9}, "completion_prerequisites_satisfied": {"const": true}, "completion_authorized": {"const": true}, "blockers": {"const": ["EXECUTION_AUTHORIZATION_MISSING", "RANGE_CONNECTION_AUTHORIZATION_MISSING"]}}}},
+    {"if": {"properties": {"origin": {"const": "simulated"}}, "required": ["origin"]}, "then": {"properties": {"status": {"const": "blocked_fixture_acceptance_non_completing"}, "owner_named_environment": {"const": false}, "completion_authorized": {"const": false}, "evidence_complete": {"const": false}}}}
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "blocker": {"enum": ["EVIDENCE_COMPLETION_AUTHORIZATION_DENIED", "EVIDENCE_COMPLETION_AUTHORITY_MISSING", "EXECUTION_AUTHORIZATION_MISSING", "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING", "RANGE_CONNECTION_AUTHORIZATION_MISSING", "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING", "REAL_READ_ONLY_OBSERVATIONS_MISSING", "ALL_REQUIRED_CONTROLS_NOT_ACCEPTED"]},
+    "activity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["environment_contact_performed", "collection_performed", "infrastructure_provisioned", "host_or_network_policy_changed", "credentials_handled", "tools_installed", "network_contact_performed", "range_connected", "campaign_executed"],
+      "properties": {"environment_contact_performed": {"const": false}, "collection_performed": {"const": false}, "infrastructure_provisioned": {"const": false}, "host_or_network_policy_changed": {"const": false}, "credentials_handled": {"const": false}, "tools_installed": {"const": false}, "network_contact_performed": {"const": false}, "range_connected": {"const": false}, "campaign_executed": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_collect", "can_install", "can_provision", "can_change_policy", "can_access_credentials", "can_connect", "can_execute", "can_mark_evidence_complete", "can_authorize_action"],
+      "properties": {"can_collect": {"const": false}, "can_install": {"const": false}, "can_provision": {"const": false}, "can_change_policy": {"const": false}, "can_access_credentials": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_mark_evidence_complete": {"const": false}, "can_authorize_action": {"const": false}}
+    }
+  }
+}

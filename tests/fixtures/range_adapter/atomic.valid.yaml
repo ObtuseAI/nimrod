@@ -1,0 +1,13 @@
+attack_technique: T1007
+display_name: System Service Discovery
+atomic_tests:
+  - name: Emit a fixture-only service-discovery marker
+    auto_generated_guid: 3f3a9f2c-8c2f-4e91-9d45-8ec2a8805274
+    description: Emits inert text used only to validate nimrod import normalization.
+    supported_platforms:
+      - windows
+    executor:
+      name: powershell
+      elevation_required: false
+      command: Write-Output 'nimrod atomic fixture marker'
+      cleanup_command: Write-Output 'nimrod atomic fixture cleanup marker'

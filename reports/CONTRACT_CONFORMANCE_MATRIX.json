@@ -1,0 +1,1516 @@
+{
+  "conformance_level_counts": {
+    "independent_harness_reference": 67,
+    "runtime_and_harness_reference": 30,
+    "schema_only": 0,
+    "semantic_validator": 0
+  },
+  "contract_count": 97,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "independent_harness_reference_count": 97,
+  "live_runtime_evidence_count": 0,
+  "matrix": {
+    "authority": {
+      "can_authorize": false,
+      "can_claim_production_readiness": false,
+      "can_execute": false,
+      "can_promote": false
+    },
+    "contract_count": 97,
+    "matrix_version": "0.1.0",
+    "origin": "static_repository_analysis",
+    "rows": [
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "action-envelope.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_contract_runtime_bindings.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_edge/runtime.py",
+          "src/nimrod_edge/verifier.py",
+          "src/nimrod_simulator/runtime.py"
+        ],
+        "schema": "action-and-evidence-envelope.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "authorization-lease.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_execution_gate.py",
+          "tools/validate_simulator.py",
+          "tools/validate_swarm.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/runtime.py",
+          "src/nimrod_simulator/swarm.py",
+          "src/nimrod_simulator/verifier_cli.py"
+        ],
+        "schema": "authorization-lease.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "authorization-proof-bundle.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_execution_gate.py",
+          "tools/validate_simulator.py",
+          "tools/validate_swarm.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/runtime.py",
+          "src/nimrod_simulator/swarm.py",
+          "src/nimrod_simulator/verifier_cli.py"
+        ],
+        "schema": "authorization-proof-bundle.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "authorization-trust-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_execution_gate.py",
+          "tools/validate_simulator.py",
+          "tools/validate_swarm.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/runtime.py",
+          "src/nimrod_simulator/swarm.py",
+          "src/nimrod_simulator/verifier_cli.py"
+        ],
+        "schema": "authorization-trust-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "cacis-capability-roadmap.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_cacis_roadmap.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "cacis-capability-roadmap.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "causal-coverage-verdict.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_contract_runtime_bindings.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/runtime.py"
+        ],
+        "schema": "causal-coverage-verdict.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "capability-threshold-report.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "capability-threshold-report.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "cognitive-candidate-bundle.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_assurance.py",
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "cognitive-candidate-bundle.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "connector-manifest.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_execution_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/runtime.py"
+        ],
+        "schema": "connector-manifest.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "construction-zone-isolation-attestation-plan.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_construction_zone_provisioning_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "construction-zone-isolation-attestation-plan.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "construction-zone-preflight-result.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_construction_zone_preflight.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "construction-zone-preflight-result.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "construction-zone-provisioning-authorization.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_construction_zone_provisioning_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "construction-zone-provisioning-authorization.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "construction-zone-provisioning-gate-result.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_construction_zone_provisioning_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "construction-zone-provisioning-gate-result.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "control-board-ingress-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_control_board_ingress.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "control-board-ingress-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "control-board-foundry-projection.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_evolution_assurance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "control-board-foundry-projection.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "control-board-snapshot.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board_ingress.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "control-board-snapshot.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "control-board-verifier-projection.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_control_board_ingress.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "control-board-verifier-projection.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "disposable-range-preflight.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_readiness.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "disposable-range-preflight.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "disposable-range-preflight-result.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_admission.py",
+          "tools/validate_range_execution_gate.py",
+          "tools/validate_range_readiness.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "disposable-range-preflight-result.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "design-partner-evaluation-plan.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_design_partner_kit.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "design-partner-evaluation-plan.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "edge-live-process-observation.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_edge_live_observation.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_edge/live_cli.py"
+        ],
+        "schema": "edge-live-process-observation.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "edge-preview-result.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_edge_preview.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_edge/runtime.py"
+        ],
+        "schema": "edge-preview-result.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "edge-preview-scenario.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_edge_preview.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_edge/runtime.py",
+          "src/nimrod_edge/verifier.py"
+        ],
+        "schema": "edge-preview-scenario.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "edge-update-manifest.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_release_foundation.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "edge-update-manifest.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "edge-update-verification-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_release_foundation.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "edge-update-verification-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evidence-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_construction_zone_preflight.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_edge/runtime.py",
+          "src/nimrod_simulator/runtime.py"
+        ],
+        "schema": "evidence-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "epistemic-posture.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_contract_runtime_bindings.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/evolution_foundry.py"
+        ],
+        "schema": "epistemic-posture.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evolution-baseline.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_contract_runtime_bindings.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/evolution_foundry.py"
+        ],
+        "schema": "evolution-baseline.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evolution-constitution.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evolution-constitution.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evolution-assurance-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_assurance.py",
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evolution-assurance-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evolution-evaluation-vector.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evolution-evaluation-vector.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evolution-transition-envelope.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evolution-transition-envelope.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evolution-transition-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evolution-transition-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evaluator-conformance-bundle.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evaluator_conformance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evaluator-conformance-bundle.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "improvement-candidate.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_foundry.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "improvement-candidate.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "homeostasis-chronos-mission.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_homeostasis_chronos.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_cacis/homeostasis_cli.py"
+        ],
+        "schema": "homeostasis-chronos-mission.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "homeostasis-chronos-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_homeostasis_chronos.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_cacis/homeostasis_cli.py"
+        ],
+        "schema": "homeostasis-chronos-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "intelligence-research-mission.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_intelligence_research.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_research/cli.py"
+        ],
+        "schema": "intelligence-research-mission.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "intelligence-research-settlement.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_intelligence_research.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_research/cli.py"
+        ],
+        "schema": "intelligence-research-settlement.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "immune-organism-lifecycle-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_immune_runtime.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_cacis/immune_runtime_cli.py"
+        ],
+        "schema": "immune-organism-lifecycle-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "immune-organism-mission.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_immune_runtime.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_cacis/immune_runtime_cli.py"
+        ],
+        "schema": "immune-organism-mission.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "isolated-construction-zone.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_construction_zone_preflight.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "isolated-construction-zone.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evaluator-observation-envelope.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_assurance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evaluator-observation-envelope.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "evaluator-trust-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_assurance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "evaluator-trust-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "key-governance-state.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_key_governance.py",
+          "tools/validate_witness_anchor.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/anchor_verifier_cli.py",
+          "src/nimrod_simulator/verifier_service.py"
+        ],
+        "schema": "key-governance-state.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "key-governance-transition.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_key_governance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "key-governance-transition.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "lineage-resource-ledger.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_assurance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "lineage-resource-ledger.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "os-isolation-attestation.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_evolution_assurance.py",
+          "tools/validate_windows_isolation.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "os-isolation-attestation.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "owner-scope-exclusion-registry.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_source_staging_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "owner-scope-exclusion-registry.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "plugin-capability-manifest.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_release_foundation.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "plugin-capability-manifest.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "protection-profile.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_contract_runtime_bindings.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/protection_profile.py"
+        ],
+        "schema": "protection-profile.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "public-corpus-intake-report.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_public_sacrificial_corpus.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "public-corpus-intake-report.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "public-sacrificial-source-registry.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_public_sacrificial_corpus.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "public-sacrificial-source-registry.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "public-source-staging-authorization.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_source_staging_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "public-source-staging-authorization.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-adapter-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_adapter.py",
+          "tools/validate_range_readiness.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-adapter-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-adapter-policy-envelope.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_readiness.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-adapter-policy-envelope.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-compilation-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_adapter.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-compilation-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-collector-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_admission.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-collector-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-connector-capability-manifest.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_admission.py",
+          "tools/validate_range_execution_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-connector-capability-manifest.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-corpus-manifest.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_readiness.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-corpus-manifest.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-corpus-report.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_readiness.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-corpus-report.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-environment-observation.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_admission.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-environment-observation.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-evidence-acceptance-report.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_acceptance.py",
+          "tools/validate_range_evidence_completion.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-evidence-acceptance-report.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-evidence-admission-report.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_admission.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-evidence-admission-report.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-evidence-completion-authorization.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_completion.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-evidence-completion-authorization.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-evidence-completion-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_completion.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-evidence-completion-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-evidence-completion-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_completion.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-evidence-completion-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-kill-command.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_lifecycle.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-kill-command.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-kill-state.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_lifecycle.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-kill-state.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-lease-topology-scope.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_acceptance.py",
+          "tools/validate_range_evidence_admission.py",
+          "tools/validate_range_execution_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-lease-topology-scope.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-preexecution-evidence-packet.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_range_execution_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-preexecution-evidence-packet.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-recovery-evidence.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_lifecycle.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-recovery-evidence.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-recovery-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_lifecycle.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-recovery-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-source-import.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_adapter.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-source-import.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-topology.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_execution_gate.py",
+          "tools/validate_range_lifecycle.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-topology.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-topology-verdict.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_admission.py",
+          "tools/validate_range_lifecycle.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-topology-verdict.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-verifier-decision.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_acceptance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-verifier-decision.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "range-verifier-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_evidence_acceptance.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "range-verifier-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "resource-meter-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_resource_meter.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "resource-meter-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "sacrificial-replica-plan.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_public_sacrificial_corpus.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "sacrificial-replica-plan.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "source-staging-gate-report.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_source_staging_gate.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "source-staging-gate-report.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "source-quarantine-evidence-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_construction_zone_preflight.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "source-quarantine-evidence-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "swarm-mission.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_swarm.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/swarm.py"
+        ],
+        "schema": "swarm-mission.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "swarm-verdict.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_contract_runtime_bindings.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/swarm.py"
+        ],
+        "schema": "swarm-verdict.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "validation-campaign.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_range_adapter.py",
+          "tools/validate_simulator.py",
+          "tools/validate_swarm.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/runtime.py",
+          "src/nimrod_simulator/swarm.py"
+        ],
+        "schema": "validation-campaign.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "verifier-consensus.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_supervised_verifier.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "verifier-consensus.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "verifier-health.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_supervised_verifier.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/verifier_service_cli.py"
+        ],
+        "schema": "verifier-health.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "verifier-observation.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_supervised_verifier.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/verifier_service_cli.py"
+        ],
+        "schema": "verifier-observation.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "verifier-service-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_supervised_verifier.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/verifier_service_cli.py"
+        ],
+        "schema": "verifier-service-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "witness-anchor-head.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_witness_anchor.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/anchor_verifier_cli.py",
+          "src/nimrod_simulator/verifier_service.py"
+        ],
+        "schema": "witness-anchor-head.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "witness-anchor-policy.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_witness_anchor.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_simulator/anchor_verifier_cli.py",
+          "src/nimrod_simulator/verifier_service.py"
+        ],
+        "schema": "witness-anchor-policy.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "witness-anchor-receipt.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_witness_anchor.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "witness-anchor-receipt.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "witness-checkpoint.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_witness_anchor.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "witness-checkpoint.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "windows-custody-readiness.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_windows_custody_readiness.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "windows-custody-readiness.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "independent_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "windows-isolation-measurement.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_windows_isolation.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [],
+        "schema": "windows-isolation-measurement.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "world-model-generation.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_control_board.py",
+          "tools/validate_immune_runtime.py",
+          "tools/validate_world_model.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_cacis/immune_runtime_cli.py",
+          "src/nimrod_cacis/world_model_cli.py"
+        ],
+        "schema": "world-model-generation.schema.json",
+        "semantic_validator_present": true
+      },
+      {
+        "conformance_level": "runtime_and_harness_reference",
+        "draft_2020_12_validated": true,
+        "example": "world-observation-envelope.example.json",
+        "independent_harness_reference_paths": [
+          "tools/validate_world_model.py"
+        ],
+        "live_runtime_evidence_present": false,
+        "negative_schema_mutation_validated": true,
+        "production_conformance_claimed": false,
+        "runtime_reference_paths": [
+          "src/nimrod_cacis/world_model_cli.py"
+        ],
+        "schema": "world-observation-envelope.schema.json",
+        "semantic_validator_present": true
+      }
+    ],
+    "summary": {
+      "conformance_level_counts": {
+        "independent_harness_reference": 67,
+        "runtime_and_harness_reference": 30,
+        "schema_only": 0,
+        "semantic_validator": 0
+      },
+      "independent_harness_reference_count": 97,
+      "live_runtime_evidence_count": 0,
+      "negative_schema_mutation_validated_count": 97,
+      "production_conformance_claim_count": 0,
+      "runtime_reference_count": 30,
+      "schema_validated_count": 97,
+      "semantic_validator_count": 97
+    }
+  },
+  "negative_fail_closed_case_count": 8,
+  "production_conformance_claim_count": 0,
+  "runtime_reference_count": 30,
+  "schema_validated_count": 97,
+  "semantic_validator_count": 97,
+  "status": "CONTRACT_CONFORMANCE_MATRIX_STATIC_EVIDENCE_VALID_LIVE_RUNTIME_BLOCKED"
+}

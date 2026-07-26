@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/edge-preview-result.schema.json",
+  "title": "nimrod Edge preview result",
+  "description": "Evidence-first board result for one unprivileged replay-to-proposal run.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result_version", "run_id", "scenario_id", "scenario_digest", "origin", "status", "evaluated_at", "matched_rule_id", "risk", "explanation", "uncertainties", "references", "independent_verification", "witness", "authority", "security_claim"],
+  "properties": {
+    "result_version": {"const": "0.1.0"},
+    "run_id": {"type": "string", "format": "uuid"},
+    "scenario_id": {"type": "string", "format": "uuid"},
+    "scenario_digest": {"$ref": "#/$defs/digest"},
+    "origin": {"const": "replayed"},
+    "status": {"const": "EDGE_PREVIEW_REPLAY_PROPOSAL_STRUCTURALLY_VERIFIED_POST_STATE_UNOBSERVED"},
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "matched_rule_id": {"const": "edge.rule.unsigned_user_path_new_egress"},
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "confidence_interval"],
+      "properties": {
+        "level": {"const": "high"},
+        "confidence_interval": {
+          "type": "array",
+          "prefixItems": [{"type": "number", "minimum": 0, "maximum": 1}, {"type": "number", "minimum": 0, "maximum": 1}],
+          "minItems": 2,
+          "maxItems": 2
+        }
+      }
+    },
+    "explanation": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}},
+    "uncertainties": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}},
+    "references": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario", "action_proposal", "evidence_receipt", "verification"],
+      "properties": {
+        "scenario": {"$ref": "#/$defs/reference"},
+        "action_proposal": {"$ref": "#/$defs/reference"},
+        "evidence_receipt": {"$ref": "#/$defs/reference"},
+        "verification": {"$ref": "#/$defs/reference"}
+      }
+    },
+    "independent_verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verification_version", "verification_id", "origin", "verified_at", "verifier_principal", "verifier_process_id", "scenario_digest", "action_digest", "status", "checks", "verified_outcome", "execution_authorized", "execution_performed", "target_state_changed", "recovery_verified", "residual_risks"],
+      "properties": {
+        "verification_version": {"const": "0.1.0"},
+        "verification_id": {"type": "string", "format": "uuid"},
+        "origin": {"const": "replayed"},
+        "verified_at": {"type": "string", "format": "date-time"},
+        "verifier_principal": {"const": "verifier:nimrod-edge-structural"},
+        "verifier_process_id": {"type": "integer", "minimum": 1},
+        "scenario_digest": {"$ref": "#/$defs/digest"},
+        "action_digest": {"$ref": "#/$defs/digest"},
+        "status": {"const": "independent_no_execution_structure_valid_post_state_unobserved"},
+        "checks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scenario_contract_valid", "action_contract_valid", "proposal_only", "execution_surface_present", "post_state_observed"],
+          "properties": {
+            "scenario_contract_valid": {"const": true},
+            "action_contract_valid": {"const": true},
+            "proposal_only": {"const": true},
+            "execution_surface_present": {"const": false},
+            "post_state_observed": {"const": false}
+          }
+        },
+        "verified_outcome": {"const": false},
+        "execution_authorized": {"const": false},
+        "execution_performed": {"const": false},
+        "target_state_changed": {"const": false},
+        "recovery_verified": {"const": false},
+        "residual_risks": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "witness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entry_count", "journal"],
+      "properties": {
+        "entry_count": {"const": 4},
+        "journal": {"type": "string", "minLength": 1}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "target_state_changed", "recovery_verified"],
+      "properties": {
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "target_state_changed": {"const": false},
+        "recovery_verified": {"const": false}
+      }
+    },
+    "security_claim": {"const": "Replayed evidence only; no endpoint observation, containment, recovery, or production protection was established"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[A-Fa-f0-9]{64}$"},
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "digest": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "observation_version": "0.1.0",
+  "observation_id": "420e5fa2-d46d-5d71-9d1f-63b29f331a01",
+  "origin": "replayed",
+  "replay_sequence": 1,
+  "domain": "identity",
+  "subject": {"subject_id": "user:alice", "subject_type": "user"},
+  "fact_key": "privilege.level",
+  "assertion": {"posture": "observed", "value": "standard"},
+  "source": {"source_id": "source:identity-primary", "source_kind": "identity_log", "artifact_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"},
+  "observed_at": "2026-07-15T06:00:00Z",
+  "collected_at": "2026-07-15T06:00:02Z",
+  "valid_until": "2026-07-15T06:10:00Z",
+  "confidence": 0.94,
+  "evidence_refs": ["sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],
+  "parent_event_digest": null,
+  "authority": {"can_authorize": false, "can_execute": false, "can_change_policy": false, "can_claim_truth": false}
+}

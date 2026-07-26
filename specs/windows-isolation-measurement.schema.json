@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/windows-isolation-measurement.schema.json",
+  "title": "nimrod Read-Only Windows Isolation Measurement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["measurement_version", "measurement_id", "origin", "collected_at", "platform", "target", "collector", "environment", "filesystem", "network", "controls", "status", "blockers", "authority"],
+  "properties": {
+    "measurement_version": {"const": "0.2.0"},
+    "measurement_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "live"]},
+    "collected_at": {"type": "string", "format": "date-time"},
+    "platform": {"const": "windows"},
+    "target": {"$ref": "#/$defs/processIdentity"},
+    "collector": {"$ref": "#/$defs/collectorIdentity"},
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["credential_like_variable_count", "matching_prefix_categories", "credential_value_accessed", "target_environment_inspected"],
+      "properties": {
+        "credential_like_variable_count": {"type": "integer", "minimum": 0},
+        "matching_prefix_categories": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+        "credential_value_accessed": {"const": false},
+        "target_environment_inspected": {"const": false}
+      }
+    },
+    "filesystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input", "output", "effective_rights_computed", "acl_modified"],
+      "properties": {
+        "input": {"$ref": "#/$defs/inputSecurityDescriptor"},
+        "output": {"$ref": "#/$defs/outputSecurityDescriptor"},
+        "effective_rights_computed": {"const": true},
+        "acl_modified": {"const": false}
+      }
+    },
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inspection_method", "active_profile_count", "default_outbound_actions", "raw_evidence_digest", "active_probe_performed", "attempt_count", "target_inspection_method", "target_executable_digest", "matching_block_rule_count", "all_traffic_block_rule_count", "rule_evidence_digests", "target_rule_evidence_digest", "firewall_modified", "target_inspection_attempt_count"],
+      "properties": {
+        "inspection_method": {"const": "netsh_advfirewall_read_only"},
+        "active_profile_count": {"type": "integer", "minimum": 0},
+        "default_outbound_actions": {"type": "array", "uniqueItems": true, "items": {"enum": ["allow", "block"]}},
+        "raw_evidence_digest": {"$ref": "#/$defs/digest"},
+        "active_probe_performed": {"const": false},
+        "attempt_count": {"type": "integer", "minimum": 1},
+        "target_inspection_method": {"const": "powershell_netsecurity_read_only"},
+        "target_inspection_succeeded": {"type": "boolean"},
+        "target_executable_digest": {"$ref": "#/$defs/digest"},
+        "matching_block_rule_count": {"type": "integer", "minimum": 0},
+        "all_traffic_block_rule_count": {"type": "integer", "minimum": 0},
+        "rule_evidence_digests": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/digest"}},
+        "target_rule_evidence_digest": {"$ref": "#/$defs/digest"},
+        "firewall_modified": {"const": false},
+        "target_inspection_attempt_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "controls": {"type": "array", "minItems": 7, "maxItems": 7, "items": {"$ref": "#/$defs/control"}},
+    "status": {"enum": ["verified", "boundary_unproven", "violated"]},
+    "blockers": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "can_modify_acl", "can_modify_firewall", "can_read_credential_values"],
+      "properties": {
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "can_modify_acl": {"const": false},
+        "can_modify_firewall": {"const": false},
+        "can_read_credential_values": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "processIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["process_id", "executable_path_digest", "executable_digest", "os_account_identifier", "os_account_sid"],
+      "properties": {
+        "process_id": {"type": "integer", "minimum": 1},
+        "executable_path_digest": {"$ref": "#/$defs/digest"},
+        "executable_digest": {"$ref": "#/$defs/digest"},
+        "os_account_identifier": {"$ref": "#/$defs/nonEmptyString"},
+        "os_account_sid": {"type": "string", "pattern": "^S-[0-9-]+$"}
+      }
+    },
+    "collectorIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["process_id", "executable_path_digest", "executable_digest", "os_account_identifier", "os_account_sid", "collector_id", "independent_process", "account_name_exposed"],
+      "properties": {
+        "process_id": {"type": "integer", "minimum": 1},
+        "executable_path_digest": {"$ref": "#/$defs/digest"},
+        "executable_digest": {"$ref": "#/$defs/digest"},
+        "os_account_identifier": {"$ref": "#/$defs/nonEmptyString"},
+        "os_account_sid": {"type": "string", "pattern": "^S-[0-9-]+$"},
+        "collector_id": {"$ref": "#/$defs/nonEmptyString"},
+        "independent_process": {"type": "boolean"},
+        "account_name_exposed": {"const": false}
+      }
+    },
+    "securityDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path_digest", "security_descriptor_digest", "security_descriptor_length"],
+      "properties": {
+        "path_digest": {"$ref": "#/$defs/digest"},
+        "security_descriptor_digest": {"$ref": "#/$defs/digest"},
+        "security_descriptor_length": {"type": "integer", "minimum": 1},
+        "target_effective_access": {"$ref": "#/$defs/effectiveAccess"},
+        "collector_effective_access": {"$ref": "#/$defs/effectiveAccess"}
+      }
+    },
+    "inputSecurityDescriptor": {
+      "allOf": [
+        {"$ref": "#/$defs/securityDescriptor"},
+        {"type": "object", "required": ["target_effective_access"]}
+      ]
+    },
+    "outputSecurityDescriptor": {
+      "allOf": [
+        {"$ref": "#/$defs/securityDescriptor"},
+        {"type": "object", "required": ["target_effective_access", "collector_effective_access"]}
+      ]
+    },
+    "effectiveAccess": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["account_sid_digest", "access_mask_hex", "read_allowed", "write_allowed", "execute_allowed", "delete_allowed", "evaluation_method"],
+      "properties": {
+        "account_sid_digest": {"$ref": "#/$defs/digest"},
+        "access_mask_hex": {"type": "string", "pattern": "^0x[0-9a-f]{8}$"},
+        "read_allowed": {"type": "boolean"},
+        "write_allowed": {"type": "boolean"},
+        "execute_allowed": {"type": "boolean"},
+        "delete_allowed": {"type": "boolean"},
+        "evaluation_method": {"const": "get_effective_rights_from_acl"}
+      }
+    },
+    "reference": {"type": "object", "additionalProperties": false, "required": ["id", "digest"], "properties": {"id": {"$ref": "#/$defs/nonEmptyString"}, "digest": {"$ref": "#/$defs/digest"}}},
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["control_id", "status", "evidence"],
+      "properties": {
+        "control_id": {"enum": ["CREDENTIAL_ISOLATION", "DEDICATED_OS_ACCOUNT", "DISTINCT_PROCESS", "EXECUTABLE_IDENTITY", "NETWORK_EGRESS_DENIED", "READ_ONLY_INPUT_ACL", "SEPARATE_OUTPUT_ACL"]},
+        "status": {"enum": ["verified", "unproven", "violated"]},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/reference"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-topology-verdict.schema.json",
+  "title": "nimrod Range Topology Declaration Verdict",
+  "type": "object", "additionalProperties": false,
+  "required": ["verdict_version", "origin", "topology_id", "topology_digest", "generation", "status", "zone_count", "node_count", "route_count", "default_deny_declared", "internet_egress_declared", "out_of_band_kill_declared", "environment_verified", "provisioning_performed", "network_contact_performed", "authority"],
+  "properties": {
+    "verdict_version": {"const": "0.1.0"}, "origin": {"const": "simulated"}, "topology_id": {"type": "string", "format": "uuid"},
+    "topology_digest": {"$ref": "#/$defs/digest"}, "generation": {"type": "integer", "minimum": 1},
+    "status": {"const": "declared_contract_valid_environment_unproven"}, "zone_count": {"const": 3}, "node_count": {"const": 3}, "route_count": {"const": 2},
+    "default_deny_declared": {"const": true}, "internet_egress_declared": {"const": false}, "out_of_band_kill_declared": {"const": true},
+    "environment_verified": {"const": false}, "provisioning_performed": {"const": false}, "network_contact_performed": {"const": false},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_provision", "can_connect", "can_execute"], "properties": {"can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}}}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

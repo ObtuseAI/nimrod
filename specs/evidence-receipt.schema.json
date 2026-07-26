@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/evidence-receipt.schema.json",
+  "title": "nimrod Evidence Receipt",
+  "description": "Planning contract for an evidence item and its processing history.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_version",
+    "evidence_id",
+    "incident_id",
+    "origin",
+    "observation_time",
+    "collection_time",
+    "validity_interval",
+    "source_identity",
+    "device_or_workload_attestation",
+    "content_digest",
+    "classification",
+    "supporting_material",
+    "contradictions",
+    "processing_history",
+    "access_history",
+    "retention_policy",
+    "signatures"
+  ],
+  "properties": {
+    "receipt_version": { "const": "0.1.0" },
+    "evidence_id": { "type": "string", "minLength": 1 },
+    "incident_id": { "oneOf": [{ "type": "string", "format": "uuid" }, { "type": "null" }] },
+    "origin": { "enum": ["live", "replayed", "simulated", "imported"] },
+    "observation_time": { "type": "string", "format": "date-time" },
+    "collection_time": { "type": "string", "format": "date-time" },
+    "validity_interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "string", "format": "date-time" },
+        "end": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] }
+      }
+    },
+    "source_identity": { "$ref": "#/$defs/reference" },
+    "device_or_workload_attestation": { "oneOf": [{ "$ref": "#/$defs/reference" }, { "type": "null" }] },
+    "content_digest": { "$ref": "#/$defs/digest" },
+    "classification": { "enum": ["E0", "E1", "E2", "E3", "E4", "E5", "E6"] },
+    "supporting_material": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "contradictions": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+    "processing_history": { "type": "array", "items": { "$ref": "#/$defs/historyEntry" } },
+    "access_history": { "type": "array", "items": { "$ref": "#/$defs/historyEntry" } },
+    "retention_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["purpose", "delete_after", "legal_hold"],
+      "properties": {
+        "purpose": { "type": "string", "minLength": 1 },
+        "delete_after": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] },
+        "legal_hold": { "type": "boolean" }
+      }
+    },
+    "signatures": { "type": "array", "items": { "$ref": "#/$defs/signature" } }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+._-]*:[A-Fa-f0-9]{32,}$" },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "historyEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "operation", "timestamp", "result_digest"],
+      "properties": {
+        "actor": { "$ref": "#/$defs/reference" },
+        "operation": { "type": "string", "minLength": 1 },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "result_digest": { "$ref": "#/$defs/digest" }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signer", "algorithm", "value"],
+      "properties": {
+        "signer": { "type": "string", "minLength": 1 },
+        "algorithm": { "type": "string", "minLength": 1 },
+        "value": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/verifier-observation.schema.json",
+  "title": "nimrod Verifier Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["observation_version", "observation_id", "origin", "service_id", "logical_principal", "process_id", "os_account_identifier", "observed_at", "status", "subject_digest", "read_only_behavior_verified", "os_account_boundary_verified", "credential_environment_variable_count", "details"],
+  "properties": {
+    "observation_version": { "const": "0.1.0" },
+    "observation_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "service_id": { "$ref": "#/$defs/nonEmptyString" },
+    "logical_principal": { "$ref": "#/$defs/nonEmptyString" },
+    "process_id": { "oneOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+    "os_account_identifier": { "oneOf": [{ "$ref": "#/$defs/nonEmptyString" }, { "type": "null" }] },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["valid", "invalid", "timeout", "unavailable"] },
+    "subject_digest": { "oneOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] },
+    "read_only_behavior_verified": { "type": "boolean" },
+    "os_account_boundary_verified": { "type": "boolean" },
+    "credential_environment_variable_count": { "type": "integer", "minimum": 0 },
+    "details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["error_type", "message"],
+      "properties": {
+        "error_type": { "oneOf": [{ "$ref": "#/$defs/nonEmptyString" }, { "type": "null" }] },
+        "message": { "oneOf": [{ "$ref": "#/$defs/nonEmptyString" }, { "type": "null" }] }
+      }
+    }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 }
+  }
+}

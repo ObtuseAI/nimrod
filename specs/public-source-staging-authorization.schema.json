@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/public-source-staging-authorization.schema.json",
+  "title": "nimrod public source staging authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["authorization_version", "authorization_id", "origin", "status", "governance_state_digest", "owner_registry_id", "owner_registry_digest", "public_registry_id", "public_registry_digest", "replica_plan_id", "replica_plan_digest", "issued_at", "not_before", "expires_at", "outcome", "requested_source_ids", "authorized_source_ids", "authorized_content_digests", "construction_zone_id", "quarantine_requirements", "network", "blockers", "authority", "signatures"],
+  "properties": {
+    "authorization_version": {"const": "0.1.0"},
+    "authorization_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "signed_denial_owner_scope_incomplete"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "owner_registry_id": {"type": "string", "format": "uuid"},
+    "owner_registry_digest": {"$ref": "#/$defs/digest"},
+    "public_registry_id": {"type": "string", "format": "uuid"},
+    "public_registry_digest": {"$ref": "#/$defs/digest"},
+    "replica_plan_id": {"type": "string", "format": "uuid"},
+    "replica_plan_digest": {"$ref": "#/$defs/digest"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "outcome": {"const": "deny_staging"},
+    "requested_source_ids": {"type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "authorized_source_ids": {"type": "array", "maxItems": 0},
+    "authorized_content_digests": {"type": "array", "maxItems": 0},
+    "construction_zone_id": {"type": "null"},
+    "quarantine_requirements": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"enum": ["ARCHIVE_DIGEST", "COMMIT_SIGNATURE", "LICENSE_OBLIGATIONS", "MALWARE_SCAN", "REPRODUCIBLE_EXTRACTION", "SBOM_GENERATION", "SECRET_SCAN", "SOURCE_PROVENANCE"]}},
+    "network": {"$ref": "#/$defs/network"},
+    "blockers": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"enum": ["CONTENT_DIGEST_NOT_RETAINED", "ISOLATED_CONSTRUCTION_ZONE_MISSING", "OWNER_ATTESTATION_MISSING", "OWNER_EXCLUSION_REGISTRY_INCOMPLETE", "OWNER_SCOPE_PROOF_MISSING", "PINNED_COMMIT_SIGNATURE_UNVERIFIED", "SOURCE_ARCHIVE_NOT_STAGED", "SOURCE_STAGING_AUTHORIZATION_DENIED"]}},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signatures": {"type": "array", "minItems": 2, "maxItems": 3, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "network": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "internet_egress", "public_ingress", "github_access", "registry_access", "external_dns_resolution"],
+      "properties": {"mode": {"const": "offline_default_deny"}, "internet_egress": {"const": false}, "public_ingress": {"const": false}, "github_access": {"const": false}, "registry_access": {"const": false}, "external_dns_resolution": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_download_source", "can_stage_source", "can_extract_source", "can_resolve_dependencies", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"],
+      "properties": {"can_download_source": {"const": false}, "can_stage_source": {"const": false}, "can_extract_source": {"const": false}, "can_resolve_dependencies": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}
+    },
+    "signature": {
+      "type": "object", "additionalProperties": false,
+      "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {"signer_id": {"type": "string", "minLength": 1}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "contentEncoding": "base64"}}
+    }
+  }
+}

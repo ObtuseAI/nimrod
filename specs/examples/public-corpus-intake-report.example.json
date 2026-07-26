@@ -1,0 +1,48 @@
+{
+  "report_version": "0.1.0",
+  "report_id": "92370be3-0904-5341-a44b-42ed1352fbfa",
+  "origin": "live_metadata_observation",
+  "status": "PUBLIC_SACRIFICIAL_CORPUS_PINNED_METADATA_ONLY_OWNER_REGISTRY_AND_OFFLINE_REPLICAS_BLOCKED",
+  "assessed_at": "2026-07-13T18:45:00Z",
+  "registry_id": "f21d7658-b092-45c2-a314-f812533b6a05",
+  "registry_digest": "sha256:92c029ec8cfe4711a81be49293724f165af5059e3a22a093bb2666376705cf11",
+  "plan_id": "7f6e5311-3a30-42b8-b451-c7a3a853c5ba",
+  "plan_digest": "sha256:55213338bbd4f560b330c75a5a9b9a9a24e52918e84aba2e5981361c1aae998b",
+  "pinned_source_count": 5,
+  "metadata_reviewed_source_count": 5,
+  "source_archive_count": 0,
+  "replica_declared_count": 5,
+  "replica_ready_count": 0,
+  "owner_exclusion_registry_complete": false,
+  "public_host_target_authorized": false,
+  "range_connection_authorized": false,
+  "execution_authorized": false,
+  "blockers": [
+    "CONTENT_DIGEST_NOT_RETAINED",
+    "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING",
+    "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+    "REPLICA_NOT_BUILT",
+    "SOURCE_ARCHIVE_NOT_STAGED"
+  ],
+  "activity": {
+    "github_metadata_network_read_performed": true,
+    "repository_content_downloaded": false,
+    "source_archive_staged": false,
+    "dependency_resolution_performed": false,
+    "container_image_pulled": false,
+    "replica_built": false,
+    "infrastructure_provisioned": false,
+    "public_host_contacted_for_testing": false,
+    "campaign_executed": false
+  },
+  "authority": {
+    "can_download_source": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  }
+}

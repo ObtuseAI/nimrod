@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/validation-campaign.schema.json",
+  "title": "nimrod Validation Campaign",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "campaign_version",
+    "campaign_id",
+    "authorization_lease_id",
+    "objective",
+    "protection_profile_ids",
+    "standards_mappings",
+    "steps",
+    "negative_controls",
+    "expected_evidence",
+    "cleanup_plan",
+    "success_contract",
+    "failure_contract"
+  ],
+  "properties": {
+    "campaign_version": { "const": "0.1.0" },
+    "campaign_id": { "$ref": "#/$defs/uuid" },
+    "authorization_lease_id": { "$ref": "#/$defs/uuid" },
+    "objective": { "$ref": "#/$defs/nonEmptyString" },
+    "protection_profile_ids": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "standards_mappings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attack", "atlas", "d3fend"],
+      "properties": {
+        "attack": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "atlas": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "d3fend": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step_id", "sequence", "connector_id", "capability", "target_id", "effect_class", "preconditions", "expected_state_delta", "cleanup_step_id", "verification_oracles"],
+        "properties": {
+          "step_id": { "$ref": "#/$defs/nonEmptyString" },
+          "sequence": { "type": "integer", "minimum": 1 },
+          "connector_id": { "$ref": "#/$defs/capability" },
+          "capability": { "$ref": "#/$defs/capability" },
+          "target_id": { "$ref": "#/$defs/nonEmptyString" },
+          "effect_class": { "enum": ["observe_only", "reversible_local", "reversible_distributed", "sacrificial_replica_only"] },
+          "preconditions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+          "expected_state_delta": { "type": "object", "minProperties": 1 },
+          "cleanup_step_id": { "$ref": "#/$defs/nonEmptyString" },
+          "verification_oracles": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/reference" } }
+        }
+      }
+    },
+    "negative_controls": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "expected_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step_id", "source_id", "ocsf_class", "maximum_latency_seconds", "required_fields"],
+        "properties": {
+          "step_id": { "$ref": "#/$defs/nonEmptyString" },
+          "source_id": { "$ref": "#/$defs/nonEmptyString" },
+          "ocsf_class": { "$ref": "#/$defs/nonEmptyString" },
+          "maximum_latency_seconds": { "type": "integer", "minimum": 0 },
+          "required_fields": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+        }
+      }
+    },
+    "cleanup_plan": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "success_contract": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "failure_contract": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "capability": { "type": "string", "pattern": "^[a-z][a-z0-9_.:-]{2,127}$" },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+._-]*:[A-Fa-f0-9]{32,}$" }
+      }
+    }
+  }
+}
+

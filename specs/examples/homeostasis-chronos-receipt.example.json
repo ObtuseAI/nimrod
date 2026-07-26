@@ -1,0 +1,338 @@
+{
+  "receipt": {
+    "allocation_decisions": [
+      {
+        "action": "scheduled",
+        "clock_state": "stale",
+        "costs": {
+          "cpu": 2,
+          "investigation": 2,
+          "memory": 2,
+          "model": 0,
+          "sandbox": 1,
+          "simulation": 0,
+          "storage": 1,
+          "telemetry": 0,
+          "verification": 3
+        },
+        "priority_score": 1.0,
+        "reason": "bounded_lease_available",
+        "work_id": "74000000-0000-4000-8000-000000000011",
+        "work_kind": "independent_verifier_replication"
+      },
+      {
+        "action": "scheduled",
+        "clock_state": "stale",
+        "costs": {
+          "cpu": 2,
+          "investigation": 2,
+          "memory": 2,
+          "model": 0,
+          "sandbox": 1,
+          "simulation": 2,
+          "storage": 2,
+          "telemetry": 0,
+          "verification": 2
+        },
+        "priority_score": 1.0,
+        "reason": "bounded_lease_available",
+        "work_id": "74000000-0000-4000-8000-000000000012",
+        "work_kind": "recovery_replay_validation"
+      },
+      {
+        "action": "scheduled",
+        "clock_state": "stale",
+        "costs": {
+          "cpu": 1,
+          "investigation": 1,
+          "memory": 1,
+          "model": 0,
+          "sandbox": 0,
+          "simulation": 0,
+          "storage": 1,
+          "telemetry": 3,
+          "verification": 0
+        },
+        "priority_score": 0.8575,
+        "reason": "bounded_lease_available",
+        "work_id": "74000000-0000-4000-8000-000000000010",
+        "work_kind": "telemetry_refresh"
+      },
+      {
+        "action": "deferred",
+        "clock_state": "stale",
+        "costs": {
+          "cpu": 3,
+          "investigation": 2,
+          "memory": 3,
+          "model": 3,
+          "sandbox": 1,
+          "simulation": 3,
+          "storage": 1,
+          "telemetry": 0,
+          "verification": 1
+        },
+        "priority_score": 0.7575,
+        "reason": "resource_backpressure",
+        "work_id": "74000000-0000-4000-8000-000000000013",
+        "work_kind": "model_diversity_challenge"
+      },
+      {
+        "action": "abstained",
+        "clock_state": "expired",
+        "costs": {
+          "cpu": 6,
+          "investigation": 6,
+          "memory": 8,
+          "model": 3,
+          "sandbox": 3,
+          "simulation": 4,
+          "storage": 6,
+          "telemetry": 4,
+          "verification": 5
+        },
+        "priority_score": 0.49,
+        "reason": "chronos_evidence_expired",
+        "work_id": "74000000-0000-4000-8000-000000000015",
+        "work_kind": "capability_mutation_review"
+      },
+      {
+        "action": "abstained",
+        "clock_state": "expired",
+        "costs": {
+          "cpu": 1,
+          "investigation": 1,
+          "memory": 1,
+          "model": 0,
+          "sandbox": 0,
+          "simulation": 0,
+          "storage": 0,
+          "telemetry": 1,
+          "verification": 1
+        },
+        "priority_score": 0.4,
+        "reason": "chronos_evidence_expired",
+        "work_id": "74000000-0000-4000-8000-000000000014",
+        "work_kind": "identity_corroboration"
+      }
+    ],
+    "authority": {
+      "can_authorize": false,
+      "can_change_policy": false,
+      "can_contact_targets": false,
+      "can_execute": false,
+      "can_modify_constitution": false,
+      "can_promote": false,
+      "can_self_verify": false,
+      "can_use_credentials": false
+    },
+    "chronos_assessments": [
+      {
+        "age_ms": 500,
+        "clock": "endpoint_millisecond",
+        "state": "stale",
+        "work_id": "74000000-0000-4000-8000-000000000010"
+      },
+      {
+        "age_ms": 172800000,
+        "clock": "threat_intelligence_day",
+        "state": "stale",
+        "work_id": "74000000-0000-4000-8000-000000000011"
+      },
+      {
+        "age_ms": 7200000,
+        "clock": "recovery_hour",
+        "state": "stale",
+        "work_id": "74000000-0000-4000-8000-000000000012"
+      },
+      {
+        "age_ms": 864000000,
+        "clock": "architecture_week",
+        "state": "stale",
+        "work_id": "74000000-0000-4000-8000-000000000013"
+      },
+      {
+        "age_ms": 60000,
+        "clock": "identity_second",
+        "state": "expired",
+        "work_id": "74000000-0000-4000-8000-000000000014"
+      },
+      {
+        "age_ms": 11836800000,
+        "clock": "capability_month",
+        "state": "expired",
+        "work_id": "74000000-0000-4000-8000-000000000015"
+      }
+    ],
+    "evaluated_at": "2026-07-16T12:00:00Z",
+    "homeostasis": {
+      "abstained_count": 2,
+      "breach_count": 10,
+      "breached_signals": [
+        "agent_diversity",
+        "confidence_inflation",
+        "evidence_completeness",
+        "model_diversity",
+        "recovery_health",
+        "resource_pressure",
+        "sensor_health",
+        "telemetry_freshness",
+        "threat_pressure",
+        "verification_backlog"
+      ],
+      "confidence_inflation": 0.72,
+      "deferred_count": 1,
+      "pressure_index": 0.67,
+      "scheduled_count": 3,
+      "state": "degraded_bounded",
+      "verification_backlog": 0.8
+    },
+    "mission_digest": "sha256:66479a6db1f3b17a1266ba26327f559c02c4ba3c87c778c0ed7a04edc97537d6",
+    "origin": "replayed",
+    "receipt_id": "74000000-0000-4000-8000-000000000100",
+    "resource_ledger": {
+      "cpu": {
+        "allocated": 5,
+        "capacity": 6,
+        "remaining": 1
+      },
+      "investigation": {
+        "allocated": 5,
+        "capacity": 6,
+        "remaining": 1
+      },
+      "memory": {
+        "allocated": 5,
+        "capacity": 8,
+        "remaining": 3
+      },
+      "model": {
+        "allocated": 0,
+        "capacity": 3,
+        "remaining": 3
+      },
+      "sandbox": {
+        "allocated": 2,
+        "capacity": 3,
+        "remaining": 1
+      },
+      "simulation": {
+        "allocated": 2,
+        "capacity": 4,
+        "remaining": 2
+      },
+      "storage": {
+        "allocated": 4,
+        "capacity": 6,
+        "remaining": 2
+      },
+      "telemetry": {
+        "allocated": 3,
+        "capacity": 4,
+        "remaining": 1
+      },
+      "verification": {
+        "allocated": 5,
+        "capacity": 5,
+        "remaining": 0
+      }
+    },
+    "security_claim": "Replay-only W4 scheduling preserves bounded resources, homeostatic pressure, confidence inflation, verifier backlog, and per-domain clock abstention; no execution or production control is authorized",
+    "signal_assessments": [
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.4,
+        "signal": "telemetry_freshness",
+        "state": "breached",
+        "threshold": 0.8
+      },
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.65,
+        "signal": "evidence_completeness",
+        "state": "breached",
+        "threshold": 0.8
+      },
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.9,
+        "signal": "trust_health",
+        "state": "healthy",
+        "threshold": 0.8
+      },
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.85,
+        "signal": "identity_health",
+        "state": "healthy",
+        "threshold": 0.8
+      },
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.4,
+        "signal": "model_diversity",
+        "state": "breached",
+        "threshold": 0.7
+      },
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.7,
+        "signal": "sensor_health",
+        "state": "breached",
+        "threshold": 0.8
+      },
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.55,
+        "signal": "recovery_health",
+        "state": "breached",
+        "threshold": 0.8
+      },
+      {
+        "healthy_when": "at_or_below",
+        "observed": 0.8,
+        "signal": "verification_backlog",
+        "state": "breached",
+        "threshold": 0.2
+      },
+      {
+        "healthy_when": "at_or_below",
+        "observed": 0.78,
+        "signal": "threat_pressure",
+        "state": "breached",
+        "threshold": 0.7
+      },
+      {
+        "healthy_when": "at_or_below",
+        "observed": 0.15,
+        "signal": "false_positive_rate",
+        "state": "healthy",
+        "threshold": 0.2
+      },
+      {
+        "healthy_when": "at_or_below",
+        "observed": 0.72,
+        "signal": "confidence_inflation",
+        "state": "breached",
+        "threshold": 0.2
+      },
+      {
+        "healthy_when": "at_or_above",
+        "observed": 0.5,
+        "signal": "agent_diversity",
+        "state": "breached",
+        "threshold": 0.6
+      },
+      {
+        "healthy_when": "at_or_below",
+        "observed": 0.9,
+        "signal": "resource_pressure",
+        "state": "breached",
+        "threshold": 0.8
+      }
+    ],
+    "status": "replay_valid_schedule_proposal_only"
+  },
+  "receipt_digest": "sha256:615e552494c6c37d61069b4ce95f219b63e1bce8d7728cd34f44bfc88668e4b6",
+  "receipt_version": "0.1.0"
+}

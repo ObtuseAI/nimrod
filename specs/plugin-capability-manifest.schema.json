@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/plugin-capability-manifest.schema.json",
+  "title": "nimrod deny-by-default plugin capability manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "plugin_id", "plugin_version", "origin", "artifact_digest", "runtime", "capabilities", "filesystem", "network", "lifecycle", "authority"],
+  "properties": {
+    "manifest_version": {"const": "0.1.0"},
+    "plugin_id": {"type": "string", "pattern": "^plugin:[a-z0-9._-]+$"},
+    "plugin_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "origin": {"enum": ["simulated", "range", "live"]},
+    "artifact_digest": {"$ref": "#/$defs/digest"},
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "abi", "maximum_memory_bytes", "maximum_fuel", "wall_clock_timeout_ms", "threads"],
+      "properties": {
+        "kind": {"const": "wasm_component"},
+        "abi": {"const": "wasi_preview2"},
+        "maximum_memory_bytes": {"type": "integer", "minimum": 1048576, "maximum": 67108864},
+        "maximum_fuel": {"type": "integer", "minimum": 1, "maximum": 50000000},
+        "wall_clock_timeout_ms": {"type": "integer", "minimum": 1, "maximum": 500},
+        "threads": {"const": false}
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allow", "deny"],
+      "properties": {
+        "allow": {"const": ["observe_process_metadata"]},
+        "deny": {"const": ["credential_access", "filesystem_write", "host_command", "network_access", "policy_write", "process_control", "signing"]}
+      }
+    },
+    "filesystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["read_paths", "write_paths"],
+      "properties": {
+        "read_paths": {"const": []},
+        "write_paths": {"const": []}
+      }
+    },
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_destinations", "dns"],
+      "properties": {
+        "allowed_destinations": {"const": []},
+        "dns": {"const": false}
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["auto_start", "install_authorized", "load_authorized"],
+      "properties": {
+        "auto_start": {"const": false},
+        "install_authorized": {"const": false},
+        "load_authorized": {"const": false}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_load", "can_execute_host_command", "can_request_credentials", "can_change_policy"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_load": {"const": false},
+        "can_execute_host_command": {"const": false},
+        "can_request_credentials": {"const": false},
+        "can_change_policy": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

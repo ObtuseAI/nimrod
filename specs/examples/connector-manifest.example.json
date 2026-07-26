@@ -1,0 +1,43 @@
+{
+  "manifest_version": "0.1.0",
+  "connector_id": "connector.simulated.atomic",
+  "connector_version": "0.1.0",
+  "vendor_product": "simulated structured-test adapter",
+  "supported_product_versions": ["planning-only"],
+  "role": "red",
+  "lifecycle_operations": [
+    "discover",
+    "preflight",
+    "compile",
+    "execute",
+    "observe",
+    "abort",
+    "cleanup",
+    "verify"
+  ],
+  "permissions": [
+    "range.test.simulate"
+  ],
+  "data_classes": ["simulated-event"],
+  "network_destinations": ["range:simulated-windows-01"],
+  "secret_references": [],
+  "side_effects": ["Creates one reversible simulated marker"],
+  "idempotency": "The campaign step ID identifies one marker operation",
+  "abort_contract": "Stop accepting actions and revoke the campaign capability",
+  "cleanup_contract": "Remove the simulated marker and verify its absence",
+  "rate_limits": {
+    "maximum_actions_per_minute": 1
+  },
+  "license_review": {
+    "status": "pending",
+    "license": "planning-example",
+    "redistribution_allowed": false
+  },
+  "health_checks": [
+    "Connector identity is authenticated",
+    "Target route is lease-bound",
+    "Abort channel is reachable"
+  ],
+  "signature": null
+}
+

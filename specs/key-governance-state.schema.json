@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/key-governance-state.schema.json",
+  "title": "nimrod Key Governance State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["state_version", "governance_id", "origin", "epoch", "issued_at", "previous_state_digest", "threshold", "ceremony_key_count", "minimum_distinct_roles", "keys"],
+  "properties": {
+    "state_version": { "const": "0.1.0" },
+    "governance_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "epoch": { "type": "integer", "minimum": 1 },
+    "issued_at": { "$ref": "#/$defs/timestamp" },
+    "previous_state_digest": { "oneOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] },
+    "threshold": { "const": 2 },
+    "ceremony_key_count": { "const": 3 },
+    "minimum_distinct_roles": { "const": 2 },
+    "keys": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "$ref": "#/$defs/key" }
+    }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "role": { "enum": ["customer_authority", "safety_officer", "recovery_officer"] },
+    "custody": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["connector_kind", "connector_id", "key_reference", "private_key_exportable", "hardware_backed", "allowed_operations", "attestation_digest"],
+      "properties": {
+        "connector_kind": { "enum": ["pkcs11", "aws_kms", "azure_key_vault", "gcp_cloud_kms", "test_ephemeral"] },
+        "connector_id": { "$ref": "#/$defs/nonEmptyString" },
+        "key_reference": { "$ref": "#/$defs/nonEmptyString" },
+        "private_key_exportable": { "const": false },
+        "hardware_backed": { "type": "boolean" },
+        "allowed_operations": { "const": ["sign"] },
+        "attestation_digest": { "oneOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] }
+      }
+    },
+    "key": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key_id", "role", "algorithm", "public_key_base64", "status", "valid_from", "valid_until", "custody"],
+      "properties": {
+        "key_id": { "$ref": "#/$defs/nonEmptyString" },
+        "role": { "$ref": "#/$defs/role" },
+        "algorithm": { "const": "Ed25519" },
+        "public_key_base64": { "type": "string", "pattern": "^[A-Za-z0-9+/]{43}=$" },
+        "status": { "enum": ["active", "retired", "revoked", "lost", "compromised"] },
+        "valid_from": { "$ref": "#/$defs/timestamp" },
+        "valid_until": { "oneOf": [{ "$ref": "#/$defs/timestamp" }, { "type": "null" }] },
+        "custody": { "$ref": "#/$defs/custody" }
+      }
+    }
+  }
+}

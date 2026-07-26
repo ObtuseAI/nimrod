@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/range-evidence-completion-authorization.schema.json",
+  "title": "nimrod range evidence completion authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["authorization_version", "authorization_id", "origin", "status", "policy_id", "policy_digest", "acceptance_report_id", "acceptance_report_digest", "scope_digest", "environment_id", "issued_at", "not_before", "expires_at", "outcome", "reason", "authority", "signatures"],
+  "properties": {
+    "authorization_version": {"const": "0.1.0"},
+    "authorization_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+    "status": {"enum": ["completion_denied", "external_completion_authorized"]},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "acceptance_report_id": {"type": "string", "format": "uuid"},
+    "acceptance_report_digest": {"$ref": "#/$defs/digest"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "environment_id": {"type": "string", "minLength": 1},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "outcome": {"enum": ["authorize_completion", "deny_completion"]},
+    "reason": {"enum": ["all_completion_prerequisites_satisfied", "completion_denied_or_prerequisites_unsatisfied"]},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signatures": {"type": "array", "minItems": 2, "maxItems": 3, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "allOf": [
+    {"if": {"properties": {"outcome": {"const": "authorize_completion"}}, "required": ["outcome"]}, "then": {"properties": {"status": {"const": "external_completion_authorized"}, "reason": {"const": "all_completion_prerequisites_satisfied"}, "authority": {"properties": {"can_mark_evidence_complete": {"const": true}}}}}},
+    {"if": {"properties": {"outcome": {"const": "deny_completion"}}, "required": ["outcome"]}, "then": {"properties": {"status": {"const": "completion_denied"}, "reason": {"const": "completion_denied_or_prerequisites_unsatisfied"}, "authority": {"properties": {"can_mark_evidence_complete": {"const": false}}}}}},
+    {"if": {"properties": {"origin": {"const": "simulated"}}, "required": ["origin"]}, "then": {"properties": {"outcome": {"const": "deny_completion"}}}}
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_collect", "can_install", "can_provision", "can_change_policy", "can_access_credentials", "can_connect", "can_execute", "can_mark_evidence_complete", "can_authorize_action"],
+      "properties": {"can_collect": {"const": false}, "can_install": {"const": false}, "can_provision": {"const": false}, "can_change_policy": {"const": false}, "can_access_credentials": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_mark_evidence_complete": {"type": "boolean"}, "can_authorize_action": {"const": false}}
+    },
+    "signature": {
+      "type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {"signer_id": {"type": "string", "minLength": 1}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "contentEncoding": "base64"}}
+    }
+  }
+}

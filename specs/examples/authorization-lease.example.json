@@ -1,0 +1,66 @@
+{
+  "lease_version": "0.1.0",
+  "lease_id": "44444444-4444-4444-8444-444444444444",
+  "customer_id": "customer:example",
+  "authority_proof": {
+    "id": "authority:planning-example",
+    "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "approvals": [
+    {
+      "id": "approval:planning-example",
+      "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+    }
+  ],
+  "issued_at": "2026-07-12T19:00:00Z",
+  "not_before": "2026-07-12T19:00:00Z",
+  "expires_at": "2026-07-12T19:15:00Z",
+  "nonce": "planning-example-not-valid-for-execution",
+  "target_graph": [
+    {
+      "stable_id": "device:simulated-windows-01",
+      "resource_type": "windows_device",
+      "binding": {
+        "profile_id": "profile:windows-range-host"
+      },
+      "environment_class": "range"
+    }
+  ],
+  "allowed_techniques": ["simulation:reversible-marker"],
+  "allowed_capabilities": ["range.test.simulate"],
+  "effect_ceiling": "reversible_local",
+  "prohibited_actions": [
+    "No external targets",
+    "No destructive effects",
+    "No secret collection"
+  ],
+  "budgets": {
+    "maximum_actions": 1,
+    "maximum_concurrency": 1,
+    "maximum_seconds": 300,
+    "maximum_cost_usd": 0,
+    "maximum_export_bytes": 0
+  },
+  "preflight_requirements": [
+    "Range snapshot exists",
+    "Out-of-band kill switch is reachable",
+    "Independent verifier is healthy"
+  ],
+  "kill_switch": {
+    "id": "kill-switch:range-01",
+    "controller": "customer:example",
+    "out_of_band": true,
+    "maximum_revocation_seconds": 5
+  },
+  "cleanup_requirements": [
+    "Remove the simulated marker",
+    "Verify the original range snapshot remains restorable"
+  ],
+  "signatures": [
+    {
+      "id": "signature:planning-placeholder",
+      "digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+    }
+  ]
+}
+

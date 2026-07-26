@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/evaluator-observation-envelope.schema.json",
+  "title": "nimrod Signed Evaluator Observation Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["envelope_version", "envelope_id", "origin", "evaluator_policy_digest", "evaluator_id", "logical_principal", "process_id", "os_account_identifier", "os_account_sid", "role", "subject_digest", "constitution_digest", "capability_report_digest", "evaluation_input_digest", "resource_ledger_digest", "isolation_attestation_digest", "observed_at", "expires_at", "status", "evidence", "authority", "signature"],
+  "properties": {
+    "envelope_version": {"const": "0.1.0"},
+    "envelope_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "evaluator_policy_digest": {"$ref": "#/$defs/digest"},
+    "evaluator_id": {"$ref": "#/$defs/nonEmptyString"},
+    "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+    "process_id": {"type": "integer", "minimum": 1},
+    "os_account_identifier": {"$ref": "#/$defs/nonEmptyString"},
+    "os_account_sid": {"$ref": "#/$defs/nonEmptyString"},
+    "role": {"enum": ["public_regression", "sealed_holdout", "adversarial", "rights_and_recovery"]},
+    "subject_digest": {"$ref": "#/$defs/digest"},
+    "constitution_digest": {"$ref": "#/$defs/digest"},
+    "capability_report_digest": {"$ref": "#/$defs/digest"},
+    "evaluation_input_digest": {"$ref": "#/$defs/digest"},
+    "resource_ledger_digest": {"$ref": "#/$defs/digest"},
+    "isolation_attestation_digest": {"$ref": "#/$defs/digest"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["pass", "fail", "inconclusive"]},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_promote", "can_execute", "can_modify_evaluators", "can_allocate_resources"],
+      "properties": {
+        "can_promote": {"const": false},
+        "can_execute": {"const": false},
+        "can_modify_evaluators": {"const": false},
+        "can_allocate_resources": {"const": false}
+      }
+    },
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "reference": {"type": "object", "additionalProperties": false, "required": ["id", "digest"], "properties": {"id": {"$ref": "#/$defs/nonEmptyString"}, "digest": {"$ref": "#/$defs/digest"}}},
+    "signature": {"type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"], "properties": {"signer_id": {"$ref": "#/$defs/nonEmptyString"}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}}}
+  }
+}

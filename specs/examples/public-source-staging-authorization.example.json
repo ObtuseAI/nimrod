@@ -1,0 +1,79 @@
+{
+  "authorization_version": "0.1.0",
+  "authorization_id": "c0ef9fcc-126e-4aab-98aa-2273fd2178aa",
+  "origin": "simulated",
+  "status": "signed_denial_owner_scope_incomplete",
+  "governance_state_digest": "sha256:85ba53d7ad441c18635a9ddd12da2ed93f9793edb9ebcd88e3700a0205c32fb1",
+  "owner_registry_id": "f738d581-922c-45f2-b389-72aa025c92b6",
+  "owner_registry_digest": "sha256:207f43cf332cd8b9183f794211d9b465df8cc1d09c5883e2564d850a5812bc9d",
+  "public_registry_id": "f21d7658-b092-45c2-a314-f812533b6a05",
+  "public_registry_digest": "sha256:92c029ec8cfe4711a81be49293724f165af5059e3a22a093bb2666376705cf11",
+  "replica_plan_id": "7f6e5311-3a30-42b8-b451-c7a3a853c5ba",
+  "replica_plan_digest": "sha256:55213338bbd4f560b330c75a5a9b9a9a24e52918e84aba2e5981361c1aae998b",
+  "issued_at": "2026-07-13T19:10:00Z",
+  "not_before": "2026-07-13T19:10:00Z",
+  "expires_at": "2026-07-13T19:15:00Z",
+  "outcome": "deny_staging",
+  "requested_source_ids": [
+    "public-source:dvwa",
+    "public-source:iotgoat",
+    "public-source:juice-shop",
+    "public-source:nodegoat",
+    "public-source:webgoat"
+  ],
+  "authorized_source_ids": [],
+  "authorized_content_digests": [],
+  "construction_zone_id": null,
+  "quarantine_requirements": [
+    "ARCHIVE_DIGEST",
+    "COMMIT_SIGNATURE",
+    "LICENSE_OBLIGATIONS",
+    "MALWARE_SCAN",
+    "REPRODUCIBLE_EXTRACTION",
+    "SBOM_GENERATION",
+    "SECRET_SCAN",
+    "SOURCE_PROVENANCE"
+  ],
+  "network": {
+    "mode": "offline_default_deny",
+    "internet_egress": false,
+    "public_ingress": false,
+    "github_access": false,
+    "registry_access": false,
+    "external_dns_resolution": false
+  },
+  "blockers": [
+    "CONTENT_DIGEST_NOT_RETAINED",
+    "ISOLATED_CONSTRUCTION_ZONE_MISSING",
+    "OWNER_ATTESTATION_MISSING",
+    "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+    "OWNER_SCOPE_PROOF_MISSING",
+    "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+    "SOURCE_ARCHIVE_NOT_STAGED",
+    "SOURCE_STAGING_AUTHORIZATION_DENIED"
+  ],
+  "authority": {
+    "can_download_source": false,
+    "can_stage_source": false,
+    "can_extract_source": false,
+    "can_resolve_dependencies": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  },
+  "signatures": [
+    {
+      "signer_id": "key:range-owner",
+      "algorithm": "Ed25519",
+      "signature_base64": "mkK4gizefxH/0ygBE1z2BYhiJZ4cEKscN7PBGwrgKTTRk5vWIuRXpncBDzqLaD2XHOKPmH0as8SIPSoX4mbcAA=="
+    },
+    {
+      "signer_id": "key:range-recovery",
+      "algorithm": "Ed25519",
+      "signature_base64": "kc9AScb+CZBVhQkNOuwuqS6hV5TRLEf+bU5OhRqILMZWp3XOl45eycXehfeGriBSy7TZvFOMeMVpRy8qLW+LAw=="
+    }
+  ]
+}

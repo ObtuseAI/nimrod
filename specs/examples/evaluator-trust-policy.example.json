@@ -1,0 +1,21 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "69cd20d8-f907-4862-a50d-0850bc00eef2",
+  "origin": "simulated",
+  "constitution_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "issued_at": "2026-07-13T04:29:59Z",
+  "not_before": "2026-07-13T04:29:59Z",
+  "expires_at": "2026-07-13T04:40:00Z",
+  "evaluators": [
+    {"evaluator_id": "evaluator:public_regression", "logical_principal": "principal:public_regression", "role": "public_regression", "public_key_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", "expected_os_account_identifier": "nimrod-evaluator-public", "expected_os_account_sid": "S-1-5-21-1001"},
+    {"evaluator_id": "evaluator:sealed_holdout", "logical_principal": "principal:sealed_holdout", "role": "sealed_holdout", "public_key_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=", "expected_os_account_identifier": "nimrod-evaluator-sealed", "expected_os_account_sid": "S-1-5-21-1002"},
+    {"evaluator_id": "evaluator:adversarial", "logical_principal": "principal:adversarial", "role": "adversarial", "public_key_base64": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC=", "expected_os_account_identifier": "nimrod-evaluator-adversarial", "expected_os_account_sid": "S-1-5-21-1003"},
+    {"evaluator_id": "evaluator:rights_and_recovery", "logical_principal": "principal:rights_and_recovery", "role": "rights_and_recovery", "public_key_base64": "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD=", "expected_os_account_identifier": "nimrod-evaluator-rights", "expected_os_account_sid": "S-1-5-21-1004"}
+  ],
+  "authority": {"can_select_itself": false, "can_modify_constitution": false, "can_grant_credentials": false, "can_execute": false},
+  "signatures": [
+    {"signer_id": "key:evolution-owner", "algorithm": "Ed25519", "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="},
+    {"signer_id": "key:evolution-safety", "algorithm": "Ed25519", "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="}
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/control-board-foundry-projection.schema.json",
+  "title": "nimrod Control-Board Foundry Assurance Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["projection_version", "origin", "captured_at", "candidate_digest", "evaluation_digest", "assurance_digest", "operator_state", "severity", "summary", "evaluator_mesh", "resource_lineage", "boundary", "authority"],
+  "properties": {
+    "projection_version": {"const": "0.1.0"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "candidate_digest": {"$ref": "#/$defs/digest"},
+    "evaluation_digest": {"$ref": "#/$defs/digest"},
+    "assurance_digest": {"$ref": "#/$defs/digest"},
+    "operator_state": {"enum": ["blocked", "shadow_eligible_contract_only", "shadow_eligible_live_isolation"]},
+    "severity": {"enum": ["contract_valid", "blocked"]},
+    "summary": {"$ref": "#/$defs/nonEmptyString"},
+    "evaluator_mesh": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/evaluator"}},
+    "resource_lineage": {"$ref": "#/$defs/resourceLineage"},
+    "boundary": {"$ref": "#/$defs/boundary"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_promote", "can_execute", "can_modify_evaluators", "can_expand_resources"],
+      "properties": {"can_promote": {"const": false}, "can_execute": {"const": false}, "can_modify_evaluators": {"const": false}, "can_expand_resources": {"const": false}}
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "evaluator": {"type": "object", "additionalProperties": false, "required": ["evaluator_id", "logical_principal", "process_id", "role", "status", "signature_verified", "isolation_boundary_verified", "production_isolation_verified", "envelope_digest", "isolation_attestation_digest"], "properties": {"evaluator_id": {"$ref": "#/$defs/nonEmptyString"}, "logical_principal": {"$ref": "#/$defs/nonEmptyString"}, "process_id": {"type": "integer", "minimum": 1}, "role": {"enum": ["public_regression", "sealed_holdout", "adversarial", "rights_and_recovery"]}, "status": {"enum": ["pass", "fail", "inconclusive"]}, "signature_verified": {"type": "boolean"}, "isolation_boundary_verified": {"type": "boolean"}, "production_isolation_verified": {"type": "boolean"}, "envelope_digest": {"$ref": "#/$defs/digest"}, "isolation_attestation_digest": {"$ref": "#/$defs/digest"}}},
+    "totals": {"type": "object", "additionalProperties": false, "required": ["total_cycle_seconds", "total_compute_units", "peak_memory_megabytes", "peak_storage_megabytes", "candidate_count"], "properties": {"total_cycle_seconds": {"type": "integer", "minimum": 0}, "total_compute_units": {"type": "integer", "minimum": 0}, "peak_memory_megabytes": {"type": "integer", "minimum": 0}, "peak_storage_megabytes": {"type": "integer", "minimum": 0}, "candidate_count": {"type": "integer", "minimum": 1}}},
+    "resourceLineage": {"type": "object", "additionalProperties": false, "required": ["ledger_id", "lineage_id", "ledger_digest", "head_entry_digest", "entry_count", "status", "totals", "blockers"], "properties": {"ledger_id": {"type": "string", "format": "uuid"}, "lineage_id": {"type": "string", "format": "uuid"}, "ledger_digest": {"$ref": "#/$defs/digest"}, "head_entry_digest": {"$ref": "#/$defs/digest"}, "entry_count": {"type": "integer", "minimum": 1}, "status": {"enum": ["within_constitution", "blocked"]}, "totals": {"$ref": "#/$defs/totals"}, "blockers": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}}}},
+    "boundary": {"type": "object", "additionalProperties": false, "required": ["signed_evaluators_complete", "os_isolation_contract_complete", "live_os_enforcement_verified", "resource_ledger_within_constitution", "shadow_eligible", "production_ready", "missing_controls"], "properties": {"signed_evaluators_complete": {"type": "boolean"}, "os_isolation_contract_complete": {"type": "boolean"}, "live_os_enforcement_verified": {"type": "boolean"}, "resource_ledger_within_constitution": {"type": "boolean"}, "shadow_eligible": {"type": "boolean"}, "production_ready": {"const": false}, "missing_controls": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}}}}
+  }
+}

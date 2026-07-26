@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/design-partner-evaluation-plan.schema.json",
+  "title": "nimrod Edge design-partner evaluation plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plan_version", "plan_id", "origin", "status", "created_at", "product_surface", "cohort", "tasks", "measures", "data_boundary", "activity", "exit_gate", "blockers", "authority"],
+  "properties": {
+    "plan_version": {"const": "0.1.0"},
+    "plan_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "RECRUITMENT_NOT_STARTED"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "product_surface": {"const": "edge_preview"},
+    "cohort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_count", "maximum_count", "participant_count", "participants", "selection_profile"],
+      "properties": {
+        "target_count": {"const": 5},
+        "maximum_count": {"const": 8},
+        "participant_count": {"const": 0},
+        "participants": {"const": []},
+        "selection_profile": {"const": ["security_conscious_individual", "small_technical_team", "windows_operator"]}
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task_id", "evidence", "success_condition"],
+        "properties": {
+          "task_id": {"enum": ["distinguish_live_from_replayed", "explain_replayed_event", "inspect_missing_evidence", "understand_action_boundary", "export_local_evidence"]},
+          "evidence": {"type": "string", "minLength": 1},
+          "success_condition": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "measures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_task_completion_rate", "minimum_evidence_comprehension_rate", "maximum_critical_misunderstanding_count", "minimum_privacy_acceptance_rate"],
+      "properties": {
+        "minimum_task_completion_rate": {"const": 0.8},
+        "minimum_evidence_comprehension_rate": {"const": 0.8},
+        "maximum_critical_misunderstanding_count": {"const": 0},
+        "minimum_privacy_acceptance_rate": {"const": 0.8}
+      }
+    },
+    "data_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explicit_consent_required", "raw_endpoint_telemetry_collected", "external_telemetry_upload", "credential_collection", "background_surveillance", "screen_recording_enabled_by_default", "participant_identifier"],
+      "properties": {
+        "explicit_consent_required": {"const": true},
+        "raw_endpoint_telemetry_collected": {"const": false},
+        "external_telemetry_upload": {"const": false},
+        "credential_collection": {"const": false},
+        "background_surveillance": {"const": false},
+        "screen_recording_enabled_by_default": {"const": false},
+        "participant_identifier": {"const": "operator_chosen_alias"}
+      }
+    },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recruitment_started", "participant_contacted", "consent_collected", "software_installed", "endpoint_data_collected", "external_message_sent"],
+      "properties": {
+        "recruitment_started": {"const": false},
+        "participant_contacted": {"const": false},
+        "consent_collected": {"const": false},
+        "software_installed": {"const": false},
+        "endpoint_data_collected": {"const": false},
+        "external_message_sent": {"const": false}
+      }
+    },
+    "exit_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["satisfied", "production_claims_authorized", "required_evidence"],
+      "properties": {
+        "satisfied": {"const": false},
+        "production_claims_authorized": {"const": false},
+        "required_evidence": {"const": ["completed_consented_sessions", "task_metrics", "misunderstanding_log", "privacy_feedback", "residual_risk_review"]}
+      }
+    },
+    "blockers": {"const": ["COUNSEL_PRIVACY_REVIEW_INCOMPLETE", "NAMED_PARTNERS_NOT_SELECTED", "PARTICIPANT_CONSENT_NOT_COLLECTED"]},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_contact_participants", "can_collect_endpoint_data", "can_install_software", "can_authorize_execution", "can_publish_claims"],
+      "properties": {
+        "can_contact_participants": {"const": false},
+        "can_collect_endpoint_data": {"const": false},
+        "can_install_software": {"const": false},
+        "can_authorize_execution": {"const": false},
+        "can_publish_claims": {"const": false}
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "campaign_version": "0.1.0",
+  "campaign_id": "66666666-6666-4666-8666-666666666666",
+  "authorization_lease_id": "44444444-4444-4444-8444-444444444444",
+  "objective": "Verify the simulated range marker is observed, detected, cleaned up, and independently verified",
+  "protection_profile_ids": ["profile:windows-range-host"],
+  "standards_mappings": {
+    "attack": [],
+    "atlas": [],
+    "d3fend": ["simulation-only"]
+  },
+  "steps": [
+    {
+      "step_id": "step:create-simulated-marker",
+      "sequence": 1,
+      "connector_id": "connector.simulated.atomic",
+      "capability": "range.test.simulate",
+      "target_id": "device:simulated-windows-01",
+      "effect_class": "reversible_local",
+      "preconditions": [
+        "The authorization lease is valid",
+        "The target binding still matches",
+        "The range snapshot and verifier are healthy"
+      ],
+      "expected_state_delta": {
+        "simulated_marker": "present"
+      },
+      "cleanup_step_id": "cleanup:remove-simulated-marker",
+      "verification_oracles": [
+        {
+          "id": "verifier:range-state",
+          "digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ]
+    }
+  ],
+  "negative_controls": [
+    "A different simulated marker must not match the campaign detection"
+  ],
+  "expected_evidence": [
+    {
+      "step_id": "step:create-simulated-marker",
+      "source_id": "sensor:simulated-range",
+      "ocsf_class": "simulation_event",
+      "maximum_latency_seconds": 10,
+      "required_fields": [
+        "campaign_id",
+        "step_id",
+        "target_id",
+        "event_time"
+      ]
+    }
+  ],
+  "cleanup_plan": [
+    "Run cleanup:remove-simulated-marker",
+    "Verify the marker is absent"
+  ],
+  "success_contract": [
+    "The action is causally observed",
+    "The negative control does not match",
+    "Cleanup and post-state verification pass"
+  ],
+  "failure_contract": [
+    "Any missing evidence, cleanup failure, contradiction, or timeout remains non-success"
+  ]
+}
+

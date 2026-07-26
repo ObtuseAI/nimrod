@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-recovery-receipt.schema.json",
+  "title": "nimrod Range Recovery Verification Receipt",
+  "type": "object", "additionalProperties": false,
+  "required": ["receipt_version", "origin", "status", "evidence_id", "evidence_digest", "topology_digest", "kill_state_digest", "cleanup_subject_digest", "snapshot_restored", "cleanup_verified", "cleanup_obligation_count", "verified_verifier_count", "blockers", "kill_remains_engaged", "range_reuse_authorized", "range_connection_authorized", "execution_authorized", "authority"],
+  "properties": {
+    "receipt_version": {"const": "0.1.0"}, "origin": {"const": "simulated"}, "status": {"enum": ["verified_contract_only", "blocked"]},
+    "evidence_id": {"type": "string", "format": "uuid"}, "evidence_digest": {"$ref": "#/$defs/digest"}, "topology_digest": {"$ref": "#/$defs/digest"},
+    "kill_state_digest": {"$ref": "#/$defs/digest"}, "cleanup_subject_digest": {"$ref": "#/$defs/digest"},
+    "snapshot_restored": {"type": "boolean"}, "cleanup_verified": {"type": "boolean"}, "cleanup_obligation_count": {"const": 6},
+    "verified_verifier_count": {"type": "integer", "minimum": 0, "maximum": 2}, "blockers": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "kill_remains_engaged": {"const": true}, "range_reuse_authorized": {"const": false}, "range_connection_authorized": {"const": false}, "execution_authorized": {"const": false},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "nonEmptyString": {"type": "string", "minLength": 1},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_reset_kill", "can_reuse_range", "can_execute"], "properties": {"can_reset_kill": {"const": false}, "can_reuse_range": {"const": false}, "can_execute": {"const": false}}}
+  }
+}

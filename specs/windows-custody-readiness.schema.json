@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/windows-custody-readiness.schema.json",
+  "title": "nimrod Read-Only Windows Custody Readiness Measurement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["custody_version", "measurement_id", "origin", "collected_at", "platform", "cng", "tpm", "key_material", "status", "blockers", "production_custody_verified", "authority"],
+  "properties": {
+    "custody_version": {"const": "0.1.0"},
+    "measurement_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "live"]},
+    "collected_at": {"type": "string", "format": "date-time"},
+    "platform": {"const": "windows"},
+    "cng": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enumeration_method", "provider_count", "provider_name_digests", "platform_crypto_provider_present", "software_key_storage_provider_present", "raw_provider_set_digest"],
+      "properties": {
+        "enumeration_method": {"const": "ncrypt_enum_storage_providers"},
+        "provider_count": {"type": "integer", "minimum": 0},
+        "provider_name_digests": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/digest"}},
+        "platform_crypto_provider_present": {"type": "boolean"},
+        "software_key_storage_provider_present": {"type": "boolean"},
+        "raw_provider_set_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "tpm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inspection_method", "query_succeeded", "tpm_present", "tpm_enabled", "tpm_activated", "tpm_owned", "error_id_digest", "hresult", "attempt_count"],
+      "properties": {
+        "inspection_method": {"const": "cim_win32_tpm_read_only"},
+        "query_succeeded": {"type": "boolean"},
+        "tpm_present": {"type": ["boolean", "null"]},
+        "tpm_enabled": {"type": ["boolean", "null"]},
+        "tpm_activated": {"type": ["boolean", "null"]},
+        "tpm_owned": {"type": ["boolean", "null"]},
+        "error_id_digest": {"anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+        "hresult": {"type": ["integer", "null"]},
+        "attempt_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "key_material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hardware_key_reference_configured", "hardware_key_created", "signing_operation_performed", "provider_attestation_collected", "private_key_material_accessed"],
+      "properties": {
+        "hardware_key_reference_configured": {"const": false},
+        "hardware_key_created": {"const": false},
+        "signing_operation_performed": {"const": false},
+        "provider_attestation_collected": {"const": false},
+        "private_key_material_accessed": {"const": false}
+      }
+    },
+    "status": {"const": "blocked"},
+    "blockers": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "production_custody_verified": {"const": false},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_create_key", "can_delete_key", "can_sign", "can_export_private_key", "can_authorize_production"],
+      "properties": {
+        "can_create_key": {"const": false},
+        "can_delete_key": {"const": false},
+        "can_sign": {"const": false},
+        "can_export_private_key": {"const": false},
+        "can_authorize_production": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

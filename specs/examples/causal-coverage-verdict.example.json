@@ -1,0 +1,51 @@
+{
+  "verdict_version": "0.2.0",
+  "verdict_id": "77777777-7777-4777-8777-777777777777",
+  "origin": "simulated",
+  "campaign_id": "66666666-6666-4666-8666-666666666666",
+  "step_id": "step:create-simulated-marker",
+  "target_id": "device:simulated-windows-01",
+  "observed_at": "2026-07-12T19:01:00Z",
+  "status": "inconclusive_timeout",
+  "causal_chain": {
+    "intent": {
+      "id": "intent:simulation",
+      "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+    },
+    "attempt": null,
+    "state_delta": null,
+    "observation": null,
+    "detection": null,
+    "response": null,
+    "recovery": null,
+    "post_state": null
+  },
+  "assurance_vector": {
+    "prevention": null,
+    "observation": null,
+    "detection": null,
+    "correlation": null,
+    "response": null,
+    "recovery": null,
+    "precision": null,
+    "evidence_completeness": 0.1,
+    "privacy": 1.0,
+    "performance": 1.0,
+    "uncertainty": 1.0,
+    "freshness_seconds": 0
+  },
+  "supporting_evidence": [],
+  "contradicting_evidence": [],
+  "uncertainties": [
+    "This planning example did not execute a real campaign"
+  ],
+  "residual_risks": [
+    "No live connector, target, sensor, or verifier behavior was established"
+  ],
+  "verifier_signatures": [
+    {
+      "id": "verifier:planning-only",
+      "digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "autonomy_budget": 1,
+  "browser_console_error_count": 0,
+  "browser_page_error_count": 0,
+  "browser_stage_count": 5,
+  "browser_witness_reference_count": 4,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "independent_verifier_process_count": 1,
+  "live_endpoint_observation_performed": false,
+  "negative_fail_closed_case_count": 7,
+  "origin": "replayed",
+  "positive_api_flow_count": 1,
+  "positive_cli_flow_count": 1,
+  "post_state_observed": false,
+  "recovery_verified": false,
+  "status": "EDGE_PREVIEW_REPLAY_VERTICAL_SLICE_VALID",
+  "target_state_changed": false,
+  "ui_http_status": 200,
+  "witness_entry_count": 4
+}

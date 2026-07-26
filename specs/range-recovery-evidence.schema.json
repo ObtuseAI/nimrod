@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-recovery-evidence.schema.json",
+  "title": "nimrod Range Snapshot and Cleanup Evidence",
+  "type": "object", "additionalProperties": false,
+  "required": ["evidence_version", "evidence_id", "origin", "captured_at", "topology_digest", "kill_state_digest", "baseline_snapshot_digest", "observed_post_cleanup_snapshot_digest", "cleanup_obligations", "cleanup_subject_digest", "verifier_observations", "authority"],
+  "properties": {
+    "evidence_version": {"const": "0.1.0"}, "evidence_id": {"type": "string", "format": "uuid"}, "origin": {"const": "simulated"},
+    "captured_at": {"type": "string", "format": "date-time"}, "topology_digest": {"$ref": "#/$defs/digest"}, "kill_state_digest": {"$ref": "#/$defs/digest"},
+    "baseline_snapshot_digest": {"$ref": "#/$defs/digest"}, "observed_post_cleanup_snapshot_digest": {"$ref": "#/$defs/digest"},
+    "cleanup_obligations": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/obligation"}},
+    "cleanup_subject_digest": {"$ref": "#/$defs/digest"},
+    "verifier_observations": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/verifier"}},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "nonEmptyString": {"type": "string", "minLength": 1},
+    "reference": {"type": "object", "additionalProperties": false, "required": ["id", "digest"], "properties": {"id": {"$ref": "#/$defs/nonEmptyString"}, "digest": {"$ref": "#/$defs/digest"}}},
+    "obligation": {"type": "object", "additionalProperties": false, "required": ["obligation_id", "status", "evidence"], "properties": {"obligation_id": {"enum": ["AGENT_ABSENCE", "CREDENTIAL_DISPOSITION", "ROUTE_CLOSURE", "TARGET_RESTORED", "TELEMETRY_FINALIZED", "TOOL_ARTIFACT_REMOVAL"]}, "status": {"enum": ["verified", "unproven", "failed"]}, "evidence": {"type": "array", "items": {"$ref": "#/$defs/reference"}}}},
+    "verifier": {"type": "object", "additionalProperties": false, "required": ["verifier_id", "logical_principal", "process_id", "status", "subject_digest"], "properties": {"verifier_id": {"$ref": "#/$defs/nonEmptyString"}, "logical_principal": {"$ref": "#/$defs/nonEmptyString"}, "process_id": {"type": "integer", "minimum": 1}, "status": {"enum": ["verified", "rejected"]}, "subject_digest": {"$ref": "#/$defs/digest"}}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_reset_kill", "can_reuse_range", "can_execute"], "properties": {"can_reset_kill": {"const": false}, "can_reuse_range": {"const": false}, "can_execute": {"const": false}}}
+  }
+}

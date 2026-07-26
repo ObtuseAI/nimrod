@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/verifier-health.schema.json",
+  "title": "nimrod Verifier Health",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["health_version", "request_id", "origin", "service_id", "logical_principal", "process_id", "os_account_identifier", "status", "read_only_inputs_required", "filesystem_write_capability_exposed", "credential_environment_variable_count", "unexpected_environment_variable_count", "os_account_boundary_verified", "production_ready", "allowed_capabilities", "prohibited_capabilities"],
+  "properties": {
+    "health_version": { "const": "0.1.0" },
+    "request_id": { "$ref": "#/$defs/nonEmptyString" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "service_id": { "$ref": "#/$defs/nonEmptyString" },
+    "logical_principal": { "$ref": "#/$defs/nonEmptyString" },
+    "process_id": { "type": "integer", "minimum": 1 },
+    "os_account_identifier": { "$ref": "#/$defs/nonEmptyString" },
+    "status": { "enum": ["healthy_reference_boundary", "blocked_identity_mismatch"] },
+    "read_only_inputs_required": { "const": true },
+    "filesystem_write_capability_exposed": { "const": false },
+    "credential_environment_variable_count": { "const": 0 },
+    "unexpected_environment_variable_count": { "const": 0 },
+    "os_account_boundary_verified": { "type": "boolean" },
+    "production_ready": { "type": "boolean" },
+    "allowed_capabilities": { "const": ["health.report", "witness.verify", "anchor.verify"] },
+    "prohibited_capabilities": { "const": ["plan", "authorize", "execute", "sign", "write_evidence", "read_credentials"] }
+  },
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 }
+  }
+}

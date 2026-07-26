@@ -1,0 +1,61 @@
+{
+  "manifest_version": "0.1.0",
+  "release_id": "cfd56680-e981-5a0b-9afd-d6c3c69f26c8",
+  "origin": "simulated",
+  "product": "nimrod-edge",
+  "channel": "candidate",
+  "version": "0.2.0-alpha.1",
+  "release_sequence": 2,
+  "issued_at": "2026-07-15T20:00:00Z",
+  "expires_at": "2026-07-16T20:00:00Z",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "artifact": {
+    "name": "nimrod-edge-0.2.0-alpha.1.msix",
+    "digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "size_bytes": 1024,
+    "provenance_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+    "sbom_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "previous_release": {
+    "version": "0.1.0",
+    "release_sequence": 1,
+    "manifest_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+  },
+  "plugins": [
+    {
+      "plugin_id": "plugin:edge-process-metadata",
+      "manifest_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+    }
+  ],
+  "rollback": {
+    "target_release_manifest_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+    "offline_verified": true,
+    "rollback_tested": true,
+    "safe_uninstall_tested": true
+  },
+  "rollout": {
+    "percentage": 0,
+    "cohort": [],
+    "installation_authorized": false
+  },
+  "authority": {
+    "can_install": false,
+    "can_promote": false,
+    "can_change_rollout": false,
+    "can_change_policy": false
+  },
+  "signatures": [
+    {
+      "signer_id": "key:customer-a",
+      "role": "customer_authority",
+      "algorithm": "Ed25519",
+      "signature_base64": "AA=="
+    },
+    {
+      "signer_id": "key:safety-b",
+      "role": "safety_officer",
+      "algorithm": "Ed25519",
+      "signature_base64": "AQ=="
+    }
+  ]
+}

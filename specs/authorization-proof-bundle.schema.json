@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/authorization-proof-bundle.schema.json",
+  "title": "nimrod Authorization Proof Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bundle_version",
+    "bundle_id",
+    "origin",
+    "lease_id",
+    "lease_digest",
+    "trust_policy_digest",
+    "signed_at",
+    "signatures"
+  ],
+  "properties": {
+    "bundle_version": { "const": "0.1.0" },
+    "bundle_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "lease_id": { "$ref": "#/$defs/uuid" },
+    "lease_digest": { "$ref": "#/$defs/digest" },
+    "trust_policy_digest": { "$ref": "#/$defs/digest" },
+    "signed_at": { "$ref": "#/$defs/timestamp" },
+    "signatures": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signer_id", "algorithm", "signature_base64"],
+        "properties": {
+          "signer_id": { "$ref": "#/$defs/nonEmptyString" },
+          "algorithm": { "const": "Ed25519" },
+          "signature_base64": { "type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "digest": { "type": "string", "pattern": "^sha256:[A-Fa-f0-9]{64}$" }
+  }
+}

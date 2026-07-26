@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-environment-observation.schema.json",
+  "title": "nimrod Signed Content-Addressed Range Environment Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["observation_version", "observation_id", "origin", "status", "environment_id", "environment_name", "policy_id", "policy_digest", "scope_digest", "control_id", "collector", "collected_at", "raw_evidence", "activity", "authority", "signature"],
+  "properties": {
+    "observation_version": {"const": "0.1.0"},
+    "observation_id": {"type": "string", "format": "uuid"},
+    "origin": {"$ref": "#/$defs/origin"},
+    "status": {"enum": ["fixture_only_unproven", "externally_supplied_unverified"]},
+    "environment_id": {"$ref": "#/$defs/nonEmptyString"},
+    "environment_name": {"oneOf": [{"$ref": "#/$defs/nonEmptyString"}, {"type": "null"}]},
+    "policy_id": {"type": "string", "format": "uuid"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "scope_digest": {"$ref": "#/$defs/digest"},
+    "control_id": {"$ref": "#/$defs/control"},
+    "collector": {"$ref": "#/$defs/collector"},
+    "collected_at": {"type": "string", "format": "date-time"},
+    "raw_evidence": {"$ref": "#/$defs/rawEvidence"},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica"]},
+    "control": {"enum": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"]},
+    "collector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["collector_id", "logical_principal", "process_id"],
+      "properties": {
+        "collector_id": {"$ref": "#/$defs/nonEmptyString"},
+        "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+        "process_id": {"type": "integer", "minimum": 1}
+      }
+    },
+    "rawEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["content_type", "encoding", "byte_length", "digest", "payload_base64", "retention_mode", "contains_credentials", "contains_secrets"],
+      "properties": {
+        "content_type": {"const": "application/json"},
+        "encoding": {"const": "base64"},
+        "byte_length": {"type": "integer", "minimum": 2, "maximum": 65536},
+        "digest": {"$ref": "#/$defs/digest"},
+        "payload_base64": {"type": "string", "minLength": 4, "maxLength": 87384},
+        "retention_mode": {"const": "inline_content_addressed"},
+        "contains_credentials": {"const": false},
+        "contains_secrets": {"const": false}
+      }
+    },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment_contact_performed_by_nimrod", "policy_mutation_performed", "credential_access_performed", "tool_installation_performed", "source_tool_contact_performed", "network_contact_performed", "campaign_execution_performed"],
+      "properties": {
+        "environment_contact_performed_by_nimrod": {"const": false},
+        "policy_mutation_performed": {"const": false},
+        "credential_access_performed": {"const": false},
+        "tool_installation_performed": {"const": false},
+        "source_tool_contact_performed": {"const": false},
+        "network_contact_performed": {"const": false},
+        "campaign_execution_performed": {"const": false}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_provision", "can_change_policy", "can_access_credentials", "can_connect", "can_execute", "can_verify_attestation"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_provision": {"const": false},
+        "can_change_policy": {"const": false},
+        "can_access_credentials": {"const": false},
+        "can_connect": {"const": false},
+        "can_execute": {"const": false},
+        "can_verify_attestation": {"const": false}
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {
+        "signer_id": {"$ref": "#/$defs/nonEmptyString"},
+        "algorithm": {"const": "Ed25519"},
+        "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}
+      }
+    }
+  }
+}

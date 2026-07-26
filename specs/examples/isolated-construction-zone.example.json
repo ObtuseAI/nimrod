@@ -1,0 +1,102 @@
+{
+  "zone_version": "0.1.0",
+  "zone_id": "46295d08-2990-4f04-a207-e9cc298b99c5",
+  "origin": "simulated",
+  "status": "declared_not_provisioned",
+  "declared_at": "2026-07-13T19:11:15Z",
+  "staging_authorization_id": "c0ef9fcc-126e-4aab-98aa-2273fd2178aa",
+  "staging_authorization_digest": "sha256:41a7224ccc920de29b8ca776674babc6c6455ba945b16871ac3b76e5910dc521",
+  "environment_class": "isolated_construction_zone_candidate",
+  "generation": 1,
+  "controls": [
+    {
+      "control_id": "CLEAN_BASE_IMAGE",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "DEDICATED_EPHEMERAL_IDENTITY",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "DISPOSABLE_WORKSPACE",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_EXTERNAL_DNS",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_GITHUB_ACCESS",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_INTERNET_EGRESS",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_PUBLIC_INGRESS",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "NO_REGISTRY_ACCESS",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "OUT_OF_BAND_KILL",
+      "status": "unproven",
+      "evidence": []
+    },
+    {
+      "control_id": "SEPARATE_OUTPUT_STORE",
+      "status": "unproven",
+      "evidence": []
+    }
+  ],
+  "network": {
+    "mode": "offline_default_deny_declaration",
+    "internet_egress": false,
+    "public_ingress": false,
+    "github_access": false,
+    "registry_access": false,
+    "external_dns_resolution": false,
+    "policy_applied": false
+  },
+  "storage": {
+    "workspace_kind": "disposable_ephemeral",
+    "source_ingress_read_only": true,
+    "separate_output_store_required": true,
+    "workspace_created": false,
+    "source_ingress_mounted": false,
+    "output_store_created": false,
+    "baseline_snapshot_digest": null
+  },
+  "activity": {
+    "construction_zone_provisioned": false,
+    "identity_created": false,
+    "storage_created": false,
+    "network_policy_applied": false,
+    "kill_control_installed": false,
+    "source_ingress_mounted": false,
+    "output_store_created": false
+  },
+  "authority": {
+    "can_download_source": false,
+    "can_stage_source": false,
+    "can_extract_source": false,
+    "can_resolve_dependencies": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  }
+}

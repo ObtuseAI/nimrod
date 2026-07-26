@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-topology.schema.json",
+  "title": "nimrod Disposable Range Topology Declaration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["topology_version", "topology_id", "origin", "environment_class", "generation", "zones", "nodes", "routes", "controls", "authority"],
+  "properties": {
+    "topology_version": {"const": "0.1.0"},
+    "topology_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "environment_class": {"const": "isolated_range"},
+    "generation": {"type": "integer", "minimum": 1},
+    "zones": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/zone"}},
+    "nodes": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/node"}},
+    "routes": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/route"}},
+    "controls": {
+      "type": "object", "additionalProperties": false,
+      "required": ["default_deny_egress", "internet_egress_permitted", "target_to_control_plane_permitted", "telemetry_write_only", "out_of_band_kill_independent", "credential_reuse_permitted"],
+      "properties": {
+        "default_deny_egress": {"const": true}, "internet_egress_permitted": {"const": false},
+        "target_to_control_plane_permitted": {"const": false}, "telemetry_write_only": {"const": true},
+        "out_of_band_kill_independent": {"const": true}, "credential_reuse_permitted": {"const": false}
+      }
+    },
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "zone": {
+      "type": "object", "additionalProperties": false, "required": ["zone_id", "role", "internet_access"],
+      "properties": {"zone_id": {"$ref": "#/$defs/nonEmptyString"}, "role": {"enum": ["target", "telemetry", "control"]}, "internet_access": {"const": false}}
+    },
+    "node": {
+      "type": "object", "additionalProperties": false, "required": ["node_id", "role", "zone_id", "disposable", "dedicated_credentials", "credential_scope"],
+      "properties": {
+        "node_id": {"$ref": "#/$defs/nonEmptyString"}, "role": {"enum": ["sacrificial_target", "telemetry_collector", "kill_switch"]},
+        "zone_id": {"$ref": "#/$defs/nonEmptyString"}, "disposable": {"const": true}, "dedicated_credentials": {"const": true},
+        "credential_scope": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "route": {
+      "type": "object", "additionalProperties": false, "required": ["route_id", "source_zone_id", "destination_zone_id", "direction", "purpose"],
+      "properties": {
+        "route_id": {"$ref": "#/$defs/nonEmptyString"}, "source_zone_id": {"$ref": "#/$defs/nonEmptyString"},
+        "destination_zone_id": {"$ref": "#/$defs/nonEmptyString"}, "direction": {"const": "one_way"},
+        "purpose": {"enum": ["telemetry_export", "out_of_band_kill"]}
+      }
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false, "required": ["can_provision", "can_connect", "can_execute"],
+      "properties": {"can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}}
+    }
+  }
+}

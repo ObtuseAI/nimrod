@@ -1,0 +1,53 @@
+{
+  "decision_version": "0.1.0",
+  "decision_id": "95c81603-6798-5822-9c15-7a19189d1c8f",
+  "origin": "simulated",
+  "status": "fixture_decision_non_accepting",
+  "policy_id": "51eb728b-c4ad-442a-9706-52728b4d46bb",
+  "policy_digest": "sha256:207f1dfeebd27bc12d520a23a61d87ccd3791662055432b6a5cb2a2983803a84",
+  "admission_report_id": "441b313a-7394-57a1-bb09-4a92ebdd5106",
+  "admission_report_digest": "sha256:64b8506738d58467faf57a83326922e4bc01c0998eba3805cd739a9b7cdc2fdb",
+  "environment_id": "range-environment:owner-name-required",
+  "scope_digest": "sha256:2eec5a164643739b53273baf7e30ae256491fb295a94ff46e5f6b785dab66d39",
+  "observation_id": "484c5513-ae63-561f-8130-da744956c5e4",
+  "observation_digest": "sha256:2413723f712370b025ac8401741048394db4426e287ae94333e21a5d8a47e59b",
+  "raw_evidence_digest": "sha256:222a62c7052b2c8073295003a0d0e039953e250bfcd5e142cdb08acf6a7bb6db",
+  "control_id": "CLEANUP_CONTRACT",
+  "verifier": {
+    "verifier_id": "range-verifier:1",
+    "logical_principal": "principal:range-verifier-1",
+    "process_id": 5201,
+    "identity_enforcement": "fixture_logical_only",
+    "independence_evidence_digest": null
+  },
+  "decision": "reject",
+  "reason": "evidence_contradicts_control",
+  "decided_at": "2026-07-13T16:31:00Z",
+  "evidence_read_only": true,
+  "activity": {
+    "environment_contact_performed_by_nimrod": false,
+    "collection_performed": false,
+    "policy_mutation_performed": false,
+    "credential_access_performed": false,
+    "tool_installation_performed": false,
+    "network_contact_performed": false,
+    "range_connection_performed": false,
+    "campaign_execution_performed": false
+  },
+  "authority": {
+    "can_collect": false,
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_authorize_action": false
+  },
+  "signature": {
+    "signer_id": "range-verifier:1",
+    "algorithm": "Ed25519",
+    "signature_base64": "lEIO/amh1ksm2sv6ND2ZIaa1KiKX33suqdVTCP2+kkxrxnQWNYllU8H1rPuGKeuFrXOvT6C+I5LIS1ffumwdBA=="
+  }
+}

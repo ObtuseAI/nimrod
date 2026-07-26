@@ -1,0 +1,22 @@
+{
+  "constitution_version": "0.1.0", "constitution_id": "dfc3fb9d-6088-434b-814e-813108fba665", "origin": "simulated",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "issued_at": "2026-07-12T23:50:00Z", "not_before": "2026-07-12T23:50:00Z", "expires_at": "2026-07-13T00:05:00Z",
+  "axioms": ["AUTHORITY_MONOTONICITY", "BOUNDED_RESOURCES_AND_TERMINATION", "CANDIDATE_ONLY_MUTATION", "CAPABILITY_TRIGGERED_SAFEGUARDS", "CHAMPION_AND_REGRESSION_FLOORS", "CONSTITUTIONAL_ROOT_IMMUTABILITY", "CORRIGIBILITY_AND_STOP_DOMINANCE", "DECLARED_EPISTEMIC_POSTURE", "EPISTEMIC_TYPING", "EVALUATOR_INDEPENDENCE", "EVIDENCE_BEFORE_SUCCESS", "HUMAN_AND_RIGHTS_FLOOR", "LEXICOGRAPHIC_HARD_GATES", "NO_AUTONOMOUS_REPLICATION_OR_RESOURCE_ACQUISITION", "NO_PRODUCTION_LEARNING_BY_DEFAULT", "NO_SELF_AUTHORIZATION", "NO_UNIVERSAL_SUPERIORITY_CLAIM", "REVERSIBILITY_BY_CONSTRUCTION", "SEPARATION_OF_DUTIES", "TAMPER_EVIDENT_MEMORY"],
+  "hard_failures": ["EVALUATOR_MANIPULATION", "FABRICATED_EVIDENCE", "RIGHTS_VIOLATION", "ROLLBACK_FAILURE", "SAFEGUARD_WEAKENING", "SECRET_DISCLOSURE", "UNAUTHORIZED_ACTION", "UNBOUNDED_RESOURCE_USE"],
+  "capability_triggers": [
+    {"trigger_id": "AUTONOMOUS_AI_RND", "response": "isolated_enclave"}, {"trigger_id": "LONG_RANGE_AUTONOMY", "response": "elevated"},
+    {"trigger_id": "PERSISTENCE_RESOURCE_ACQUISITION", "response": "pause"}, {"trigger_id": "REPLICATION_ADAPTATION", "response": "pause"},
+    {"trigger_id": "SAFEGUARD_UNDERMINING", "response": "pause"}, {"trigger_id": "SANDBAGGING", "response": "pause"}
+  ],
+  "tier_policies": [
+    {"tier": "A", "maximum_destination": "shadow", "threshold_humans_required": false}, {"tier": "B", "maximum_destination": "shadow", "threshold_humans_required": false},
+    {"tier": "C", "maximum_destination": "production_candidate", "threshold_humans_required": true}, {"tier": "D", "maximum_destination": "quarantine", "threshold_humans_required": true}
+  ],
+  "resource_ceilings": {"maximum_cycle_seconds": 300, "maximum_compute_units": 100, "maximum_memory_megabytes": 512, "maximum_storage_megabytes": 1024, "maximum_candidate_children": 4},
+  "authority": {"can_modify_itself": false, "can_select_evaluators": false, "can_select_signers": false, "can_expand_authority": false, "can_execute": false},
+  "signatures": [
+    {"signer_id": "key:evolution-owner", "algorithm": "Ed25519", "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="},
+    {"signer_id": "key:evolution-safety", "algorithm": "Ed25519", "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="}
+  ]
+}

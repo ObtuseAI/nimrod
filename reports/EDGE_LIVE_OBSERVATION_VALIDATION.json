@@ -1,0 +1,20 @@
+{
+  "action_proposed": false,
+  "active_network_probe_performed": false,
+  "api_observation_count": 1,
+  "cli_observation_count": 1,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "live_target_process_count": 1,
+  "negative_fail_closed_case_count": 7,
+  "origin": "live",
+  "platform": "windows",
+  "policy_input_ready": false,
+  "raw_account_sid_retained": false,
+  "raw_executable_path_retained": false,
+  "requested_process_only": true,
+  "status": "EDGE_LIVE_PROCESS_OBSERVATION_VALID_POLICY_AND_ACTION_BLOCKED",
+  "supported_interface_count": 6,
+  "target_state_changed": false,
+  "writes_performed": false
+}

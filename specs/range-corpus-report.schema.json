@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-corpus-report.schema.json",
+  "title": "nimrod Static Range Corpus Compatibility Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_version", "report_id", "origin", "scanned_at", "status", "manifest_digest", "policy_envelope_digest", "policy_digest", "declared_entry_count", "compatible_entry_count", "blocked_entry_count", "missing_files", "unexpected_files", "items", "compilation_performed", "source_tool_contacted", "network_access_performed", "live_execution_performed", "authority"],
+  "properties": {
+    "report_version": {"const": "0.1.0"},
+    "report_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "scanned_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["compatible_no_execution", "blocked"]},
+    "manifest_digest": {"$ref": "#/$defs/digest"},
+    "policy_envelope_digest": {"$ref": "#/$defs/digest"},
+    "policy_digest": {"$ref": "#/$defs/digest"},
+    "declared_entry_count": {"type": "integer", "minimum": 0},
+    "compatible_entry_count": {"type": "integer", "minimum": 0},
+    "blocked_entry_count": {"type": "integer", "minimum": 0},
+    "missing_files": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "unexpected_files": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["entry_id", "source_kind", "source_object_id", "artifact_digest", "import_receipt_digest", "digest_match", "quarantine_status", "mapping_status", "findings", "error"],
+        "properties": {
+          "entry_id": {"$ref": "#/$defs/nonEmptyString"},
+          "source_kind": {"enum": ["atomic_red_team", "caldera_ability"]},
+          "source_object_id": {"$ref": "#/$defs/nonEmptyString"},
+          "artifact_digest": {"$ref": "#/$defs/digest"},
+          "import_receipt_digest": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+          "digest_match": {"type": "boolean"},
+          "quarantine_status": {"enum": ["eligible_for_no_execution_mapping", "blocked"]},
+          "mapping_status": {"enum": ["pinned_exact", "blocked"]},
+          "findings": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+          "error": {"oneOf": [{"$ref": "#/$defs/nonEmptyString"}, {"type": "null"}]}
+        }
+      }
+    },
+    "compilation_performed": {"const": false},
+    "source_tool_contacted": {"const": false},
+    "network_access_performed": {"const": false},
+    "live_execution_performed": {"const": false},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_connect", "can_compile", "can_execute"],
+      "properties": {
+        "can_connect": {"const": false},
+        "can_compile": {"const": false},
+        "can_execute": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

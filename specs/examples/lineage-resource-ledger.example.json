@@ -1,0 +1,37 @@
+{
+  "ledger_version": "0.1.0",
+  "ledger_id": "72f836fd-da75-438e-aae9-f4614aababe0",
+  "lineage_id": "e56338ee-47fe-4252-866c-4f289b138fe3",
+  "origin": "simulated",
+  "constitution_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "root_candidate_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+  "generated_at": "2026-07-13T04:30:30Z",
+  "not_before": "2026-07-13T04:30:00Z",
+  "expires_at": "2026-07-13T04:40:00Z",
+  "entries": [
+    {
+      "sequence": 1,
+      "candidate_id": "candidate:root",
+      "candidate_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "parent_candidate_digest": null,
+      "resource_lease_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "lease": {"maximum_cycle_seconds": 60, "maximum_compute_units": 10, "maximum_memory_megabytes": 128, "maximum_storage_megabytes": 64, "maximum_candidate_children": 1},
+      "usage": {"cycle_seconds": 12, "compute_units": 4, "peak_memory_megabytes": 96, "peak_storage_megabytes": 24},
+      "evidence": [{"id": "meter:root", "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"}],
+      "child_count": 0,
+      "previous_entry_digest": null,
+      "status": "within_lease",
+      "blockers": []
+    }
+  ],
+  "head_entry_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "totals": {"total_cycle_seconds": 12, "total_compute_units": 4, "peak_memory_megabytes": 96, "peak_storage_megabytes": 24, "candidate_count": 1},
+  "status": "within_constitution",
+  "blockers": [],
+  "authority": {"can_allocate": false, "can_purchase_compute": false, "can_extend_lease": false, "can_execute": false},
+  "signatures": [
+    {"signer_id": "key:evolution-owner", "algorithm": "Ed25519", "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="},
+    {"signer_id": "key:evolution-safety", "algorithm": "Ed25519", "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "validation_version": "0.1.0",
+  "validated_at": "2026-07-12T17:43:29-05:00",
+  "status": "KEY_GOVERNANCE_VALID",
+  "origin": "simulated",
+  "threshold": 2,
+  "ceremony_key_count": 3,
+  "valid_transition_count": 4,
+  "transition_kinds": ["rotation", "lost_key_recovery", "compromise_recovery", "revocation"],
+  "negative_fail_closed_case_count": 15,
+  "custody_interface_kinds": ["pkcs11", "aws_kms", "azure_key_vault", "gcp_cloud_kms"],
+  "external_custody_provider_calls": 0,
+  "private_key_material_exported": false,
+  "ephemeral_private_keys_persisted": false,
+  "live_execution_performed": false,
+  "launch_readiness": "BLOCKED_NO_DEPLOYABLE_PRODUCT"
+}

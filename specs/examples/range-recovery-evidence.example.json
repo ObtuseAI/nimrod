@@ -1,0 +1,24 @@
+{
+  "evidence_version": "0.1.0",
+  "evidence_id": "143d5819-884d-47ed-a9c3-d907fefa5322",
+  "origin": "simulated",
+  "captured_at": "2026-07-12T23:42:00Z",
+  "topology_digest": "sha256:4c54ed8d18956c3f38c9b236ab429df010958ab6a8a12f668d49f6135b9ade99",
+  "kill_state_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "baseline_snapshot_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "observed_post_cleanup_snapshot_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "cleanup_obligations": [
+    {"obligation_id": "AGENT_ABSENCE", "status": "unproven", "evidence": []},
+    {"obligation_id": "CREDENTIAL_DISPOSITION", "status": "unproven", "evidence": []},
+    {"obligation_id": "ROUTE_CLOSURE", "status": "unproven", "evidence": []},
+    {"obligation_id": "TARGET_RESTORED", "status": "unproven", "evidence": []},
+    {"obligation_id": "TELEMETRY_FINALIZED", "status": "unproven", "evidence": []},
+    {"obligation_id": "TOOL_ARTIFACT_REMOVAL", "status": "unproven", "evidence": []}
+  ],
+  "cleanup_subject_digest": "sha256:5976a168c2c9530d88b7544faa4dcdca08e0a2f64184aefcb85c29feae3c6772",
+  "verifier_observations": [
+    {"verifier_id": "verifier:range-a", "logical_principal": "principal:range-a", "process_id": 4101, "status": "rejected", "subject_digest": "sha256:5976a168c2c9530d88b7544faa4dcdca08e0a2f64184aefcb85c29feae3c6772"},
+    {"verifier_id": "verifier:range-b", "logical_principal": "principal:range-b", "process_id": 4102, "status": "rejected", "subject_digest": "sha256:5976a168c2c9530d88b7544faa4dcdca08e0a2f64184aefcb85c29feae3c6772"}
+  ],
+  "authority": {"can_reset_kill": false, "can_reuse_range": false, "can_execute": false}
+}

@@ -1,0 +1,161 @@
+{
+  "registry_version": "0.1.0",
+  "registry_id": "f21d7658-b092-45c2-a314-f812533b6a05",
+  "origin": "live_metadata_observation",
+  "status": "blocked_owner_exclusion_registry_incomplete",
+  "observed_at": "2026-07-13T18:45:00Z",
+  "owner_boundary": {
+    "mode": "deny_first",
+    "registry_complete": false,
+    "unknown_ownership_action": "deny",
+    "excluded_organizations": [
+      "obtuseai"
+    ],
+    "excluded_repositories": [
+      "obtuseai/nimrod"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "public-source:juice-shop",
+      "repository": "juice-shop/juice-shop",
+      "repository_url": "https://github.com/juice-shop/juice-shop",
+      "clone_url": "https://github.com/juice-shop/juice-shop.git",
+      "default_branch": "master",
+      "commit_sha": "33518f5a0911e25d9df747b1e70fb7af279a755c",
+      "pinned_ref": "commit:33518f5a0911e25d9df747b1e70fb7af279a755c",
+      "visibility": "public",
+      "intentionally_vulnerable": true,
+      "purpose": "api_and_web_assurance",
+      "license_review": {
+        "spdx_id": "MIT",
+        "license_path": "LICENSE",
+        "license_url": "https://github.com/juice-shop/juice-shop/blob/33518f5a0911e25d9df747b1e70fb7af279a755c/LICENSE",
+        "detection_source": "github_license_api",
+        "review_status": "metadata_reviewed_source_use_only"
+      },
+      "use_mode": "source_metadata_only",
+      "source_downloaded": false,
+      "public_target_authorized": false,
+      "authorized_network_targets": []
+    },
+    {
+      "source_id": "public-source:webgoat",
+      "repository": "WebGoat/WebGoat",
+      "repository_url": "https://github.com/WebGoat/WebGoat",
+      "clone_url": "https://github.com/WebGoat/WebGoat.git",
+      "default_branch": "main",
+      "commit_sha": "75d475f89a1130035cc34ff2085fc1d874c0881e",
+      "pinned_ref": "commit:75d475f89a1130035cc34ff2085fc1d874c0881e",
+      "visibility": "public",
+      "intentionally_vulnerable": true,
+      "purpose": "java_web_assurance",
+      "license_review": {
+        "spdx_id": "GPL-2.0-or-later",
+        "license_path": "LICENSE.txt",
+        "license_url": "https://github.com/WebGoat/WebGoat/blob/75d475f89a1130035cc34ff2085fc1d874c0881e/LICENSE.txt",
+        "detection_source": "manual_spdx_header",
+        "review_status": "metadata_reviewed_source_use_only"
+      },
+      "use_mode": "source_metadata_only",
+      "source_downloaded": false,
+      "public_target_authorized": false,
+      "authorized_network_targets": []
+    },
+    {
+      "source_id": "public-source:dvwa",
+      "repository": "digininja/DVWA",
+      "repository_url": "https://github.com/digininja/DVWA",
+      "clone_url": "https://github.com/digininja/DVWA.git",
+      "default_branch": "master",
+      "commit_sha": "d45ba3c4e7efa7f023f25f58ab4af9912c887057",
+      "pinned_ref": "commit:d45ba3c4e7efa7f023f25f58ab4af9912c887057",
+      "visibility": "public",
+      "intentionally_vulnerable": true,
+      "purpose": "php_web_assurance",
+      "license_review": {
+        "spdx_id": "GPL-3.0",
+        "license_path": "COPYING.txt",
+        "license_url": "https://github.com/digininja/DVWA/blob/d45ba3c4e7efa7f023f25f58ab4af9912c887057/COPYING.txt",
+        "detection_source": "github_license_api",
+        "review_status": "metadata_reviewed_source_use_only"
+      },
+      "use_mode": "source_metadata_only",
+      "source_downloaded": false,
+      "public_target_authorized": false,
+      "authorized_network_targets": []
+    },
+    {
+      "source_id": "public-source:nodegoat",
+      "repository": "OWASP/NodeGoat",
+      "repository_url": "https://github.com/OWASP/NodeGoat",
+      "clone_url": "https://github.com/OWASP/NodeGoat.git",
+      "default_branch": "master",
+      "commit_sha": "c5cb68a7084e4ae7dcc60e6a98768720a81841e8",
+      "pinned_ref": "commit:c5cb68a7084e4ae7dcc60e6a98768720a81841e8",
+      "visibility": "public",
+      "intentionally_vulnerable": true,
+      "purpose": "node_web_assurance",
+      "license_review": {
+        "spdx_id": "Apache-2.0",
+        "license_path": "LICENSE",
+        "license_url": "https://github.com/OWASP/NodeGoat/blob/c5cb68a7084e4ae7dcc60e6a98768720a81841e8/LICENSE",
+        "detection_source": "github_license_api",
+        "review_status": "metadata_reviewed_source_use_only"
+      },
+      "use_mode": "source_metadata_only",
+      "source_downloaded": false,
+      "public_target_authorized": false,
+      "authorized_network_targets": []
+    },
+    {
+      "source_id": "public-source:iotgoat",
+      "repository": "OWASP/IoTGoat",
+      "repository_url": "https://github.com/OWASP/IoTGoat",
+      "clone_url": "https://github.com/OWASP/IoTGoat.git",
+      "default_branch": "master",
+      "commit_sha": "f67b7f961301d7a56b435fd7cffac73600f0c97b",
+      "pinned_ref": "commit:f67b7f961301d7a56b435fd7cffac73600f0c97b",
+      "visibility": "public",
+      "intentionally_vulnerable": true,
+      "purpose": "firmware_static_assurance",
+      "license_review": {
+        "spdx_id": "MIT",
+        "license_path": "LICENSE.md",
+        "license_url": "https://github.com/OWASP/IoTGoat/blob/f67b7f961301d7a56b435fd7cffac73600f0c97b/LICENSE.md",
+        "detection_source": "github_license_api",
+        "review_status": "metadata_reviewed_source_use_only"
+      },
+      "use_mode": "source_metadata_only",
+      "source_downloaded": false,
+      "public_target_authorized": false,
+      "authorized_network_targets": []
+    }
+  ],
+  "forbidden_target_classes": [
+    "github_api",
+    "github_ci",
+    "github_content_delivery",
+    "github_hosted_repository",
+    "maintainer_infrastructure",
+    "package_or_container_registry",
+    "public_demo",
+    "third_party_deployment"
+  ],
+  "blockers": [
+    "CONTENT_DIGEST_NOT_RETAINED",
+    "OWNER_EXCLUSION_REGISTRY_INCOMPLETE",
+    "PINNED_COMMIT_SIGNATURE_UNVERIFIED",
+    "REPLICA_NOT_BUILT",
+    "SOURCE_ARCHIVE_NOT_STAGED"
+  ],
+  "authority": {
+    "can_download_source": false,
+    "can_build_replica": false,
+    "can_provision": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_target_public_host": false,
+    "can_authorize_action": false
+  }
+}

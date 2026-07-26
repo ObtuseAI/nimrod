@@ -1,0 +1,26 @@
+{
+  "bypass_actor_count": 0,
+  "code_security_status": "disabled",
+  "default_branch": "main",
+  "dependabot_security_updates": true,
+  "private": true,
+  "pull_request_review_thread_resolution": true,
+  "repository": "ObtuseAI/nimrod",
+  "required_status_checks": [
+    "constitutional validation"
+  ],
+  "rule_types": [
+    "deletion",
+    "non_fast_forward",
+    "pull_request",
+    "required_status_checks"
+  ],
+  "ruleset_enforcement": "active",
+  "ruleset_id": 18969551,
+  "ruleset_name": "Protect main with constitutional validation",
+  "ruleset_target": "branch",
+  "secret_scanning_push_protection_status": "enabled",
+  "secret_scanning_status": "enabled",
+  "strict_required_status_checks": true,
+  "vulnerability_alerts": true
+}

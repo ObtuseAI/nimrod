@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://specs.nimrod.invalid/v0.1/evolution-constitution.schema.json",
+  "title": "nimrod Threshold-Signed Evolution Constitution", "type": "object", "additionalProperties": false,
+  "required": ["constitution_version", "constitution_id", "origin", "governance_state_digest", "issued_at", "not_before", "expires_at", "axioms", "hard_failures", "capability_triggers", "tier_policies", "resource_ceilings", "authority", "signatures"],
+  "properties": {
+    "constitution_version": {"const": "0.1.0"}, "constitution_id": {"type": "string", "format": "uuid"}, "origin": {"const": "simulated"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"}, "issued_at": {"type": "string", "format": "date-time"}, "not_before": {"type": "string", "format": "date-time"}, "expires_at": {"type": "string", "format": "date-time"},
+    "axioms": {"type": "array", "minItems": 20, "maxItems": 20, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "hard_failures": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "capability_triggers": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"type": "object", "additionalProperties": false, "required": ["trigger_id", "response"], "properties": {"trigger_id": {"$ref": "#/$defs/nonEmptyString"}, "response": {"enum": ["elevated", "isolated_enclave", "pause"]}}}},
+    "tier_policies": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "object", "additionalProperties": false, "required": ["tier", "maximum_destination", "threshold_humans_required"], "properties": {"tier": {"enum": ["A", "B", "C", "D"]}, "maximum_destination": {"enum": ["quarantine", "shadow", "production_candidate"]}, "threshold_humans_required": {"type": "boolean"}}}},
+    "resource_ceilings": {"type": "object", "additionalProperties": false, "required": ["maximum_cycle_seconds", "maximum_compute_units", "maximum_memory_megabytes", "maximum_storage_megabytes", "maximum_candidate_children"], "properties": {"maximum_cycle_seconds": {"type": "integer", "minimum": 1}, "maximum_compute_units": {"type": "integer", "minimum": 1}, "maximum_memory_megabytes": {"type": "integer", "minimum": 1}, "maximum_storage_megabytes": {"type": "integer", "minimum": 1}, "maximum_candidate_children": {"type": "integer", "minimum": 1}}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_modify_itself", "can_select_evaluators", "can_select_signers", "can_expand_authority", "can_execute"], "properties": {"can_modify_itself": {"const": false}, "can_select_evaluators": {"const": false}, "can_select_signers": {"const": false}, "can_expand_authority": {"const": false}, "can_execute": {"const": false}}},
+    "signatures": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "nonEmptyString": {"type": "string", "minLength": 1}, "signature": {"type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"], "properties": {"signer_id": {"$ref": "#/$defs/nonEmptyString"}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}}}}
+}

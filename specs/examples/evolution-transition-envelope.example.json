@@ -1,0 +1,6 @@
+{
+  "envelope_version": "0.1.0", "envelope_id": "6a8e6979-f004-4db9-a95b-e5e1837cad76", "origin": "simulated", "candidate_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999", "evaluation_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "capability_report_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "constitution_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555", "active_baseline_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "action": "register_shadow", "destination": "shadow", "sequence": 1, "previous_receipt_digest": null, "issued_at": "2026-07-12T23:55:00Z", "not_before": "2026-07-12T23:55:00Z", "expires_at": "2026-07-13T00:00:00Z",
+  "authority": {"can_modify_active_baseline": false, "can_execute_candidate": false, "can_promote_to_production": false, "can_expand_authority": false},
+  "signatures": [{"signer_id": "key:evolution-owner", "algorithm": "Ed25519", "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="}, {"signer_id": "key:evolution-safety", "algorithm": "Ed25519", "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="}]
+}

@@ -1,0 +1,93 @@
+{
+  "verdict_version": "0.1.0",
+  "verdict_id": "99999999-9999-4999-8999-999999999999",
+  "mission_id": "88888888-8888-4888-8888-888888888888",
+  "origin": "simulated",
+  "status": "proposal_ready",
+  "contributions": [
+    {
+      "agent_id": "cell.red.hypothesis",
+      "role": "offensive_planner",
+      "stance": "support",
+      "claim": "A reversible simulated marker is sufficient to challenge the declared evidence path",
+      "evidence": [],
+      "uncertainty": 0.6,
+      "proposed_capability": "range.test.simulate"
+    },
+    {
+      "agent_id": "cell.blue.hunter",
+      "role": "defensive_hunter",
+      "stance": "oppose",
+      "claim": "No real sensor or detector evidence exists, so coverage remains unproven",
+      "evidence": [],
+      "uncertainty": 0.1,
+      "proposed_capability": null
+    },
+    {
+      "agent_id": "cell.purple.compiler",
+      "role": "purple_compiler",
+      "stance": "support",
+      "claim": "The test compiles into the fixed no-op capability without a command bridge",
+      "evidence": [],
+      "uncertainty": 0.2,
+      "proposed_capability": "range.test.simulate"
+    },
+    {
+      "agent_id": "cell.evidence.analyst",
+      "role": "evidence_analyst",
+      "stance": "oppose",
+      "claim": "The causal chain is structurally complete but cannot establish live coverage",
+      "evidence": [],
+      "uncertainty": 0.1,
+      "proposed_capability": null
+    },
+    {
+      "agent_id": "cell.recovery.planner",
+      "role": "recovery_planner",
+      "stance": "support",
+      "claim": "Cleanup is explicit and the no-op creates no state requiring restoration",
+      "evidence": [],
+      "uncertainty": 0.2,
+      "proposed_capability": null
+    },
+    {
+      "agent_id": "cell.verify.independent",
+      "role": "independent_verifier",
+      "stance": "abstain",
+      "claim": "Independent process verification is required before this proposal may advance",
+      "evidence": [],
+      "uncertainty": 0.5,
+      "proposed_capability": null
+    },
+    {
+      "agent_id": "cell.safety.governor",
+      "role": "safety_governor",
+      "stance": "support",
+      "claim": "The proposal remains inside simulated no-execution authority",
+      "evidence": [],
+      "uncertainty": 0.1,
+      "proposed_capability": null
+    }
+  ],
+  "quorum": {
+    "required_distinct_roles": 5,
+    "observed_distinct_roles": 7,
+    "support": 4,
+    "oppose": 2,
+    "vetoes": 0,
+    "satisfied": true
+  },
+  "authority": {
+    "execution_authorized": false,
+    "maximum_outcome": "typed_proposal",
+    "reason": "Swarm consensus cannot grant execution authority"
+  },
+  "dissent": [
+    "No real sensor or detector coverage is established",
+    "Independent process verification remains required"
+  ],
+  "uncertainties": [
+    "All contributions are deterministic simulated fixtures rather than model or operator judgments"
+  ],
+  "next_gate": "Cryptographic authorization and independent Witness verification"
+}

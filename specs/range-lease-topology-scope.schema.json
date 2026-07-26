@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/range-lease-topology-scope.schema.json",
+  "title": "nimrod Cryptographically Bound Lease-to-Topology Scope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scope_version", "scope_id", "origin", "status", "compiled_at", "lease_id", "lease_digest", "authorization_proof_bundle_digest", "trust_policy_digest", "cryptographic_authorization_verified", "verified_authorization_signer_ids", "verified_authorization_roles", "topology_id", "topology_digest", "topology_generation", "topology_environment_verified", "connector_id", "connector_manifest_digest", "capability_intersection", "target_bindings", "kill_switch_binding", "budgets", "blockers", "provisioning_performed", "installation_performed", "network_contact_performed", "range_connection_authorized", "execution_authorized", "authority"],
+  "properties": {
+    "scope_version": {"const": "0.1.0"},
+    "scope_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "compiled_contract_only_environment_unproven"},
+    "compiled_at": {"type": "string", "format": "date-time"},
+    "lease_id": {"type": "string", "format": "uuid"},
+    "lease_digest": {"$ref": "#/$defs/digest"},
+    "authorization_proof_bundle_digest": {"$ref": "#/$defs/digest"},
+    "trust_policy_digest": {"$ref": "#/$defs/digest"},
+    "cryptographic_authorization_verified": {"const": true},
+    "verified_authorization_signer_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "verified_authorization_roles": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "topology_id": {"type": "string", "format": "uuid"},
+    "topology_digest": {"$ref": "#/$defs/digest"},
+    "topology_generation": {"type": "integer", "minimum": 1},
+    "topology_environment_verified": {"const": false},
+    "connector_id": {"const": "connector.simulated.atomic"},
+    "connector_manifest_digest": {"$ref": "#/$defs/digest"},
+    "capability_intersection": {"type": "array", "minItems": 1, "maxItems": 1, "uniqueItems": true, "items": {"const": "range.test.simulate"}},
+    "target_bindings": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"$ref": "#/$defs/targetBinding"}},
+    "kill_switch_binding": {"$ref": "#/$defs/killSwitchBinding"},
+    "budgets": {"$ref": "#/$defs/budgets"},
+    "blockers": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"enum": ["CONNECTOR_RUNTIME_MISSING", "REAL_RANGE_ENVIRONMENT_UNPROVEN", "RANGE_CONNECTION_AUTHORIZATION_MISSING", "EXECUTION_AUTHORIZATION_MISSING"]}},
+    "provisioning_performed": {"const": false},
+    "installation_performed": {"const": false},
+    "network_contact_performed": {"const": false},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "targetBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lease_target_id", "resource_type", "environment_class", "binding_digest", "topology_node_id", "topology_zone_id", "effect_ceiling"],
+      "properties": {
+        "lease_target_id": {"$ref": "#/$defs/nonEmptyString"},
+        "resource_type": {"const": "windows_device"},
+        "environment_class": {"const": "range"},
+        "binding_digest": {"$ref": "#/$defs/digest"},
+        "topology_node_id": {"$ref": "#/$defs/nonEmptyString"},
+        "topology_zone_id": {"$ref": "#/$defs/nonEmptyString"},
+        "effect_ceiling": {"enum": ["observe_only", "reversible_local", "reversible_distributed", "sacrificial_replica_only"]}
+      }
+    },
+    "killSwitchBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lease_kill_switch_id", "controller", "maximum_revocation_seconds", "out_of_band", "topology_node_id"],
+      "properties": {
+        "lease_kill_switch_id": {"$ref": "#/$defs/nonEmptyString"},
+        "controller": {"$ref": "#/$defs/nonEmptyString"},
+        "maximum_revocation_seconds": {"type": "integer", "minimum": 1},
+        "out_of_band": {"const": true},
+        "topology_node_id": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maximum_actions", "maximum_concurrency", "maximum_seconds", "maximum_cost_usd", "maximum_export_bytes"],
+      "properties": {
+        "maximum_actions": {"type": "integer", "minimum": 1},
+        "maximum_concurrency": {"type": "integer", "minimum": 1},
+        "maximum_seconds": {"type": "integer", "minimum": 1},
+        "maximum_cost_usd": {"type": "number", "minimum": 0},
+        "maximum_export_bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_provision", "can_connect", "can_execute"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_provision": {"const": false},
+        "can_connect": {"const": false},
+        "can_execute": {"const": false}
+      }
+    }
+  }
+}

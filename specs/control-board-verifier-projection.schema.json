@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.2/control-board-verifier-projection.schema.json",
+  "title": "nimrod Control-Board Verifier Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["projection_version", "origin", "captured_at", "operator_state", "severity", "summary", "consensus", "service_health", "observations", "boundary", "dissent", "authority"],
+  "properties": {
+    "projection_version": {"const": "0.2.0"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "operator_state": {"enum": ["verified", "boundary_unproven", "invalid", "disagreement", "timeout", "unavailable"]},
+    "severity": {"enum": ["verified", "blocked"]},
+    "summary": {"$ref": "#/$defs/nonEmptyString"},
+    "consensus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["consensus_id", "observed_at", "state", "verification_accepted", "reason", "primary_observation_digest", "secondary_observation_digest"],
+      "properties": {
+        "consensus_id": {"$ref": "#/$defs/uuid"},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "state": {"enum": ["agreed_valid", "agreed_valid_boundary_unproven", "agreed_invalid", "disagreement", "verifier_timeout", "verifier_unavailable"]},
+        "verification_accepted": {"type": "boolean"},
+        "reason": {"$ref": "#/$defs/nonEmptyString"},
+        "primary_observation_digest": {"$ref": "#/$defs/digest"},
+        "secondary_observation_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "service_health": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["service_id", "logical_principal", "process_id", "os_account_identifier", "status", "os_account_boundary_verified", "production_ready"],
+        "properties": {
+          "service_id": {"$ref": "#/$defs/nonEmptyString"},
+          "logical_principal": {"$ref": "#/$defs/nonEmptyString"},
+          "process_id": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+          "os_account_identifier": {"oneOf": [{"$ref": "#/$defs/nonEmptyString"}, {"type": "null"}]},
+          "status": {"enum": ["healthy_reference_boundary", "blocked_identity_mismatch", "unavailable"]},
+          "os_account_boundary_verified": {"type": "boolean"},
+          "production_ready": {"type": "boolean"}
+        }
+      }
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["service_id", "status", "observed_at", "subject_digest", "read_only_behavior_verified", "detail"],
+        "properties": {
+          "service_id": {"$ref": "#/$defs/nonEmptyString"},
+          "status": {"enum": ["valid", "invalid", "timeout", "unavailable"]},
+          "observed_at": {"type": "string", "format": "date-time"},
+          "subject_digest": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+          "read_only_behavior_verified": {"type": "boolean"},
+          "detail": {"$ref": "#/$defs/nonEmptyString"}
+        }
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["production_ready", "health_complete", "isolation_evidence_verified", "live_os_enforcement_verified", "dedicated_os_identity_verified", "os_read_only_acl_verified", "isolation_attestation_digests", "missing_controls"],
+      "properties": {
+        "production_ready": {"type": "boolean"},
+        "health_complete": {"type": "boolean"},
+        "isolation_evidence_verified": {"type": "boolean"},
+        "live_os_enforcement_verified": {"type": "boolean"},
+        "dedicated_os_identity_verified": {"type": "boolean"},
+        "os_read_only_acl_verified": {"type": "boolean"},
+        "isolation_attestation_digests": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/digest"}
+        },
+        "missing_controls": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/blockerCode"}
+        }
+      }
+    },
+    "dissent": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "source", "message"],
+        "properties": {
+          "code": {"$ref": "#/$defs/blockerCode"},
+          "source": {"const": "supervised_verifier"},
+          "message": {"$ref": "#/$defs/nonEmptyString"}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute", "may_mark_verification_accepted"],
+      "properties": {
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "may_mark_verification_accepted": {"type": "boolean"}
+      }
+    }
+  },
+  "$defs": {
+    "uuid": {"type": "string", "format": "uuid"},
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "blockerCode": {
+      "enum": ["CONSENSUS_NOT_ACCEPTED", "DEDICATED_OS_IDENTITY_UNPROVEN", "OS_READ_ONLY_ACL_UNPROVEN", "VERIFIER_HEALTH_INCOMPLETE", "VERIFIER_DISAGREEMENT", "VERIFIER_TIMEOUT", "VERIFIER_UNAVAILABLE", "EVIDENCE_INVALID"]
+    }
+  }
+}

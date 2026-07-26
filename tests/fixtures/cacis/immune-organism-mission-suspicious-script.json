@@ -1,0 +1,55 @@
+{
+  "mission_version": "0.1.0",
+  "mission_id": "72100000-0000-4000-8000-000000000001",
+  "origin": "replayed",
+  "world_model_generation_digest": "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+  "incident_class": "suspicious_script",
+  "issued_at": "2026-07-15T06:14:55Z",
+  "not_before": "2026-07-15T06:15:00Z",
+  "expires_at": "2026-07-15T06:20:00Z",
+  "maximum_outcome": "typed_proposal",
+  "governor": {
+    "governor_id": "governor:replay-primary",
+    "decision_id": "72100000-0000-4000-8000-000000000002",
+    "schedule_strategy": "deterministic_minimum_capability",
+    "can_authorize": false,
+    "can_execute": false
+  },
+  "capability_lease": {
+    "lease_id": "72100000-0000-4000-8000-000000000003",
+    "allowed_capabilities": ["read_world_model", "derive_observation", "emit_typed_contribution", "retain_candidate_knowledge"],
+    "prohibited_capabilities": ["authorize", "execute", "change_policy", "contact_target", "use_credential", "raw_command", "self_verify", "promote_knowledge"],
+    "ambient_credentials_allowed": false,
+    "raw_command_bridge_allowed": false
+  },
+  "resource_lease": {
+    "lease_id": "72100000-0000-4000-8000-000000000004",
+    "expires_at": "2026-07-15T06:20:00Z",
+    "cpu_millis": 700,
+    "memory_mb": 96,
+    "storage_bytes": 98304,
+    "telemetry_reads": 24,
+    "model_calls": 0,
+    "sandbox_runs": 0
+  },
+  "cells": [
+    {"cell_id":"72100000-0000-4000-8000-000000000101","role":"script_analysis","capabilities":["read_world_model","derive_observation","emit_typed_contribution"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000102","role":"memory_analysis","capabilities":["read_world_model","derive_observation","emit_typed_contribution"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000103","role":"behavior","capabilities":["read_world_model","derive_observation","emit_typed_contribution"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000104","role":"identity","capabilities":["read_world_model","derive_observation","emit_typed_contribution"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000105","role":"network","capabilities":["read_world_model","derive_observation","emit_typed_contribution"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000106","role":"containment","capabilities":["read_world_model","emit_typed_contribution"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000107","role":"recovery","capabilities":["read_world_model","emit_typed_contribution"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000108","role":"evidence","capabilities":["read_world_model","emit_typed_contribution","retain_candidate_knowledge"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000109","role":"historian","capabilities":["read_world_model","emit_typed_contribution","retain_candidate_knowledge"],"can_self_verify":false,"can_authorize":false,"can_execute":false},
+    {"cell_id":"72100000-0000-4000-8000-000000000110","role":"shadow","capabilities":["read_world_model"],"can_self_verify":false,"can_authorize":false,"can_execute":false}
+  ],
+  "shadow_policy": {
+    "shadow_cell_id": "72100000-0000-4000-8000-000000000110",
+    "allowed_controls": ["pause", "downgrade", "spawn_challenge", "abstain", "resume", "terminate"],
+    "automatic_termination_triggers": ["lease_expiry", "resource_exhaustion", "authority_violation"],
+    "can_authorize": false,
+    "can_execute": false
+  },
+  "authority": {"can_authorize":false,"can_execute":false,"can_change_policy":false,"can_contact_targets":false,"can_use_credentials":false,"can_self_verify":false,"can_promote":false}
+}

@@ -1,0 +1,168 @@
+{
+  "audit": {
+    "audit_version": "0.1.0",
+    "authority": {
+      "can_authorize": false,
+      "can_claim_production": false,
+      "can_clear_external_gate": false,
+      "can_execute": false
+    },
+    "external_gates": [
+      {
+        "gate_id": "design_partner_validation",
+        "report": "DESIGN_PARTNER_KIT_VALIDATION.json",
+        "report_digest": "sha256:1fb4dc4879c706bb5f0206c95dacae6b87a0495b5e6fb839b88d6eab3993cf64",
+        "requirement": "Requires real external participants and consented evaluation.",
+        "state": "blocked_external_evidence_required"
+      },
+      {
+        "gate_id": "production_custody",
+        "report": "WINDOWS_CUSTODY_READINESS_VALIDATION.json",
+        "report_digest": "sha256:6aabcec2091e9e574cd5d599a05aaef11d93ea6a4bdcc1fd5c236937c7107713",
+        "requirement": "Requires independently administered hardware-backed signing custody.",
+        "state": "blocked_external_evidence_required"
+      },
+      {
+        "gate_id": "construction_zone",
+        "report": "CONSTRUCTION_ZONE_PROVISIONING_GATE_VALIDATION.json",
+        "report_digest": "sha256:f6503576ab869b27d1365dc4dded1f151b6cf7edc6d3b95649c1ce8b71af1ec9",
+        "requirement": "Requires owner-selected provider, accounts, credentials, budget, and independent attestations.",
+        "state": "blocked_external_evidence_required"
+      },
+      {
+        "gate_id": "range_execution",
+        "report": "RANGE_EXECUTION_GATE_VALIDATION.json",
+        "report_digest": "sha256:3b3c2bc31ff5d4a6fb6095e2ac2ed79d8ff912ac2ee896b9862ca8672ca2b438",
+        "requirement": "Requires an owner-controlled disposable range and nine real environment attestations.",
+        "state": "blocked_external_evidence_required"
+      },
+      {
+        "gate_id": "range_completion",
+        "report": "RANGE_EVIDENCE_COMPLETION_VALIDATION.json",
+        "report_digest": "sha256:3672751429b0fcd8230216eb5d0690cff47a7fa3de328c0b981f15eed2760298",
+        "requirement": "Requires real cleanup, recovery, independent post-state, and evidence acceptance.",
+        "state": "blocked_external_evidence_required"
+      },
+      {
+        "gate_id": "production_release",
+        "report": "RELEASE_FOUNDATION_VALIDATION.json",
+        "report_digest": "sha256:b4d0c6dfcda29dcc22de3fe13107af4a298aa4fe8ea0c1c51d2ed12e8f04dfac",
+        "requirement": "Requires signed production custody and an owner-approved staged rollout.",
+        "state": "blocked_external_evidence_required"
+      }
+    ],
+    "local_gates": [
+      {
+        "gate_id": "constitutional_roadmap",
+        "report": "CACIS_ROADMAP_VALIDATION.json",
+        "report_digest": "sha256:601a0912acd3e6bc315f01067af327bf5c00ba6ed4b1b189e1a1ec2bf349f9cd",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "contract_system",
+        "report": "CONTRACT_CONFORMANCE_MATRIX.json",
+        "report_digest": "sha256:63c7091155f3a60582ed45a1e015fe50d6090d16c510ea69b6e8a8ae2802cdc0",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "distribution",
+        "report": "DISTRIBUTION_VALIDATION.json",
+        "report_digest": "sha256:404d2f868ba3a2fe2f95801ae0836fa420c1a3e7de034654dbaedbe397f0b172",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "world_model",
+        "report": "CACIS_WORLD_MODEL_VALIDATION.json",
+        "report_digest": "sha256:441406761c8c51f9f998d9a5c5ccb0eca47c9d7adf96c9b8038d95dc6303c95d",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "governed_world_intake",
+        "report": "CACIS_WORLD_INTAKE_GOVERNANCE_VALIDATION.json",
+        "report_digest": "sha256:14d7fab90c86b16682599ee90f0f379994afe7dc4f07649605e343af239c2cfb",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "immune_runtime",
+        "report": "CACIS_IMMUNE_RUNTIME_VALIDATION.json",
+        "report_digest": "sha256:f5ba87ec0efd5728e006ff56094f43ed303c20179f8adec8e416ad6e3577fe05",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "intelligence_research",
+        "report": "INTELLIGENCE_RESEARCH_VALIDATION.json",
+        "report_digest": "sha256:3138eb6df3d994a42b16d6bdd3fe46b3a6f95dab7656133ba7b283e80f6937d2",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "homeostasis_chronos",
+        "report": "CACIS_HOMEOSTASIS_CHRONOS_VALIDATION.json",
+        "report_digest": "sha256:f53692a70046953d8b5cf8b74bf6e9af9cd12863924058984565449c599d103c",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "genome_evaluation",
+        "report": "CACIS_GENOME_EVALUATION_VALIDATION.json",
+        "report_digest": "sha256:f0fa15708835b4ce246d2ca862c9bce465c8bc0ae3f2b22df7c8c8094f2df2fc",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "autonomous_threshold_promotion",
+        "report": "AUTONOMOUS_PROMOTION_VALIDATION.json",
+        "report_digest": "sha256:8ca8516fbc64facef80eb89eb9ca37aad88cc0a9de9b89c3ae584db90e1b2851",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "arenas_observatory",
+        "report": "CACIS_ARENAS_OBSERVATORY_VALIDATION.json",
+        "report_digest": "sha256:c36d293fe067464e40633a24c5e7f2e2eb3530f0a8ffe6cf2359683589556754",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "continuous_defensive_observation",
+        "report": "EDGE_CONTINUOUS_OBSERVATION_VALIDATION.json",
+        "report_digest": "sha256:5f68355e589010649abff81def3deaefb91037aa004e90e45eaec2c37658b3fe",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "control_board",
+        "report": "CONTROL_BOARD_VALIDATION.json",
+        "report_digest": "sha256:f8ed9164a05240ef04eb76dab7fe0c428a37422ba82328821deaf97852a10208",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "release_trust",
+        "report": "RELEASE_FOUNDATION_VALIDATION.json",
+        "report_digest": "sha256:b4d0c6dfcda29dcc22de3fe13107af4a298aa4fe8ea0c1c51d2ed12e8f04dfac",
+        "state": "complete_local_evidence"
+      },
+      {
+        "gate_id": "verifier_identity_readiness",
+        "report": "VERIFIER_IDENTITY_READINESS_VALIDATION.json",
+        "report_digest": "sha256:7adfdff3e55e509dee2bf7c821dc6e15c0484ccfddfcef6051e3530dda8c8330",
+        "state": "complete_local_evidence"
+      }
+    ],
+    "status": "LOCAL_ROADMAP_COMPLETE_EXTERNAL_OPERATIONAL_GATES_BLOCKED",
+    "summary": {
+      "deployable_product_claimed": false,
+      "execution_authorized": false,
+      "execution_performed": false,
+      "external_gate_blocked_count": 6,
+      "external_gate_count": 6,
+      "local_gate_complete_count": 15,
+      "local_gate_count": 15,
+      "production_protection_claimed": false
+    }
+  },
+  "deployable_product_claimed": false,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "external_gate_blocked_count": 6,
+  "external_gate_count": 6,
+  "local_gate_complete_count": 15,
+  "local_gate_count": 15,
+  "negative_fail_closed_case_count": 10,
+  "production_protection_claimed": false,
+  "status": "LOCAL_ROADMAP_COMPLETE_EXTERNAL_OPERATIONAL_GATES_BLOCKED"
+}

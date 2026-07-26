@@ -1,0 +1,75 @@
+{
+  "measurement_version": "0.2.0",
+  "measurement_id": "55555555-6666-4777-8888-999999999999",
+  "origin": "simulated",
+  "collected_at": "2026-07-13T13:00:00Z",
+  "platform": "windows",
+  "target": {
+    "process_id": 9101,
+    "executable_path_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "executable_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "os_account_identifier": "account-sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "os_account_sid": "S-1-5-21-9101"
+  },
+  "collector": {
+    "process_id": 9201,
+    "executable_path_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+    "executable_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+    "os_account_identifier": "account-sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "os_account_sid": "S-1-5-21-9101",
+    "collector_id": "collector:windows-access-check",
+    "independent_process": true,
+    "account_name_exposed": false
+  },
+  "environment": {
+    "credential_like_variable_count": 0,
+    "matching_prefix_categories": [],
+    "credential_value_accessed": false,
+    "target_environment_inspected": false
+  },
+  "filesystem": {
+    "input": {
+      "path_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+      "security_descriptor_digest": "sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "security_descriptor_length": 64,
+      "target_effective_access": {"account_sid_digest": "sha256:c111111111111111111111111111111111111111111111111111111111111111", "access_mask_hex": "0x001f01ff", "read_allowed": true, "write_allowed": true, "execute_allowed": true, "delete_allowed": true, "evaluation_method": "get_effective_rights_from_acl"}
+    },
+    "output": {
+      "path_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+      "security_descriptor_digest": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+      "security_descriptor_length": 64,
+      "target_effective_access": {"account_sid_digest": "sha256:c111111111111111111111111111111111111111111111111111111111111111", "access_mask_hex": "0x001f01ff", "read_allowed": true, "write_allowed": true, "execute_allowed": true, "delete_allowed": true, "evaluation_method": "get_effective_rights_from_acl"},
+      "collector_effective_access": {"account_sid_digest": "sha256:c111111111111111111111111111111111111111111111111111111111111111", "access_mask_hex": "0x001f01ff", "read_allowed": true, "write_allowed": true, "execute_allowed": true, "delete_allowed": true, "evaluation_method": "get_effective_rights_from_acl"}
+    },
+    "effective_rights_computed": true,
+    "acl_modified": false
+  },
+  "network": {
+    "inspection_method": "netsh_advfirewall_read_only",
+    "active_profile_count": 1,
+    "default_outbound_actions": ["allow"],
+    "raw_evidence_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "active_probe_performed": false,
+    "attempt_count": 1,
+    "target_inspection_method": "powershell_netsecurity_read_only",
+    "target_executable_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "matching_block_rule_count": 0,
+    "all_traffic_block_rule_count": 0,
+    "rule_evidence_digests": [],
+    "target_rule_evidence_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "firewall_modified": false,
+    "target_inspection_attempt_count": 1
+  },
+  "controls": [
+    {"control_id": "CREDENTIAL_ISOLATION", "status": "unproven", "evidence": [{"id": "measurement:credential", "digest": "sha256:b111111111111111111111111111111111111111111111111111111111111111"}]},
+    {"control_id": "DEDICATED_OS_ACCOUNT", "status": "violated", "evidence": [{"id": "measurement:account", "digest": "sha256:b222222222222222222222222222222222222222222222222222222222222222"}]},
+    {"control_id": "DISTINCT_PROCESS", "status": "verified", "evidence": [{"id": "measurement:process", "digest": "sha256:b333333333333333333333333333333333333333333333333333333333333333"}]},
+    {"control_id": "EXECUTABLE_IDENTITY", "status": "verified", "evidence": [{"id": "measurement:executable", "digest": "sha256:b444444444444444444444444444444444444444444444444444444444444444"}]},
+    {"control_id": "NETWORK_EGRESS_DENIED", "status": "violated", "evidence": [{"id": "measurement:network", "digest": "sha256:b555555555555555555555555555555555555555555555555555555555555555"}]},
+    {"control_id": "READ_ONLY_INPUT_ACL", "status": "violated", "evidence": [{"id": "measurement:input", "digest": "sha256:b666666666666666666666666666666666666666666666666666666666666666"}]},
+    {"control_id": "SEPARATE_OUTPUT_ACL", "status": "violated", "evidence": [{"id": "measurement:output", "digest": "sha256:b777777777777777777777777777777777777777777777777777777777777777"}]}
+  ],
+  "status": "violated",
+  "blockers": ["CREDENTIAL_ISOLATION", "DEDICATED_OS_ACCOUNT", "NETWORK_EGRESS_DENIED", "READ_ONLY_INPUT_ACL", "SEPARATE_OUTPUT_ACL"],
+  "authority": {"can_authorize": false, "can_execute": false, "can_modify_acl": false, "can_modify_firewall": false, "can_read_credential_values": false}
+}

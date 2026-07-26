@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/public-sacrificial-source-registry.schema.json",
+  "title": "nimrod public sacrificial source registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_version", "registry_id", "origin", "status", "observed_at", "owner_boundary", "sources", "forbidden_target_classes", "blockers", "authority"],
+  "properties": {
+    "registry_version": {"const": "0.1.0"},
+    "registry_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "live_metadata_observation"},
+    "status": {"const": "blocked_owner_exclusion_registry_incomplete"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "owner_boundary": {"$ref": "#/$defs/ownerBoundary"},
+    "sources": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/source"}},
+    "forbidden_target_classes": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"$ref": "#/$defs/forbiddenTarget"}},
+    "blockers": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"$ref": "#/$defs/blocker"}},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "ownerBoundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "registry_complete", "unknown_ownership_action", "excluded_organizations", "excluded_repositories"],
+      "properties": {"mode": {"const": "deny_first"}, "registry_complete": {"const": false}, "unknown_ownership_action": {"const": "deny"}, "excluded_organizations": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}, "excluded_repositories": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}}
+    },
+    "licenseReview": {
+      "type": "object", "additionalProperties": false,
+      "required": ["spdx_id", "license_path", "license_url", "detection_source", "review_status"],
+      "properties": {"spdx_id": {"enum": ["Apache-2.0", "GPL-2.0-or-later", "GPL-3.0", "MIT"]}, "license_path": {"type": "string", "minLength": 1}, "license_url": {"type": "string", "pattern": "^https://github\\.com/"}, "detection_source": {"enum": ["github_license_api", "manual_spdx_header"]}, "review_status": {"const": "metadata_reviewed_source_use_only"}}
+    },
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "repository", "repository_url", "clone_url", "default_branch", "commit_sha", "pinned_ref", "visibility", "intentionally_vulnerable", "purpose", "license_review", "use_mode", "source_downloaded", "public_target_authorized", "authorized_network_targets"],
+      "properties": {"source_id": {"type": "string", "minLength": 1}, "repository": {"enum": ["OWASP/IoTGoat", "OWASP/NodeGoat", "WebGoat/WebGoat", "digininja/DVWA", "juice-shop/juice-shop"]}, "repository_url": {"type": "string", "pattern": "^https://github\\.com/"}, "clone_url": {"type": "string", "pattern": "^https://github\\.com/.+\\.git$"}, "default_branch": {"type": "string", "minLength": 1}, "commit_sha": {"$ref": "#/$defs/digest"}, "pinned_ref": {"type": "string", "pattern": "^commit:[0-9a-f]{40}$"}, "visibility": {"const": "public"}, "intentionally_vulnerable": {"const": true}, "purpose": {"enum": ["api_and_web_assurance", "firmware_static_assurance", "java_web_assurance", "node_web_assurance", "php_web_assurance"]}, "license_review": {"$ref": "#/$defs/licenseReview"}, "use_mode": {"const": "source_metadata_only"}, "source_downloaded": {"const": false}, "public_target_authorized": {"const": false}, "authorized_network_targets": {"type": "array", "maxItems": 0}}
+    },
+    "forbiddenTarget": {"enum": ["github_api", "github_ci", "github_content_delivery", "github_hosted_repository", "maintainer_infrastructure", "package_or_container_registry", "public_demo", "third_party_deployment"]},
+    "blocker": {"enum": ["CONTENT_DIGEST_NOT_RETAINED", "OWNER_EXCLUSION_REGISTRY_INCOMPLETE", "PINNED_COMMIT_SIGNATURE_UNVERIFIED", "REPLICA_NOT_BUILT", "SOURCE_ARCHIVE_NOT_STAGED"]},
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_download_source", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"],
+      "properties": {"can_download_source": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}
+    }
+  }
+}

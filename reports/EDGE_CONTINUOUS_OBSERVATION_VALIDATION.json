@@ -1,0 +1,20 @@
+{
+  "active_network_probe_performed": false,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "live_event_count": 1,
+  "live_poll_cycle_count": 1,
+  "live_source_count": 3,
+  "live_source_statuses": {
+    "dns_client_operational": "observed",
+    "powershell_operational": "observed",
+    "sysmon_operational": "unavailable"
+  },
+  "negative_fail_closed_case_count": 5,
+  "policy_input_ready": false,
+  "raw_event_payload_retained": false,
+  "replay_event_count": 4,
+  "replay_poll_cycle_count": 2,
+  "status": "EDGE_CONTINUOUS_DEFENSIVE_OBSERVATION_VALID_POLICY_AND_ACTION_BLOCKED",
+  "target_state_changed": false
+}

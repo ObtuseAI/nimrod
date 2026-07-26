@@ -1,0 +1,98 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "51eb728b-c4ad-442a-9706-52728b4d46bb",
+  "origin": "simulated",
+  "status": "fixture_policy_non_accepting",
+  "governance_state_digest": "sha256:85ba53d7ad441c18635a9ddd12da2ed93f9793edb9ebcd88e3700a0205c32fb1",
+  "admission_report_id": "441b313a-7394-57a1-bb09-4a92ebdd5106",
+  "admission_report_digest": "sha256:64b8506738d58467faf57a83326922e4bc01c0998eba3805cd739a9b7cdc2fdb",
+  "scope_digest": "sha256:2eec5a164643739b53273baf7e30ae256491fb295a94ff46e5f6b785dab66d39",
+  "environment_id": "range-environment:owner-name-required",
+  "issued_at": "2026-07-13T16:30:00Z",
+  "not_before": "2026-07-13T16:30:00Z",
+  "expires_at": "2026-07-13T16:40:00Z",
+  "minimum_decisions_per_observation": 2,
+  "allowed_decisions": [
+    "abstain",
+    "accept",
+    "reject",
+    "timeout"
+  ],
+  "verifiers": [
+    {
+      "verifier_id": "range-verifier:1",
+      "logical_principal": "principal:range-verifier-1",
+      "process_id": 5201,
+      "public_key_base64": "+kg0FH9uaQw2k+/2EzYEZAPNiuKhTzGzxAc1hWkjlWU=",
+      "read_only": true,
+      "operation_allowlist": [
+        "emit_decision",
+        "inspect_retained_observation"
+      ],
+      "identity_enforcement": "fixture_logical_only",
+      "independence_evidence_digest": null,
+      "collector_identity_shared": false,
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "verifier_id": "range-verifier:2",
+      "logical_principal": "principal:range-verifier-2",
+      "process_id": 5202,
+      "public_key_base64": "GX9rI+FshTLGq8g4+s1ep4m+DHaykgM0A5v6iz02jWE=",
+      "read_only": true,
+      "operation_allowlist": [
+        "emit_decision",
+        "inspect_retained_observation"
+      ],
+      "identity_enforcement": "fixture_logical_only",
+      "independence_evidence_digest": null,
+      "collector_identity_shared": false,
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "verifier_id": "range-verifier:3",
+      "logical_principal": "principal:range-verifier-3",
+      "process_id": 5203,
+      "public_key_base64": "RQigeqlBcH8+stuUyIl6gLLBGXR2tt4hOsJz332GxP8=",
+      "read_only": true,
+      "operation_allowlist": [
+        "emit_decision",
+        "inspect_retained_observation"
+      ],
+      "identity_enforcement": "fixture_logical_only",
+      "independence_evidence_digest": null,
+      "collector_identity_shared": false,
+      "network_destinations": [],
+      "secret_references": []
+    }
+  ],
+  "blockers": [
+    "EVIDENCE_COMPLETION_AUTHORITY_MISSING",
+    "REAL_INDEPENDENT_VERIFIER_ACCEPTANCE_MISSING"
+  ],
+  "authority": {
+    "can_collect": false,
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_authorize_action": false
+  },
+  "signatures": [
+    {
+      "signer_id": "key:range-owner",
+      "algorithm": "Ed25519",
+      "signature_base64": "xHG7xiM9snQxtvMmhJH3CrEqmkUZaQw4rt/zswS6fVmS3qIgtb6fVE1c4ijZp3bjuUvJw6XUKb5izHq+yHUiCw=="
+    },
+    {
+      "signer_id": "key:range-safety",
+      "algorithm": "Ed25519",
+      "signature_base64": "NnylCiVMsqiHAX/XurU0R1LMLngyh1dADdpAKxofvlUJFvnQUKDUlDQt451dfDvNOGLbA+FQ0SHWRCS2G+GKCQ=="
+    }
+  ]
+}

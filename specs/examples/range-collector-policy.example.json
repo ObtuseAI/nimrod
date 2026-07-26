@@ -1,0 +1,190 @@
+{
+  "policy_version": "0.1.0",
+  "policy_id": "6ee3f239-303d-42e2-bb4d-4cd5a0c418d1",
+  "origin": "simulated",
+  "status": "blocked_owner_named_environment_missing",
+  "governance_state_digest": "sha256:85ba53d7ad441c18635a9ddd12da2ed93f9793edb9ebcd88e3700a0205c32fb1",
+  "scope_digest": "sha256:2eec5a164643739b53273baf7e30ae256491fb295a94ff46e5f6b785dab66d39",
+  "issued_at": "2026-07-13T16:25:00Z",
+  "not_before": "2026-07-13T16:25:00Z",
+  "expires_at": "2026-07-13T16:35:00Z",
+  "environment": {
+    "environment_id": "range-environment:owner-name-required",
+    "environment_name": null,
+    "environment_class": "sacrificial_range_candidate",
+    "owner_named": false,
+    "expected_observation_origin": "simulated"
+  },
+  "required_controls": [
+    "CLEANUP_CONTRACT",
+    "DEDICATED_CREDENTIALS",
+    "DEFAULT_DENY_EGRESS",
+    "DISPOSABLE_TARGET",
+    "INDEPENDENT_VERIFIER",
+    "OUT_OF_BAND_KILL",
+    "RESTORABLE_SNAPSHOT",
+    "TELEMETRY_SEPARATION",
+    "TRUSTED_TIME"
+  ],
+  "collectors": [
+    {
+      "collector_id": "collector:cleanup_contract",
+      "logical_principal": "principal:cleanup_contract",
+      "process_id": 4100,
+      "public_key_base64": "1UIH2hlJd9z0atv+wrwudbUtWopCGE/t/cAAJPDj6No=",
+      "allowed_control_id": "CLEANUP_CONTRACT",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:dedicated_credentials",
+      "logical_principal": "principal:dedicated_credentials",
+      "process_id": 4101,
+      "public_key_base64": "URw0oaLLUh3xa7JGuN6OeZfOI1x+drIqPXUDokgZ3Yo=",
+      "allowed_control_id": "DEDICATED_CREDENTIALS",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:default_deny_egress",
+      "logical_principal": "principal:default_deny_egress",
+      "process_id": 4102,
+      "public_key_base64": "Md6+VdN8cidosTcTHKpghwgLLgtguUvXhdFFdc+kmLw=",
+      "allowed_control_id": "DEFAULT_DENY_EGRESS",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:disposable_target",
+      "logical_principal": "principal:disposable_target",
+      "process_id": 4103,
+      "public_key_base64": "U0cJYlWKbgg5AirmXGsnI7MncuXAxfR3bLjmo+ELovM=",
+      "allowed_control_id": "DISPOSABLE_TARGET",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:independent_verifier",
+      "logical_principal": "principal:independent_verifier",
+      "process_id": 4104,
+      "public_key_base64": "MfMyLUkj02xBwQm9sAmRkxh77ZmUIJbkkmokx379DS8=",
+      "allowed_control_id": "INDEPENDENT_VERIFIER",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:out_of_band_kill",
+      "logical_principal": "principal:out_of_band_kill",
+      "process_id": 4105,
+      "public_key_base64": "ZMMIFf8m1cSv+OESdKOO1t0FUwSdpMEDcqlXW3p3aQk=",
+      "allowed_control_id": "OUT_OF_BAND_KILL",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:restorable_snapshot",
+      "logical_principal": "principal:restorable_snapshot",
+      "process_id": 4106,
+      "public_key_base64": "HioTfH/iJ5+dfwZEAwoOnAtF94Hc5xrkUZwPQ4QDFlQ=",
+      "allowed_control_id": "RESTORABLE_SNAPSHOT",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:telemetry_separation",
+      "logical_principal": "principal:telemetry_separation",
+      "process_id": 4107,
+      "public_key_base64": "tAiM07iWLmSorDcW+4b8fnrh0CXx61YhVatmNhGyzCg=",
+      "allowed_control_id": "TELEMETRY_SEPARATION",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    },
+    {
+      "collector_id": "collector:trusted_time",
+      "logical_principal": "principal:trusted_time",
+      "process_id": 4108,
+      "public_key_base64": "6NpjpAymh8h8/OBcskp4bH51zEnHDbVXPwJvHGqGzqo=",
+      "allowed_control_id": "TRUSTED_TIME",
+      "read_only": true,
+      "operation_allowlist": [
+        "digest",
+        "emit_attestation",
+        "observe"
+      ],
+      "network_destinations": [],
+      "secret_references": []
+    }
+  ],
+  "blockers": [
+    "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING"
+  ],
+  "authority": {
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_contact_source_tools": false,
+    "can_open_network_connection": false,
+    "can_execute": false
+  },
+  "signatures": [
+    {
+      "signer_id": "key:range-owner",
+      "algorithm": "Ed25519",
+      "signature_base64": "pA8Anwve56UCxmPYl1wi/1G+IFc3hEetsrFVm+Y9JBOqxXqXVZpPItZuqh440d+k5qOKDe1OLef0HXZ98KjOCg=="
+    },
+    {
+      "signer_id": "key:range-safety",
+      "algorithm": "Ed25519",
+      "signature_base64": "+TYXtrbIQN1fycPaHpEgPUTugVqyBbRooW6w5cqgNG3QDw9rnYP9/8w703EfHwClcKfDD025wclNk1rlgKxKAA=="
+    }
+  ]
+}

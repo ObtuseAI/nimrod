@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/verifier-consensus.schema.json",
+  "title": "nimrod Verifier Consensus",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["consensus_version", "consensus_id", "origin", "observed_at", "primary_observation_digest", "secondary_observation_digest", "state", "verification_accepted", "reason"],
+  "properties": {
+    "consensus_version": { "const": "0.1.0" },
+    "consensus_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "primary_observation_digest": { "$ref": "#/$defs/digest" },
+    "secondary_observation_digest": { "$ref": "#/$defs/digest" },
+    "state": { "enum": ["agreed_valid", "agreed_valid_boundary_unproven", "agreed_invalid", "disagreement", "verifier_timeout", "verifier_unavailable"] },
+    "verification_accepted": { "type": "boolean" },
+    "reason": { "$ref": "#/$defs/nonEmptyString" }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 }
+  }
+}

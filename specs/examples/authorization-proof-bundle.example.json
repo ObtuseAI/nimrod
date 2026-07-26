@@ -1,0 +1,21 @@
+{
+  "bundle_version": "0.1.0",
+  "bundle_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+  "origin": "simulated",
+  "lease_id": "44444444-4444-4444-8444-444444444444",
+  "lease_digest": "sha256:92e3a086a938b9539126aa19c6a3f19b52f7a63699242ea3b4818d2466c7893c",
+  "trust_policy_digest": "sha256:271043c091adef6c3f2602ea73fcfc3b46632c0de9ea7221b7c3583091a4fc08",
+  "signed_at": "2026-07-12T19:00:00Z",
+  "signatures": [
+    {
+      "signer_id": "signer:customer-authority",
+      "algorithm": "Ed25519",
+      "signature_base64": "YmyaTX1hvAeIWDAON24xTnKOWWizo+kk4jsHe3d+6N6H/TcGm1u60k86gacGiRfHS7rtutbFYBXSVrkaeMFHDw=="
+    },
+    {
+      "signer_id": "signer:safety-officer",
+      "algorithm": "Ed25519",
+      "signature_base64": "BQB/lQ6HMbE0hIdjJet3k6maV8sVV4MvAOhdZ8o3JTo0kiVk2QF21eODq8V5seYXqP9AEL7HPU5coyRVjWZ5Bw=="
+    }
+  ]
+}

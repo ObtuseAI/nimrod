@@ -1,0 +1,15 @@
+{
+  "candidate_status": "candidate_only",
+  "complexity_metric_count": 7,
+  "distillation_replay_preserved": true,
+  "evaluation_partition_count": 3,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "external_replication_performed": false,
+  "genome_digest": "sha256:12a1cbb31a163640e5fbf9f190fe18b3d241890e233d6bcbee9f60b2cb599928",
+  "memory_stratum_count": 9,
+  "negative_fail_closed_case_count": 10,
+  "promotion_authorized": false,
+  "reward_hacking_defense_count": 9,
+  "status": "CACIS_GENOME_EVALUATION_W5_REPLAY_VALID_CANDIDATE_ONLY"
+}

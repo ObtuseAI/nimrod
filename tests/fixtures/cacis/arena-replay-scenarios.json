@@ -1,0 +1,21 @@
+{
+  "fixture_version": "0.1.0",
+  "origin": "synthetic_deterministic_replay_fixture",
+  "scenarios": [
+    {"arena": "credential_theft", "scenario_id": "credential-theft-replay-v1", "seed": 0, "expected_evidence": ["authentication anomaly", "identity path", "endpoint process"]},
+    {"arena": "suspicious_script", "scenario_id": "suspicious-script-replay-v1", "seed": 1, "expected_evidence": ["script block", "process ancestry", "dns correlation"]},
+    {"arena": "ransomware", "scenario_id": "ransomware-replay-v1", "seed": 2, "expected_evidence": ["file mutation burst", "recovery checkpoint", "containment proposal"]},
+    {"arena": "cloud", "scenario_id": "cloud-abuse-replay-v1", "seed": 3, "expected_evidence": ["iam change", "control-plane event", "tenant scope"]},
+    {"arena": "containers", "scenario_id": "container-escape-hypothesis-replay-v1", "seed": 4, "expected_evidence": ["workload identity", "runtime event", "image provenance"]},
+    {"arena": "supply_chain", "scenario_id": "supply-chain-replay-v1", "seed": 5, "expected_evidence": ["sbom delta", "artifact signature", "dependency lineage"]},
+    {"arena": "identity", "scenario_id": "identity-escalation-replay-v1", "seed": 6, "expected_evidence": ["privilege edge", "delegation path", "authorization decision"]},
+    {"arena": "insider", "scenario_id": "insider-hypothesis-replay-v1", "seed": 7, "expected_evidence": ["authorized access", "behavior deviation", "counter evidence"]},
+    {"arena": "novel_malware", "scenario_id": "novel-malware-replay-v1", "seed": 8, "expected_evidence": ["unknown behavior", "memory indicator", "abstention state"]},
+    {"arena": "living_off_the_land", "scenario_id": "lolbin-replay-v1", "seed": 9, "expected_evidence": ["signed binary", "unusual parent", "network consequence"]},
+    {"arena": "privilege_escalation", "scenario_id": "privilege-escalation-replay-v1", "seed": 10, "expected_evidence": ["token change", "trust path", "independent verification"]},
+    {"arena": "misconfiguration", "scenario_id": "misconfiguration-replay-v1", "seed": 11, "expected_evidence": ["configuration delta", "policy baseline", "benign challenger"]},
+    {"arena": "recovery", "scenario_id": "recovery-integrity-replay-v1", "seed": 12, "expected_evidence": ["snapshot lineage", "post-state integrity", "residual risk"]},
+    {"arena": "purple_validation", "scenario_id": "purple-causal-replay-v1", "seed": 13, "expected_evidence": ["expected telemetry", "observed telemetry", "causal gap"]},
+    {"arena": "metacognition", "scenario_id": "metacognitive-abstention-replay-v1", "seed": 14, "expected_evidence": ["uncertainty vector", "missing evidence", "stop decision"]}
+  ]
+}

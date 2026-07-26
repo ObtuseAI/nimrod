@@ -1,0 +1,20 @@
+{
+  "adversarial_case_count": 23,
+  "can_connect": false,
+  "can_execute": false,
+  "compilation_receipt_count": 2,
+  "compiled_campaign_count": 2,
+  "exact_source_digest_binding": true,
+  "live_execution_performed": false,
+  "maximum_capability": "range.test.simulate",
+  "maximum_connector": "connector.simulated.atomic",
+  "normalized_import_count": 2,
+  "offensive_tools_installed_or_launched": false,
+  "origin": "simulated",
+  "raw_execution_material_forwarded": false,
+  "raw_execution_material_retained": false,
+  "source_kind_count": 2,
+  "source_tool_contacted": false,
+  "status": "RANGE_ADAPTER_FIXTURE_COMPILATION_VALID",
+  "target_discovery_performed": false
+}

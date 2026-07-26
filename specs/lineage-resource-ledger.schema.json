@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/lineage-resource-ledger.schema.json",
+  "title": "nimrod Threshold-Signed Lineage Resource Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ledger_version", "ledger_id", "lineage_id", "origin", "constitution_digest", "governance_state_digest", "root_candidate_digest", "generated_at", "not_before", "expires_at", "entries", "head_entry_digest", "totals", "status", "blockers", "authority", "signatures"],
+  "properties": {
+    "ledger_version": {"const": "0.1.0"},
+    "ledger_id": {"type": "string", "format": "uuid"},
+    "lineage_id": {"type": "string", "format": "uuid"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "constitution_digest": {"$ref": "#/$defs/digest"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "root_candidate_digest": {"$ref": "#/$defs/digest"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "entries": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/entry"}},
+    "head_entry_digest": {"$ref": "#/$defs/digest"},
+    "totals": {"$ref": "#/$defs/totals"},
+    "status": {"enum": ["within_constitution", "blocked"]},
+    "blockers": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_allocate", "can_purchase_compute", "can_extend_lease", "can_execute"],
+      "properties": {
+        "can_allocate": {"const": false},
+        "can_purchase_compute": {"const": false},
+        "can_extend_lease": {"const": false},
+        "can_execute": {"const": false}
+      }
+    },
+    "signatures": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "reference": {"type": "object", "additionalProperties": false, "required": ["id", "digest"], "properties": {"id": {"$ref": "#/$defs/nonEmptyString"}, "digest": {"$ref": "#/$defs/digest"}}},
+    "lease": {"type": "object", "additionalProperties": false, "required": ["maximum_cycle_seconds", "maximum_compute_units", "maximum_memory_megabytes", "maximum_storage_megabytes", "maximum_candidate_children"], "properties": {"maximum_cycle_seconds": {"type": "integer", "minimum": 1}, "maximum_compute_units": {"type": "integer", "minimum": 1}, "maximum_memory_megabytes": {"type": "integer", "minimum": 1}, "maximum_storage_megabytes": {"type": "integer", "minimum": 1}, "maximum_candidate_children": {"type": "integer", "minimum": 1}}},
+    "usage": {"type": "object", "additionalProperties": false, "required": ["cycle_seconds", "compute_units", "peak_memory_megabytes", "peak_storage_megabytes"], "properties": {"cycle_seconds": {"type": "integer", "minimum": 0}, "compute_units": {"type": "integer", "minimum": 0}, "peak_memory_megabytes": {"type": "integer", "minimum": 0}, "peak_storage_megabytes": {"type": "integer", "minimum": 0}}},
+    "entry": {"type": "object", "additionalProperties": false, "required": ["sequence", "candidate_id", "candidate_digest", "parent_candidate_digest", "resource_lease_digest", "lease", "usage", "evidence", "child_count", "previous_entry_digest", "status", "blockers"], "properties": {"sequence": {"type": "integer", "minimum": 1}, "candidate_id": {"$ref": "#/$defs/nonEmptyString"}, "candidate_digest": {"$ref": "#/$defs/digest"}, "parent_candidate_digest": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]}, "resource_lease_digest": {"$ref": "#/$defs/digest"}, "lease": {"$ref": "#/$defs/lease"}, "usage": {"$ref": "#/$defs/usage"}, "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/reference"}}, "child_count": {"type": "integer", "minimum": 0}, "previous_entry_digest": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]}, "status": {"enum": ["within_lease", "overrun"]}, "blockers": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}}}},
+    "totals": {"type": "object", "additionalProperties": false, "required": ["total_cycle_seconds", "total_compute_units", "peak_memory_megabytes", "peak_storage_megabytes", "candidate_count"], "properties": {"total_cycle_seconds": {"type": "integer", "minimum": 0}, "total_compute_units": {"type": "integer", "minimum": 0}, "peak_memory_megabytes": {"type": "integer", "minimum": 0}, "peak_storage_megabytes": {"type": "integer", "minimum": 0}, "candidate_count": {"type": "integer", "minimum": 1}}},
+    "signature": {"type": "object", "additionalProperties": false, "required": ["signer_id", "algorithm", "signature_base64"], "properties": {"signer_id": {"$ref": "#/$defs/nonEmptyString"}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$"}}}
+  }
+}

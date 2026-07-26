@@ -1,0 +1,40 @@
+{
+  "attestation_version": "0.1.0",
+  "attestation_id": "4e5de294-7025-4a95-bad3-2e0f70c439df",
+  "origin": "simulated",
+  "component_kind": "evaluator",
+  "component_id": "evaluator:public_regression",
+  "logical_principal": "principal:public_regression",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "captured_at": "2026-07-13T04:30:00Z",
+  "issued_at": "2026-07-13T04:30:01Z",
+  "not_before": "2026-07-13T04:30:00Z",
+  "expires_at": "2026-07-13T04:35:00Z",
+  "process": {
+    "process_id": 8101,
+    "os_account_identifier": "nimrod-evaluator-public",
+    "os_account_sid": "S-1-5-21-1001",
+    "executable_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "collector": {
+    "collector_id": "collector:fixture",
+    "kind": "fixture",
+    "raw_evidence_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "controls": [
+    {"control_id": "CREDENTIAL_ISOLATION", "status": "verified", "evidence": [{"id": "env:allowlist", "digest": "sha256:4111111111111111111111111111111111111111111111111111111111111111"}]},
+    {"control_id": "DEDICATED_OS_ACCOUNT", "status": "verified", "evidence": [{"id": "account:sid", "digest": "sha256:4222222222222222222222222222222222222222222222222222222222222222"}]},
+    {"control_id": "DISTINCT_PROCESS", "status": "verified", "evidence": [{"id": "process:identity", "digest": "sha256:4333333333333333333333333333333333333333333333333333333333333333"}]},
+    {"control_id": "EXECUTABLE_IDENTITY", "status": "verified", "evidence": [{"id": "binary:digest", "digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444"}]},
+    {"control_id": "NETWORK_EGRESS_DENIED", "status": "verified", "evidence": [{"id": "network:policy", "digest": "sha256:4555555555555555555555555555555555555555555555555555555555555555"}]},
+    {"control_id": "READ_ONLY_INPUT_ACL", "status": "verified", "evidence": [{"id": "acl:input", "digest": "sha256:4666666666666666666666666666666666666666666666666666666666666666"}]},
+    {"control_id": "SEPARATE_OUTPUT_ACL", "status": "verified", "evidence": [{"id": "acl:output", "digest": "sha256:4777777777777777777777777777777777777777777777777777777777777777"}]}
+  ],
+  "status": "verified",
+  "blockers": [],
+  "authority": {"can_authorize": false, "can_execute": false, "can_modify_acl": false, "can_grant_credentials": false},
+  "signatures": [
+    {"signer_id": "key:evolution-owner", "algorithm": "Ed25519", "signature_base64": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="},
+    {"signer_id": "key:evolution-safety", "algorithm": "Ed25519", "signature_base64": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=="}
+  ]
+}

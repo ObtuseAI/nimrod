@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/witness-checkpoint.schema.json",
+  "title": "nimrod Witness Checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["checkpoint_version", "checkpoint_id", "origin", "witness_id", "created_at", "tree_size", "merkle_root_sha256", "journal_prefix_digest", "latest_entry_digest", "previous_checkpoint_digest", "governance_id", "governance_epoch", "governance_state_digest", "signatures"],
+  "properties": {
+    "checkpoint_version": { "const": "0.1.0" },
+    "checkpoint_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "witness_id": { "$ref": "#/$defs/nonEmptyString" },
+    "created_at": { "$ref": "#/$defs/timestamp" },
+    "tree_size": { "type": "integer", "minimum": 1 },
+    "merkle_root_sha256": { "$ref": "#/$defs/digest" },
+    "journal_prefix_digest": { "$ref": "#/$defs/digest" },
+    "latest_entry_digest": { "$ref": "#/$defs/digest" },
+    "previous_checkpoint_digest": { "oneOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] },
+    "governance_id": { "$ref": "#/$defs/uuid" },
+    "governance_epoch": { "type": "integer", "minimum": 1 },
+    "governance_state_digest": { "$ref": "#/$defs/digest" },
+    "signatures": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/signature" } }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {
+        "signer_id": { "$ref": "#/$defs/nonEmptyString" },
+        "algorithm": { "const": "Ed25519" },
+        "signature_base64": { "type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$" }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/intelligence-research-mission.schema.json",
+  "title": "nimrod constitutional intelligence research mission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mission_version", "mission_id", "title", "origin", "domain", "issued_at", "expires_at", "maximum_outcome", "source_evidence", "discovery", "research_question", "creativity_operators", "preregistration", "methods", "benchmark_cases", "experiment", "verifier", "authority"],
+  "properties": {
+    "mission_version": {"const": "0.1.0"},
+    "mission_id": {"type": "string", "format": "uuid"},
+    "title": {"type": "string", "minLength": 8, "maxLength": 160},
+    "origin": {"const": "replayed"},
+    "domain": {"enum": ["security", "software", "science", "planning", "general_reasoning"]},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "maximum_outcome": {"const": "candidate_theory"},
+    "source_evidence": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/source"}},
+    "discovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["opportunity_id", "trigger", "observed_bottlenecks", "unknowns", "question_not_previously_asked"],
+      "properties": {
+        "opportunity_id": {"type": "string", "format": "uuid"},
+        "trigger": {"const": "repeated_uncertainty_and_unverified_outcomes"},
+        "observed_bottlenecks": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+        "unknowns": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 3}},
+        "question_not_previously_asked": {"type": "string", "minLength": 12, "maxLength": 320}
+      }
+    },
+    "research_question": {"type": "string", "minLength": 20, "maxLength": 320},
+    "creativity_operators": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"enum": ["analogy", "inversion", "morphological_search", "cross_domain_transfer", "constraint_relaxation", "constraint_inversion", "recombination", "counterfactual_reasoning", "first_principles_reconstruction", "abstraction"]}},
+    "preregistration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary_hypothesis_id", "hypotheses", "predictions", "hard_failure_conditions", "registered_before_experiment"],
+      "properties": {
+        "primary_hypothesis_id": {"type": "string", "format": "uuid"},
+        "hypotheses": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"$ref": "#/$defs/hypothesis"}},
+        "predictions": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/prediction"}},
+        "hard_failure_conditions": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"enum": ["authority_growth", "evidence_substitution", "hypothesis_omission", "counter_evidence_omission", "metric_redefinition", "generalization_laundering", "self_verification", "candidate_promotion"]}},
+        "registered_before_experiment": {"const": true}
+      }
+    },
+    "methods": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/method"}},
+    "benchmark_cases": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/benchmark"}},
+    "experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["design", "metrics", "maximum_candidate_complexity_delta", "held_out_evaluation_performed", "generalization_claim_allowed", "model_calls_allowed", "network_access_allowed"],
+      "properties": {
+        "design": {"const": "paired_deterministic_method_structure_replay"},
+        "metrics": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"enum": ["required_operation_coverage", "uncertainty_preservation", "challenge_coverage", "evidence_efficiency", "complexity_cost"]}},
+        "maximum_candidate_complexity_delta": {"type": "integer", "minimum": 0, "maximum": 8},
+        "held_out_evaluation_performed": {"const": false},
+        "generalization_claim_allowed": {"const": false},
+        "model_calls_allowed": {"const": false},
+        "network_access_allowed": {"const": false}
+      }
+    },
+    "verifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verifier_id", "scope", "read_only", "same_research_principal", "can_promote", "production_independence_claimed"],
+      "properties": {
+        "verifier_id": {"type": "string", "pattern": "^verifier:[a-z0-9_.-]+$"},
+        "scope": {"const": "structural_replay_only"},
+        "read_only": {"const": true},
+        "same_research_principal": {"const": false},
+        "can_promote": {"const": false},
+        "production_independence_claimed": {"const": false}
+      }
+    },
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "source": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "digest", "origin"],
+      "properties": {"kind": {"enum": ["world_model_generation", "immune_lifecycle_receipt"]}, "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "origin": {"const": "replayed"}}
+    },
+    "hypothesis": {
+      "type": "object", "additionalProperties": false, "required": ["hypothesis_id", "kind", "claim", "falsifiable"],
+      "properties": {"hypothesis_id": {"type": "string", "format": "uuid"}, "kind": {"enum": ["null", "candidate", "rival", "unknown"]}, "claim": {"type": "string", "minLength": 12, "maxLength": 500}, "falsifiable": {"const": true}}
+    },
+    "prediction": {
+      "type": "object", "additionalProperties": false, "required": ["prediction_id", "hypothesis_id", "metric", "comparator", "threshold"],
+      "properties": {"prediction_id": {"type": "string", "format": "uuid"}, "hypothesis_id": {"type": "string", "format": "uuid"}, "metric": {"enum": ["mean_required_operation_coverage_delta", "mean_uncertainty_preservation_delta", "maximum_complexity_delta"]}, "comparator": {"enum": ["greater_than_or_equal", "less_than_or_equal"]}, "threshold": {"type": "number", "minimum": -1, "maximum": 8}}
+    },
+    "method": {
+      "type": "object", "additionalProperties": false, "required": ["method_id", "role", "name", "operators", "decision_operator", "can_authorize", "can_execute"],
+      "properties": {"method_id": {"type": "string", "format": "uuid"}, "role": {"enum": ["baseline", "candidate"]}, "name": {"enum": ["retrieval_first_planning", "uncertainty_first_adversarial_decomposition"]}, "operators": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"enum": ["represent_uncertainty", "decompose", "adversarial_challenge", "counterfactual_reasoning", "retrieve", "synthesize", "decide", "abstain_or_decide"]}}, "decision_operator": {"enum": ["decide", "abstain_or_decide"]}, "can_authorize": {"const": false}, "can_execute": {"const": false}}
+    },
+    "benchmark": {
+      "type": "object", "additionalProperties": false, "required": ["case_id", "scenario", "origin", "required_operations", "material_unknown_count", "contradiction_count", "evidence_budget"],
+      "properties": {"case_id": {"type": "string", "format": "uuid"}, "scenario": {"enum": ["credential_theft", "suspicious_script"]}, "origin": {"const": "replayed"}, "required_operations": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"enum": ["represent_uncertainty", "decompose", "adversarial_challenge", "counterfactual_reasoning", "retrieve", "synthesize"]}}, "material_unknown_count": {"type": "integer", "minimum": 1}, "contradiction_count": {"type": "integer", "minimum": 1}, "evidence_budget": {"type": "integer", "minimum": 1, "maximum": 32}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false, "required": ["can_authorize", "can_execute", "can_change_policy", "can_contact_targets", "can_use_credentials", "can_self_verify", "can_promote", "can_modify_constitution"],
+      "properties": {"can_authorize": {"const": false}, "can_execute": {"const": false}, "can_change_policy": {"const": false}, "can_contact_targets": {"const": false}, "can_use_credentials": {"const": false}, "can_self_verify": {"const": false}, "can_promote": {"const": false}, "can_modify_constitution": {"const": false}}
+    }
+  }
+}

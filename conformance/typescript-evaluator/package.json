@@ -1,0 +1,14 @@
+{
+  "name": "nimrod-typescript-evaluator-conformance",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "verify": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.13",
+    "typescript": "5.9.3"
+  }
+}

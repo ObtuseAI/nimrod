@@ -1,0 +1,30 @@
+{
+  "topology_version": "0.1.0",
+  "topology_id": "d20404d6-49a0-4aa4-9d82-fc43bf4f35df",
+  "origin": "simulated",
+  "environment_class": "isolated_range",
+  "generation": 1,
+  "zones": [
+    {"zone_id": "zone:target", "role": "target", "internet_access": false},
+    {"zone_id": "zone:telemetry", "role": "telemetry", "internet_access": false},
+    {"zone_id": "zone:control", "role": "control", "internet_access": false}
+  ],
+  "nodes": [
+    {"node_id": "node:sacrificial-target-01", "role": "sacrificial_target", "zone_id": "zone:target", "disposable": true, "dedicated_credentials": true, "credential_scope": "credential:target:generation-1"},
+    {"node_id": "node:telemetry-collector-01", "role": "telemetry_collector", "zone_id": "zone:telemetry", "disposable": true, "dedicated_credentials": true, "credential_scope": "credential:telemetry:generation-1"},
+    {"node_id": "node:kill-switch-01", "role": "kill_switch", "zone_id": "zone:control", "disposable": true, "dedicated_credentials": true, "credential_scope": "credential:kill:generation-1"}
+  ],
+  "routes": [
+    {"route_id": "route:telemetry-export", "source_zone_id": "zone:target", "destination_zone_id": "zone:telemetry", "direction": "one_way", "purpose": "telemetry_export"},
+    {"route_id": "route:out-of-band-kill", "source_zone_id": "zone:control", "destination_zone_id": "zone:target", "direction": "one_way", "purpose": "out_of_band_kill"}
+  ],
+  "controls": {
+    "default_deny_egress": true,
+    "internet_egress_permitted": false,
+    "target_to_control_plane_permitted": false,
+    "telemetry_write_only": true,
+    "out_of_band_kill_independent": true,
+    "credential_reuse_permitted": false
+  },
+  "authority": {"can_provision": false, "can_connect": false, "can_execute": false}
+}

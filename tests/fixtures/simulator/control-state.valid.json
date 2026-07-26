@@ -1,0 +1,20 @@
+{
+  "control_state_version": "0.1.0",
+  "origin": "simulated",
+  "authorization_mode": "structural_fixture_only",
+  "revoked_lease_ids": [],
+  "revoked_nonces": [],
+  "consumed_nonces": [],
+  "kill_switch_engaged": false,
+  "completed_preflight_requirements": [
+    "Range snapshot exists",
+    "Out-of-band kill switch is reachable",
+    "Independent verifier is healthy"
+  ],
+  "budget_usage": {
+    "actions": 0,
+    "seconds": 0,
+    "cost_usd": 0,
+    "export_bytes": 0
+  }
+}

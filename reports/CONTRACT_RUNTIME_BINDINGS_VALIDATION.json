@@ -1,0 +1,10 @@
+{
+  "contract_count": 6,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "live_runtime_evidence_present": false,
+  "negative_fail_closed_case_count": 12,
+  "production_conformance_claimed": false,
+  "semantic_binding_count": 6,
+  "status": "SIX_CONTRACT_RUNTIME_BINDINGS_VALID_PRODUCTION_EVIDENCE_BLOCKED"
+}

@@ -1,0 +1,84 @@
+{
+  "authority": {
+    "can_authorize": false,
+    "can_execute": false,
+    "recovery_verified": false,
+    "target_state_changed": false
+  },
+  "evaluated_at": "2026-07-15T16:01:00Z",
+  "explanation": [
+    "The replay shows an unsigned process in a user-writable location contacting a new destination",
+    "Deterministic policy selected a user-confirmation proposal for reversible process egress isolation",
+    "The preview contains no executor and changed no target state"
+  ],
+  "independent_verification": {
+    "action_digest": "sha256:001e5c38c1227f7832ab5fe6bf4334020f94845b73e983dd7535a70a66007260",
+    "checks": {
+      "action_contract_valid": true,
+      "execution_surface_present": false,
+      "post_state_observed": false,
+      "proposal_only": true,
+      "scenario_contract_valid": true
+    },
+    "execution_authorized": false,
+    "execution_performed": false,
+    "origin": "replayed",
+    "recovery_verified": false,
+    "residual_risks": [
+      "No live endpoint observation was performed",
+      "No target post-state was observed",
+      "No containment or recovery operation was exercised"
+    ],
+    "scenario_digest": "sha256:541c3d1c09da94121796bba20cdc579917adb40ce632a53d8af80d1d0a052980",
+    "status": "independent_no_execution_structure_valid_post_state_unobserved",
+    "target_state_changed": false,
+    "verification_id": "2d3a5a51-5963-5f59-a5fd-3095e3d81ef8",
+    "verification_version": "0.1.0",
+    "verified_at": "2026-07-15T16:01:00Z",
+    "verified_outcome": false,
+    "verifier_principal": "verifier:nimrod-edge-structural",
+    "verifier_process_id": 4242
+  },
+  "matched_rule_id": "edge.rule.unsigned_user_path_new_egress",
+  "origin": "replayed",
+  "references": {
+    "action_proposal": {
+      "digest": "sha256:001e5c38c1227f7832ab5fe6bf4334020f94845b73e983dd7535a70a66007260",
+      "id": "witness:edge-action-proposal:2"
+    },
+    "evidence_receipt": {
+      "digest": "sha256:c6960df854862094ac984217b548cea8d71c29c70688f562164fd4f8ef183708",
+      "id": "witness:edge-evidence-receipt:3"
+    },
+    "scenario": {
+      "digest": "sha256:541c3d1c09da94121796bba20cdc579917adb40ce632a53d8af80d1d0a052980",
+      "id": "witness:edge-preview-scenario:1"
+    },
+    "verification": {
+      "digest": "sha256:116c66f55b924921792bca25dcd7f04c5a7d61f23672aa9f061fefe11b1f5a07",
+      "id": "witness:edge-independent-verification:4"
+    }
+  },
+  "result_version": "0.1.0",
+  "risk": {
+    "confidence_interval": [
+      0.72,
+      0.88
+    ],
+    "level": "high"
+  },
+  "run_id": "5383884b-5049-5bff-aafa-f90583c2995e",
+  "scenario_digest": "sha256:541c3d1c09da94121796bba20cdc579917adb40ce632a53d8af80d1d0a052980",
+  "scenario_id": "38d62339-e0c2-4eb7-948b-27f9b54270c6",
+  "security_claim": "Replayed evidence only; no endpoint observation, containment, recovery, or production protection was established",
+  "status": "EDGE_PREVIEW_REPLAY_PROPOSAL_STRUCTURALLY_VERIFIED_POST_STATE_UNOBSERVED",
+  "uncertainties": [
+    "The event was replayed and not collected from this device",
+    "No destination or publisher reputation oracle was queried",
+    "No endpoint post-state or recovery state was observed"
+  ],
+  "witness": {
+    "entry_count": 4,
+    "journal": "validation://edge-preview/witness.jsonl"
+  }
+}

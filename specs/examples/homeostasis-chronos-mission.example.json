@@ -1,0 +1,46 @@
+{
+  "mission_version": "0.1.0",
+  "mission_id": "74000000-0000-4000-8000-000000000001",
+  "origin": "replayed",
+  "issued_at": "2026-07-16T11:00:00Z",
+  "evaluated_at": "2026-07-16T12:00:00Z",
+  "expires_at": "2026-07-16T13:00:00Z",
+  "maximum_outcome": "schedule_proposal",
+  "source_settlement_digest": "sha256:3bd1745396c7661dc351e51f006d79e2c0385857fcadb3a00cc746ae6b5c128f",
+  "resource_budget": {"cpu": 6, "memory": 8, "storage": 6, "telemetry": 4, "model": 3, "sandbox": 3, "simulation": 4, "verification": 5, "investigation": 6},
+  "priority_weights": {"information_gain": 0.4, "risk_reduction": 0.35, "recovery_improvement": 0.25},
+  "signals": [
+    {"signal": "telemetry_freshness", "observed": 0.4, "threshold": 0.8, "healthy_when": "at_or_above"},
+    {"signal": "evidence_completeness", "observed": 0.65, "threshold": 0.8, "healthy_when": "at_or_above"},
+    {"signal": "trust_health", "observed": 0.9, "threshold": 0.8, "healthy_when": "at_or_above"},
+    {"signal": "identity_health", "observed": 0.85, "threshold": 0.8, "healthy_when": "at_or_above"},
+    {"signal": "model_diversity", "observed": 0.4, "threshold": 0.7, "healthy_when": "at_or_above"},
+    {"signal": "sensor_health", "observed": 0.7, "threshold": 0.8, "healthy_when": "at_or_above"},
+    {"signal": "recovery_health", "observed": 0.55, "threshold": 0.8, "healthy_when": "at_or_above"},
+    {"signal": "verification_backlog", "observed": 0.8, "threshold": 0.2, "healthy_when": "at_or_below"},
+    {"signal": "threat_pressure", "observed": 0.78, "threshold": 0.7, "healthy_when": "at_or_below"},
+    {"signal": "false_positive_rate", "observed": 0.15, "threshold": 0.2, "healthy_when": "at_or_below"},
+    {"signal": "confidence_inflation", "observed": 0.0, "threshold": 0.2, "healthy_when": "at_or_below"},
+    {"signal": "agent_diversity", "observed": 0.5, "threshold": 0.6, "healthy_when": "at_or_above"},
+    {"signal": "resource_pressure", "observed": 0.9, "threshold": 0.8, "healthy_when": "at_or_below"}
+  ],
+  "confidence_vector": {"understanding": 0.82, "calibration": 0.58, "generalization": 0.1, "verification": 0.35, "maximum_inflation": 0.2},
+  "chronos_policy": [
+    {"clock": "endpoint_millisecond", "freshness_ms": 250, "expiry_ms": 1000},
+    {"clock": "identity_second", "freshness_ms": 5000, "expiry_ms": 30000},
+    {"clock": "containment_minute", "freshness_ms": 60000, "expiry_ms": 300000},
+    {"clock": "recovery_hour", "freshness_ms": 3600000, "expiry_ms": 14400000},
+    {"clock": "threat_intelligence_day", "freshness_ms": 86400000, "expiry_ms": 604800000},
+    {"clock": "architecture_week", "freshness_ms": 604800000, "expiry_ms": 2419200000},
+    {"clock": "capability_month", "freshness_ms": 2592000000, "expiry_ms": 7776000000}
+  ],
+  "work_items": [
+    {"work_id": "74000000-0000-4000-8000-000000000010", "work_kind": "telemetry_refresh", "clock": "endpoint_millisecond", "observed_at": "2026-07-16T11:59:59.500Z", "expected_information_gain": 0.9, "expected_risk_reduction": 0.75, "expected_recovery_improvement": 0.3, "responds_to": ["telemetry_freshness", "sensor_health"], "costs": {"cpu": 1, "memory": 1, "storage": 1, "telemetry": 3, "model": 0, "sandbox": 0, "simulation": 0, "verification": 0, "investigation": 1}, "prerequisites_satisfied": true},
+    {"work_id": "74000000-0000-4000-8000-000000000011", "work_kind": "independent_verifier_replication", "clock": "threat_intelligence_day", "observed_at": "2026-07-14T12:00:00Z", "expected_information_gain": 0.95, "expected_risk_reduction": 0.95, "expected_recovery_improvement": 0.4, "responds_to": ["verification_backlog", "confidence_inflation", "evidence_completeness"], "costs": {"cpu": 2, "memory": 2, "storage": 1, "telemetry": 0, "model": 0, "sandbox": 1, "simulation": 0, "verification": 3, "investigation": 2}, "prerequisites_satisfied": true},
+    {"work_id": "74000000-0000-4000-8000-000000000012", "work_kind": "recovery_replay_validation", "clock": "recovery_hour", "observed_at": "2026-07-16T10:00:00Z", "expected_information_gain": 0.7, "expected_risk_reduction": 0.9, "expected_recovery_improvement": 1.0, "responds_to": ["recovery_health", "evidence_completeness"], "costs": {"cpu": 2, "memory": 2, "storage": 2, "telemetry": 0, "model": 0, "sandbox": 1, "simulation": 2, "verification": 2, "investigation": 2}, "prerequisites_satisfied": true},
+    {"work_id": "74000000-0000-4000-8000-000000000013", "work_kind": "model_diversity_challenge", "clock": "architecture_week", "observed_at": "2026-07-06T12:00:00Z", "expected_information_gain": 0.8, "expected_risk_reduction": 0.65, "expected_recovery_improvement": 0.2, "responds_to": ["model_diversity", "agent_diversity"], "costs": {"cpu": 3, "memory": 3, "storage": 1, "telemetry": 0, "model": 3, "sandbox": 1, "simulation": 3, "verification": 1, "investigation": 2}, "prerequisites_satisfied": true},
+    {"work_id": "74000000-0000-4000-8000-000000000014", "work_kind": "identity_corroboration", "clock": "identity_second", "observed_at": "2026-07-16T11:59:00Z", "expected_information_gain": 0.5, "expected_risk_reduction": 0.5, "expected_recovery_improvement": 0.1, "responds_to": ["identity_health"], "costs": {"cpu": 1, "memory": 1, "storage": 0, "telemetry": 1, "model": 0, "sandbox": 0, "simulation": 0, "verification": 1, "investigation": 1}, "prerequisites_satisfied": true},
+    {"work_id": "74000000-0000-4000-8000-000000000015", "work_kind": "capability_mutation_review", "clock": "capability_month", "observed_at": "2026-03-01T12:00:00Z", "expected_information_gain": 1.0, "expected_risk_reduction": 0.1, "expected_recovery_improvement": 0.1, "responds_to": ["resource_pressure"], "costs": {"cpu": 6, "memory": 8, "storage": 6, "telemetry": 4, "model": 3, "sandbox": 3, "simulation": 4, "verification": 5, "investigation": 6}, "prerequisites_satisfied": false}
+  ],
+  "authority": {"can_authorize": false, "can_execute": false, "can_change_policy": false, "can_contact_targets": false, "can_use_credentials": false, "can_self_verify": false, "can_promote": false, "can_modify_constitution": false}
+}

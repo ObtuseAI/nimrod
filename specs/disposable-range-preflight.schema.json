@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/disposable-range-preflight.schema.json",
+  "title": "nimrod Disposable Range Preflight Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["preflight_version", "preflight_id", "origin", "range_id", "environment_class", "captured_at", "policy_envelope_digest", "corpus_report_digest", "controls", "authority"],
+  "properties": {
+    "preflight_version": {"const": "0.1.0"},
+    "preflight_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "range_id": {"$ref": "#/$defs/nonEmptyString"},
+    "environment_class": {"const": "isolated_range"},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "policy_envelope_digest": {"$ref": "#/$defs/digest"},
+    "corpus_report_digest": {"$ref": "#/$defs/digest"},
+    "controls": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control_id", "status", "evidence"],
+        "properties": {
+          "control_id": {"enum": ["CLEANUP_CONTRACT", "DEDICATED_CREDENTIALS", "DEFAULT_DENY_EGRESS", "DISPOSABLE_TARGET", "INDEPENDENT_VERIFIER", "OUT_OF_BAND_KILL", "RESTORABLE_SNAPSHOT", "TELEMETRY_SEPARATION", "TRUSTED_TIME"]},
+          "status": {"enum": ["proven", "unproven", "failed"]},
+          "evidence": {"type": "array", "items": {"$ref": "#/$defs/reference"}}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_connect", "can_execute"],
+      "properties": {"can_connect": {"const": false}, "can_execute": {"const": false}}
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {"id": {"$ref": "#/$defs/nonEmptyString"}, "digest": {"$ref": "#/$defs/digest"}}
+    }
+  }
+}

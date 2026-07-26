@@ -1,0 +1,128 @@
+{
+  "documentType": "codex-security.hardening-analysis",
+  "schemaVersion": "1.0",
+  "analysisId": "hardening_20260715_nimrod_cacis_vnext",
+  "sourceEvidence": {
+    "kind": "document_collection",
+    "label": "nimrod CACIS owner brief and constitutional architecture collection",
+    "collectionSha256": "fc36f3e6528925b88081da0f4b1d26b1acc549d60a1101d9348a9541bcab985e",
+    "artifactCount": 6,
+    "sourceDrift": "present",
+    "targetRevision": "d8b28e03082d302c49c41b20478d83411c549bf4"
+  },
+  "assessment": {
+    "outcome": "opportunities_identified",
+    "summary": "One structural opportunity can add dynamic world modeling and immune organisms while preserving nimrod's existing constitutional authority and verification boundaries."
+  },
+  "constraints": {
+    "profile": "high_assurance_staged",
+    "changeHorizons": ["incremental", "medium_term", "foundational"],
+    "nonNegotiables": [
+      "Doctrine v0.1 remains governing and unchanged.",
+      "The Sovereign Governor and immune organisms cannot authorize execution.",
+      "Operational offense remains behind existing Crucible gates.",
+      "Evolution cannot change authority, trust, constitution, or safety ceilings."
+    ],
+    "assumptions": [
+      "No measured CACIS runtime latency, memory, scale, or deployment budget was supplied.",
+      "The first implementation remains unprivileged, deterministic, and replay-only."
+    ]
+  },
+  "opportunities": [
+    {
+      "opportunityId": "constitutional-immune-plane",
+      "title": "Constitutional immune plane",
+      "summary": "Separate mutable world modeling, temporary organisms, metacognition, and genome learning from immutable authority and effect execution.",
+      "diagnosis": "Adding every CACIS responsibility directly to the current fixed swarm would concentrate truth formation, scheduling, memory, and learning in one long-lived ownership boundary.",
+      "evidence": [
+        {"claimType": "observed", "sourceKind": "document", "evidenceId": "E-01", "path": "docs/source/cacis_vnext_owner_brief.md", "claim": "The owner brief requests a living world model, temporary organisms, metacognition, genome learning, and recursive improvement while preserving authority."},
+        {"claimType": "observed", "sourceKind": "threat_model", "evidenceId": "E-02", "path": "docs/DOCTRINE.md", "claim": "Doctrine separates analysis, authorization, execution, verification, evidence, and human authority."},
+        {"claimType": "observed", "sourceKind": "source", "evidenceId": "E-03", "path": "docs/REFERENCE_ARCHITECTURE.md", "claim": "The current architecture already has distinct kernel, executor, verifier, Witness, Foundry, and display ownership."},
+        {"claimType": "inferred", "sourceKind": "document", "evidenceId": "E-06", "path": "docs/SWARM_CONTROL_BOARD.md", "claim": "A fixed swarm enlarged to own mutable world state, lifecycle, and memory would create correlated integrity and availability risk even if its formal maximum outcome remained a proposal."}
+      ],
+      "desiredInvariants": [
+        "Immutable observations remain distinct from versioned derived state.",
+        "Only the existing Constitutional Kernel may authorize deterministic policy and it cannot execute.",
+        "The Governor schedules but cannot authorize; organisms propose but cannot execute.",
+        "Consequential claims and recovery are independently verified.",
+        "Genome output remains inert candidate data under partitioned evaluation.",
+        "Public hosts and unknown ownership are never offensive targets."
+      ],
+      "proposalPath": "proposals/constitutional-immune-plane.md",
+      "options": [
+        {
+          "optionId": "current-swarm-extension",
+          "title": "Extend the current swarm",
+          "kind": "baseline",
+          "summary": "Add permanent roles and an in-process shared world model to the current proposal swarm.",
+          "diagramPaths": {"before": "diagrams/constitutional-immune-plane-before.mmd", "after": "diagrams/constitutional-immune-plane-current-extension-after.mmd"},
+          "evidenceCoverage": [
+            {"evidenceId": "E-01", "effect": "mitigates", "tacticalFixRequired": true, "rationale": "It prototypes requested cognition but does not structurally isolate truth, lifecycle, and learning."},
+            {"evidenceId": "E-02", "effect": "mitigates", "tacticalFixRequired": true, "rationale": "Local checks can retain the proposal ceiling while future ownership drift remains possible."}
+          ],
+          "tradeoffs": [
+            {"dimension": "security", "direction": "improves", "confidence": "medium", "basis": "source-derived", "assessment": "More typed challenge improves proposal quality, but mutable state is concentrated.", "validationPlan": "Threat-model internal role bypass and replay poisoned shared state."},
+            {"dimension": "performance", "direction": "improves", "confidence": "low", "basis": "hypothetical", "assessment": "Shared-memory calls likely avoid transport overhead for small replay workloads.", "validationPlan": "Measure fixed-corpus p50 and p95 replay latency against Option 2."},
+            {"dimension": "memory", "direction": "improves", "confidence": "low", "basis": "hypothetical", "assessment": "One runtime likely duplicates less infrastructure, though retained state is unbounded until designed.", "validationPlan": "Compare peak RSS and retained bytes per event."},
+            {"dimension": "reliability", "direction": "regresses", "confidence": "medium", "basis": "source-derived", "assessment": "A larger shared crash and corruption domain couples more cognitive functions.", "validationPlan": "Inject crashes and corrupt shared generations during replay."},
+            {"dimension": "operability", "direction": "improves", "confidence": "medium", "basis": "source-derived", "assessment": "It introduces no new deployable service.", "validationPlan": "Exercise upgrade, rollback, and state-rebuild procedures."},
+            {"dimension": "migration", "direction": "improves", "confidence": "high", "basis": "source-derived", "assessment": "Existing swarm and board contracts can be extended locally.", "validationPlan": "Run existing swarm and board validators unchanged."}
+          ],
+          "residualRisks": ["Truth, lifecycle, memory, and scheduling remain correlated.", "Verifier independence can erode inside one ownership domain."],
+          "implementationReadiness": {"affectedComponents": ["src/nimrod_simulator", "ui"], "workPackages": ["Time-box an offline replay spike."], "acceptanceCriteria": ["No action edge and deterministic replay."], "migrationNotes": ["Treat output as disposable research."], "rollback": "Remove the new roles and shared state consumers."}
+        },
+        {
+          "optionId": "federated-constitutional-immune-plane",
+          "title": "Federated constitutional immune plane",
+          "kind": "structural",
+          "summary": "Add explicit world-model, organism, hypothesis, settlement, and genome planes around existing immutable controls.",
+          "diagramPaths": {"before": "diagrams/constitutional-immune-plane-before.mmd", "after": "diagrams/constitutional-immune-plane-federated-after.mmd"},
+          "evidenceCoverage": [
+            {"evidenceId": "E-01", "effect": "addresses", "tacticalFixRequired": true, "rationale": "It maps requested capabilities to bounded outcomes and staged contracts."},
+            {"evidenceId": "E-02", "effect": "addresses", "tacticalFixRequired": true, "rationale": "It preserves the existing kernel, independent verification, and authority ceilings."},
+            {"evidenceId": "E-04", "effect": "addresses", "tacticalFixRequired": true, "rationale": "It keeps all offensive effects behind existing Crucible gates."},
+            {"evidenceId": "E-05", "effect": "addresses", "tacticalFixRequired": true, "rationale": "It keeps genome output candidate-only under partitioned evaluation."}
+          ],
+          "tradeoffs": [
+            {"dimension": "security", "direction": "improves", "confidence": "high", "basis": "source-derived", "assessment": "Every mutable plane has an explicit non-executing maximum outcome and causal evidence boundary.", "validationPlan": "Reject authority widening, self-verification, target contact, and sealed-evaluator leakage."},
+            {"dimension": "performance", "direction": "regresses", "confidence": "low", "basis": "hypothetical", "assessment": "Versioned generations and typed serialization add work to replay and investigation paths.", "validationPlan": "Measure p50/p95 generation and settlement latency on fixed corpora."},
+            {"dimension": "memory", "direction": "regresses", "confidence": "low", "basis": "hypothetical", "assessment": "Immutable observations, generations, queues, and indexes retain additional bounded state.", "validationPlan": "Measure peak RSS and retained bytes per event under explicit retention windows."},
+            {"dimension": "reliability", "direction": "improves", "confidence": "medium", "basis": "source-derived", "assessment": "Organisms are disposable and derived state is rebuildable, though the world model becomes critical.", "validationPlan": "Crash and rebuild at every observation-to-generation boundary."},
+            {"dimension": "operability", "direction": "regresses", "confidence": "medium", "basis": "source-derived", "assessment": "Generation health, organism lifecycle, backlog, and verifier capacity require new observability.", "validationPlan": "Rehearse degraded state, drain, rollback, and incident diagnostics."},
+            {"dimension": "migration", "direction": "neutral", "confidence": "medium", "basis": "source-derived", "assessment": "Wave-by-wave dual reads preserve current consumers but require versioned migrations.", "validationPlan": "Compare old projections and new derived generations before cutover."}
+          ],
+          "residualRisks": ["The world-model store becomes a critical integrity and availability dependency.", "Correlated cells can still share poisoned inputs.", "Evaluation independence requires operational proof."],
+          "implementationReadiness": {"affectedComponents": ["specs", "src", "tools", "ui", "docs", "reports"], "workPackages": ["Complete W0 through W7 in order."], "acceptanceCriteria": ["Each plane enforces its maximum outcome and every wave exits on evidence."], "migrationNotes": ["Begin offline and dual-read; no action edge through W2."], "rollback": "Disable CACIS scheduling and consumers, drain the current generation, and return to existing projections."}
+        },
+        {
+          "optionId": "service-per-cell-immune-mesh",
+          "title": "Service-per-cell immune mesh",
+          "kind": "isolation",
+          "summary": "Deploy world model, Governor, cells, challengers, settlement, genome, and Observatory as independently identified services.",
+          "diagramPaths": {"before": "diagrams/constitutional-immune-plane-before.mmd", "after": "diagrams/constitutional-immune-plane-service-mesh-after.mmd"},
+          "evidenceCoverage": [
+            {"evidenceId": "E-01", "effect": "addresses", "tacticalFixRequired": true, "rationale": "It implements the full organism vision with strong deployable isolation options."},
+            {"evidenceId": "E-02", "effect": "mitigates", "tacticalFixRequired": true, "rationale": "Distinct identities can strengthen separation, but the event mesh and service identity become new trusted controls."}
+          ],
+          "tradeoffs": [
+            {"dimension": "security", "direction": "improves", "confidence": "medium", "basis": "analogous", "assessment": "Distinct service identities can narrow blast radius while adding broker, network, and identity attack surface.", "validationPlan": "Compromise one cell identity and prove cross-plane denial."},
+            {"dimension": "performance", "direction": "regresses", "confidence": "medium", "basis": "analogous", "assessment": "Network hops, copies, and serialization enter the critical path.", "validationPlan": "Measure end-to-end event-to-settlement latency under target load."},
+            {"dimension": "memory", "direction": "regresses", "confidence": "medium", "basis": "analogous", "assessment": "Per-service runtimes, buffers, caches, and sidecars duplicate resident state.", "validationPlan": "Measure aggregate resident memory at minimum and peak topology."},
+            {"dimension": "reliability", "direction": "unknown", "confidence": "medium", "basis": "analogous", "assessment": "Local fault isolation improves while distributed partial failures, retries, and ordering can reduce system reliability.", "validationPlan": "Run broker loss, partition, duplicate, reorder, retry-storm, and clock-skew campaigns."},
+            {"dimension": "operability", "direction": "regresses", "confidence": "high", "basis": "analogous", "assessment": "Deployment, identity, key rotation, tracing, queue health, and incident response expand substantially.", "validationPlan": "Rehearse deploy, rotate, rollback, and compromise containment with an operations owner."},
+            {"dimension": "migration", "direction": "regresses", "confidence": "high", "basis": "source-derived", "assessment": "Dual publishing, compatibility windows, service identity, and queue draining are required.", "validationPlan": "Prove mixed-version compatibility and rollback without stale acceptance."}
+          ],
+          "residualRisks": ["The event mesh becomes a critical trust and availability boundary.", "Separate processes can still share correlated operators, images, keys, and poisoned inputs."],
+          "implementationReadiness": {"affectedComponents": ["future deployment and service identity plane"], "workPackages": ["Define measured decomposition triggers before implementation."], "acceptanceCriteria": ["Measured scale or isolation need justifies distributed cost."], "migrationNotes": ["Requires dual-publish and versioned drain."], "rollback": "Drain a complete generation and restore federated local routing."}
+        }
+      ],
+      "recommendedOptionId": "federated-constitutional-immune-plane",
+      "recommendation": "Use the federated constitutional immune plane now; select the service mesh only when measured scale, tenant isolation, fault containment, or ownership requires deployable separation."
+    }
+  ],
+  "openQuestions": [
+    "What W1 event volume, retention, latency, recovery, and device-resource budgets should govern storage choices?",
+    "Which memory strata may contain customer telemetry, and under what retention and deletion policy?",
+    "Who owns private and external evaluator custody?"
+  ]
+}

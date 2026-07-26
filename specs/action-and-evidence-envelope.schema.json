@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/action-and-evidence-envelope.schema.json",
+  "title": "nimrod Action and Evidence Envelope",
+  "description": "Planning contract for a consequential nimrod operation. The .invalid host is intentional until a public specification domain is approved.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "envelope_version",
+    "event_id",
+    "mission_id",
+    "timestamp",
+    "origin",
+    "actor",
+    "intent",
+    "context",
+    "risk",
+    "execution_contract",
+    "recovery",
+    "verification",
+    "authorization",
+    "signatures"
+  ],
+  "properties": {
+    "envelope_version": { "const": "0.1.0" },
+    "event_id": { "$ref": "#/$defs/uuid" },
+    "mission_id": { "$ref": "#/$defs/uuid" },
+    "timestamp": { "$ref": "#/$defs/timestamp" },
+    "origin": {
+      "type": "string",
+      "enum": ["live", "replayed", "simulated", "imported"]
+    },
+    "campaign": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["campaign_id", "authorization_lease_id", "step_id", "effect_class", "kill_switch_id", "cleanup_required"],
+          "properties": {
+            "campaign_id": { "$ref": "#/$defs/uuid" },
+            "authorization_lease_id": { "$ref": "#/$defs/uuid" },
+            "step_id": { "$ref": "#/$defs/nonEmptyString" },
+            "effect_class": { "$ref": "#/$defs/effectClass" },
+            "kill_switch_id": { "$ref": "#/$defs/nonEmptyString" },
+            "cleanup_required": { "type": "boolean" }
+          }
+        },
+        { "type": "null" }
+      ]
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["principal_id", "actor_type", "authentication", "device_attestation", "workload_attestation"],
+      "properties": {
+        "principal_id": { "$ref": "#/$defs/nonEmptyString" },
+        "actor_type": { "enum": ["human", "process", "service", "model", "agent"] },
+        "authentication": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+        "device_attestation": { "oneOf": [{ "$ref": "#/$defs/reference" }, { "type": "null" }] },
+        "workload_attestation": { "oneOf": [{ "$ref": "#/$defs/reference" }, { "type": "null" }] }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "purpose", "target", "requested_capability"],
+      "properties": {
+        "operation": { "$ref": "#/$defs/nonEmptyString" },
+        "purpose": { "$ref": "#/$defs/nonEmptyString" },
+        "target": { "$ref": "#/$defs/target" },
+        "requested_capability": { "type": "string", "pattern": "^[a-z][a-z0-9_.:-]{2,127}$" }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["data_classification", "incident_id", "supporting_evidence", "contradicting_evidence", "uncertainties"],
+      "properties": {
+        "data_classification": { "enum": ["public", "internal", "confidential", "restricted"] },
+        "incident_id": { "oneOf": [{ "$ref": "#/$defs/uuid" }, { "type": "null" }] },
+        "supporting_evidence": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+        "contradicting_evidence": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+        "uncertainties": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["impact", "confidence_interval", "blast_radius", "reversibility", "urgency"],
+      "properties": {
+        "impact": { "enum": ["none", "low", "medium", "high", "critical"] },
+        "confidence_interval": {
+          "type": "array",
+          "prefixItems": [
+            { "type": "number", "minimum": 0, "maximum": 1 },
+            { "type": "number", "minimum": 0, "maximum": 1 }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "blast_radius": { "$ref": "#/$defs/nonEmptyString" },
+        "reversibility": { "enum": ["fully_reversible", "partially_reversible", "irreversible", "unknown"] },
+        "urgency": { "enum": ["routine", "time_sensitive", "active_threat", "emergency"] }
+      }
+    },
+    "execution_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preconditions", "expected_state_delta", "prohibited_side_effects", "resource_limits", "idempotency_key", "expires_at"],
+      "properties": {
+        "preconditions": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "expected_state_delta": { "type": "object" },
+        "prohibited_side_effects": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "resource_limits": { "type": "object" },
+        "idempotency_key": { "$ref": "#/$defs/uuid" },
+        "expires_at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["snapshot_required", "rollback_operation", "compensation_plan"],
+      "properties": {
+        "snapshot_required": { "type": "boolean" },
+        "rollback_operation": { "oneOf": [{ "$ref": "#/$defs/nonEmptyString" }, { "type": "null" }] },
+        "compensation_plan": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_oracles", "independent_verifiers", "success_postconditions", "failure_postconditions"],
+      "properties": {
+        "required_oracles": { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+        "independent_verifiers": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/reference" } },
+        "success_postconditions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmptyString" } },
+        "failure_postconditions": { "type": "array", "items": { "$ref": "#/$defs/nonEmptyString" } }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_decision", "policy_version", "approvals"],
+      "properties": {
+        "policy_decision": { "enum": ["allow", "limit", "challenge", "deny", "escalate"] },
+        "policy_version": { "$ref": "#/$defs/nonEmptyString" },
+        "approvals": { "type": "array", "items": { "$ref": "#/$defs/reference" } }
+      }
+    },
+    "signatures": { "type": "array", "items": { "$ref": "#/$defs/signature" } }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "effectClass": {
+      "enum": [
+        "observe_only",
+        "reversible_local",
+        "reversible_distributed",
+        "sacrificial_replica_only",
+        "prohibited"
+      ]
+    },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "digest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "type": "string", "pattern": "^[a-z0-9][a-z0-9+._-]*:[A-Fa-f0-9]{32,}$" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_type", "resource_id", "binding"],
+      "properties": {
+        "resource_type": { "$ref": "#/$defs/nonEmptyString" },
+        "resource_id": { "$ref": "#/$defs/nonEmptyString" },
+        "binding": { "type": "object", "minProperties": 1 }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signer", "algorithm", "value"],
+      "properties": {
+        "signer": { "$ref": "#/$defs/nonEmptyString" },
+        "algorithm": { "$ref": "#/$defs/nonEmptyString" },
+        "value": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    }
+  }
+}

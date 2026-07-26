@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/disposable-range-preflight-result.schema.json",
+  "title": "nimrod Disposable Range Preflight Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result_version", "origin", "status", "preflight_id", "range_id", "policy_envelope_digest", "corpus_report_digest", "connection_gate_satisfied", "blocked_controls", "tool_installation_authorized", "range_connection_authorized", "execution_authorized", "authority"],
+  "properties": {
+    "result_version": {"const": "0.1.0"},
+    "origin": {"const": "simulated"},
+    "status": {"enum": ["blocked", "ready_for_separately_authorized_range_connection"]},
+    "preflight_id": {"type": "string", "format": "uuid"},
+    "range_id": {"$ref": "#/$defs/nonEmptyString"},
+    "policy_envelope_digest": {"$ref": "#/$defs/digest"},
+    "corpus_report_digest": {"$ref": "#/$defs/digest"},
+    "connection_gate_satisfied": {"type": "boolean"},
+    "blocked_controls": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonEmptyString"}},
+    "tool_installation_authorized": {"const": false},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_connect", "can_execute"],
+      "properties": {"can_connect": {"const": false}, "can_execute": {"const": false}}
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

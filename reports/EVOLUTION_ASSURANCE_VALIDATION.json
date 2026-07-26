@@ -1,0 +1,18 @@
+{
+  "adversarial_case_count": 10,
+  "candidate_executed": false,
+  "contract_boundary_verified": true,
+  "evaluator_role_count": 4,
+  "foundry_operator_state": "shadow_eligible_contract_only",
+  "isolation_control_count_per_process": 7,
+  "live_os_enforcement_verified": false,
+  "model_api_called": false,
+  "network_access_performed": false,
+  "origin": "simulated",
+  "production_promotion_authorized": false,
+  "resource_ledger_entry_count": 1,
+  "resource_ledger_within_constitution": true,
+  "signed_evaluator_observation_count": 4,
+  "status": "EVOLUTION_ASSURANCE_SIGNED_EVALUATORS_AND_RESOURCE_LINEAGE_VALID_PRODUCTION_BLOCKED",
+  "threshold_certified_isolation_attestation_count": 4
+}

@@ -1,0 +1,37 @@
+{
+  "active_baseline_modified": false,
+  "authority": {
+    "can_execute_candidate": false,
+    "can_expand_authority": false,
+    "can_modify_active_baseline": false,
+    "can_modify_constitution": false,
+    "can_promote_to_production": false,
+    "can_select_evaluators": false,
+    "can_select_signers": false,
+    "can_sign": false
+  },
+  "automatic_regression_demotion_count": 1,
+  "autonomous_promotion_standard": true,
+  "candidate_executed": false,
+  "constitution_modified": false,
+  "contention_accept_count": 1,
+  "contention_replay_denial_count": 7,
+  "contention_worker_count": 8,
+  "crash_boundary_count": 2,
+  "eligible_tiers": [
+    "A",
+    "B"
+  ],
+  "human_approval_required_for_eligible_tiers": false,
+  "independent_evaluator_count": 4,
+  "model_api_called": false,
+  "negative_fail_closed_case_count": 10,
+  "network_access_performed": false,
+  "origin": "simulated",
+  "production_promotion_authorized": false,
+  "shadow_promotion_count": 1,
+  "status": "AUTONOMOUS_THRESHOLD_PROMOTION_REPLAY_VALID_SHADOW_AND_DEMOTION_ONLY",
+  "threshold_role_count": 2,
+  "threshold_signer_count": 2,
+  "trust_root_modified": false
+}

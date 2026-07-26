@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/edge-update-verification-receipt.schema.json",
+  "title": "nimrod Edge update verification receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receipt_version", "origin", "status", "verified_at", "manifest_digest", "artifact_digest", "governance_state_digest", "verified_signer_ids", "verified_roles", "anti_rollback_verified", "previous_release_bound", "artifact_verified", "provenance_present", "sbom_present", "rollback_contract_verified", "plugin_manifests_verified", "plugin_code_executed", "installation_authorized", "installation_performed", "rollback_performed", "network_access_performed", "blockers", "authority"],
+  "properties": {
+    "receipt_version": {"const": "0.1.0"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "UPDATE_SIGNATURE_PROVENANCE_AND_ROLLBACK_VALID_INSTALLATION_BLOCKED"},
+    "verified_at": {"type": "string", "format": "date-time"},
+    "manifest_digest": {"$ref": "#/$defs/digest"},
+    "artifact_digest": {"$ref": "#/$defs/digest"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "verified_signer_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "verified_roles": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"enum": ["customer_authority", "safety_officer", "recovery_officer"]}},
+    "anti_rollback_verified": {"const": true},
+    "previous_release_bound": {"const": true},
+    "artifact_verified": {"const": true},
+    "provenance_present": {"const": true},
+    "sbom_present": {"const": true},
+    "rollback_contract_verified": {"const": true},
+    "plugin_manifests_verified": {"const": true},
+    "plugin_code_executed": {"const": false},
+    "installation_authorized": {"const": false},
+    "installation_performed": {"const": false},
+    "rollback_performed": {"const": false},
+    "network_access_performed": {"const": false},
+    "blockers": {"const": ["INSTALLATION_GATE_MISSING", "PRODUCTION_CUSTODY_UNPROVEN", "STAGED_ROLLOUT_UNPERFORMED"]},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_install", "can_promote", "can_execute_plugin", "can_change_trust"],
+      "properties": {
+        "can_install": {"const": false},
+        "can_promote": {"const": false},
+        "can_execute_plugin": {"const": false},
+        "can_change_trust": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/edge-preview-scenario.schema.json",
+  "title": "nimrod Edge preview replay scenario",
+  "description": "One bounded replay input for the unprivileged Windows-first Edge proof.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scenario_version", "scenario_id", "origin", "observed_at", "source", "device", "observation", "policy", "authority"],
+  "properties": {
+    "scenario_version": {"const": "0.1.0"},
+    "scenario_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "replayed"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "sensor_type", "collection_mode", "content_digest"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "sensor_type": {"const": "process_egress_replay"},
+        "collection_mode": {"const": "offline_fixture"},
+        "content_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["device_id", "platform", "display_name", "live_attestation"],
+      "properties": {
+        "device_id": {"type": "string", "minLength": 1},
+        "platform": {"const": "windows"},
+        "display_name": {"type": "string", "minLength": 1},
+        "live_attestation": {"const": null}
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "process", "destination", "facts"],
+      "properties": {
+        "kind": {"const": "process_egress_attempt"},
+        "process": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["process_id", "image_name", "image_digest", "publisher_status", "user_writable_location", "parent_image_name"],
+          "properties": {
+            "process_id": {"type": "string", "pattern": "^process:[a-z0-9._-]+$"},
+            "image_name": {"type": "string", "minLength": 1},
+            "image_digest": {"$ref": "#/$defs/digest"},
+            "publisher_status": {"enum": ["trusted", "unsigned", "unknown"]},
+            "user_writable_location": {"type": "boolean"},
+            "parent_image_name": {"type": "string", "minLength": 1}
+          }
+        },
+        "destination": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["host", "port", "protocol", "first_seen"],
+          "properties": {
+            "host": {"type": "string", "minLength": 1},
+            "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+            "protocol": {"const": "tcp"},
+            "first_seen": {"type": "boolean"}
+          }
+        },
+        "facts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["unsigned_executable", "user_writable_location", "new_egress_destination"]}
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "policy_version", "mode", "autonomy_budget", "rule", "default_outcome"],
+      "properties": {
+        "policy_id": {"type": "string", "format": "uuid"},
+        "policy_version": {"const": "edge-preview-policy-0.1.0"},
+        "mode": {"const": "unprivileged_preview"},
+        "autonomy_budget": {"const": 1},
+        "rule": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rule_id", "match_all_facts", "outcome", "risk_level", "proposal_operation"],
+          "properties": {
+            "rule_id": {"const": "edge.rule.unsigned_user_path_new_egress"},
+            "match_all_facts": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "uniqueItems": true,
+              "items": {"enum": ["unsigned_executable", "user_writable_location", "new_egress_destination"]}
+            },
+            "outcome": {"const": "challenge"},
+            "risk_level": {"const": "high"},
+            "proposal_operation": {"const": "recommend_process_egress_isolation"}
+          }
+        },
+        "default_outcome": {"const": "observe"}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_replay", "can_propose", "can_authorize", "can_execute", "can_change_policy"],
+      "properties": {
+        "can_replay": {"const": true},
+        "can_propose": {"const": true},
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "can_change_policy": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[A-Fa-f0-9]{64}$"}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://specs.nimrod.invalid/v0.1/evolution-baseline.schema.json",
+  "title": "nimrod Immutable Evolution Baseline", "type": "object", "additionalProperties": false,
+  "required": ["baseline_version", "baseline_id", "origin", "generation", "active", "artifact_digest", "authority"],
+  "properties": {
+    "baseline_version": {"const": "0.1.0"}, "baseline_id": {"type": "string", "format": "uuid"}, "origin": {"const": "simulated"},
+    "generation": {"type": "integer", "minimum": 1}, "active": {"const": true}, "artifact_digest": {"$ref": "#/$defs/digest"},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["candidate_write_permitted", "can_execute"], "properties": {"candidate_write_permitted": {"const": false}, "can_execute": {"const": false}}}
+  }, "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}}
+}

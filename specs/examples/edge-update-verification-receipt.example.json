@@ -1,0 +1,34 @@
+{
+  "receipt_version": "0.1.0",
+  "origin": "simulated",
+  "status": "UPDATE_SIGNATURE_PROVENANCE_AND_ROLLBACK_VALID_INSTALLATION_BLOCKED",
+  "verified_at": "2026-07-15T20:01:00Z",
+  "manifest_digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+  "artifact_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "verified_signer_ids": ["key:customer-a", "key:safety-b"],
+  "verified_roles": ["customer_authority", "safety_officer"],
+  "anti_rollback_verified": true,
+  "previous_release_bound": true,
+  "artifact_verified": true,
+  "provenance_present": true,
+  "sbom_present": true,
+  "rollback_contract_verified": true,
+  "plugin_manifests_verified": true,
+  "plugin_code_executed": false,
+  "installation_authorized": false,
+  "installation_performed": false,
+  "rollback_performed": false,
+  "network_access_performed": false,
+  "blockers": [
+    "INSTALLATION_GATE_MISSING",
+    "PRODUCTION_CUSTODY_UNPROVEN",
+    "STAGED_ROLLOUT_UNPERFORMED"
+  ],
+  "authority": {
+    "can_install": false,
+    "can_promote": false,
+    "can_execute_plugin": false,
+    "can_change_trust": false
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "roadmap_version": "0.1.0",
+  "roadmap_id": "cacis_vnext_20260715",
+  "title": "nimrod Constitutional Autonomous Cyber Immune System",
+  "status": "CACIS_TARGET_ARCHITECTURE_ACCEPTED_IMPLEMENTATION_GATED",
+  "doctrine_version": "0.1",
+  "source_brief_digest": "sha256:f94689422f5b14af6b3c902ec9174369f5f958186927503e9cd88e87674b1ab7",
+  "authority_change": "none",
+  "constitutional_invariants": [
+    "operator_authority",
+    "execution_authority",
+    "constitutional_law",
+    "trust_anchors",
+    "threshold_signatures",
+    "evidence_law",
+    "recovery_verification",
+    "cryptographic_trust",
+    "promotion_requirements",
+    "safety_ceilings"
+  ],
+  "planes": [
+    {"plane_id": "constitutional_kernel", "maximum_outcome": "deterministic_policy_decision", "can_authorize": true, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false},
+    {"plane_id": "sovereign_governor", "maximum_outcome": "scheduling_decision", "can_authorize": false, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false},
+    {"plane_id": "immune_runtime", "maximum_outcome": "typed_proposal", "can_authorize": false, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false},
+    {"plane_id": "world_model", "maximum_outcome": "derived_state", "can_authorize": false, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false},
+    {"plane_id": "hypothesis_cortex", "maximum_outcome": "ranked_hypothesis_set", "can_authorize": false, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false},
+    {"plane_id": "truth_recovery_settlement", "maximum_outcome": "verification_or_settlement", "can_authorize": false, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false},
+    {"plane_id": "genome_evolution_foundry", "maximum_outcome": "candidate_bundle", "can_authorize": false, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false},
+    {"plane_id": "observatory", "maximum_outcome": "display_projection", "can_authorize": false, "can_self_authorize": false, "can_execute": false, "can_modify_constitution": false}
+  ],
+  "waves": [
+    {"sequence": 0, "wave_id": "cacis-w0-constitutional-spine", "objective": "Bind CACIS to doctrine, current authority, and a machine-verifiable roadmap", "entry_gate": "doctrine_v0_1_accepted", "exit_evidence": "ADR, source brief, hardening portfolio, schema, example, and adversarial validation", "maximum_authority_delta": "none", "status": "validated_contract_only"},
+    {"sequence": 1, "wave_id": "cacis-w1-world-model", "objective": "Create an event-sourced six-domain world model with explicit unknown and stale states", "entry_gate": "wave_0_contract_valid", "exit_evidence": "Replay proves deterministic derived state, provenance, contradiction, freshness, causal lineage, threshold-signed source governance, no-drop backpressure, and retention projections", "maximum_authority_delta": "none", "status": "validated_replay_only"},
+    {"sequence": 2, "wave_id": "cacis-w2-immune-runtime", "objective": "Create ephemeral capability-bound organisms governed by scheduler and shadow lifecycle contracts", "entry_gate": "world_model_replay_valid", "exit_evidence": "Simulator proves spawn, resource lease, pause, abstain, termination, and knowledge-retention invariants", "maximum_authority_delta": "none", "status": "validated_replay_only"},
+    {"sequence": 3, "wave_id": "cacis-w3-hypothesis-cortex", "objective": "Use the Constitutional Intelligence Research Engine to discover and test better hypothesis, reasoning, and investigation methods", "entry_gate": "organism_lifecycle_valid", "exit_evidence": "Preregistered paired replay preserves null, rival, unknown, counter-evidence, metacognitive abstention, and read-only structural verification", "maximum_authority_delta": "none", "status": "validated_replay_only"},
+    {"sequence": 4, "wave_id": "cacis-w4-homeostasis-chronos", "objective": "Allocate bounded resources by information gain, risk reduction, and recovery improvement", "entry_gate": "hypothesis_cortex_valid", "exit_evidence": "Pressure, backlog, freshness, diversity, confidence inflation, and multi-clock failure cases pass", "maximum_authority_delta": "none", "status": "validated_replay_only"},
+    {"sequence": 5, "wave_id": "cacis-w5-genome-evaluation", "objective": "Distill incident learning into candidate-only genomes under partitioned evaluation", "entry_gate": "homeostasis_valid", "exit_evidence": "Visible, private, and external replay partitions plus reward-hacking and complexity gates pass", "maximum_authority_delta": "none", "status": "validated_replay_only"},
+    {"sequence": 6, "wave_id": "cacis-w6-arenas-observatory", "objective": "Expose causal state and benchmark organisms across defense, recovery, and metacognition arenas", "entry_gate": "genome_evaluation_valid", "exit_evidence": "Observatory is display-only and multidimensional replay arena reports preserve all hard failures", "maximum_authority_delta": "none", "status": "validated_replay_only"},
+    {"sequence": 7, "wave_id": "cacis-w7-crucible-integration", "objective": "Connect qualified organisms to separately authorized Crucible range effects", "entry_gate": "existing_crucible_execution_gates_pass_with_live_evidence", "exit_evidence": "Owner-controlled isolated range proves target scope, abort, cleanup, recovery, and independent verification", "maximum_authority_delta": "none", "status": "blocked"}
+  ],
+  "recursive_levels": [
+    {"level": 0, "improves": "detection", "maximum_outcome": "candidate_only", "can_modify_authority": false},
+    {"level": 1, "improves": "investigations", "maximum_outcome": "candidate_only", "can_modify_authority": false},
+    {"level": 2, "improves": "immune organisms", "maximum_outcome": "candidate_only", "can_modify_authority": false},
+    {"level": 3, "improves": "metacognition", "maximum_outcome": "candidate_only", "can_modify_authority": false},
+    {"level": 4, "improves": "evolution", "maximum_outcome": "candidate_only", "can_modify_authority": false},
+    {"level": 5, "improves": "the improver", "maximum_outcome": "candidate_only", "can_modify_authority": false}
+  ],
+  "arena_policy": {
+    "public_host_targeting": false,
+    "owner_repositories_targetable": false,
+    "unknown_ownership_targetable": false,
+    "source_replica_required": true,
+    "isolated_range_required": true,
+    "separate_execution_authorization_required": true,
+    "arbitrary_command_bridge_allowed": false,
+    "destructive_effects_allowed": false,
+    "production_effect_ceiling": "safe_realism"
+  },
+  "evaluation": {
+    "partitions": ["visible", "private", "external"],
+    "hard_failure_overrides_aggregate": true,
+    "self_verification_allowed": false,
+    "sealed_answers_visible_to_candidate": false,
+    "reward_hacking_defenses": ["future_leakage", "telemetry_leakage", "replay_contamination", "simulation_exploitation", "verifier_exploitation", "authority_expansion", "confidence_gaming", "recovery_gaming", "complexity_inflation"]
+  },
+  "benchmarks": [
+    "detection_quality",
+    "false_positive_rate",
+    "false_negative_rate",
+    "calibration",
+    "recovery_quality",
+    "verification_quality",
+    "containment_quality",
+    "investigation_efficiency",
+    "resource_efficiency",
+    "agent_contribution",
+    "genome_improvement",
+    "evolution_quality",
+    "metacognitive_quality",
+    "governance_preservation"
+  ],
+  "blockers": [
+    "signed_live_sensor_identity_and_health",
+    "production_retention_and_intake_backpressure",
+    "separately_administered_world_model_verifier",
+    "production_grade_organism_isolation",
+    "sealed_private_and_external_evaluators",
+    "authorized_isolated_range_live_evidence",
+    "design_partner_validation",
+    "stage_budget_and_accountable_leads"
+  ],
+  "authority": {
+    "can_authorize_execution": false,
+    "can_execute": false,
+    "can_modify_constitution": false,
+    "can_modify_trust": false,
+    "can_promote": false,
+    "can_contact_targets": false,
+    "can_provision": false
+  }
+}

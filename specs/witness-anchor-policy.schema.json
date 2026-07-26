@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/witness-anchor-policy.schema.json",
+  "title": "nimrod Witness Anchor Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_version", "policy_id", "origin", "anchor_store_id", "not_before", "expires_at", "minimum_head_sequence", "allowed_witness_ids", "anchor_key"],
+  "properties": {
+    "policy_version": { "const": "0.1.0" },
+    "policy_id": { "$ref": "#/$defs/uuid" },
+    "origin": { "enum": ["simulated", "range", "sacrificial_replica", "live"] },
+    "anchor_store_id": { "$ref": "#/$defs/nonEmptyString" },
+    "not_before": { "$ref": "#/$defs/timestamp" },
+    "expires_at": { "$ref": "#/$defs/timestamp" },
+    "minimum_head_sequence": { "type": "integer", "minimum": 0 },
+    "allowed_witness_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/nonEmptyString" } },
+    "anchor_key": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key_id", "algorithm", "public_key_base64"],
+      "properties": {
+        "key_id": { "$ref": "#/$defs/nonEmptyString" },
+        "algorithm": { "const": "Ed25519" },
+        "public_key_base64": { "type": "string", "pattern": "^[A-Za-z0-9+/]{43}=$" }
+      }
+    }
+  },
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "nonEmptyString": { "type": "string", "minLength": 1 }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/control-board-ingress-receipt.schema.json",
+  "title": "nimrod Control-Board Ingress Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ingress_version", "origin", "status", "issuer_service_id", "audience", "sequence", "snapshot_id", "snapshot_digest", "projection_digest", "accepted_at", "freshness_seconds", "verified_signer_ids", "verified_roles", "durable_replay_guard", "stale_state_guard", "authority"],
+  "properties": {
+    "ingress_version": {"const": "0.1.0"},
+    "origin": {"enum": ["simulated", "range", "sacrificial_replica", "live"]},
+    "status": {"const": "accepted"},
+    "issuer_service_id": {"$ref": "#/$defs/nonEmptyString"},
+    "audience": {"const": "nimrod-control-board"},
+    "sequence": {"type": "integer", "minimum": 1},
+    "snapshot_id": {"type": "string", "format": "uuid"},
+    "snapshot_digest": {"$ref": "#/$defs/digest"},
+    "projection_digest": {"$ref": "#/$defs/digest"},
+    "accepted_at": {"type": "string", "format": "date-time"},
+    "freshness_seconds": {"type": "integer", "minimum": 0},
+    "verified_signer_ids": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/nonEmptyString"}
+    },
+    "verified_roles": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/nonEmptyString"}
+    },
+    "durable_replay_guard": {"const": true},
+    "stale_state_guard": {"const": true},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_authorize", "can_execute"],
+      "properties": {
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1}
+  }
+}

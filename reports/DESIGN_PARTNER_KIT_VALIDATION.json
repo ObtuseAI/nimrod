@@ -1,0 +1,18 @@
+{
+  "actual_participant_count": 0,
+  "consent_collected": false,
+  "endpoint_data_collected": false,
+  "evaluation_task_count": 5,
+  "exit_gate_satisfied": false,
+  "external_message_sent": false,
+  "maximum_partner_count": 8,
+  "negative_fail_closed_case_count": 8,
+  "origin": "simulated",
+  "participant_contacted": false,
+  "privacy_control_count": 7,
+  "production_claims_authorized": false,
+  "recruitment_started": false,
+  "software_installed": false,
+  "status": "EDGE_DESIGN_PARTNER_EVIDENCE_PLAN_VALID_RECRUITMENT_NOT_STARTED",
+  "target_partner_count": 5
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/construction-zone-provisioning-authorization.schema.json",
+  "title": "nimrod construction-zone provisioning authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["authorization_version", "authorization_id", "origin", "status", "governance_state_digest", "zone_id", "zone_digest", "preflight_result_id", "preflight_result_digest", "attestation_plan_id", "attestation_plan_digest", "issued_at", "not_before", "expires_at", "outcome", "requested_operations", "authorized_operations", "operator_approval_reference", "provider_id", "credential_references", "blockers", "authority", "signatures"],
+  "properties": {
+    "authorization_version": {"const": "0.1.0"},
+    "authorization_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "signed_denial_environment_and_attestors_unassigned"},
+    "governance_state_digest": {"$ref": "#/$defs/digest"},
+    "zone_id": {"type": "string", "format": "uuid"},
+    "zone_digest": {"$ref": "#/$defs/digest"},
+    "preflight_result_id": {"type": "string", "format": "uuid"},
+    "preflight_result_digest": {"$ref": "#/$defs/digest"},
+    "attestation_plan_id": {"type": "string", "format": "uuid"},
+    "attestation_plan_digest": {"$ref": "#/$defs/digest"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "not_before": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "outcome": {"const": "deny_provisioning"},
+    "requested_operations": {"type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": {"enum": ["APPLY_NETWORK_ISOLATION", "CREATE_DEDICATED_EPHEMERAL_IDENTITY", "CREATE_DISPOSABLE_WORKSPACE", "CREATE_SEPARATE_OUTPUT_STORE", "INSTALL_OUT_OF_BAND_KILL"]}},
+    "authorized_operations": {"type": "array", "maxItems": 0},
+    "operator_approval_reference": {"type": "null"},
+    "provider_id": {"type": "null"},
+    "credential_references": {"type": "array", "maxItems": 0},
+    "blockers": {"type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": {"enum": ["ATTESTATION_PLAN_INCOMPLETE", "CONSTRUCTION_ZONE_CONTROLS_UNVERIFIED", "CONSTRUCTION_ZONE_NOT_PROVISIONED", "INDEPENDENT_ATTESTORS_UNASSIGNED", "OPERATOR_APPROVAL_MISSING", "PROVISIONING_AUTHORIZATION_DENIED", "PROVISIONING_PROVIDER_UNSELECTED", "QUARANTINE_EVIDENCE_MISSING", "SOURCE_STAGING_AUTHORIZATION_DENIED"]}},
+    "authority": {"$ref": "#/$defs/authority"},
+    "signatures": {"type": "array", "minItems": 2, "maxItems": 3, "items": {"$ref": "#/$defs/signature"}}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_create_identity", "can_create_storage", "can_apply_network_policy", "can_install_kill_control", "can_mount_source_ingress", "can_create_output_store", "can_provision", "can_stage_source", "can_build_replica", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"],
+      "properties": {"can_create_identity": {"const": false}, "can_create_storage": {"const": false}, "can_apply_network_policy": {"const": false}, "can_install_kill_control": {"const": false}, "can_mount_source_ingress": {"const": false}, "can_create_output_store": {"const": false}, "can_provision": {"const": false}, "can_stage_source": {"const": false}, "can_build_replica": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}
+    },
+    "signature": {
+      "type": "object", "additionalProperties": false,
+      "required": ["signer_id", "algorithm", "signature_base64"],
+      "properties": {"signer_id": {"type": "string", "minLength": 1}, "algorithm": {"const": "Ed25519"}, "signature_base64": {"type": "string", "contentEncoding": "base64"}}
+    }
+  }
+}

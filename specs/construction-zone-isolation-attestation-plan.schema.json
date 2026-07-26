@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/construction-zone-isolation-attestation-plan.schema.json",
+  "title": "nimrod construction-zone isolation attestation plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["plan_version", "plan_id", "origin", "status", "declared_at", "zone_id", "zone_digest", "preflight_result_id", "preflight_result_digest", "evidence_origin_requirement", "minimum_distinct_principals_per_control", "minimum_distinct_processes_per_control", "controls", "blockers", "activity", "authority"],
+  "properties": {
+    "plan_version": {"const": "0.1.0"},
+    "plan_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "independent_attestors_unassigned"},
+    "declared_at": {"type": "string", "format": "date-time"},
+    "zone_id": {"type": "string", "format": "uuid"},
+    "zone_digest": {"$ref": "#/$defs/digest"},
+    "preflight_result_id": {"type": "string", "format": "uuid"},
+    "preflight_result_digest": {"$ref": "#/$defs/digest"},
+    "evidence_origin_requirement": {"const": "live"},
+    "minimum_distinct_principals_per_control": {"const": 2},
+    "minimum_distinct_processes_per_control": {"const": 2},
+    "controls": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/control"}},
+    "blockers": {"type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": {"enum": ["INDEPENDENT_ATTESTORS_UNASSIGNED", "LIVE_ISOLATION_EVIDENCE_MISSING"]}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["control_id", "required_evidence_kinds", "collector_id", "collector_principal", "collector_process_id", "verifier_id", "verifier_principal", "verifier_process_id", "status", "evidence"],
+      "properties": {
+        "control_id": {"enum": ["CLEAN_BASE_IMAGE", "DEDICATED_EPHEMERAL_IDENTITY", "DISPOSABLE_WORKSPACE", "NO_EXTERNAL_DNS", "NO_GITHUB_ACCESS", "NO_INTERNET_EGRESS", "NO_PUBLIC_INGRESS", "NO_REGISTRY_ACCESS", "OUT_OF_BAND_KILL", "SEPARATE_OUTPUT_STORE"]},
+        "required_evidence_kinds": {"type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "collector_id": {"type": "null"},
+        "collector_principal": {"type": "null"},
+        "collector_process_id": {"type": "null"},
+        "verifier_id": {"type": "null"},
+        "verifier_principal": {"type": "null"},
+        "verifier_process_id": {"type": "null"},
+        "status": {"const": "unassigned"},
+        "evidence": {"type": "array", "maxItems": 0}
+      }
+    },
+    "activity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["environment_contact_performed", "collector_identity_assigned", "verifier_identity_assigned", "observation_collected", "independent_verification_performed"],
+      "properties": {"environment_contact_performed": {"const": false}, "collector_identity_assigned": {"const": false}, "verifier_identity_assigned": {"const": false}, "observation_collected": {"const": false}, "independent_verification_performed": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_collect", "can_verify", "can_mark_control_verified", "can_provision", "can_stage_source", "can_build_replica", "can_connect", "can_execute", "can_authorize_action"],
+      "properties": {"can_collect": {"const": false}, "can_verify": {"const": false}, "can_mark_control_verified": {"const": false}, "can_provision": {"const": false}, "can_stage_source": {"const": false}, "can_build_replica": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_authorize_action": {"const": false}}
+    }
+  }
+}

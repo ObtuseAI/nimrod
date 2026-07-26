@@ -1,0 +1,60 @@
+{
+  "observation_version": "0.1.0",
+  "observation_id": "b93f43e7-455d-5bdd-9f50-a0fb7dd073bd",
+  "origin": "live",
+  "status": "EDGE_LIVE_PROCESS_OBSERVED_POLICY_INPUT_INCOMPLETE",
+  "collected_at": "2026-07-15T20:00:00Z",
+  "platform": "windows",
+  "scope": {
+    "kind": "requested_process_only",
+    "requested_process_id": 4242
+  },
+  "process": {
+    "process_id": 4242,
+    "executable_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "executable_path_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "os_account_identifier": "account-sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "os_account_sid_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+  },
+  "collector": {
+    "process_id": 4343,
+    "independent_process": true,
+    "interfaces": [
+      "OpenProcess",
+      "QueryFullProcessImageNameW",
+      "OpenProcessToken",
+      "GetTokenInformation",
+      "LookupAccountSidW",
+      "ConvertSidToStringSidW"
+    ],
+    "requested_process_only": true,
+    "active_network_probe_performed": false,
+    "raw_executable_path_retained": false,
+    "raw_account_sid_retained": false,
+    "writes_performed": false
+  },
+  "policy_input": {
+    "ready_for_egress_policy": false,
+    "observed_facts": [],
+    "missing_facts": [
+      "destination_observation",
+      "parent_process_observation",
+      "publisher_verification",
+      "user_writable_classification"
+    ]
+  },
+  "blockers": [
+    "DESTINATION_OBSERVATION_MISSING",
+    "PARENT_PROCESS_OBSERVATION_MISSING",
+    "PUBLISHER_VERIFICATION_MISSING",
+    "USER_WRITABLE_CLASSIFICATION_MISSING"
+  ],
+  "authority": {
+    "can_propose": false,
+    "can_authorize": false,
+    "can_execute": false,
+    "can_modify_process": false,
+    "can_modify_network": false,
+    "can_change_policy": false
+  }
+}

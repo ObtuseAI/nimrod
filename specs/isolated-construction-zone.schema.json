@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/isolated-construction-zone.schema.json",
+  "title": "nimrod isolated construction zone declaration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["zone_version", "zone_id", "origin", "status", "declared_at", "staging_authorization_id", "staging_authorization_digest", "environment_class", "generation", "controls", "network", "storage", "activity", "authority"],
+  "properties": {
+    "zone_version": {"const": "0.1.0"},
+    "zone_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "declared_not_provisioned"},
+    "declared_at": {"type": "string", "format": "date-time"},
+    "staging_authorization_id": {"type": "string", "format": "uuid"},
+    "staging_authorization_digest": {"$ref": "#/$defs/digest"},
+    "environment_class": {"const": "isolated_construction_zone_candidate"},
+    "generation": {"const": 1},
+    "controls": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/control"}},
+    "network": {"$ref": "#/$defs/network"},
+    "storage": {"$ref": "#/$defs/storage"},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "control": {"type": "object", "additionalProperties": false, "required": ["control_id", "status", "evidence"], "properties": {"control_id": {"enum": ["CLEAN_BASE_IMAGE", "DEDICATED_EPHEMERAL_IDENTITY", "DISPOSABLE_WORKSPACE", "NO_EXTERNAL_DNS", "NO_GITHUB_ACCESS", "NO_INTERNET_EGRESS", "NO_PUBLIC_INGRESS", "NO_REGISTRY_ACCESS", "OUT_OF_BAND_KILL", "SEPARATE_OUTPUT_STORE"]}, "status": {"const": "unproven"}, "evidence": {"type": "array", "maxItems": 0}}},
+    "network": {"type": "object", "additionalProperties": false, "required": ["mode", "internet_egress", "public_ingress", "github_access", "registry_access", "external_dns_resolution", "policy_applied"], "properties": {"mode": {"const": "offline_default_deny_declaration"}, "internet_egress": {"const": false}, "public_ingress": {"const": false}, "github_access": {"const": false}, "registry_access": {"const": false}, "external_dns_resolution": {"const": false}, "policy_applied": {"const": false}}},
+    "storage": {"type": "object", "additionalProperties": false, "required": ["workspace_kind", "source_ingress_read_only", "separate_output_store_required", "workspace_created", "source_ingress_mounted", "output_store_created", "baseline_snapshot_digest"], "properties": {"workspace_kind": {"const": "disposable_ephemeral"}, "source_ingress_read_only": {"const": true}, "separate_output_store_required": {"const": true}, "workspace_created": {"const": false}, "source_ingress_mounted": {"const": false}, "output_store_created": {"const": false}, "baseline_snapshot_digest": {"type": "null"}}},
+    "activity": {"type": "object", "additionalProperties": false, "required": ["construction_zone_provisioned", "identity_created", "storage_created", "network_policy_applied", "kill_control_installed", "source_ingress_mounted", "output_store_created"], "properties": {"construction_zone_provisioned": {"const": false}, "identity_created": {"const": false}, "storage_created": {"const": false}, "network_policy_applied": {"const": false}, "kill_control_installed": {"const": false}, "source_ingress_mounted": {"const": false}, "output_store_created": {"const": false}}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_download_source", "can_stage_source", "can_extract_source", "can_resolve_dependencies", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"], "properties": {"can_download_source": {"const": false}, "can_stage_source": {"const": false}, "can_extract_source": {"const": false}, "can_resolve_dependencies": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}}
+  }
+}

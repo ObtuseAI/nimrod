@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nimrod-simulator"
+version = "0.1.0"
+description = "No-execution reference simulator for nimrod Crucible contracts"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+dependencies = [
+  "cryptography==49.0.0",
+  "jsonschema[format]==4.26.0",
+  "PyYAML==6.0.3"
+]
+
+[project.optional-dependencies]
+validation = []
+
+[project.scripts]
+nimrod-cacis-world-replay = "nimrod_cacis.world_model_cli:main"
+nimrod-cacis-world-intake = "nimrod_cacis.world_intake_cli:main"
+nimrod-cacis-immune-replay = "nimrod_cacis.immune_runtime_cli:main"
+nimrod-cacis-homeostasis-replay = "nimrod_cacis.homeostasis_cli:main"
+nimrod-intelligence-research-replay = "nimrod_research.cli:main"
+nimrod-edge-replay = "nimrod_edge.cli:main"
+nimrod-edge-observe = "nimrod_edge.live_cli:main"
+nimrod-edge-observe-continuous = "nimrod_edge.continuous_cli:main"
+nimrod-edge-verifier = "nimrod_edge.verifier_cli:main"
+nimrod-simulate = "nimrod_simulator.cli:main"
+nimrod-swarm = "nimrod_simulator.swarm_cli:main"
+nimrod-verifier-service = "nimrod_simulator.verifier_service_cli:main"
+nimrod-verify-anchor = "nimrod_simulator.anchor_verifier_cli:main"
+nimrod-verify-witness = "nimrod_simulator.verifier_cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["nimrod_cacis*", "nimrod_edge*", "nimrod_platform_assurance*", "nimrod_release*", "nimrod_research*", "nimrod_simulator*"]

@@ -1,0 +1,19 @@
+{
+  "state_version": "0.1.0",
+  "origin": "simulated",
+  "topology_id": "d20404d6-49a0-4aa4-9d82-fc43bf4f35df",
+  "topology_digest": "sha256:4c54ed8d18956c3f38c9b236ab429df010958ab6a8a12f668d49f6135b9ade99",
+  "generation": 1,
+  "sequence": 1,
+  "state": "engaged",
+  "engaged_at": "2026-07-12T23:41:00Z",
+  "command_id": "15192a77-f787-4f92-b1ab-4c253f3e3049",
+  "command_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "governance_state_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "verified_signer_ids": ["key:range-owner", "key:range-safety"],
+  "verified_roles": ["customer_authority", "safety_officer"],
+  "previous_state_digest": null,
+  "cleanup_required": true,
+  "kill_remains_engaged": true,
+  "authority": {"can_disengage": false, "can_connect": false, "can_execute": false}
+}

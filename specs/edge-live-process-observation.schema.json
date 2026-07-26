@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://specs.nimrod.invalid/v0.1/edge-live-process-observation.schema.json",
+  "title": "nimrod Edge live process observation",
+  "description": "One caller-scoped, read-only Windows process identity observation that cannot authorize policy or action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["observation_version", "observation_id", "origin", "status", "collected_at", "platform", "scope", "process", "collector", "policy_input", "blockers", "authority"],
+  "properties": {
+    "observation_version": {"const": "0.1.0"},
+    "observation_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "live"},
+    "status": {"const": "EDGE_LIVE_PROCESS_OBSERVED_POLICY_INPUT_INCOMPLETE"},
+    "collected_at": {"type": "string", "format": "date-time"},
+    "platform": {"const": "windows"},
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "requested_process_id"],
+      "properties": {
+        "kind": {"const": "requested_process_only"},
+        "requested_process_id": {"type": "integer", "minimum": 1}
+      }
+    },
+    "process": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["process_id", "executable_digest", "executable_path_digest", "os_account_identifier", "os_account_sid_digest"],
+      "properties": {
+        "process_id": {"type": "integer", "minimum": 1},
+        "executable_digest": {"$ref": "#/$defs/digest"},
+        "executable_path_digest": {"$ref": "#/$defs/digest"},
+        "os_account_identifier": {"type": "string", "pattern": "^account-sha256:[0-9a-f]{64}$"},
+        "os_account_sid_digest": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "collector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["process_id", "independent_process", "interfaces", "requested_process_only", "active_network_probe_performed", "raw_executable_path_retained", "raw_account_sid_retained", "writes_performed"],
+      "properties": {
+        "process_id": {"type": "integer", "minimum": 1},
+        "independent_process": {"type": "boolean"},
+        "interfaces": {"const": ["OpenProcess", "QueryFullProcessImageNameW", "OpenProcessToken", "GetTokenInformation", "LookupAccountSidW", "ConvertSidToStringSidW"]},
+        "requested_process_only": {"const": true},
+        "active_network_probe_performed": {"const": false},
+        "raw_executable_path_retained": {"const": false},
+        "raw_account_sid_retained": {"const": false},
+        "writes_performed": {"const": false}
+      }
+    },
+    "policy_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ready_for_egress_policy", "observed_facts", "missing_facts"],
+      "properties": {
+        "ready_for_egress_policy": {"const": false},
+        "observed_facts": {"const": []},
+        "missing_facts": {"const": ["destination_observation", "parent_process_observation", "publisher_verification", "user_writable_classification"]}
+      }
+    },
+    "blockers": {"const": ["DESTINATION_OBSERVATION_MISSING", "PARENT_PROCESS_OBSERVATION_MISSING", "PUBLISHER_VERIFICATION_MISSING", "USER_WRITABLE_CLASSIFICATION_MISSING"]},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["can_propose", "can_authorize", "can_execute", "can_modify_process", "can_modify_network", "can_change_policy"],
+      "properties": {
+        "can_propose": {"const": false},
+        "can_authorize": {"const": false},
+        "can_execute": {"const": false},
+        "can_modify_process": {"const": false},
+        "can_modify_network": {"const": false},
+        "can_change_policy": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

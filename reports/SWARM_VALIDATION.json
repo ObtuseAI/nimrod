@@ -1,0 +1,17 @@
+{
+  "validation_version": "0.1.0",
+  "validated_at": "2026-07-12",
+  "status": "GOVERNED_SWARM_VALID",
+  "origin": "simulated",
+  "role_count": 7,
+  "positive_api_flow_count": 1,
+  "positive_cli_flow_count": 1,
+  "independent_verifier_process_count": 1,
+  "negative_fail_closed_case_count": 13,
+  "dissent_preserved": true,
+  "cryptographic_authorization_verified": true,
+  "execution_authorized": false,
+  "live_execution_performed": false,
+  "model_or_agent_api_called": false,
+  "launch_readiness": "BLOCKED_NO_DEPLOYABLE_PRODUCT"
+}

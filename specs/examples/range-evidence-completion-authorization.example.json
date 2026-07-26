@@ -1,0 +1,40 @@
+{
+  "authorization_version": "0.1.0",
+  "authorization_id": "700175a4-a1fd-4db7-b25a-9a2cc0f65046",
+  "origin": "simulated",
+  "status": "completion_denied",
+  "policy_id": "d47cc48a-dcf2-4db2-83bc-d19385a22347",
+  "policy_digest": "sha256:15cf03b867d43aa8324dfbd50868a23f3ec46f1e208af183027289f6b046b1ea",
+  "acceptance_report_id": "dd4ccab9-9720-5369-b716-3ec0c463d078",
+  "acceptance_report_digest": "sha256:8304e4977d6652bc4c6c6714afa535e5936339d07b3ce0595a2af8b5ee24097f",
+  "scope_digest": "sha256:2eec5a164643739b53273baf7e30ae256491fb295a94ff46e5f6b785dab66d39",
+  "environment_id": "range-environment:owner-name-required",
+  "issued_at": "2026-07-13T16:33:00Z",
+  "not_before": "2026-07-13T16:33:00Z",
+  "expires_at": "2026-07-13T16:36:00Z",
+  "outcome": "deny_completion",
+  "reason": "completion_denied_or_prerequisites_unsatisfied",
+  "authority": {
+    "can_collect": false,
+    "can_install": false,
+    "can_provision": false,
+    "can_change_policy": false,
+    "can_access_credentials": false,
+    "can_connect": false,
+    "can_execute": false,
+    "can_mark_evidence_complete": false,
+    "can_authorize_action": false
+  },
+  "signatures": [
+    {
+      "signer_id": "key:range-owner",
+      "algorithm": "Ed25519",
+      "signature_base64": "DQQUtrIspbQfv7ujLCQrppt9DiqhS7gcrTOVYT4Cq7j3YHwHv224ypUnbrVrX3kd/iulbZmpWeHcj/Kc9yIyBg=="
+    },
+    {
+      "signer_id": "key:range-recovery",
+      "algorithm": "Ed25519",
+      "signature_base64": "8n64dOL3/Hpr8r7l3lQzxCfIkZK/lAEwwASUqQCLPejP5QzdlJHPDTvunPuj2bw/GYTlxQ2/KCyaAqCKR4VTDg=="
+    }
+  ]
+}

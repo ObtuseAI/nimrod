@@ -1,0 +1,22 @@
+{
+  "import_version": "0.1.0",
+  "import_id": "3a366c8e-d63f-5412-99e1-4cc009b973c0",
+  "origin": "simulated",
+  "source_kind": "atomic_red_team",
+  "source_artifact_digest": "sha256:cab10223735479aa519a03c043de6958ed51e8f62f31c785f83353d0d4569307",
+  "source_object_id": "3f3a9f2c-8c2f-4e91-9d45-8ec2a8805274",
+  "technique_id": "T1007",
+  "name": "Emit a fixture-only service-discovery marker",
+  "platforms": ["windows"],
+  "executors": ["powershell"],
+  "raw_execution_fields_present": true,
+  "raw_execution_material_retained": false,
+  "command_digest": "sha256:46334884f7ea1f7ee0b5500761b39b2c665b88ac0128c3f31ead9391628534fb",
+  "cleanup_digest": "sha256:5a467e78fd7676b199289df828fdb4239864c480fe8b4de0be7ec5797c359b78",
+  "elevation_required": false,
+  "dynamic_input_or_payload_reference_count": 0,
+  "variable_names": [],
+  "findings": [],
+  "quarantine_status": "eligible_for_no_execution_mapping",
+  "authority": {"can_connect": false, "can_execute": false, "can_discover_targets": false}
+}

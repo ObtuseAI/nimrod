@@ -1,0 +1,291 @@
+{
+  "settlement": {
+    "aggregate_comparison": {
+      "baseline_method_id": "73000000-0000-4000-8000-000000000030",
+      "candidate_method_id": "73000000-0000-4000-8000-000000000031",
+      "hard_failure_count": 0,
+      "maximum_complexity_delta": 4,
+      "mean_required_operation_coverage_baseline": 0.366667,
+      "mean_required_operation_coverage_candidate": 1.0,
+      "mean_required_operation_coverage_delta": 0.633333,
+      "mean_uncertainty_preservation_delta": 1.0,
+      "preregistered_predictions_passed": true
+    },
+    "authority": {
+      "can_authorize": false,
+      "can_change_policy": false,
+      "can_contact_targets": false,
+      "can_execute": false,
+      "can_modify_constitution": false,
+      "can_promote": false,
+      "can_self_verify": false,
+      "can_use_credentials": false
+    },
+    "candidate_theory": {
+      "authority_retained": false,
+      "evidence_digests": [
+        "sha256:7d68e84313c7841f6bb0a847daaeed48932fbf620e82b63b77e447e3881dd897",
+        "sha256:3ebc9974a0732b8fdc1dc74326e3875ce48601d2e54c7578b41a86e9bcfcd3f2",
+        "sha256:9845070f7f546e008a74cfe0f8216ce18232b72229df61abad1c578c0599f2f4",
+        "sha256:d8c512b979165ec2ae9e4554d8a0126124ee1cf5f25bf085436c66e9ea91d6e5"
+      ],
+      "falsifiers": [
+        "held-out cases fail the preregistered coverage delta",
+        "independent replication cannot reproduce the aggregate",
+        "measured task outcomes regress despite structural coverage",
+        "complexity cost exceeds the preregistered ceiling"
+      ],
+      "generalization_allowed": false,
+      "promotion_authorized": false,
+      "scope": "two_replayed_security_method_structure_cases",
+      "statement": "Within two evidence-incomplete security method-structure replays, representing uncertainty and adversarially decomposing before retrieval increased preregistered operation coverage while preserving an abstention path within the complexity ceiling.",
+      "status": "candidate_only",
+      "theory_id": "73000000-0000-4000-8000-000000000310"
+    },
+    "challenge_log": [
+      {
+        "challenge_id": "73000000-0000-4000-8000-000000000200",
+        "disposition": "preserved",
+        "finding": "The replay rejects no-effect structurally but cannot eliminate the null beyond two fixtures.",
+        "kind": "null_challenge",
+        "material": true,
+        "target_hypothesis_id": "73000000-0000-4000-8000-000000000011"
+      },
+      {
+        "challenge_id": "73000000-0000-4000-8000-000000000201",
+        "disposition": "bounded",
+        "finding": "The candidate uses four additional operators, so complexity remains a material confound.",
+        "kind": "complexity_confound",
+        "material": true,
+        "target_hypothesis_id": "73000000-0000-4000-8000-000000000012"
+      },
+      {
+        "challenge_id": "73000000-0000-4000-8000-000000000202",
+        "disposition": "unresolved",
+        "finding": "Only two preregistered replay fixtures were evaluated.",
+        "kind": "fixture_scarcity",
+        "material": true,
+        "target_hypothesis_id": "73000000-0000-4000-8000-000000000013"
+      },
+      {
+        "challenge_id": "73000000-0000-4000-8000-000000000203",
+        "disposition": "unresolved",
+        "finding": "Operation coverage is a structural proxy and not a measured real-world problem-solving outcome.",
+        "kind": "structural_proxy_limit",
+        "material": true,
+        "target_hypothesis_id": "73000000-0000-4000-8000-000000000011"
+      },
+      {
+        "challenge_id": "73000000-0000-4000-8000-000000000204",
+        "disposition": "bounded",
+        "finding": "The verifier runs in a separate process, but dedicated OS-account and production independence remain unproven.",
+        "kind": "verifier_boundary_limit",
+        "material": true,
+        "target_hypothesis_id": "73000000-0000-4000-8000-000000000011"
+      },
+      {
+        "challenge_id": "73000000-0000-4000-8000-000000000205",
+        "disposition": "unresolved",
+        "finding": "No hidden, private, external, forward, or production evaluation was performed.",
+        "kind": "generalization_limit",
+        "material": true,
+        "target_hypothesis_id": "73000000-0000-4000-8000-000000000013"
+      }
+    ],
+    "discovery_trace": {
+      "creative_operator_count": 6,
+      "experiment_count": 1,
+      "hypothesis_count": 4,
+      "opportunity_id": "73000000-0000-4000-8000-000000000002",
+      "theory_count": 1
+    },
+    "hypotheses": [
+      {
+        "counter_evidence_ids": [
+          "73000000-0000-4000-8000-000000000200"
+        ],
+        "evidence_digests": [
+          "sha256:7d68e84313c7841f6bb0a847daaeed48932fbf620e82b63b77e447e3881dd897",
+          "sha256:3ebc9974a0732b8fdc1dc74326e3875ce48601d2e54c7578b41a86e9bcfcd3f2",
+          "sha256:9845070f7f546e008a74cfe0f8216ce18232b72229df61abad1c578c0599f2f4",
+          "sha256:d8c512b979165ec2ae9e4554d8a0126124ee1cf5f25bf085436c66e9ea91d6e5"
+        ],
+        "hypothesis_id": "73000000-0000-4000-8000-000000000010",
+        "kind": "null",
+        "status": "challenged_not_eliminated"
+      },
+      {
+        "counter_evidence_ids": [
+          "73000000-0000-4000-8000-000000000200",
+          "73000000-0000-4000-8000-000000000203",
+          "73000000-0000-4000-8000-000000000204"
+        ],
+        "evidence_digests": [
+          "sha256:7d68e84313c7841f6bb0a847daaeed48932fbf620e82b63b77e447e3881dd897",
+          "sha256:3ebc9974a0732b8fdc1dc74326e3875ce48601d2e54c7578b41a86e9bcfcd3f2",
+          "sha256:9845070f7f546e008a74cfe0f8216ce18232b72229df61abad1c578c0599f2f4",
+          "sha256:d8c512b979165ec2ae9e4554d8a0126124ee1cf5f25bf085436c66e9ea91d6e5"
+        ],
+        "hypothesis_id": "73000000-0000-4000-8000-000000000011",
+        "kind": "candidate",
+        "status": "supported_in_replay"
+      },
+      {
+        "counter_evidence_ids": [
+          "73000000-0000-4000-8000-000000000201"
+        ],
+        "evidence_digests": [
+          "sha256:7d68e84313c7841f6bb0a847daaeed48932fbf620e82b63b77e447e3881dd897",
+          "sha256:3ebc9974a0732b8fdc1dc74326e3875ce48601d2e54c7578b41a86e9bcfcd3f2",
+          "sha256:9845070f7f546e008a74cfe0f8216ce18232b72229df61abad1c578c0599f2f4",
+          "sha256:d8c512b979165ec2ae9e4554d8a0126124ee1cf5f25bf085436c66e9ea91d6e5"
+        ],
+        "hypothesis_id": "73000000-0000-4000-8000-000000000012",
+        "kind": "rival",
+        "status": "partially_supported"
+      },
+      {
+        "counter_evidence_ids": [
+          "73000000-0000-4000-8000-000000000202",
+          "73000000-0000-4000-8000-000000000205"
+        ],
+        "evidence_digests": [
+          "sha256:7d68e84313c7841f6bb0a847daaeed48932fbf620e82b63b77e447e3881dd897",
+          "sha256:3ebc9974a0732b8fdc1dc74326e3875ce48601d2e54c7578b41a86e9bcfcd3f2",
+          "sha256:9845070f7f546e008a74cfe0f8216ce18232b72229df61abad1c578c0599f2f4",
+          "sha256:d8c512b979165ec2ae9e4554d8a0126124ee1cf5f25bf085436c66e9ea91d6e5"
+        ],
+        "hypothesis_id": "73000000-0000-4000-8000-000000000013",
+        "kind": "unknown",
+        "status": "retained"
+      }
+    ],
+    "independent_verification": {
+      "limitations": [
+        "separate process used; dedicated OS-account and production independence remain unproven",
+        "no hidden, private, external, or production evaluation was performed"
+      ],
+      "performed": true,
+      "production_independence_verified": false,
+      "read_only": true,
+      "required": true,
+      "same_research_principal": false,
+      "scope": "structural_replay_only",
+      "separate_process": true,
+      "status": "replay_structure_verified",
+      "verified_claims": [
+        "mission_digest_bound",
+        "source_evidence_bound",
+        "paired_case_matrix_complete",
+        "result_digests_valid",
+        "aggregate_recomputed",
+        "predictions_recomputed",
+        "counter_evidence_preserved",
+        "candidate_theory_non_authorizing"
+      ],
+      "verifier_id": "verifier:cire-structural-v1"
+    },
+    "metacognition": {
+      "calibration_confidence": 0.58,
+      "generalization_confidence": 0.1,
+      "knowledge_state": "partially_known",
+      "missing_evidence": [
+        "hidden benchmark evaluation",
+        "external replication by an independent implementation",
+        "forward validation on future domains",
+        "measured real-world reasoning outcomes"
+      ],
+      "should_abstain_from_generalization": true,
+      "should_investigate_further": true,
+      "stop_reason": "preregistered_replay_complete_external_evaluation_missing",
+      "understanding_confidence": 0.82
+    },
+    "method_results": [
+      {
+        "abstention_preserved": false,
+        "case_id": "73000000-0000-4000-8000-000000000040",
+        "method_id": "73000000-0000-4000-8000-000000000030",
+        "metrics": {
+          "challenge_coverage": 0.0,
+          "complexity_cost": 3,
+          "evidence_efficiency": 0.25,
+          "required_operation_coverage": 0.4,
+          "uncertainty_preservation": 0
+        },
+        "result_digest": "sha256:7d68e84313c7841f6bb0a847daaeed48932fbf620e82b63b77e447e3881dd897",
+        "result_id": "73000000-0000-4000-8000-000000000100"
+      },
+      {
+        "abstention_preserved": false,
+        "case_id": "73000000-0000-4000-8000-000000000041",
+        "method_id": "73000000-0000-4000-8000-000000000030",
+        "metrics": {
+          "challenge_coverage": 0.0,
+          "complexity_cost": 3,
+          "evidence_efficiency": 0.2,
+          "required_operation_coverage": 0.333333,
+          "uncertainty_preservation": 0
+        },
+        "result_digest": "sha256:3ebc9974a0732b8fdc1dc74326e3875ce48601d2e54c7578b41a86e9bcfcd3f2",
+        "result_id": "73000000-0000-4000-8000-000000000101"
+      },
+      {
+        "abstention_preserved": true,
+        "case_id": "73000000-0000-4000-8000-000000000040",
+        "method_id": "73000000-0000-4000-8000-000000000031",
+        "metrics": {
+          "challenge_coverage": 1.0,
+          "complexity_cost": 7,
+          "evidence_efficiency": 0.625,
+          "required_operation_coverage": 1.0,
+          "uncertainty_preservation": 1
+        },
+        "result_digest": "sha256:9845070f7f546e008a74cfe0f8216ce18232b72229df61abad1c578c0599f2f4",
+        "result_id": "73000000-0000-4000-8000-000000000102"
+      },
+      {
+        "abstention_preserved": true,
+        "case_id": "73000000-0000-4000-8000-000000000041",
+        "method_id": "73000000-0000-4000-8000-000000000031",
+        "metrics": {
+          "challenge_coverage": 1.0,
+          "complexity_cost": 7,
+          "evidence_efficiency": 0.6,
+          "required_operation_coverage": 1.0,
+          "uncertainty_preservation": 1
+        },
+        "result_digest": "sha256:d8c512b979165ec2ae9e4554d8a0126124ee1cf5f25bf085436c66e9ea91d6e5",
+        "result_id": "73000000-0000-4000-8000-000000000103"
+      }
+    ],
+    "mission_digest": "sha256:cc65b5abc3d69e27240ec4eb574c7af32dc2303f1e5da5100af0b9f441f7be30",
+    "origin": "replayed",
+    "predictions": [
+      {
+        "observed_value": 0.633333,
+        "passed": true,
+        "prediction_id": "73000000-0000-4000-8000-000000000020"
+      },
+      {
+        "observed_value": 1.0,
+        "passed": true,
+        "prediction_id": "73000000-0000-4000-8000-000000000021"
+      },
+      {
+        "observed_value": 4.0,
+        "passed": true,
+        "prediction_id": "73000000-0000-4000-8000-000000000022"
+      }
+    ],
+    "research_question": "Does uncertainty-first adversarial decomposition outperform retrieval-first planning for evidence-incomplete investigations without laundering uncertainty or exceeding the preregistered complexity ceiling?",
+    "security_claim": "Replay-only structural research supports one scope-limited candidate theory; generalization, production independence, promotion, execution, and target contact remain unproven or prohibited",
+    "settlement_id": "73000000-0000-4000-8000-000000000300",
+    "source_evidence_digests": [
+      "sha256:4f679eb5e8ff1e00761369a928247aed55e10a581b9b257b617a78e8000b5766",
+      "sha256:6e860d5e51a210ce0056266b3b95fc460c078785ef0db8c0ff8fb143c9838cc8",
+      "sha256:0ea0059f0c6e10d53870c2885f3004dcb0c334f0729cdb05a3a74449aeb8394a"
+    ]
+  },
+  "settlement_digest": "sha256:3bd1745396c7661dc351e51f006d79e2c0385857fcadb3a00cc746ae6b5c128f",
+  "settlement_version": "0.1.0"
+}

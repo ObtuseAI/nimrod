@@ -1,0 +1,22 @@
+{
+  "cursor_transition_count": 2,
+  "execution_authorized": false,
+  "execution_performed": false,
+  "gap_source_count": 1,
+  "immutable_successor_generation_verified": true,
+  "live_sensor_admission_performed": false,
+  "missing_record_count": 1,
+  "negative_fail_closed_case_count": 16,
+  "origin": "replayed",
+  "policy_input_ready": false,
+  "production_verifier_independence_verified": false,
+  "raw_event_payload_retained": false,
+  "replayed_event_deduplication_count": 2,
+  "separate_process_causal_verification_performed": true,
+  "source_count": 3,
+  "status": "CACIS_WORLD_INTAKE_SUCCESSION_REPLAY_VALID_POLICY_AND_ACTION_BLOCKED",
+  "target_contact_performed": false,
+  "typed_observation_count_per_generation": 9,
+  "world_ahead_cursor_crash_recovery_verified": true,
+  "world_generation_count": 3
+}

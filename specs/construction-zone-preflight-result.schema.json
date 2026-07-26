@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/construction-zone-preflight-result.schema.json",
+  "title": "nimrod construction zone preflight result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result_version", "result_id", "origin", "status", "assessed_at", "zone_id", "zone_digest", "receipt_id", "receipt_digest", "staging_authorization_id", "staging_authorization_digest", "zone_control_count", "verified_zone_control_count", "quarantine_requirement_count", "verified_quarantine_requirement_count", "source_archive_count", "construction_zone_provisioned", "quarantine_evidence_complete", "staging_authorized", "build_authorized", "range_connection_authorized", "execution_authorized", "blockers", "activity", "authority"],
+  "properties": {
+    "result_version": {"const": "0.1.0"},
+    "result_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "simulated"},
+    "status": {"const": "CONSTRUCTION_ZONE_DECLARED_QUARANTINE_EVIDENCE_MISSING_STAGING_BLOCKED"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "zone_id": {"type": "string", "format": "uuid"},
+    "zone_digest": {"$ref": "#/$defs/digest"},
+    "receipt_id": {"type": "string", "format": "uuid"},
+    "receipt_digest": {"$ref": "#/$defs/digest"},
+    "staging_authorization_id": {"type": "string", "format": "uuid"},
+    "staging_authorization_digest": {"$ref": "#/$defs/digest"},
+    "zone_control_count": {"const": 10},
+    "verified_zone_control_count": {"const": 0},
+    "quarantine_requirement_count": {"const": 8},
+    "verified_quarantine_requirement_count": {"const": 0},
+    "source_archive_count": {"const": 0},
+    "construction_zone_provisioned": {"const": false},
+    "quarantine_evidence_complete": {"const": false},
+    "staging_authorized": {"const": false},
+    "build_authorized": {"const": false},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "blockers": {"type": "array", "minItems": 11, "maxItems": 11, "uniqueItems": true, "items": {"enum": ["CONSTRUCTION_ZONE_CONTROLS_UNVERIFIED", "CONSTRUCTION_ZONE_NOT_PROVISIONED", "CONTENT_DIGEST_NOT_RETAINED", "ISOLATED_CONSTRUCTION_ZONE_MISSING", "OWNER_ATTESTATION_MISSING", "OWNER_EXCLUSION_REGISTRY_INCOMPLETE", "OWNER_SCOPE_PROOF_MISSING", "PINNED_COMMIT_SIGNATURE_UNVERIFIED", "QUARANTINE_EVIDENCE_MISSING", "SOURCE_ARCHIVE_NOT_STAGED", "SOURCE_STAGING_AUTHORIZATION_DENIED"]}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "activity": {"type": "object", "additionalProperties": false, "required": ["repository_content_downloaded", "source_archive_staged", "source_extracted", "quarantine_checks_performed", "dependency_resolution_performed", "replica_built", "infrastructure_provisioned", "public_host_contacted_for_testing", "range_connected", "campaign_executed", "construction_zone_provisioned", "identity_created", "storage_created", "network_policy_applied", "kill_control_installed", "source_ingress_mounted", "output_store_created", "scanner_executed", "sbom_generated"], "properties": {"repository_content_downloaded": {"const": false}, "source_archive_staged": {"const": false}, "source_extracted": {"const": false}, "quarantine_checks_performed": {"const": false}, "dependency_resolution_performed": {"const": false}, "replica_built": {"const": false}, "infrastructure_provisioned": {"const": false}, "public_host_contacted_for_testing": {"const": false}, "range_connected": {"const": false}, "campaign_executed": {"const": false}, "construction_zone_provisioned": {"const": false}, "identity_created": {"const": false}, "storage_created": {"const": false}, "network_policy_applied": {"const": false}, "kill_control_installed": {"const": false}, "source_ingress_mounted": {"const": false}, "output_store_created": {"const": false}, "scanner_executed": {"const": false}, "sbom_generated": {"const": false}}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_download_source", "can_stage_source", "can_extract_source", "can_resolve_dependencies", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"], "properties": {"can_download_source": {"const": false}, "can_stage_source": {"const": false}, "can_extract_source": {"const": false}, "can_resolve_dependencies": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}}
+  }
+}

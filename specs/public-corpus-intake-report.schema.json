@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.nimrod.local/public-corpus-intake-report.schema.json",
+  "title": "nimrod public corpus intake report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_version", "report_id", "origin", "status", "assessed_at", "registry_id", "registry_digest", "plan_id", "plan_digest", "pinned_source_count", "metadata_reviewed_source_count", "source_archive_count", "replica_declared_count", "replica_ready_count", "owner_exclusion_registry_complete", "public_host_target_authorized", "range_connection_authorized", "execution_authorized", "blockers", "activity", "authority"],
+  "properties": {
+    "report_version": {"const": "0.1.0"},
+    "report_id": {"type": "string", "format": "uuid"},
+    "origin": {"const": "live_metadata_observation"},
+    "status": {"const": "PUBLIC_SACRIFICIAL_CORPUS_PINNED_METADATA_ONLY_OWNER_REGISTRY_AND_OFFLINE_REPLICAS_BLOCKED"},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "registry_id": {"type": "string", "format": "uuid"},
+    "registry_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "plan_id": {"type": "string", "format": "uuid"},
+    "plan_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "pinned_source_count": {"const": 5},
+    "metadata_reviewed_source_count": {"const": 5},
+    "source_archive_count": {"const": 0},
+    "replica_declared_count": {"const": 5},
+    "replica_ready_count": {"const": 0},
+    "owner_exclusion_registry_complete": {"const": false},
+    "public_host_target_authorized": {"const": false},
+    "range_connection_authorized": {"const": false},
+    "execution_authorized": {"const": false},
+    "blockers": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"enum": ["CONTENT_DIGEST_NOT_RETAINED", "OWNER_EXCLUSION_REGISTRY_INCOMPLETE", "OWNER_NAMED_SACRIFICIAL_RANGE_MISSING", "PINNED_COMMIT_SIGNATURE_UNVERIFIED", "REPLICA_NOT_BUILT", "SOURCE_ARCHIVE_NOT_STAGED"]}},
+    "activity": {"$ref": "#/$defs/activity"},
+    "authority": {"$ref": "#/$defs/authority"}
+  },
+  "$defs": {
+    "activity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["github_metadata_network_read_performed", "repository_content_downloaded", "source_archive_staged", "dependency_resolution_performed", "container_image_pulled", "replica_built", "infrastructure_provisioned", "public_host_contacted_for_testing", "campaign_executed"],
+      "properties": {"github_metadata_network_read_performed": {"const": true}, "repository_content_downloaded": {"const": false}, "source_archive_staged": {"const": false}, "dependency_resolution_performed": {"const": false}, "container_image_pulled": {"const": false}, "replica_built": {"const": false}, "infrastructure_provisioned": {"const": false}, "public_host_contacted_for_testing": {"const": false}, "campaign_executed": {"const": false}}
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["can_download_source", "can_build_replica", "can_provision", "can_connect", "can_execute", "can_target_public_host", "can_authorize_action"],
+      "properties": {"can_download_source": {"const": false}, "can_build_replica": {"const": false}, "can_provision": {"const": false}, "can_connect": {"const": false}, "can_execute": {"const": false}, "can_target_public_host": {"const": false}, "can_authorize_action": {"const": false}}
+    }
+  }
+}

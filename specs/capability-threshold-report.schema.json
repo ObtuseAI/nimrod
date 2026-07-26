@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://specs.nimrod.invalid/v0.1/capability-threshold-report.schema.json",
+  "title": "nimrod Capability Threshold Report", "type": "object", "additionalProperties": false,
+  "required": ["report_version", "report_id", "origin", "candidate_digest", "constitution_digest", "assessed_at", "assessments", "required_safeguard_level", "paused", "status", "blockers", "authority"],
+  "properties": {
+    "report_version": {"const": "0.1.0"}, "report_id": {"type": "string", "format": "uuid"}, "origin": {"const": "simulated"}, "candidate_digest": {"$ref": "#/$defs/digest"}, "constitution_digest": {"$ref": "#/$defs/digest"}, "assessed_at": {"type": "string", "format": "date-time"},
+    "assessments": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"type": "object", "additionalProperties": false, "required": ["trigger_id", "status", "evidence"], "properties": {"trigger_id": {"type": "string", "minLength": 1}, "status": {"enum": ["absent", "present", "unknown"]}, "evidence": {"type": "array", "items": {"$ref": "#/$defs/reference"}}}}},
+    "required_safeguard_level": {"enum": ["baseline", "elevated", "isolated_enclave", "pause"]}, "paused": {"type": "boolean"}, "status": {"enum": ["clear", "escalation_required"]}, "blockers": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "authority": {"type": "object", "additionalProperties": false, "required": ["can_expand_safeguards", "can_expand_authority", "can_execute"], "properties": {"can_expand_safeguards": {"const": false}, "can_expand_authority": {"const": false}, "can_execute": {"const": false}}}
+  }, "$defs": {"digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "reference": {"type": "object", "additionalProperties": false, "required": ["id", "digest"], "properties": {"id": {"type": "string", "minLength": 1}, "digest": {"$ref": "#/$defs/digest"}}}}
+}
