@@ -19,12 +19,30 @@ Fail-closed when identity, provenance, isolation, or proof is incomplete.
 
 nimrod is an inspectable research system for coordinating defensive reasoning without confusing intelligence, telemetry, consensus, signatures, or successful simulations with permission.
 
-It combines versioned security contracts, a no-execution simulator, a governed specialist swarm, replay-safe world modeling, read-only edge observation, independent cross-language verification, constitutional policy, and an immutable Witness trail.
+It combines versioned security contracts, a no-execution simulator, a governed specialist swarm, replay-safe world modeling, read-only edge observation, cross-implementation verification, constitutional policy, and a content-addressed Witness trail.
 
 The public release is a **research preview and reference implementation**. It is not antivirus, EDR, containment software, a deployable protection product, or authorization to operate against a target.
 
 > Governors schedule. Organisms propose. Verifiers measure.<br>
 > The Constitutional Kernel alone evaluates deterministic policy.
+
+## Product truth
+
+| Contract | Current public state |
+| --- | --- |
+| **Portfolio role** | **Constitutional Cyber-Defense Assurance Lab** — replayable simulation, cross-implementation verification, and fail-closed authority. |
+| **Maturity** | **Research preview and reference implementation** |
+| **Engineering evidence baseline** | [`cc262c9c`](https://github.com/ObtuseAI/nimrod/commit/cc262c9c223caef35f37d7e917619f677dde35c3) · required [quality workflow](https://github.com/ObtuseAI/nimrod/actions/workflows/quality.yml) |
+| **Proved now** | The public source implements versioned security contracts, a no-execution simulator, deterministic policy, fixture replay, a separately implemented TypeScript conformance evaluator, Witness records, and read-only observation. |
+| **Authority ceiling** | No public target mutation, containment, response, credential action, payload execution, or production authority. Evidence is evaluated; it never authorizes itself. |
+| **Clean demonstration** | Follow the [quick start](#quick-start), run the constitutional validator, simulate a labeled campaign, and inspect the static control board. |
+| **Known limit** | Verification currently runs within the repository’s trust domain. External custody, independently retained isolation evidence, disposable-range proof, and production calibration remain blocked. |
+
+**Designed for:** security architecture and assurance teams studying how AI-assisted defense can coordinate evidence without granting models operational authority.
+
+[Explore the ObtuseAI portfolio](https://github.com/ObtuseAI) ·
+[Inspect the constitutional architecture](#constitutional-architecture) ·
+[Start a technical conversation](https://github.com/ObtuseAI/nimrod/issues)
 
 ## Read this status first
 
@@ -53,7 +71,7 @@ nimrod reports that boundary in the landing page because a security research sys
 | **What problem does it study?** | How a defensive system can learn and coordinate without letting models, telemetry, evaluators, or success metrics authorize action. |
 | **What goes in?** | Signed or labeled fixture contracts, replayed observations, caller-selected read-only evidence, versioned policy, and explicit leases. |
 | **What comes out?** | Content-addressed proposals, causal verdicts, verification records, Witness entries, and exact blocked or admissible states. |
-| **What can a reader run?** | The complete contract validator, independent TypeScript evaluator, no-execution simulator, fixture replays, and static control board. |
+| **What can a reader run?** | The complete contract validator, separately implemented TypeScript evaluator, no-execution simulator, fixture replays, and static control board. |
 | **What is the authority ceiling?** | Proposal, simulation, replay, observation, and verification. The public preview does not expose active target mutation. |
 
 ## The security problem is authority confusion
@@ -88,9 +106,9 @@ flowchart LR
     ORIGIN["Origin + provenance"]
     IDENTITY["Principal + build identity"]
     SCOPE["Purpose + target + time scope"]
-    VERIFY["Independent verification"]
+    VERIFY["Cross-implementation verification"]
     POLICY["Deterministic constitutional policy"]
-    WITNESS["Immutable Witness record"]
+    WITNESS["Content-addressed Witness record"]
     RESULT["Admit / deny / block"]
 
     CONTENT --> ORIGIN
@@ -113,10 +131,10 @@ nimrod is organized as a separation-of-powers system:
 flowchart TB
     INPUT["Simulated, replayed, or<br/>caller-selected evidence"]
     CRUCIBLE["Crucible<br/>leases + campaign contracts"]
-    WORLD["Cyber World Model<br/>immutable generations"]
+    WORLD["Cyber World Model<br/>content-addressed generations"]
     SWARM["Governed specialist cells<br/>proposal-only"]
     PROPOSAL["Content-addressed proposal"]
-    MESH["Independent verifier mesh"]
+    MESH["Cross-implementation verifier mesh"]
     KERNEL["Constitutional Kernel<br/>deterministic policy"]
     WITNESS["Witness<br/>causal evidence ledger"]
     OBS["Observatory + control board"]
@@ -197,7 +215,7 @@ CACIS is the Constitutional Adaptive Cyber Immune System research layer. It expl
 
 Its implemented surfaces include:
 
-- **Cyber World Model** — immutable observation records, derived generations, cursor-bound succession, retention, and backpressure;
+- **Cyber World Model** — content-addressed observation records, derived generations, cursor-bound succession, retention, and backpressure;
 - **Immune Runtime** — ephemeral organism leases, lifecycle events, teardown, and knowledge-survival rules;
 - **Metabolism and homeostasis** — bounded resources, pressure signals, scheduling, and domain-specific clocks;
 - **Genome evaluation** — candidate identity, fitness evidence, lineage, and shadow promotion;
@@ -220,7 +238,7 @@ The Edge surface provides caller-selected, read-only process evidence. It delibe
 
 This is an evidence sensor, not an endpoint agent.
 
-### 6. Independent verification
+### 6. Cross-implementation verification
 
 The conformance layer includes a TypeScript evaluator built separately from the Python runtime. It checks cross-language agreement on canonical contracts and semantic mutations.
 
@@ -235,7 +253,10 @@ The verification ladder tests both positive and negative behavior:
 - prohibited authority transitions;
 - manifest drift.
 
-The purpose is not merely to show that examples parse. It is to show that important invalid states are rejected by an independently built implementation.
+The purpose is not merely to show that examples parse. It is to show that
+important invalid states are rejected by a separately implemented evaluator.
+This is implementation diversity inside the same public repository, not an
+independent external trust domain.
 
 ### 7. Witness and observability
 
@@ -265,7 +286,10 @@ Run the full validator and inspect which invariants survive mutation:
 .\tools\validate-foundation.ps1
 ```
 
-This builds the independent evaluator, verifies the canonical manifest, runs the schema and semantic contract ladder, compiles Python surfaces, and retains honest blocked states where external evidence is unavailable.
+This builds the separately implemented evaluator, verifies the canonical
+manifest, runs the schema and semantic contract ladder, compiles Python
+surfaces, and retains honest blocked states where external evidence is
+unavailable.
 
 ### Scenario B: simulate an authorized campaign without executing it
 
@@ -306,7 +330,7 @@ nimrod keeps evidence classes separate because each supports different claims:
 flowchart LR
     SIM["Simulated fixture"] --> REPLAY["Deterministic replay"]
     REPLAY --> OBS["Read-only local observation"]
-    OBS --> INDEP["Independent verification"]
+    OBS --> INDEP["Cross-implementation verification"]
     INDEP --> RANGE["Disposable-range evidence"]
     RANGE --> CAL["Production-calibrated evidence"]
 
@@ -321,7 +345,7 @@ flowchart LR
 | **Simulation** | Contract shape, deterministic decision behavior, causal recording. | Real target behavior or defensive efficacy. |
 | **Replay** | Reproducibility against retained inputs and policy. | Fresh observation or current-world performance. |
 | **Read-only observation** | Labeled facts about a caller-selected local source. | Containment, prevention, or broad endpoint coverage. |
-| **Independent verification** | Agreement or disagreement outside the proposer context. | Correctness beyond the verifier’s scope and assumptions. |
+| **Cross-implementation verification** | Agreement or disagreement from a separately implemented evaluator outside the proposer context. | Independence from the repository trust domain or correctness beyond the verifier’s scope and assumptions. |
 | **Disposable-range evidence** | Behavior in a provisioned, isolated, authorized range. | Production effectiveness without calibration and custody. |
 | **Production-calibrated evidence** | Claims bounded to the measured deployment and operating policy. | Universal efficacy or authority outside that deployment. |
 
@@ -334,11 +358,11 @@ nimrod assumes that every intelligent component can be wrong, manipulated, overc
 | Failure mode | Control |
 | --- | --- |
 | Prompt injection or retrieved-content manipulation | Content remains data; provenance and typed contracts precede policy. |
-| Model hallucination | Claims require source-linked evidence and independent verification. |
+| Model hallucination | Claims require source-linked evidence and cross-implementation verification. |
 | Self-approval | Proposer, verifier, and constitutional policy remain separate. |
 | Colluding agents | Distinct roles do not suffice; same-digest verification and deterministic policy are still required. |
 | Reward hacking | Fitness changes ranking, never permission. |
-| Stale world model | Immutable generations, cursor succession, freshness, retention, and backpressure. |
+| Stale world model | Content-addressed generations, cursor succession, freshness, retention, and backpressure. |
 | Compromised plugin or release | Canonical manifest, package identity, release and plugin trust checks. |
 | Irrecoverable adaptation | Leases, teardown, last-known-good state, Witness continuity, and recovery contracts. |
 | Privacy overreach | Caller-selected observation, purpose limitation, digest identity, bounded retention. |
@@ -366,7 +390,7 @@ The public quality workflow runs two separate jobs on clean Windows runners:
 
 | Job | What it runs | Blocking proof |
 | --- | --- | --- |
-| **Constitutional validation** | Python installation, Node 24, independently built TypeScript evaluator, foundation validator, canonical manifest, every `validate_*.py` contract, Python compilation, and public-release hygiene. | Any failed validator blocks the workflow. |
+| **Constitutional validation** | Python installation, Node 24, separately implemented TypeScript evaluator, foundation validator, canonical manifest, every `validate_*.py` contract, Python compilation, and public-release hygiene. | Any failed validator blocks the workflow. |
 | **Coverage** | The complete executable contract ladder under `coverage.py`. | `src` line coverage must remain at or above 76%. |
 
 The workflow has read-only repository permissions, pins third-party actions to exact commits, and cancels stale concurrent runs. Passing CI proves the source-controlled local contract surface at that exact SHA; it does not satisfy the separate operational gates for design partners, range execution, hardware-backed custody, production calibration, or active response.
@@ -378,7 +402,7 @@ specs/                   versioned contracts and clearly labeled examples
 src/nimrod_simulator/    no-execution simulator, swarm, verifier, Witness
 src/nimrod_edge/         replay and caller-selected read-only observation
 src/nimrod_cacis/        world model, immune runtime, homeostasis, arenas
-conformance/             independent TypeScript contract evaluator
+conformance/             separately implemented TypeScript contract evaluator
 tools/                   fail-closed validators, manifest, and release checks
 ui/                      local static constitutional control board
 docs/                    doctrine, threat model, decisions, and evidence guides
